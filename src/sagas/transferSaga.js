@@ -13,7 +13,7 @@ const getAccountState = state => state.account;
 function *transfer() {
   const account = yield select(getAccountState);
   const transfer = yield select(getTransferState);
-  const isTransferTOMO = transfer.sourceToken.symbol === TOMO.symbol;
+  const isTransferTOMO = transfer.sourceToken.address === TOMO.address;
   try {
     const defaultGasUsed = isTransferTOMO ? appConfig.DEFAULT_TRANSFER_TOMO_GAS_LIMIT : appConfig.DEFAULT_TRANSFER_TOKEN_GAS_LIMIT;
     const gasLimit = transfer.gasLimit ? transfer.gasLimit : defaultGasUsed;
@@ -32,7 +32,7 @@ export function *getTransferTxObject(gasLimit) {
   const account = yield select(getAccountState);
   const srcToken = transfer.sourceToken;
   const srcAmount = transfer.sourceAmount ? numberToHex(transfer.sourceAmount, srcToken.decimals) : numberToHex(1, srcToken.decimals);
-  const isTransferTOMO = srcToken.symbol === TOMO.symbol;
+  const isTransferTOMO = srcToken.address === TOMO.address;
   const defaultAddress = getDefaultAddress();
   let txTo, txValue, txData;
 

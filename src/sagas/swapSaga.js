@@ -20,7 +20,7 @@ const getAccountState = state => state.account;
 function *swapToken() {
   const swap = yield select(getSwapState);
   const account = yield select(getAccountState);
-  const isSwapTOMO = swap.sourceToken.symbol === TOMO.symbol || swap.destToken.symbol === TOMO.symbol;
+  const isSwapTOMO = swap.sourceToken.address === TOMO.address || swap.destToken.address === TOMO.address;
   const defaultGasUsed = isSwapTOMO ? appConfig.DEFAULT_SWAP_TOMO_GAS_LIMIT : appConfig.DEFAULT_SWAP_TOKEN_GAS_LIMIT;
   const gasLimit = swap.gasLimit ? swap.gasLimit : defaultGasUsed;
 
@@ -127,7 +127,7 @@ function *validateValidInput(swap, account) {
 
   yield put(swapActions.setError(''));
 
-  if (swap.sourceToken.symbol === swap.destToken.symbol) {
+  if (swap.sourceToken.address === swap.destToken.address) {
     yield call(setError, 'Cannot exchange the same token');
     return false;
   }
@@ -170,7 +170,7 @@ export function *getSwapTxObject(gasLimit) {
   return yield call(getTxObject, {
     from: account.address,
     to: envConfig.NETWORK_PROXY_ADDRESS,
-    value: srcToken.symbol === TOMO.symbol ? srcAmount : '0x0',
+    value: srcToken.address === TOMO.address ? srcAmount : '0x0',
     gasLimit: gasLimit,
     data: swapABI
   });
