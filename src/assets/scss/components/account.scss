@@ -1,0 +1,115 @@
+.account {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  &__container {
+    margin-top: 45px;
+    padding: 20px 25px;
+    background-color: rgba(26, 32, 64, 0.1);
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #caccd9;
+
+    &--pointer {
+      cursor: pointer;
+      transition: color .3s;
+
+      &:hover {
+        color: $blue-light
+      }
+    }
+  }
+
+  &__item {
+    width: 32%;
+    margin: 0 0 15px 2%;
+    padding: 10px 0;
+    border-radius: 22px;
+    box-shadow: 0 6px 14px 0 rgba(0, 0, 0, 0.04);
+    background-color: #29315d;
+    color: #caccd9;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all .3s;
+
+    &:nth-child(3n + 1) {
+      margin-left: 0;
+    }
+
+    &:hover {
+      background-color: #9ea7d0;
+      color: #323c70;
+
+      .account__icon {
+        &--metamask {
+          background-image: url($image-path + 'logos/metamask-active.svg');
+        }
+
+        &--ledger {
+          background-image: url($image-path + 'logos/ledger-active.svg');
+        }
+
+        &--trezor {
+          background-image: url($image-path + 'logos/trezor-active.svg');
+        }
+
+        &--keystore {
+          background-image: url($image-path + 'logos/keystore-active.svg');
+        }
+
+        &--privatekey {
+          background-image: url($image-path + 'logos/privatekey-active.svg');
+        }
+      }
+    }
+
+    &--inactive {
+      opacity: .5;
+      cursor: initial;
+      pointer-events: none;
+    }
+  }
+
+  &__name {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    background: no-repeat center center;
+    background-size: contain;
+
+    &--metamask {
+      background-image: url($image-path + 'logos/metamask.svg');
+    }
+
+    &--ledger {
+      background-image: url($image-path + 'logos/ledger.svg');
+    }
+
+    &--trezor {
+      background-image: url($image-path + 'logos/trezor.svg');
+    }
+
+    &--keystore {
+      background-image: url($image-path + 'logos/keystore.svg');
+    }
+
+    &--privatekey {
+      background-image: url($image-path + 'logos/privatekey.svg');
+    }
+  }
+}

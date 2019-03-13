@@ -1,0 +1,41 @@
+.tx {
+  &__text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #727b8f;
+
+    &--bold {
+      font-weight: 600;
+      color: #252e45;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__token-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #475065;
+
+    &--light {
+      font-weight: 500;
+      color: #9a9dac;
+    }
+  }
+
+  &__hash {
+    width: calc(100% - 20px);
+    font-size: 14px;
+    font-weight: 600;
+    color: #475065;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__address {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

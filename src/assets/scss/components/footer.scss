@@ -1,0 +1,79 @@
+.footer {
+  &__container {
+    padding: 12px 0;
+    background-color: $blue-bolder;
+  }
+
+  &__content {
+    &-item {
+      font-size: 12px;
+      font-weight: 500;
+      color: #91969f;
+      margin-right: 20px;
+      transition: color .3s;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:hover {
+        color: $blue-light;
+      }
+    }
+  }
+
+  &__logo {
+    a {
+      margin-right: 15px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    &-item {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+
+      &.telegram {
+        background-image: url($image-path + 'logos/telegram.svg');
+      }
+
+      &.twitter {
+        background-image: url($image-path + 'logos/twitter.svg');
+      }
+
+      &.reddit {
+        background-image: url($image-path + 'logos/reddit.svg');
+      }
+
+      &.medium {
+        background-image: url($image-path + 'logos/medium.svg');
+      }
+    }
+  }
+
+  &__copyright {
+    font-size: 12px;
+    font-weight: 500;
+    color: #9ea1aa;
+    text-align: center;
+    margin: 30px 0;
+  }
+
+  @media (max-width: 750px) {
+    .container {
+      display: block;
+      text-align: center;
+    }
+
+    &__container {
+      padding: 25px 0;
+    }
+
+    &__content {
+      margin-bottom: 23px;
+    }
+  }
+}

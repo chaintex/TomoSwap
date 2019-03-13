@@ -1,0 +1,92 @@
+.exchange {
+  &__container {
+    margin-bottom: 30px;
+  }
+
+  &__button {
+    margin-top: 10px;
+
+    &-container {
+      text-align: center;
+    }
+  }
+
+  &__modal {
+    &-body {
+      text-align: left;
+    }
+
+    &-number {
+      font-size: 18px;
+      font-weight: 500;
+      color: #252e45;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &-box {
+      width: calc(50% - 8px);
+      word-break: break-word;
+      line-height: 1.2;
+
+      &:first-child {
+        padding-right: 20px;
+      }
+
+      &:last-child {
+        text-align: right;
+        padding-left: 20px;
+      }
+
+      &--address {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    &-icon {
+      width: 16px;
+      height: 16px;
+      background-image: url($image-path + 'icons/arrow-right-blue.svg');
+    }
+
+    &-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: #4a5675;
+    }
+
+    &-text-light {
+      font-size: 14px;
+      font-weight: 500;
+      color: #7a82a9;
+      margin-top: 5px;
+    }
+
+    &-approve {
+      font-size: 14px;
+      font-weight: 500;
+      color: #727b8f;
+      margin-bottom: 10px;
+    }
+
+    &-address {
+      font-size: 14px;
+      font-weight: 600;
+      color: #475065;
+      word-break: break-word;
+    }
+
+    &-password {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px dashed rgba(0, 0, 0, 0.4);
+
+      .exchange__modal-text {
+        margin-bottom: 12px;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.dropdown {
+  display: inline-block;
+
+  &__content {
+    display: none;
+    position: absolute;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #dfe3ea;
+    box-shadow: 0 6px 26px 0 rgba(1, 1, 1, 0.13);
+    margin-top: 22px;
+    z-index: 9;
+  }
+
+  &--active .dropdown__content {
+    display: block;
+  }
+}
