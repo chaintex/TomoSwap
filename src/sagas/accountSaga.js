@@ -4,20 +4,21 @@ import * as accountActions from "../actions/accountAction";
 import { getTokenBalances } from "../services/networkService";
 import { setTokens } from "../actions/tokenAction";
 import { formatBigNumber } from "../utils/helpers";
-import AppConfig from "../config/app";
+import appConfig from "../config/app";
 import { setBalanceLoading } from "../actions/accountAction";
+import { fetchTxEstimatedGasUsed } from "./transactionSaga";
 
 const getTokens = state => state.token.tokens;
-const getAccount = state => state.account;
+const getAccountAddress = state => state.account.address;
 
 function *fetchBalancesChannel() {
-  let account = yield select(getAccount);
+  let address = yield select(getAccountAddress);
 
-  yield call(fetchBalance, account.address, true);
+  yield call(fetchBalance, address, true);
 
-  while (!!account.address) {
-    account = yield select(getAccount);
-    yield call(fetchBalance, account.address);
+  while (address) {
+    address = yield select(getAccountAddress);
+    yield call(fetchBalance, address);
   }
 }
 
@@ -33,9 +34,10 @@ function *fetchBalance(address, isFirstLoading = false) {
 
   yield put(setTokens(tokens));
   yield put(setBalanceLoading(false));
-  yield call(delay, AppConfig.BALANCE_FETCHING_INTERVAL);
+  yield call(delay, appConfig.BALANCE_FETCHING_INTERVAL);
 }
 
 export default function* accountWatcher() {
+  yield takeLatest(accountActions.accountActionTypes.SET_WALLET, fetchTxEstimatedGasUsed);
   yield takeLatest(accountActions.accountActionTypes.FETCH_BALANCES, fetchBalancesChannel);
 }

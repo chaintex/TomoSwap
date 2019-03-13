@@ -51,7 +51,7 @@ function *getTokenBasedRates(tokens) {
   let srcAddresses = [], srcDecimals = [], destAddresses = [], srcAmounts = [];
 
   tokens.forEach((token) => {
-    if (token.symbol !== TOMO.symbol) {
+    if (token.address !== TOMO.address) {
       srcAddresses.push(token.address);
       srcDecimals.push(token.decimals);
       destAddresses.push(TOMO.address);
@@ -63,7 +63,7 @@ function *getTokenBasedRates(tokens) {
   let buyRates = yield call(getAllRates, destAddresses, srcDecimals, srcAddresses, srcAmounts);
 
   return tokens.map((token, index) => {
-    if (token.symbol === TOMO.symbol) {
+    if (token.address === TOMO.address) {
       token.sellRate = 1;
       token.buyRate = 1;
     } else {

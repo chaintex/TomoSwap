@@ -12,7 +12,6 @@ const initialState = {
 export default function transferReducer(state = initialState, action) {
   switch (action.type) {
     case transferActionTypes.SET_SOURCE_TOKEN: {
-      console.log(action.payload);
       return {
         ...state,
         sourceToken: action.payload
