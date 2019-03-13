@@ -43,14 +43,14 @@ export function *fetchTxEstimatedGasUsed() {
 
   if (exchangeMode === appConfig.EXCHANGE_SWAP_MODE) {
     const swap = yield select(getSwapState);
-    const isExchangeTOMO = swap.sourceToken.address === TOMO.address || swap.destToken.address === TOMO.address;
-    defaultGasUsed = isExchangeTOMO ? appConfig.DEFAULT_SWAP_TOMO_GAS_LIMIT : appConfig.DEFAULT_SWAP_TOKEN_GAS_LIMIT;
+    const isSwapTOMO = swap.sourceToken.address === TOMO.address || swap.destToken.address === TOMO.address;
+    defaultGasUsed = isSwapTOMO ? appConfig.DEFAULT_SWAP_TOMO_GAS_LIMIT : appConfig.DEFAULT_SWAP_TOKEN_GAS_LIMIT;
     txObject = yield call(getSwapTxObject, defaultGasUsed);
     extraGasUsedRate = 1.2;
   } else {
     const transfer = yield select(getTransferState);
-    const isExchangeTOMO = transfer.sourceToken.address === TOMO.address;
-    defaultGasUsed = isExchangeTOMO ? appConfig.DEFAULT_TRANSFER_TOMO_GAS_LIMIT : appConfig.DEFAULT_TRANSFER_TOKEN_GAS_LIMIT;
+    const isTransferTOMO = transfer.sourceToken.address === TOMO.address;
+    defaultGasUsed = isTransferTOMO ? appConfig.DEFAULT_TRANSFER_TOMO_GAS_LIMIT : appConfig.DEFAULT_TRANSFER_TOKEN_GAS_LIMIT;
     txObject = yield call(getTransferTxObject, defaultGasUsed);
     extraGasUsedRate = 1.5;
   }
@@ -68,7 +68,7 @@ function *callEstimateGas(txObject, extraGasUsedRate, defaultGasUsed, exchangeMo
     yield call(setTxFeeAndGasLimit, txFee, gasLimit, exchangeMode);
   } catch (error) {
     const txFee = defaultGasUsed * appConfig.DEFAULT_GAS_PRICE / Math.pow(10.0, TOMO.decimals);
-    yield call(setTxFeeAndGasLimit ,txFee, defaultGasUsed, exchangeMode);
+    yield call(setTxFeeAndGasLimit, txFee, defaultGasUsed, exchangeMode);
   }
 }
 
