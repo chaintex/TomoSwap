@@ -35,3 +35,7 @@ export function calculateMinConversionRate(slippageRate, expectedRate) {
 
   return numberToHex(minConversionRate);
 }
+
+export function getDefaultAddress() {
+  return "0x" + Array(41).join("0");
+}
