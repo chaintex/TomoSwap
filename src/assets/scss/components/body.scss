@@ -1,0 +1,110 @@
+.body {
+  padding: 20px 0 100px;
+
+  &__title {
+    font-size: 36px;
+    color: #ffffff;
+    font-weight: 400;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -35px;
+      left: 0;
+      background-color: $blue-light;
+      width: 70px;
+      height: 3px;
+      border-radius: 5px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 16px;
+    font-weight: 500;
+    color: $purple-soft;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__content {
+    &:first-child {
+      width: 41%;
+    }
+
+    &:last-child {
+      width: 49%;
+    }
+  }
+
+  &__exchange {
+    $button-width: 110px;
+
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 42px 154px 0 rgba(1, 1, 1, 0.16);
+    background-image: linear-gradient(to bottom, #43508e, #313b6e);
+
+    &-wrapper {
+      padding: 30px 50px 30px;
+      text-align: center;
+    }
+
+    &-content {
+      display: inline-block;
+      border-radius: 20px;
+      box-shadow: inset 0 1px 4px 0 rgba(21, 40, 60, 0.08);
+      background-color: $blue-semi-bold;
+      position: relative;
+      z-index: 1;
+
+      &::before {
+        content: '';
+        width: $button-width;
+        height: 100%;
+        border-radius: 20px;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #9ea7d0;
+        z-index: -1;
+        transition: all .2s ease-out;
+      }
+
+      &--Transfer::before {
+        transform: translateX($button-width);
+      }
+
+      &:active::before {
+        transform: scale(0.8);
+      }
+
+      &--transfer:active::before {
+        transform: scale(0.8) translateX(137px);
+      }
+    }
+
+    &-button {
+      width: $button-width;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #181f46;
+      padding: 9px 10px;
+      display: inline-block;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color .3s ease-out;
+
+      &--active {
+        color: $blue-semi-bold;
+        cursor: initial;
+      }
+    }
+  }
+}
