@@ -1,0 +1,178 @@
+.common {
+  &__text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #727b8f;
+
+    &.center {
+      text-align: center;
+    }
+  }
+
+  &__flexbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--center {
+      justify-content: center;
+    }
+
+    &--left {
+      justify-content: initial;
+    }
+  }
+
+  &__button {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    border-radius: 30px;
+    background-color: $blue;
+    padding: 8px 25px;
+    cursor: pointer;
+    transition: all .3s;
+
+    &:active {
+      transform: translateY(2px);
+    }
+
+    &:hover {
+      background-color: $blue-light;
+    }
+  }
+
+  &__button-gradient {
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    border-radius: 30px;
+    display: inline-block;
+    padding: 16px 10px;
+    width: 245px;
+    text-align: center;
+    box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.16);
+    background: linear-gradient(to bottom, #36cef9, #279df4) 0 100%;
+    background-size: auto 150%;
+    cursor: pointer;
+    transition: all .3s;
+
+    &.disabled {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    &:hover {
+      background-position: 0 0;
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  &__arrow-drop-down {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid $grey;
+    transition: all .3s;
+
+    &.up {
+      transform: rotate(-180deg);
+    }
+  }
+
+  &__error {
+    font-size: 14px;
+    font-weight: 500;
+    color: $red;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fade-in 0.3s forwards;
+    transition: all .3s;
+
+    &.under-input {
+      margin-top: 15px;
+      padding: 0 25px;
+    }
+  }
+
+  &__loading {
+    width: 30px;
+    height: 30px;
+    background-image: url($image-path + 'icons/loading.gif');
+    background-size: contain;
+  }
+
+  &__loading-circle {
+    width: 24px;
+    height: 24px;
+    background-image: url($image-path + 'icons/loading-circle.gif');
+    background-size: contain;
+    margin-right: 7px;
+    position: relative;
+    bottom: 2px;
+  }
+
+  &__copy-icon {
+    width: 13px;
+    height: 16px;
+    background-image: url($image-path + 'icons/copy.svg');
+    background-size: contain;
+    cursor: pointer;
+  }
+
+  &__fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fade-in 0.3s forwards;
+  }
+
+  &__password {
+    outline: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #7a82a9;
+    padding: 13px 20px;
+    width: 100%;
+    border-radius: 25px;
+    border: solid 1px #dedede;
+    -webkit-text-security: disc;
+
+    &::placeholder {
+      font-size: 14px;
+      font-weight: 500;
+      color: #7a82a9;
+    }
+
+    &-container {
+      position: relative;
+
+      &--unlock {
+        .common__password {
+          -webkit-text-security: none;
+        }
+
+        .common__password-icon {
+          background-image: url($image-path + 'icons/password-unlock.svg');
+        }
+      }
+    }
+
+    &-icon {
+      display: block;
+      width: 22px;
+      height: 22px;
+      background: url($image-path + 'icons/password-lock.svg') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      right: 20px;
+      top: 12px;
+      cursor: pointer;
+    }
+  }
+}
+

@@ -1,0 +1,272 @@
+.header {
+  width: 100%;
+  padding: 10px 0;
+  z-index: 1;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    width: 118px;
+    height: 76px;
+    background-image: url($image-path + 'logos/tomoswap.svg');
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+
+    &-item,
+    &-button {
+      font-size: 14px;
+      font-weight: 500;
+      color: white;
+    }
+
+    &-item {
+      margin-right: 30px;
+      position: relative;
+      transition: color .3s;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left:0;
+        right: 0;
+        margin: 0 auto;
+        width: 100%;
+        height: 2px;
+        background-color: $blue;
+        box-shadow: 0 4px 14px 0 rgba(56, 155, 252, 0.82);
+        transform: translateY(5px);
+        opacity: 0;
+        transition: all .3s;
+      }
+
+      &.active::after {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      &:hover::after {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    &-button {
+      margin-right: 0;
+    }
+
+    &-account {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    &-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #8c98aa;
+      margin-right: 10px;
+    }
+
+    &-arrow {
+      position: relative;
+      top: 1px;
+    }
+
+    &-dropdown {
+      border-radius: 7px;
+      margin-top: 10px;
+    }
+
+    &-dropdown-text {
+      padding: 15px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #5a5e67;
+    }
+
+    &-dropdown-bot {
+      padding: 15px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #4a5675;
+      background-color: #dfe3ea;
+      border-bottom-left-radius: 7px;
+      border-bottom-right-radius: 7px;
+      text-transform: uppercase;
+      position: relative;
+      transition: all .3s;
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 12px;
+        right: 20px;
+        width: 18px;
+        height: 18px;
+        background-image: url($image-path + 'icons/logout.svg');
+      }
+
+      &:hover {
+        background-color: #c9ccd3;
+      }
+    }
+  }
+
+  &__mobile-opener {
+    display: none;
+    cursor: pointer;
+    z-index: 10;
+
+    &-bar {
+      background-color: #a3abb8;
+      border-radius: 5px;
+      height: 3px;
+      transition: all .3s;
+    }
+
+    &-bar:first-child {
+      width: 24px;
+      margin-bottom: 6px;
+    }
+
+    &-bar:last-child {
+      width: 16px;
+      margin-left: auto;
+    }
+  }
+
+  @media (max-width: 750px) {
+    &__container {
+      padding: 0 20px;
+      flex-wrap: wrap;
+    }
+
+    &__content {
+      width: 250px;
+      display: block;
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 100px 0 0;
+      height: 100%;
+      box-shadow: -10px 0 24px 0 rgba(0, 0, 0, 0.25);
+      background-image: linear-gradient(to bottom, #2f3640, #1f242b);
+      z-index: 9;
+      transform: translateX(270px);
+      transition: all .3s ease-out;
+
+      &-item {
+        padding: 0 30px;
+        display: block;
+        margin-bottom: 25px;
+
+        &.active {
+          color: $blue-light;
+
+          &::after {
+            display: none;
+          }
+        }
+      }
+
+      &-account {
+        padding-top: 25px;
+        border-top: 1px solid #434c58;
+        cursor: none;
+      }
+
+      &-name {
+        padding: 0 30px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #8c98aa;
+      }
+
+      &-arrow {
+        display: none;
+      }
+
+      &-button {
+        margin: 0 30px;
+        text-align: center;
+      }
+
+      &-dropdown {
+        display: block;
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        box-shadow: none;
+        animation: none;
+        position: unset;
+        opacity: 1;
+        transform: unset;
+      }
+
+      &-dropdown-text {
+        padding: 0 30px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #8c98aa;
+        margin-top: 15px;
+      }
+
+      &-dropdown-bot {
+        width: 100%;
+        font-size: 14px;
+        font-weight: 600;
+        color: #9ea1aa;
+        padding: 20px 0 0 63px;
+        background: none;
+        position: absolute;
+        bottom: 20px;
+        border-top: 1px solid #434c58;
+
+        &::after {
+          right: unset;
+          left: 30px;
+          top: 20px;
+          background-image: url($image-path + 'icons/logout-light.svg');
+        }
+      }
+    }
+
+    &__mobile-opener {
+      display: block;
+    }
+
+    &__container.active {
+      .header__mobile-opener {
+        position: fixed;
+        top: 40px;
+        right: 20px;
+
+        &-bar {
+          width: 24px;
+
+          &:first-child {
+            transform: rotate(45deg);
+          }
+
+          &:last-child {
+            transform: rotate(-45deg) translate(6px, -7px);
+          }
+        }
+      }
+
+      .header__content {
+        transform: translateX(0);
+      }
+    }
+  }
+}

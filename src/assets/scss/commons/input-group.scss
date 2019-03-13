@@ -1,0 +1,127 @@
+.input-group {
+  padding: 0 50px;
+
+  &__title {
+    font-size: 16px;
+    font-weight: 500;
+    color: $blue-light;
+    padding-left: 10px;
+    margin-bottom: 13px;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 30px;
+    border: 2px solid transparent;
+    background-color: #29315b;
+    padding: 14px 25px;
+    transition: all .3s;
+
+    &--error {
+      border-color: $red;
+    }
+
+    &--imported {
+      position: relative;
+
+      .input-group__input {
+        padding-right: 20px;
+      }
+
+      .input-group__dropdown {
+        display: block;
+      }
+    }
+  }
+
+  &__input {
+    width: calc(100% - 170px);
+    height: 31px;
+    outline: none;
+    border: none;
+    text-align: right;
+    font-size: 24px;
+    font-weight: 500;
+    color: $grey;
+    background-color: #29315b;
+    transition: padding .3s;
+
+    &::placeholder {
+      opacity: .6;
+    }
+
+    &--full {
+      width: 100%;
+      text-align: left;
+      font-size: 20px;
+    }
+  }
+
+  &__dropdown {
+    display: none;
+    position: absolute;
+    right: 15px;
+
+    &-content {
+      width: 190px;
+      border-radius: 10px;
+      padding: 10px 0;
+      font-size: 14px;
+      font-weight: 500;
+      color: #5a5e67;
+      line-height: 2.14;
+      top: 24px;
+      right: 0;
+
+      div {
+        padding: 0 20px;
+        cursor: pointer;
+        transition: background-color .3s;
+
+        &:hover {
+          background-color: #eee;
+        }
+      }
+    }
+
+    .dropdown__trigger {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__info {
+    height: 22px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #8690ad;
+    padding: 0 25px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin: 10px 0 15px;
+
+    .common__flexbox {
+      height: 100%;
+      align-items: flex-start;
+    }
+
+    &.right {
+      justify-content: flex-end;
+    }
+  }
+
+  &__loading {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: relative;
+    top: -1px;
+    margin: 0 4px;
+  }
+}
