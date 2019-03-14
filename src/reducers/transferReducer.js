@@ -5,6 +5,7 @@ const initialState = {
   sourceToken: TOMO,
   sourceAmount: '',
   toAddress: '',
+  txFeeInTOMO: 0,
   error: null,
   addressError: null
 };
