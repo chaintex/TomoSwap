@@ -1,7 +1,7 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import * as transferActions from '../actions/transferAction';
 import * as txActions from "../actions/transactionAction";
-import { getDefaultAddress, formatAmount, numberToHex } from "../utils/helpers";
+import { getDefaultAddress, numberToHex } from "../utils/helpers";
 import { getTransferABI } from "../services/networkService";
 import { TOMO } from "../config/tokens";
 import { fetchTransactionReceipt, fetchTxEstimatedGasUsed, getTxObject } from "./transactionSaga";
@@ -66,8 +66,8 @@ function *validateValidInput() {
   const account = yield select(getAccountState);
   const isAccountImported = !!account.address;
   const sourceToken = transfer.sourceToken;
-  const sourceBalance = formatAmount(sourceToken.balance);
-  const sourceAmount = transfer.sourceAmount ? formatAmount(transfer.sourceAmount) : 0;
+  const sourceBalance = +sourceToken.balance;
+  const sourceAmount = transfer.sourceAmount ? +transfer.sourceAmount : 0;
   const sourceAmountString = transfer.sourceAmount.toString();
   const sourceTokenDecimals = sourceToken.decimals;
   const sourceAmountDecimals = sourceAmountString.split(".")[1];
@@ -84,12 +84,13 @@ function *validateValidInput() {
     return false;
   }
 
-  if (isAccountImported && sourceToken.address === TOMO.address && sourceAmount + formatAmount(transfer.txFeeInTOMO) > sourceBalance) {
+  if (isAccountImported && sourceToken.address === TOMO.address && sourceAmount + +transfer.txFeeInTOMO > sourceBalance) {
     yield put(transferActions.setError(`You don't have enough balance to pay for transaction fee`));
     return false;
   }
 
-  if (sourceAmountString !== '' && !+sourceAmountString) {
+  if (sourceAmount < 0) {
+    // allow transfer with amount = 0
     yield put(transferActions.setError('Your source amount is invalid'));
     return false;
   }
