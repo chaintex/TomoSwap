@@ -26,12 +26,12 @@ export function *fetchTransactionReceipt(txHash) {
     if (txReceipt && txReceipt.status) {
       yield put(txActions.setIsTxMined(txReceipt.status));
       isTxMined = true;
-    } else if (txReceipt && txReceipt.status) {
+    } else if (txReceipt && !txReceipt.status) {
       yield put(txActions.setTxError("There is something wrong with the transaction!"));
       isTxMined = true;
     } else {
       let currentTime = Date.now(); // current time
-      if (currentTime - startTime >= appConfig.TRANSACTION_TIME_OUT) {
+      if (Math.abs(currentTime - startTime) >= appConfig.TRANSACTION_TIME_OUT) {
         // transaction could be lost
         yield put(txActions.setTxError("There is something wrong with the transaction!"));
         isTxMined = true;
