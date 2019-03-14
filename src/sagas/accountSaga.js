@@ -18,7 +18,7 @@ function *fetchBalancesChannel() {
   yield call(fetchBalance, address, true);
 
   while (true) {
-    let address = yield select(getAccountAddress);
+    address = yield select(getAccountAddress);
     if (!address) { return; }
     yield call(fetchBalance, address);
   }
