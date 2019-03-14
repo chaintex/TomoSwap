@@ -1,7 +1,7 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import * as transferActions from '../actions/transferAction';
 import * as txActions from "../actions/transactionAction";
-import { getDefaultAddress, numberToHex } from "../utils/helpers";
+import { getDefaultAddress, formatAmount, numberToHex } from "../utils/helpers";
 import { getTransferABI } from "../services/networkService";
 import { TOMO } from "../config/tokens";
 import { fetchTransactionReceipt, fetchTxEstimatedGasUsed, getTxObject } from "./transactionSaga";
@@ -11,6 +11,8 @@ const getTransferState = state => state.transfer;
 const getAccountState = state => state.account;
 
 function *transfer() {
+  const isValidInput = yield call(validateValidInput);
+  if (!isValidInput) { return; }
   const account = yield select(getAccountState);
   const transfer = yield select(getTransferState);
   const isTransferTOMO = transfer.sourceToken.address === TOMO.address;
@@ -59,8 +61,46 @@ export function *getTransferTxObject(gasLimit) {
   });
 }
 
+function *validateValidInput() {
+  const transfer = yield select(getTransferState);
+  const account = yield select(getAccountState);
+  const isAccountImported = !!account.address;
+  const sourceToken = transfer.sourceToken;
+  const sourceBalance = formatAmount(sourceToken.balance);
+  const sourceAmount = transfer.sourceAmount ? formatAmount(transfer.sourceAmount) : 0;
+  const sourceAmountString = transfer.sourceAmount.toString();
+  const sourceTokenDecimals = sourceToken.decimals;
+  const sourceAmountDecimals = sourceAmountString.split(".")[1];
+
+  yield put(transferActions.setError(''));
+
+  if (sourceAmountDecimals && sourceAmountDecimals.length > sourceTokenDecimals) {
+    yield put(transferActions.setError(`Your source amount's decimals should be no longer than ${sourceTokenDecimals} characters`));
+    return false;
+  }
+
+  if (isAccountImported && sourceAmount > sourceBalance) {
+    yield put(transferActions.setError('Your source amount is bigger than your real balance'));
+    return false;
+  }
+
+  if (isAccountImported && sourceToken.address === TOMO.address && sourceAmount + formatAmount(transfer.txFeeInTOMO) > sourceBalance) {
+    yield put(transferActions.setError(`You don't have enough balance to pay for transaction fee`));
+    return false;
+  }
+
+  if (sourceAmountString !== '' && !+sourceAmountString) {
+    yield put(transferActions.setError('Your source amount is invalid'));
+    return false;
+  }
+
+  return true;
+}
+
 export default function* transferWatcher() {
   yield takeLatest(transferActions.transferActionTypes.TRANSFER, transfer);
   yield takeLatest(transferActions.transferActionTypes.SET_SOURCE_TOKEN, fetchTxEstimatedGasUsed);
   yield takeLatest(transferActions.transferActionTypes.SET_SOURCE_AMOUNT, fetchTxEstimatedGasUsed);
+  yield takeLatest(transferActions.transferActionTypes.SET_SOURCE_TOKEN, validateValidInput);
+  yield takeLatest(transferActions.transferActionTypes.SET_SOURCE_AMOUNT, validateValidInput);
 }

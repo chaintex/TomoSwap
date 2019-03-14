@@ -4,6 +4,7 @@ import { getSwapABI, getRate, getAllowance, getApproveABI } from "../services/ne
 import * as swapActions from "../actions/swapAction";
 import * as txActions from "../actions/transactionAction";
 import {
+  formatAmount,
   calculateMinConversionRate,
   formatBigNumber,
   getBiggestNumber,
@@ -121,9 +122,11 @@ function *checkSrcTokenAllowance(action) {
 function *validateValidInput(swap, account) {
   const isAccountImported = !!account.address;
   const sourceToken = swap.sourceToken;
-  const sourceAmount = swap.sourceAmount.toString();
+  const sourceBalance = formatAmount(sourceToken.balance);
+  const sourceAmount = swap.sourceAmount ? formatAmount(swap.sourceAmount) : 0;
+  const sourceAmountString = swap.sourceAmount.toString();
   const sourceTokenDecimals = sourceToken.decimals;
-  const sourceAmountDecimals = sourceAmount.split(".")[1];
+  const sourceAmountDecimals = sourceAmountString.split(".")[1];
 
   yield put(swapActions.setError(''));
 
@@ -137,12 +140,17 @@ function *validateValidInput(swap, account) {
     return false;
   }
 
-  if (isAccountImported && sourceAmount > sourceToken.balance) {
+  if (isAccountImported && sourceAmount > sourceBalance) {
     yield call(setError, 'Your source amount is bigger than your real balance');
     return false;
   }
 
-  if (sourceAmount !== '' && !+sourceAmount) {
+  if (isAccountImported && sourceToken.address === TOMO.address && sourceAmount + formatAmount(swap.txFeeInTOMO) > sourceBalance) {
+    yield call(setError, `You don't have enough balance to pay for transaction fee`);
+    return false;
+  }
+
+  if (sourceAmountString !== '' && !+sourceAmountString) {
     yield call(setError, 'Your source amount is invalid');
     return false;
   }
