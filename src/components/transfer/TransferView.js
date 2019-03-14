@@ -32,7 +32,7 @@ export default class TransferView extends Component {
             </div>
 
             {this.props.addressError && (
-              <div className={"common__error under-input"}>{this.props.addressError}</div>
+              <div className={"common__text common__text--error under-input"}>{this.props.addressError}</div>
             )}
 
             <div className={"input-group__info"}/>

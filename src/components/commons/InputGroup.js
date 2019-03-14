@@ -72,7 +72,7 @@ export default class InputGroup extends Component {
         </div>
 
         {this.props.error && (
-          <div className={"common__error under-input"}>{this.props.error}</div>
+          <div className={"common__text common__text--error under-input"}>{this.props.error}</div>
         )}
 
         <div className={"input-group__info"}>

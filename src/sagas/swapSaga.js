@@ -12,7 +12,7 @@ import {
 import appConfig from "../config/app";
 import envConfig from "../config/env";
 import { TOMO } from "../config/tokens";
-import { getTxObject, fetchTransactionReceipt, fetchTxEstimatedGasUsed } from "./transactionSaga";
+import { getTxObject, fetchTransactionReceipt, fetchTxEstimatedGasUsed, setTxStatusBasedOnWalletType } from "./transactionSaga";
 
 const getSwapState = state => state.swap;
 const getAccountState = state => state.account;
@@ -20,18 +20,33 @@ const getAccountState = state => state.account;
 function *swapToken() {
   const swap = yield select(getSwapState);
   const account = yield select(getAccountState);
+
+  yield put(txActions.setConfirmingError());
+  yield call(setTxStatusBasedOnWalletType, account.walletType, true);
+
   const isSwapTOMO = swap.sourceToken.address === TOMO.address || swap.destToken.address === TOMO.address;
   const defaultGasUsed = isSwapTOMO ? appConfig.DEFAULT_SWAP_TOMO_GAS_LIMIT : appConfig.DEFAULT_SWAP_TOKEN_GAS_LIMIT;
   const gasLimit = swap.gasLimit ? swap.gasLimit : defaultGasUsed;
+  let txObject, txHash;
 
   try {
-    const txObject = yield call(getSwapTxObject, gasLimit);
-    const txHash = yield call(account.walletService.sendTransaction, txObject, account.walletPassword);
+    txObject = yield call(getSwapTxObject, gasLimit);
+  } catch (e) {
+    console.log(e);
+    return;
+  }
 
+  try {
+    txHash = yield call(account.walletService.sendTransaction, txObject, account.walletPassword);
+
+    yield put(swapActions.setIsConfirmModalActive(false));
+    yield call(setTxStatusBasedOnWalletType, account.walletType, false);
     yield put(txActions.setTxHash(txHash));
+
     yield call(fetchTransactionReceipt, txHash);
-  } catch (error) {
-    console.log(error.message);
+  } catch (e) {
+    yield put(txActions.setConfirmingError(e));
+    yield call(setTxStatusBasedOnWalletType, account.walletType, false);
   }
 }
 

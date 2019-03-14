@@ -12,7 +12,8 @@ const initialState = {
   srcTokenAllowance: null,
   txFeeInTOMO: 0,
   gasLimit: null,
-  error: null
+  error: null,
+  isConfirmModalActive: false,
 };
 
 export default function swapReducer(state = initialState, action) {
@@ -82,6 +83,12 @@ export default function swapReducer(state = initialState, action) {
       return {
         ...state,
         error: action.payload
+      }
+    }
+    case swapActionTypes.SET_IS_CONFIRM_MODAL_ACTIVE: {
+      return {
+        ...state,
+        isConfirmModalActive: action.payload
       }
     }
     default:
