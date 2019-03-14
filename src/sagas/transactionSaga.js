@@ -20,16 +20,17 @@ export function *fetchTransactionReceipt(txHash) {
   let isTxMined = false;
 
   while(!isTxMined) {
-    yield call(delay, appConfig.TX_TRACKING_INTERVAL);
     const txReceipt = yield call(web3.eth.getTransactionReceipt, txHash);
 
-    if (txReceipt.status === '0x1') {
+    if (txReceipt && txReceipt.status === '0x1') {
       yield put(txActions.setIsTxMined(txReceipt.status));
       isTxMined = true;
-    } else if (txReceipt.status === '0x0') {
+    } else if (txReceipt && txReceipt.status === '0x0') {
       yield put(txActions.setTxError("There is something wrong with the transaction!"));
       isTxMined = true;
     }
+
+    yield call(delay, appConfig.TX_TRACKING_INTERVAL);
   }
 }
 
