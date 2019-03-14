@@ -18,16 +18,24 @@ const getTransferState = state => state.transfer;
 export function *fetchTransactionReceipt(txHash) {
   const web3 = yield select(getWeb3Instance);
   let isTxMined = false;
+  let startTime = Date.now(); // start time
 
   while(!isTxMined) {
     const txReceipt = yield call(web3.eth.getTransactionReceipt, txHash);
 
-    if (txReceipt && txReceipt.status === '0x1') {
+    if (txReceipt && txReceipt.status) {
       yield put(txActions.setIsTxMined(txReceipt.status));
       isTxMined = true;
-    } else if (txReceipt && txReceipt.status === '0x0') {
+    } else if (txReceipt && !txReceipt.status) {
       yield put(txActions.setTxError("There is something wrong with the transaction!"));
       isTxMined = true;
+    } else {
+      let currentTime = Date.now(); // current time
+      if (Math.abs(currentTime - startTime) >= appConfig.TRANSACTION_TIME_OUT) {
+        // transaction could be lost
+        yield put(txActions.setTxError("There is something wrong with the transaction!"));
+        isTxMined = true;
+      }
     }
 
     yield call(delay, appConfig.TX_TRACKING_INTERVAL);
