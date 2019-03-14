@@ -83,10 +83,10 @@ function *callEstimateGas(txObject, extraGasUsedRate, defaultGasUsed, exchangeMo
 
 function *setTxFeeAndGasLimit(txFee, gasLimit, exchangeMode) {
   if (exchangeMode === appConfig.EXCHANGE_SWAP_MODE) {
-    yield put(swapActions.setTxFeeInTOMO(txFee.toFixed(9)));
+    yield put(swapActions.setTxFeeInTOMO(txFee));
     yield put(swapActions.setTxGasLimit(gasLimit));
   } else {
-    yield put(transferActions.setTxFeeInTOMO(txFee.toFixed(9)));
+    yield put(transferActions.setTxFeeInTOMO(txFee));
     yield put(transferActions.setTxGasLimit(gasLimit));
   }
 }
