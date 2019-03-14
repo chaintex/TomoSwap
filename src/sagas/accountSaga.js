@@ -13,11 +13,13 @@ const getAccountAddress = state => state.account.address;
 
 function *fetchBalancesChannel() {
   let address = yield select(getAccountAddress);
+  if (!address) { return; }
 
   yield call(fetchBalance, address, true);
 
-  while (address) {
+  while (true) {
     address = yield select(getAccountAddress);
+    if (!address) { return; }
     yield call(fetchBalance, address);
   }
 }

@@ -121,9 +121,11 @@ function *checkSrcTokenAllowance(action) {
 function *validateValidInput(swap, account) {
   const isAccountImported = !!account.address;
   const sourceToken = swap.sourceToken;
-  const sourceAmount = swap.sourceAmount.toString();
+  const sourceBalance = +sourceToken.balance;
+  const sourceAmount = swap.sourceAmount ? +swap.sourceAmount : 0;
+  const sourceAmountString = swap.sourceAmount.toString();
   const sourceTokenDecimals = sourceToken.decimals;
-  const sourceAmountDecimals = sourceAmount.split(".")[1];
+  const sourceAmountDecimals = sourceAmountString.split(".")[1];
 
   yield put(swapActions.setError(''));
 
@@ -137,12 +139,17 @@ function *validateValidInput(swap, account) {
     return false;
   }
 
-  if (isAccountImported && sourceAmount > sourceToken.balance) {
+  if (isAccountImported && sourceAmount > sourceBalance) {
     yield call(setError, 'Your source amount is bigger than your real balance');
     return false;
   }
 
-  if (sourceAmount !== '' && !+sourceAmount) {
+  if (isAccountImported && sourceToken.address === TOMO.address && sourceAmount + +swap.txFeeInTOMO > sourceBalance) {
+    yield call(setError, `You don't have enough balance to pay for transaction fee`);
+    return false;
+  }
+
+  if (sourceAmountString !== '' && sourceAmount === 0) {
     yield call(setError, 'Your source amount is invalid');
     return false;
   }

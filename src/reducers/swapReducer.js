@@ -10,7 +10,7 @@ const initialState = {
   isTokenPairRateLoading: true,
   isDestAmountLoadingShown: true,
   srcTokenAllowance: null,
-  txFeeInTOMO: null,
+  txFeeInTOMO: 0,
   gasLimit: null,
   error: null
 };
