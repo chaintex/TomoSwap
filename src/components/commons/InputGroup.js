@@ -3,6 +3,7 @@ import TokenSelector from '../commons/TokenSelector';
 import Dropdown, { DropdownTrigger, DropdownContent } from "react-simple-dropdown";
 import { filterInputNumber } from "../../utils/validators";
 import { formatAmount } from "../../utils/helpers";
+import { TOMO } from "../../config/tokens";
 
 export default class InputGroup extends Component {
   constructor(props) {
@@ -32,8 +33,9 @@ export default class InputGroup extends Component {
   addSrcAmountByBalancePercentage = (balancePercentage) => {
     const srcTokenBalance = this.props.sourceToken.balance;
     const sourceAmountByPercentage = srcTokenBalance * (balancePercentage / 100);
+    const deductAmountForTxFee = this.props.sourceToken.address === TOMO.address ? formatAmount(this.props.txFeeInTOMO) : 0;
 
-    this.props.setSourceAmount(sourceAmountByPercentage);
+    this.props.setSourceAmount(Math.min(sourceAmountByPercentage, srcTokenBalance - deductAmountForTxFee));
     this.closeBalanceBox();
   };
 
