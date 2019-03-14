@@ -5,6 +5,7 @@ import { formatAmount } from "../../utils/helpers";
 import { TOMO } from "../../config/tokens";
 import appConfig from "../../config/app";
 import Modal from "../../components/commons/Modal";
+import ConfirmButton from "../../components/commons/ConfirmButton";
 
 export default class TransferView extends Component {
   render() {
@@ -40,10 +41,10 @@ export default class TransferView extends Component {
         </div>
 
         <div className={"exchange__button-container common__fade-in"}>
-          <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openTransferConfirmModal()}>Transfer Now</div>
+          <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openConfirmModal()}>Transfer Now</div>
         </div>
 
-        <Modal isActive={this.props.isTransferConfirmModalOpened} handleClose={() => this.props.closeTransferConfirmModal()}>
+        <Modal isActive={this.props.isConfirmModalActive} handleClose={() => this.props.closeConfirmModal()}>
           <div className={"exchange__modal"}>
             <div className={"modal__header"}>Confirm Transfer</div>
             <div className={"modal__body exchange__modal-body"}>
@@ -61,10 +62,13 @@ export default class TransferView extends Component {
                 )}
               </div>
             </div>
-            <div className={"modal__footer common__flexbox"}>
-              <div className={"modal__button"} onClick={() => this.props.closeTransferConfirmModal()}>Cancel</div>
-              <div className={"modal__button modal__button--gradient"} onClick={() => this.props.transfer()}>Confirm</div>
-            </div>
+            <ConfirmButton
+              isConfirming={this.props.tx.isConfirming}
+              isBroadcasting={this.props.tx.isBroadcasting}
+              confirmingError={this.props.tx.confirmingError}
+              closeModal={this.props.closeConfirmModal}
+              confirm={this.props.transfer}
+            />
           </div>
         </Modal>
       </div>

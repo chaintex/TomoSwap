@@ -7,6 +7,7 @@ export const transferActionTypes = {
   SET_TX_GAS_LIMIT: 'TRANSFER.SET_TX_GAS_LIMIT',
   SET_ERROR: 'TRANSFER.SET_ERROR',
   SET_ADDRESS_ERROR: 'TRANSFER.SET_ADDRESS_ERROR',
+  SET_IS_CONFIRM_MODAL_ACTIVE: 'TRANSFER.SET_IS_CONFIRM_MODAL_ACTIVE',
 };
 
 export function transfer() {
@@ -61,5 +62,12 @@ export function setError(error = null) {
   return {
     type: transferActionTypes.SET_ERROR,
     payload: error
+  }
+}
+
+export function setIsConfirmModalActive(isActive) {
+  return {
+    type: transferActionTypes.SET_IS_CONFIRM_MODAL_ACTIVE,
+    payload: isActive
   }
 }

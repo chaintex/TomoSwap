@@ -3,6 +3,7 @@ import TransferView from './TransferView';
 import { connect } from 'react-redux';
 import * as transferAction from "../../actions/transferAction";
 import { setGlobalError } from "../../actions/globalAction";
+import { resetAllTxStatus } from "../../actions/transactionAction";
 
 function mapStateToProps(store) {
   const tokens = store.token.tokens;
@@ -20,8 +21,10 @@ function mapStateToProps(store) {
     isBalanceLoading: account.isBalanceLoading,
     txFeeInTOMO: transfer.txFeeInTOMO,
     gasLimit: transfer.gasLimit,
+    isConfirmModalActive: transfer.isConfirmModalActive,
     web3: account.web3,
     walletType: account.walletType,
+    tx: store.tx,
   };
 }
 
@@ -33,24 +36,13 @@ function mapDispatchToProps(dispatch) {
     setToAddress: (address) => {dispatch(transferAction.setToAddress(address))},
     setError: (error) => {dispatch(transferAction.setError(error))},
     setAddressError: (error) => {dispatch(transferAction.setAddressError(error))},
+    setIsConfirmModalActive: (isActive) => {dispatch(transferAction.setIsConfirmModalActive(isActive))},
     setGlobalError: (error) => {dispatch(setGlobalError(error))},
+    resetAllTxStatus: () => {dispatch(resetAllTxStatus())},
   }
 }
 
 class Transfer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isTransferConfirmModalOpened: false,
-    };
-  }
-
-  transfer = () => {
-    this.props.transfer();
-    this.closeTransferConfirmModal();
-  };
-
   handleSetToAddress = (event) => {
     const toAddress = (event.target.value).toLowerCase();
 
@@ -63,7 +55,7 @@ class Transfer extends Component {
     this.props.setToAddress(toAddress);
   };
 
-  openTransferConfirmModal = () => {
+  openConfirmModal = () => {
     if (!this.props.sourceAmount) {
       this.props.setError("Source amount is required to make a transfer");
       return;
@@ -74,11 +66,12 @@ class Transfer extends Component {
       return;
     }
 
-    this.setState({isTransferConfirmModalOpened: true});
+    this.props.resetAllTxStatus();
+    this.props.setIsConfirmModalActive(true);
   };
 
-  closeTransferConfirmModal = () => {
-    this.setState({isTransferConfirmModalOpened: false});
+  closeConfirmModal = () => {
+    this.props.setIsConfirmModalActive(false);
   };
 
   render() {
@@ -91,17 +84,18 @@ class Transfer extends Component {
         setSourceToken={this.props.setSourceToken}
         setSourceAmount={this.props.setSourceAmount}
         handleSetToAddress={this.handleSetToAddress}
-        transfer={this.transfer}
+        transfer={this.props.transfer}
         isAccountImported={this.props.isAccountImported}
         isBalanceLoading={this.props.isBalanceLoading}
         txFeeInTOMO={this.props.txFeeInTOMO}
         gasLimit={this.props.gasLimit}
-        isTransferConfirmModalOpened={this.state.isTransferConfirmModalOpened}
-        openTransferConfirmModal={this.openTransferConfirmModal}
-        closeTransferConfirmModal={this.closeTransferConfirmModal}
+        isConfirmModalActive={this.props.isConfirmModalActive}
+        openConfirmModal={this.openConfirmModal}
+        closeConfirmModal={this.closeConfirmModal}
         error={this.props.error}
         addressError={this.props.addressError}
         walletType={this.props.walletType}
+        tx={this.props.tx}
       />
     )
   }

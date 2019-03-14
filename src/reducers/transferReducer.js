@@ -7,7 +7,8 @@ const initialState = {
   toAddress: '',
   txFeeInTOMO: 0,
   error: null,
-  addressError: null
+  addressError: null,
+  isConfirmModalActive: false,
 };
 
 export default function transferReducer(state = initialState, action) {
@@ -53,6 +54,12 @@ export default function transferReducer(state = initialState, action) {
       return {
         ...state,
         addressError: action.payload
+      }
+    }
+    case transferActionTypes.SET_IS_CONFIRM_MODAL_ACTIVE: {
+      return {
+        ...state,
+        isConfirmModalActive: action.payload
       }
     }
     default:

@@ -4,13 +4,13 @@ import PasswordInput from '../commons/PasswordInput';
 import { formatAmount } from "../../utils/helpers";
 import InputGroup from '../commons/InputGroup';
 import Modal from "../../components/commons/Modal";
+import ConfirmButton from "../../components/commons/ConfirmButton";
 import { TOMO } from "../../config/tokens";
 import appConfig from "../../config/app";
 
 export default class SwapView extends Component {
   render() {
     const disabledClass = (!!this.props.error || this.props.isTokenPairRateLoading) ? 'disabled' : '';
-    const isConfirmButtonShown = !this.props.tx.isConfirming && !this.props.tx.isBroadcasting;
 
     return (
       <div className={"exchange"}>
@@ -73,26 +73,13 @@ export default class SwapView extends Component {
                   )}
                 </div>
               </div>
-              <div className={"modal__footer"}>
-                {this.props.tx.isConfirming && (
-                  <div className={"common__text"}>Waiting for confirmation from your wallet…</div>
-                )}
-
-                {this.props.tx.isBroadcasting && (
-                  <div className={"common__text"}>The transaction is broadcasting to the blockchain...</div>
-                )}
-
-                {this.props.tx.confirmingError && (
-                  <div className={"common__text common__text--error common__text--mb"}>{this.props.tx.confirmingError}</div>
-                )}
-
-                {isConfirmButtonShown && (
-                  <div className={"common__flexbox common__fade-in"}>
-                    <div className={"modal__button"} onClick={() => this.props.closeModal()}>Cancel</div>
-                    <div className={"modal__button modal__button--gradient"} onClick={() => this.props.swap()}>Confirm</div>
-                  </div>
-                )}
-              </div>
+              <ConfirmButton
+                isConfirming={this.props.tx.isConfirming}
+                isBroadcasting={this.props.tx.isBroadcasting}
+                confirmingError={this.props.tx.confirmingError}
+                closeModal={this.props.closeModal}
+                confirm={this.props.swap}
+              />
             </div>
           )}
 

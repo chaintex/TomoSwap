@@ -21,6 +21,9 @@ function *swapToken() {
   const swap = yield select(getSwapState);
   const account = yield select(getAccountState);
 
+  const isValidInput = yield call(validateValidInput, swap, account);
+  if (!isValidInput) return;
+
   yield put(txActions.setConfirmingError());
   yield call(setTxStatusBasedOnWalletType, account.walletType, true);
 
@@ -31,8 +34,8 @@ function *swapToken() {
 
   try {
     txObject = yield call(getSwapTxObject, gasLimit);
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    console.log(error);
     return;
   }
 
@@ -44,8 +47,8 @@ function *swapToken() {
     yield put(txActions.setTxHash(txHash));
 
     yield call(fetchTransactionReceipt, txHash);
-  } catch (e) {
-    yield put(txActions.setConfirmingError(e));
+  } catch (error) {
+    yield put(txActions.setConfirmingError(error));
     yield call(setTxStatusBasedOnWalletType, account.walletType, false);
   }
 }
