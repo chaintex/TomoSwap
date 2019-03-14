@@ -72,7 +72,7 @@ function *validateValidInput() {
   const sourceTokenDecimals = sourceToken.decimals;
   const sourceAmountDecimals = sourceAmountString.split(".")[1];
 
-  yield put(transferActions.setError(''));
+  yield put(transferActions.setError());
 
   if (sourceAmountDecimals && sourceAmountDecimals.length > sourceTokenDecimals) {
     yield put(transferActions.setError(`Your source amount's decimals should be no longer than ${sourceTokenDecimals} characters`));
@@ -100,8 +100,6 @@ function *validateValidInput() {
 
 export default function* transferWatcher() {
   yield takeLatest(transferActions.transferActionTypes.TRANSFER, transfer);
-  yield takeLatest(transferActions.transferActionTypes.SET_SOURCE_TOKEN, fetchTxEstimatedGasUsed);
-  yield takeLatest(transferActions.transferActionTypes.SET_SOURCE_AMOUNT, fetchTxEstimatedGasUsed);
-  yield takeLatest(transferActions.transferActionTypes.SET_SOURCE_TOKEN, validateValidInput);
-  yield takeLatest(transferActions.transferActionTypes.SET_SOURCE_AMOUNT, validateValidInput);
+  yield takeLatest([transferActions.transferActionTypes.SET_SOURCE_AMOUNT, transferActions.transferActionTypes.SET_SOURCE_TOKEN], fetchTxEstimatedGasUsed);
+  yield takeLatest([transferActions.transferActionTypes.SET_SOURCE_AMOUNT, transferActions.transferActionTypes.SET_SOURCE_TOKEN], validateValidInput);
 }
