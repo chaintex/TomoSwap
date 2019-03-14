@@ -89,12 +89,6 @@ function *validateValidInput() {
     return false;
   }
 
-  if (sourceAmount < 0) {
-    // allow transfer with amount = 0
-    yield put(transferActions.setError('Your source amount is invalid'));
-    return false;
-  }
-
   return true;
 }
 

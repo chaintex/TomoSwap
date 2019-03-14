@@ -149,7 +149,7 @@ function *validateValidInput(swap, account) {
     return false;
   }
 
-  if (sourceAmountString !== '' && sourceAmount <= 0) {
+  if (sourceAmountString !== '' && sourceAmount === 0) {
     yield call(setError, 'Your source amount is invalid');
     return false;
   }
