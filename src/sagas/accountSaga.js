@@ -9,20 +9,18 @@ import { setBalanceLoading } from "../actions/accountAction";
 import { fetchTxEstimatedGasUsed } from "./transactionSaga";
 
 const getTokens = state => state.token.tokens;
-const getAccount = state => state.account;
+const getAccountAddress = state => state.account.address;
 
 function *fetchBalancesChannel() {
-  let account = yield select(getAccount);
-  const isAccountImported = !!account.address;
-  if (!isAccountImported) { return; }
+  let address = yield select(getAccountAddress);
+  if (!address) { return; }
 
-  yield call(fetchBalance, account.address, true);
+  yield call(fetchBalance, address, true);
 
   while (true) {
-    account = yield select(getAccount);
-    const isAccountImported = !!account.address;
-    if (!isAccountImported) { return; }
-    yield call(fetchBalance, account.address);
+    let address = yield select(getAccountAddress);
+    if (!address) { return; }
+    yield call(fetchBalance, address);
   }
 }
 
