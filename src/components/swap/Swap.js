@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { setWalletPassword } from "../../actions/accountAction";
 import * as swapActions from "../../actions/swapAction";
 import { setGlobalError } from "../../actions/globalAction";
+import { resetAllTxStatus } from "../../actions/transactionAction";
 import { TOMO } from "../../config/tokens";
 
 function mapStateToProps(store) {
@@ -22,14 +23,16 @@ function mapStateToProps(store) {
     destAmount: swap.destAmount,
     tokenPairRate: swap.tokenPairRate,
     isTokenPairRateLoading: swap.isTokenPairRateLoading,
-    isDestAmountLoadingShown: swap.isDestAmountLoadingShown,
+    isBgTokenPairRateLoading: swap.isBgTokenPairRateLoading,
     txFeeInTOMO: swap.txFeeInTOMO,
     gasLimit: swap.gasLimit,
     error: swap.error,
+    isConfirmModalActive: swap.isConfirmModalActive,
     accountAddress: account.address,
     isAccountImported: !!account.address,
     isBalanceLoading: account.isBalanceLoading,
     walletType: account.walletType,
+    tx: tx,
   };
 }
 
@@ -45,26 +48,15 @@ function mapDispatchToProps(dispatch) {
     swapToken: () => {dispatch(swapActions.swapToken())},
     setError: (error) => {dispatch(swapActions.setError(error))},
     setGlobalError: (error) => {dispatch(setGlobalError(error))},
-    setWalletPassword: (password) => {dispatch(setWalletPassword(password))}
+    setWalletPassword: (password) => {dispatch(setWalletPassword(password))},
+    setIsConfirmModalActive: (isActive) => {dispatch(swapActions.setIsConfirmModalActive(isActive))},
+    resetAllTxStatus: () => {dispatch(resetAllTxStatus())},
   }
 }
 
 class Swap extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isModalOpened: false
-    };
-  }
-
   componentDidMount = () => {
     this.props.fetchTokenPairRate();
-  };
-
-  handleSwapToken = () => {
-    this.props.swapToken();
-    this.closeModal();
   };
 
   openModal = () => {
@@ -84,11 +76,12 @@ class Swap extends Component {
       this.props.resetSrcTokenAllowance();
     }
 
-    this.setState({isModalOpened: true});
+    this.props.resetAllTxStatus();
+    this.props.setIsConfirmModalActive((true));
   };
 
   closeModal = () => {
-    this.setState({isModalOpened: false});
+    this.props.setIsConfirmModalActive((false));
   };
 
   render() {
@@ -104,15 +97,16 @@ class Swap extends Component {
         tokenPairRate={this.props.tokenPairRate}
         error={this.props.error}
         walletType={this.props.walletType}
-        isModalOpened={this.state.isModalOpened}
+        isConfirmModalActive={this.props.isConfirmModalActive}
         isAccountImported={this.props.isAccountImported}
         isTokenPairRateLoading={this.props.isTokenPairRateLoading}
-        isDestAmountLoadingShown={this.props.isDestAmountLoadingShown}
+        isBgTokenPairRateLoading={this.props.isBgTokenPairRateLoading}
         txFeeInTOMO={this.props.txFeeInTOMO}
         gasLimit={this.props.gasLimit}
         isBalanceLoading={this.props.isBalanceLoading}
+        tx={this.props.tx}
         approve={this.props.approve}
-        swap={this.handleSwapToken}
+        swap={this.props.swapToken}
         setSourceToken={this.props.setSourceToken}
         setSourceAmount={this.props.setSourceAmount}
         setDestToken={this.props.setDestToken}

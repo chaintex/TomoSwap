@@ -11,10 +11,10 @@ export default class MetamaskService {
         from: txObject.from,
       }, function (data, response) {
         if (response.error) {
-          reject(response.error);
+          reject(response.error.message);
         }
 
-        return resolve(response.result);
+        resolve(response.result);
       });
     });
   }

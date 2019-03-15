@@ -8,11 +8,12 @@ const initialState = {
   destAmount: 0,
   tokenPairRate: 0,
   isTokenPairRateLoading: true,
-  isDestAmountLoadingShown: true,
+  isBgTokenPairRateLoading: false,
   srcTokenAllowance: null,
   txFeeInTOMO: 0,
   gasLimit: null,
-  error: null
+  error: null,
+  isConfirmModalActive: false,
 };
 
 export default function swapReducer(state = initialState, action) {
@@ -60,10 +61,10 @@ export default function swapReducer(state = initialState, action) {
         isTokenPairRateLoading: action.payload
       }
     }
-    case swapActionTypes.SET_IS_DEST_AMOUNT_LOADING_SHOWN: {
+    case swapActionTypes.SET_BG_TOKEN_PAIR_RATE_LOADING: {
       return {
         ...state,
-        isDestAmountLoadingShown: action.payload
+        isBgTokenPairRateLoading: action.payload
       }
     }
     case swapActionTypes.SET_TX_FEE_IN_TOMO: {
@@ -82,6 +83,12 @@ export default function swapReducer(state = initialState, action) {
       return {
         ...state,
         error: action.payload
+      }
+    }
+    case swapActionTypes.SET_IS_CONFIRM_MODAL_ACTIVE: {
+      return {
+        ...state,
+        isConfirmModalActive: action.payload
       }
     }
     default:

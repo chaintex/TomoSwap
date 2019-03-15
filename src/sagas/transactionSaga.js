@@ -42,6 +42,14 @@ export function *fetchTransactionReceipt(txHash) {
   }
 }
 
+export function *setTxStatusBasedOnWalletType(walletType, status) {
+  if (walletType === appConfig.WALLET_TYPE_METAMASK) {
+    yield put(txActions.setIsConfirming(status));
+  } else if (walletType === appConfig.WALLET_TYPE_KEYSTORE) {
+    yield put(txActions.setIsBroadcasting(status));
+  }
+}
+
 export function *fetchTxEstimatedGasUsed() {
   const isAccountImported = yield select(getAccountAddress);
 
