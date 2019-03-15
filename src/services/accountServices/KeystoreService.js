@@ -8,7 +8,14 @@ export default class KeystoreService {
   }
 
   sendTransaction = (txObject, password) => {
-    const account = this.web3.eth.accounts.decrypt(this.keystore, password);
+    let account = null;
+    try {
+      account = this.web3.eth.accounts.decrypt(this.keystore, password);
+    }
+    catch (error) {
+      throw error;
+    }
+
     const tx = new Transaction(txObject);
     const privateKey = Buffer.from(account.privateKey.slice(-64), 'hex');
 
