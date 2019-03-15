@@ -79,7 +79,6 @@ class Swap extends Component {
     this.props.resetAllTxStatus();
     this.props.setIsConfirmModalActive((true));
     
-    console.clear();
     // set focus to input password
     if (this.swapView && this.swapView.passwdInput) {
       setTimeout(() => {

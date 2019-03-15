@@ -34,7 +34,6 @@ class PasswordInput extends Component {
   };
 
   setFocus = () => {
-    console.log('================', this.passInput);
     this.passInput.focus();
   }
 
