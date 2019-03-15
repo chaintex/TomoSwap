@@ -9,6 +9,15 @@ import { TOMO } from "../../config/tokens";
 import appConfig from "../../config/app";
 
 export default class SwapView extends Component {
+
+  componentDidMount() {
+    this.props.onRef(this);
+  }
+
+  componentWillUnmount() {
+    this.props.onRef(undefined)
+  }
+
   render() {
     const isLoadingRateShown = this.props.isTokenPairRateLoading && !this.props.isBgTokenPairRateLoading;
     const disabledClass = (!!this.props.error || isLoadingRateShown) ? 'disabled' : '';
@@ -68,7 +77,9 @@ export default class SwapView extends Component {
                   </div>
 
                   {this.props.walletType === appConfig.WALLET_TYPE_KEYSTORE && (
-                    <PasswordInput/>
+                    <PasswordInput
+                      onRef={ref => (this.passwdInput = ref)}  
+                      />
                   )}
                 </div>
               </div>
