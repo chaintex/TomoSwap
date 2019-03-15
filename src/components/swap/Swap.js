@@ -23,7 +23,7 @@ function mapStateToProps(store) {
     destAmount: swap.destAmount,
     tokenPairRate: swap.tokenPairRate,
     isTokenPairRateLoading: swap.isTokenPairRateLoading,
-    isDestAmountLoadingShown: swap.isDestAmountLoadingShown,
+    isBgTokenPairRateLoading: swap.isBgTokenPairRateLoading,
     txFeeInTOMO: swap.txFeeInTOMO,
     gasLimit: swap.gasLimit,
     error: swap.error,
@@ -100,7 +100,7 @@ class Swap extends Component {
         isConfirmModalActive={this.props.isConfirmModalActive}
         isAccountImported={this.props.isAccountImported}
         isTokenPairRateLoading={this.props.isTokenPairRateLoading}
-        isDestAmountLoadingShown={this.props.isDestAmountLoadingShown}
+        isBgTokenPairRateLoading={this.props.isBgTokenPairRateLoading}
         txFeeInTOMO={this.props.txFeeInTOMO}
         gasLimit={this.props.gasLimit}
         isBalanceLoading={this.props.isBalanceLoading}

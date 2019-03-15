@@ -10,7 +10,8 @@ import appConfig from "../../config/app";
 
 export default class SwapView extends Component {
   render() {
-    const disabledClass = (!!this.props.error || this.props.isTokenPairRateLoading) ? 'disabled' : '';
+    const isLoadingRateShown = this.props.isTokenPairRateLoading && !this.props.isBgTokenPairRateLoading;
+    const disabledClass = (!!this.props.error || isLoadingRateShown) ? 'disabled' : '';
 
     return (
       <div className={"exchange"}>
@@ -36,14 +37,12 @@ export default class SwapView extends Component {
                 tokens={this.props.tokens}
               />
               <div className={"input-group__input"}>
-                {this.props.sourceAmount ? this.props.isDestAmountLoadingShown ? 'Loading...' : formatAmount(this.props.destAmount) : 0}
+                {this.props.sourceAmount ? isLoadingRateShown ? 'Loading...' : formatAmount(this.props.destAmount) : 0}
               </div>
             </div>
 
             <div className={"input-group__info"}>
-              1 {this.props.sourceToken.symbol} = {!this.props.isTokenPairRateLoading ?
-              formatAmount(this.props.tokenPairRate) :
-              <div className={"input-group__loading common__loading"}/>} {this.props.destToken.symbol}
+              1 {this.props.sourceToken.symbol} = {isLoadingRateShown ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.tokenPairRate)} {this.props.destToken.symbol}
             </div>
           </div>
         </div>

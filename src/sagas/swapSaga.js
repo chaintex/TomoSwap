@@ -82,15 +82,15 @@ function *forceFetchNewDataFromNode() {
 }
 
 function *fetchTokenPairRateWithInterval() {
-  yield call(fetchTokenPairRate, true);
+  yield call(fetchTokenPairRate);
 
   while(true) {
     yield call(delay, appConfig.TOKEN_PAIR_RATE_INTERVAL);
-    yield call(fetchTokenPairRate);
+    yield call(fetchTokenPairRate, true);
   }
 }
 
-function *fetchTokenPairRate(showDestAmountLoading = false) {
+function *fetchTokenPairRate(isBackgroundLoading = false) {
   const swap = yield select(getSwapState);
   const account = yield select(getAccountState);
   const srcToken = swap.sourceToken;
@@ -101,7 +101,7 @@ function *fetchTokenPairRate(showDestAmountLoading = false) {
   if (!isValidInput) return;
 
   yield put(swapActions.setTokenPairRateLoading(true));
-  yield put(swapActions.setIsDestAmountLoadingShown(showDestAmountLoading));
+  yield put(swapActions.setBgTokenPairRateLoading(isBackgroundLoading));
 
   try {
     let { expectedRate } = yield call(getRate, srcToken.address, srcToken.decimals, destToken.address, sourceAmount);
@@ -120,9 +120,7 @@ function *fetchTokenPairRate(showDestAmountLoading = false) {
   }
 
   yield put(swapActions.setTokenPairRateLoading(false));
-  if (showDestAmountLoading) {
-    yield put(swapActions.setIsDestAmountLoadingShown(false));
-  }
+  yield put(swapActions.setBgTokenPairRateLoading(false));
 }
 
 function *checkSrcTokenAllowance(action) {
