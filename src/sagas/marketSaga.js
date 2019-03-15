@@ -69,6 +69,7 @@ function *getTokenBasedRates(tokens) {
     } else {
       token.sellRate = formatBigNumber(sellRates[index - 1]);
       token.buyRate = formatBigNumber(buyRates[index - 1]);
+      token.buyRate = token.buyRate === 0 ? token.buyRate : 1 / token.buyRate;
     }
 
     return token;
