@@ -112,7 +112,7 @@ export function setTxGasLimit(gasLimit) {
   }
 }
 
-export function setError(message) {
+export function setError(message = null) {
   return {
     type: swapActionTypes.SET_ERROR,
     payload: message
