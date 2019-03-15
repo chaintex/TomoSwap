@@ -53,7 +53,7 @@
     }
 
     &--full {
-      width: 100%;
+      width: 100% !important;
       text-align: left;
       font-size: 20px;
     }
@@ -123,5 +123,21 @@
     position: relative;
     top: -1px;
     margin: 0 4px;
+  }
+
+  @media (max-width: $small-breakpoint) {
+    padding: 0 15px;
+
+    &__wrapper {
+      padding: 14px 15px;
+    }
+
+    &__input {
+      width: calc(100% - 50px);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
   }
 }
