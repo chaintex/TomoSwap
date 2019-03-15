@@ -4,6 +4,9 @@ const initialState = {
   txHash: null,
   txHashApprove: null,
   isTxMined: false,
+  isConfirming: false,
+  isBroadcasting: false,
+  confirmingError: null,
   error: null
 };
 
@@ -31,6 +34,32 @@ export default function transactionReducer(state = initialState, action) {
       return {
         ...state,
         error: action.payload
+      }
+    }
+    case txActionTypes.SET_IS_CONFIRMING: {
+      return {
+        ...state,
+        isConfirming: action.payload,
+      }
+    }
+    case txActionTypes.SET_IS_BROADCASTING: {
+      return {
+        ...state,
+        isBroadcasting: action.payload
+      }
+    }
+    case txActionTypes.SET_CONFIRMING_ERROR: {
+      return {
+        ...state,
+        confirmingError: action.payload
+      }
+    }
+    case txActionTypes.RESET_ALL_TX_STATUS: {
+      return {
+        ...state,
+        isConfirming: false,
+        isBroadcasting: false,
+        confirmingError: null
       }
     }
     default:

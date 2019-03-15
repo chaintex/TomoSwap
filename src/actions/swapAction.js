@@ -2,7 +2,7 @@ export const swapActionTypes = {
   FETCH_TOKEN_PAIR_RATE: 'SWAP.FETCH_TOKEN_PAIR_RATE',
   APPROVE: 'SWAP.APPROVE',
   SET_TOKEN_PAIR_RATE_LOADING: 'SWAP.SET_TOKEN_PAIR_RATE_LOADING',
-  SET_IS_DEST_AMOUNT_LOADING_SHOWN: 'SWAP.SET_IS_DEST_AMOUNT_LOADING_SHOWN',
+  SET_BG_TOKEN_PAIR_RATE_LOADING: 'SWAP.SET_BG_TOKEN_PAIR_RATE_LOADING',
   SET_TOKEN_PAIR_RATE: 'SWAP.SET_TOKEN_PAIR_RATE',
   SET_SRC_TOKEN_ALLOWANCE: 'SWAP.SET_SRC_TOKEN_ALLOWANCE',
   CHECK_SRC_TOKEN_ALLOWANCE: 'SWAP.CHECK_SRC_TOKEN_ALLOWANCE',
@@ -14,6 +14,7 @@ export const swapActionTypes = {
   SET_TX_FEE_IN_TOMO: 'SWAP.SET_TX_FEE_IN_TOMO',
   SET_TX_GAS_LIMIT: 'SWAP.SET_TX_GAS_LIMIT',
   SET_ERROR: 'SWAP.SET_ERROR',
+  SET_IS_CONFIRM_MODAL_ACTIVE: 'SWAP.SET_IS_CONFIRM_MODAL_ACTIVE',
 };
 
 export function approve() {
@@ -90,9 +91,9 @@ export function setTokenPairRateLoading(isLoading) {
   }
 }
 
-export function setIsDestAmountLoadingShown(isLoading) {
+export function setBgTokenPairRateLoading(isLoading) {
   return {
-    type: swapActionTypes.SET_IS_DEST_AMOUNT_LOADING_SHOWN,
+    type: swapActionTypes.SET_BG_TOKEN_PAIR_RATE_LOADING,
     payload: isLoading
   }
 }
@@ -115,5 +116,12 @@ export function setError(message) {
   return {
     type: swapActionTypes.SET_ERROR,
     payload: message
+  }
+}
+
+export function setIsConfirmModalActive(isActive) {
+  return {
+    type: swapActionTypes.SET_IS_CONFIRM_MODAL_ACTIVE,
+    payload: isActive
   }
 }

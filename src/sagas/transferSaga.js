@@ -4,28 +4,50 @@ import * as txActions from "../actions/transactionAction";
 import { getDefaultAddress, numberToHex } from "../utils/helpers";
 import { getTransferABI } from "../services/networkService";
 import { TOMO } from "../config/tokens";
-import { fetchTransactionReceipt, fetchTxEstimatedGasUsed, getTxObject } from "./transactionSaga";
+import {
+  fetchTransactionReceipt,
+  fetchTxEstimatedGasUsed,
+  getTxObject,
+  setTxStatusBasedOnWalletType
+} from "./transactionSaga";
 import appConfig from "../config/app";
 
 const getTransferState = state => state.transfer;
 const getAccountState = state => state.account;
 
 function *transfer() {
-  const isValidInput = yield call(validateValidInput);
-  if (!isValidInput) { return; }
   const account = yield select(getAccountState);
   const transfer = yield select(getTransferState);
-  const isTransferTOMO = transfer.sourceToken.address === TOMO.address;
-  try {
-    const defaultGasUsed = isTransferTOMO ? appConfig.DEFAULT_TRANSFER_TOMO_GAS_LIMIT : appConfig.DEFAULT_TRANSFER_TOKEN_GAS_LIMIT;
-    const gasLimit = transfer.gasLimit ? transfer.gasLimit : defaultGasUsed;
-    const txObject = yield call(getTransferTxObject, gasLimit);
 
+  const isValidInput = yield call(validateValidInput);
+  if (!isValidInput) return;
+
+  yield put(txActions.setConfirmingError());
+  yield call(setTxStatusBasedOnWalletType, account.walletType, true);
+
+  const isTransferTOMO = transfer.sourceToken.address === TOMO.address;
+  const defaultGasUsed = isTransferTOMO ? appConfig.DEFAULT_TRANSFER_TOMO_GAS_LIMIT : appConfig.DEFAULT_TRANSFER_TOKEN_GAS_LIMIT;
+  const gasLimit = transfer.gasLimit ? transfer.gasLimit : defaultGasUsed;
+  let txObject;
+
+  try {
+    txObject = yield call(getTransferTxObject, gasLimit);
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+
+  try {
     const txHash = yield call(account.walletService.sendTransaction, txObject, account.walletPassword);
+
+    yield put(transferActions.setIsConfirmModalActive(false));
+    yield call(setTxStatusBasedOnWalletType, account.walletType, false);
     yield put(txActions.setTxHash(txHash));
+
     yield call(fetchTransactionReceipt, txHash);
   } catch (error) {
-    console.log(error.message);
+    yield put(txActions.setConfirmingError(error));
+    yield call(setTxStatusBasedOnWalletType, account.walletType, false);
   }
 }
 

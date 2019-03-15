@@ -4,12 +4,14 @@ import PasswordInput from '../commons/PasswordInput';
 import { formatAmount } from "../../utils/helpers";
 import InputGroup from '../commons/InputGroup';
 import Modal from "../../components/commons/Modal";
+import ConfirmButton from "../../components/commons/ConfirmButton";
 import { TOMO } from "../../config/tokens";
 import appConfig from "../../config/app";
 
 export default class SwapView extends Component {
   render() {
-    const disabledClass = (!!this.props.error || this.props.isTokenPairRateLoading) ? 'disabled' : '';
+    const isLoadingRateShown = this.props.isTokenPairRateLoading && !this.props.isBgTokenPairRateLoading;
+    const disabledClass = (!!this.props.error || isLoadingRateShown) ? 'disabled' : '';
 
     return (
       <div className={"exchange"}>
@@ -35,14 +37,12 @@ export default class SwapView extends Component {
                 tokens={this.props.tokens}
               />
               <div className={"input-group__input"}>
-                {this.props.sourceAmount ? this.props.isDestAmountLoadingShown ? 'Loading...' : formatAmount(this.props.destAmount) : 0}
+                {this.props.sourceAmount ? isLoadingRateShown ? 'Loading...' : formatAmount(this.props.destAmount) : 0}
               </div>
             </div>
 
             <div className={"input-group__info"}>
-              1 {this.props.sourceToken.symbol} = {!this.props.isTokenPairRateLoading ?
-              formatAmount(this.props.tokenPairRate) :
-              <div className={"input-group__loading common__loading"}/>} {this.props.destToken.symbol}
+              1 {this.props.sourceToken.symbol} = {isLoadingRateShown ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.tokenPairRate)} {this.props.destToken.symbol}
             </div>
           </div>
         </div>
@@ -51,7 +51,7 @@ export default class SwapView extends Component {
           <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openModal()}>Swap Now</div>
         </div>
 
-        <Modal isActive={this.props.isModalOpened} handleClose={() => this.props.closeModal()}>
+        <Modal isActive={this.props.isConfirmModalActive} handleClose={() => this.props.closeModal()}>
           {!this.props.isApproveNeeded && (
             <div className={"exchange__modal"}>
               <div className={"modal__header"}>Confirm Swap</div>
@@ -72,10 +72,13 @@ export default class SwapView extends Component {
                   )}
                 </div>
               </div>
-              <div className={"modal__footer common__flexbox"}>
-                <div className={"modal__button"} onClick={() => this.props.closeModal()}>Cancel</div>
-                <div className={"modal__button modal__button--gradient"} onClick={() => this.props.swap()}>Confirm</div>
-              </div>
+              <ConfirmButton
+                isConfirming={this.props.tx.isConfirming}
+                isBroadcasting={this.props.tx.isBroadcasting}
+                confirmingError={this.props.tx.confirmingError}
+                closeModal={this.props.closeModal}
+                confirm={this.props.swap}
+              />
             </div>
           )}
 
