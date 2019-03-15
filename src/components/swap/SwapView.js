@@ -24,6 +24,7 @@ export default class SwapView extends Component {
             setSourceAmount={this.props.setSourceAmount}
             isAccountImported={this.props.isAccountImported}
             isBalanceLoading={this.props.isBalanceLoading}
+            accountAddress={this.props.accountAddress}
             txFeeInTOMO={this.props.txFeeInTOMO}
             error={this.props.error}
           />

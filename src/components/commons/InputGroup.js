@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import TokenSelector from '../commons/TokenSelector';
 import Dropdown, { DropdownTrigger, DropdownContent } from "react-simple-dropdown";
 import { filterInputNumber } from "../../utils/validators";
-import { formatAmount } from "../../utils/helpers";
+import { formatAmount, formatAddress } from "../../utils/helpers";
 import { TOMO } from "../../config/tokens";
 
 export default class InputGroup extends Component {
@@ -77,9 +77,14 @@ export default class InputGroup extends Component {
 
         <div className={"input-group__info"}>
           {this.props.isAccountImported && (
-            <div className={"common__flexbox"}>
-              Balance: {this.props.isBalanceLoading ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.sourceToken.balance)} {this.props.sourceToken.symbol}
-            </div>
+            <Fragment>
+              <div className={"common__flexbox"}>
+                {this.props.isBalanceLoading ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.sourceToken.balance)} {this.props.sourceToken.symbol}
+              </div>
+              <div className={"common__flexbox input-group__address"}>
+                {this.props.accountAddress ? formatAddress(this.props.accountAddress, 20) : ""}
+              </div>
+            </Fragment>
           )}
         </div>
       </div>
