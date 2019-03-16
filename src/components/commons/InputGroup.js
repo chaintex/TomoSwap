@@ -83,11 +83,11 @@ export default class InputGroup extends Component {
         <div className={"input-group__info"}>
           {this.props.isAccountImported && (
             <Fragment>
-              <div className={"common__flexbox"}>
+              <div className={"common__flexbox input-group__balance_color"}>
                 {this.props.isBalanceLoading ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.sourceToken.balance)} {this.props.sourceToken.symbol}
               </div>
               <div className={"common__flexbox input-group__address"}>
-                {this.props.accountAddress ? <a href={this.formatUrlScan(this.props.accountAddress)} target="_blank">{formatAddress(this.props.accountAddress, 20)}</a> : ""}
+                {this.props.accountAddress ? <a href={this.formatUrlScan(this.props.accountAddress)} target="_blank" title={this.props.accountAddress}>Add: {formatAddress(this.props.accountAddress, 20)}</a> : ""}
               </div>
             </Fragment>
           )}

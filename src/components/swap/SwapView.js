@@ -42,7 +42,7 @@ export default class SwapView extends Component {
               </div>
             </div>
 
-            <div className={"input-group__info"}>
+            <div className={"input-group__info  input-group__rate_color"}>
               1 {this.props.sourceToken.symbol} = {isLoadingRateShown ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.tokenPairRate)} {this.props.destToken.symbol}
             </div>
           </div>
