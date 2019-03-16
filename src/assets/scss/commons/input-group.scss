@@ -125,6 +125,25 @@
     margin: 0 4px;
   }
 
+  &__address {
+    float: right;
+    position: absolute;
+    right: 25px;
+  }
+
+  &__address a {
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+  }
+
+  &__address a, &__balance_color, &__rate_color {
+    color: #aab1d4;
+  }
+
   @media (max-width: $small-breakpoint) {
     padding: 0 15px;
 

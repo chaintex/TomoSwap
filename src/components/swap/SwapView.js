@@ -33,6 +33,7 @@ export default class SwapView extends Component {
             setSourceAmount={this.props.setSourceAmount}
             isAccountImported={this.props.isAccountImported}
             isBalanceLoading={this.props.isBalanceLoading}
+            accountAddress={this.props.accountAddress}
             txFeeInTOMO={this.props.txFeeInTOMO}
             error={this.props.error}
           />
@@ -50,7 +51,7 @@ export default class SwapView extends Component {
               </div>
             </div>
 
-            <div className={"input-group__info"}>
+            <div className={"input-group__info  input-group__rate_color"}>
               1 {this.props.sourceToken.symbol} = {isLoadingRateShown ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.tokenPairRate)} {this.props.destToken.symbol}
             </div>
           </div>
