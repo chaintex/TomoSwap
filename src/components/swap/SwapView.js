@@ -79,7 +79,8 @@ export default class SwapView extends Component {
                   {this.props.walletType === appConfig.WALLET_TYPE_KEYSTORE && (
                     <PasswordInput
                       onRef={ref => (this.passwdInput = ref)}  
-                      />
+                      onKeyUp={this.props.swap}
+                    />
                   )}
                 </div>
               </div>

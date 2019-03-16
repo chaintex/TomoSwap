@@ -45,6 +45,15 @@ class PasswordInput extends Component {
     this.props.onRef(undefined)
   }
 
+  onKeyUp = e => {
+    // User pressed the enter key
+    if (e.keyCode === 13) {
+      if (this.props.onKeyUp) {
+        this.props.onKeyUp(e);
+      }
+    }
+  };
+
   render() {
     return (
       <div className={"exchange__modal-password"}>
@@ -55,6 +64,7 @@ class PasswordInput extends Component {
             onChange={(e) => this.handleSetWalletPassword(e)} 
             type="text" 
             autoComplete="new-password" 
+            onKeyUp={this.onKeyUp}
             placeholder={"Enter your password/passphrase"}
             ref={(input) => { this.passInput = input; }}
             />

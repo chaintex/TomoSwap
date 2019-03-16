@@ -52,8 +52,8 @@ export function getRate(srcAddress, srcDecimals, destAddress, srcAmount) {
   srcAmount = numberToHex(srcAmount, srcDecimals);
 
   return networkProxyContract.methods.getExpectedRate(srcAddress, destAddress, srcAmount).call().then((result) => {
-    let expectedRate = result.expectedRate;
-    let slippageRate = result.slippageRate;
+    const expectedRate = result.expectedRate;
+    const slippageRate = result.slippageRate;
 
     return { expectedRate, slippageRate };
   });
