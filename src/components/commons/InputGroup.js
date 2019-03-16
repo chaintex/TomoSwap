@@ -87,7 +87,7 @@ export default class InputGroup extends Component {
                 {this.props.isBalanceLoading ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.sourceToken.balance)} {this.props.sourceToken.symbol}
               </div>
               <div className={"common__flexbox input-group__address"}>
-                {this.props.accountAddress ? <a href={this.formatUrlScan(this.props.accountAddress)} target="_blank" title={this.props.accountAddress}>Add: {formatAddress(this.props.accountAddress, 20)}</a> : ""}
+                {this.props.accountAddress ? <a href={this.formatUrlScan(this.props.accountAddress)} target="_blank" rel="noopener noreferrer" title={this.props.accountAddress}>Add: {formatAddress(this.props.accountAddress, 20)}</a> : ""}
               </div>
             </Fragment>
           )}

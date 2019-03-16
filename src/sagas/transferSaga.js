@@ -1,6 +1,8 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import * as transferActions from '../actions/transferAction';
 import * as txActions from "../actions/transactionAction";
+import * as accountActions from '../actions/accountAction';
+import * as tokenActions from '../actions/tokenAction';
 import { getDefaultAddress, numberToHex } from "../utils/helpers";
 import { getTransferABI } from "../services/networkService";
 import { TOMO } from "../config/tokens";
@@ -97,28 +99,44 @@ function *validateValidInput() {
   const sourceTokenDecimals = sourceToken.decimals;
   const sourceAmountDecimals = sourceAmountString.split(".")[1];
 
-  yield put(transferActions.setError());
-
   if (sourceAmountDecimals && sourceAmountDecimals.length > sourceTokenDecimals) {
-    yield put(transferActions.setError(`Your source amount's decimals should be no longer than ${sourceTokenDecimals} characters`));
+    yield call(setError, `Your source amount's decimals should be no longer than ${sourceTokenDecimals} characters`);
     return false;
   }
 
   if (isAccountImported && sourceAmount > sourceBalance) {
-    yield put(transferActions.setError('Your source amount is bigger than your real balance'));
+    yield call(setError, 'Your source amount is bigger than your real balance');
     return false;
   }
 
   if (isAccountImported && sourceToken.address === TOMO.address && sourceAmount + +transfer.txFeeInTOMO > sourceBalance) {
-    yield put(transferActions.setError(`You don't have enough balance to pay for transaction fee`));
+    yield call(setError, `You don't have enough balance to pay for transaction fee`);
     return false;
   }
 
+  yield put(transferActions.setError());
+
   return true;
+}
+
+function *setError(errorMessage) {
+  const transfer = yield select(getTransferState);
+  // only make animation for a different type of error message
+  if (transfer.error !== errorMessage) {
+    yield put(transferActions.setError());
+  }
+  yield put(transferActions.setError(errorMessage));
 }
 
 export default function* transferWatcher() {
   yield takeLatest(transferActions.transferActionTypes.TRANSFER, transfer);
   yield takeLatest([transferActions.transferActionTypes.SET_SOURCE_AMOUNT, transferActions.transferActionTypes.SET_SOURCE_TOKEN], fetchTxEstimatedGasUsed);
-  yield takeLatest([transferActions.transferActionTypes.SET_SOURCE_AMOUNT, transferActions.transferActionTypes.SET_SOURCE_TOKEN], validateValidInput);
+  yield takeLatest(
+    [
+      transferActions.transferActionTypes.SET_SOURCE_AMOUNT,
+      transferActions.transferActionTypes.SET_SOURCE_TOKEN,
+      accountActions.accountActionTypes.SET_WALLET,
+      tokenActions.tokenActionTypes.SET_TOKENS
+    ], validateValidInput
+  );
 }
