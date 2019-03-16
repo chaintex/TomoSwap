@@ -61,6 +61,16 @@ class Transfer extends Component {
       return;
     }
 
+    if (!this.props.toAddress) {
+      this.props.setAddressError("To Address is required to make a transfer");
+      return;
+    }
+
+    if (!this.props.web3.utils.isAddress(this.props.toAddress)) {
+      this.props.setAddressError("Given address is invalid");
+      return;
+    }
+
     if (!this.props.isAccountImported) {
       this.props.setGlobalError("Please connect your wallet by choosing one of our supported methods.");
       return;

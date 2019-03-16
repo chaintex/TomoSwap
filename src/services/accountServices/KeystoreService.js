@@ -8,11 +8,11 @@ export default class KeystoreService {
   }
 
   sendTransaction = (txObject, password) => {
+    if (password === '') { throw new Error("Password is required to decrypt").message; }
     let account = null;
     try {
       account = this.web3.eth.accounts.decrypt(this.keystore, password);
-    }
-    catch (error) {
+    } catch (error) {
       throw error.message;
     }
 
