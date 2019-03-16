@@ -21,6 +21,7 @@ export default class TransferView extends Component {
             setSourceToken={this.props.setSourceToken}
             setSourceAmount={this.props.setSourceAmount}
             isAccountImported={this.props.isAccountImported}
+            accountAddress={this.props.accountAddress}
             txFeeInTOMO={this.props.txFeeInTOMO}
             isBalanceLoading={this.props.isBalanceLoading}
             error={this.props.error}
