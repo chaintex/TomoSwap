@@ -22,7 +22,10 @@ function *swapToken() {
   const account = yield select(getAccountState);
 
   const isValidInput = yield call(validateValidInput, swap, account);
-  if (!isValidInput) return;
+  if (!isValidInput) {
+    yield put(swapActions.setIsConfirmModalActive(false));
+    return;
+  }
 
   yield put(txActions.setConfirmingError());
   yield call(setTxStatusBasedOnWalletType, account.walletType, true);
