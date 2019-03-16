@@ -39,3 +39,31 @@ export function calculateMinConversionRate(slippageRate, expectedRate) {
 export function getDefaultAddress() {
   return "0x" + Array(41).join("0");
 }
+
+export function reverseStr(str) {
+  if (!str || str.length === 0) {
+    return str;
+  }
+
+  return str.split("").reverse().join("");
+}
+
+export function formatAddress(fullAddress, length = 20) {
+  if (!length || length < 20) {
+    length = 20;
+  }
+
+  if (!fullAddress || fullAddress.length <= length) {
+    return fullAddress;
+  }
+
+  const lLength = 13;
+  const dotLength = 3;
+  const rLength = length - (lLength + dotLength);
+
+  const lString = fullAddress.substr(0, 14);
+  let rString = reverseStr(fullAddress).substr(0, rLength);
+  rString = reverseStr(rString);
+  
+  return lString + '...' + rString;
+}

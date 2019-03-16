@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import TokenSelector from '../commons/TokenSelector';
 import Dropdown, { DropdownTrigger, DropdownContent } from "react-simple-dropdown";
 import { filterInputNumber } from "../../utils/validators";
-import { formatAmount } from "../../utils/helpers";
+import { formatAmount, formatAddress } from "../../utils/helpers";
 import { TOMO } from "../../config/tokens";
+import envConfig from "../../config/env";
 
 export default class InputGroup extends Component {
   constructor(props) {
@@ -38,6 +39,10 @@ export default class InputGroup extends Component {
     this.props.setSourceAmount(Math.min(sourceAmountByPercentage, srcTokenBalance - deductAmountForTxFee));
     this.closeBalanceBox();
   };
+
+  formatUrlScan = (address) => {
+    return envConfig.EXPLORER_URL + '/address/' + address;
+  }
 
   render() {
     const isError = !!this.props.error;
@@ -77,9 +82,14 @@ export default class InputGroup extends Component {
 
         <div className={"input-group__info"}>
           {this.props.isAccountImported && (
-            <div className={"common__flexbox"}>
-              Balance: {this.props.isBalanceLoading ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.sourceToken.balance)} {this.props.sourceToken.symbol}
-            </div>
+            <Fragment>
+              <div className={"common__flexbox input-group__balance_color"}>
+                {this.props.isBalanceLoading ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.sourceToken.balance)} {this.props.sourceToken.symbol}
+              </div>
+              <div className={"common__flexbox input-group__address"}>
+                {this.props.accountAddress ? <a href={this.formatUrlScan(this.props.accountAddress)} target="_blank" title={this.props.accountAddress}>Add: {formatAddress(this.props.accountAddress, 20)}</a> : ""}
+              </div>
+            </Fragment>
           )}
         </div>
       </div>
