@@ -8,6 +8,15 @@ import Modal from "../../components/commons/Modal";
 import ConfirmButton from "../../components/commons/ConfirmButton";
 
 export default class TransferView extends Component {
+
+  componentDidMount() {
+    this.props.onRef(this);
+  }
+
+  componentWillUnmount() {
+    this.props.onRef(undefined)
+  }
+
   render() {
     const disabledClass = this.props.error ? 'disabled' : '';
 
@@ -58,7 +67,10 @@ export default class TransferView extends Component {
                   <div className={"exchange__modal-gas"}>GAS fee: {formatAmount(this.props.txFeeInTOMO, 9)} {TOMO.symbol}</div>
                 </div>
                 {this.props.walletType === appConfig.WALLET_TYPE_KEYSTORE && (
-                  <PasswordInput/>
+                  <PasswordInput
+                    onRef={ref => (this.passwdInput = ref)}
+                    onKeyUp={this.props.transfer}
+                  />
                 )}
               </div>
             </div>
