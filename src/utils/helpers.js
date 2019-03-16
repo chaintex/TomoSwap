@@ -41,7 +41,7 @@ export function getDefaultAddress() {
 }
 
 export function reverseStr(str) {
-  if (!str || str.length == 0) {
+  if (!str || str.length === 0) {
     return str;
   }
 
@@ -49,13 +49,17 @@ export function reverseStr(str) {
 }
 
 export function formatAddress(fullAddress, length = 20) {
+  if (!length || length < 20) {
+    length = 20;
+  }
+
   if (!fullAddress || fullAddress.length <= length) {
     return fullAddress;
   }
 
   const lLength = 13;
   const dotLength = 3;
-  const rLength = length - lLength - dotLength;
+  const rLength = length - (lLength + dotLength);
 
   const lString = fullAddress.substr(0, 14);
   let rString = reverseStr(fullAddress).substr(0, rLength);

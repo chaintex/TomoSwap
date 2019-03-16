@@ -4,6 +4,7 @@ import Dropdown, { DropdownTrigger, DropdownContent } from "react-simple-dropdow
 import { filterInputNumber } from "../../utils/validators";
 import { formatAmount, formatAddress } from "../../utils/helpers";
 import { TOMO } from "../../config/tokens";
+import envConfig from "../../config/env";
 
 export default class InputGroup extends Component {
   constructor(props) {
@@ -38,6 +39,10 @@ export default class InputGroup extends Component {
     this.props.setSourceAmount(Math.min(sourceAmountByPercentage, srcTokenBalance - deductAmountForTxFee));
     this.closeBalanceBox();
   };
+
+  formatUrlScan = (address) => {
+    return envConfig.EXPLORER_URL + '/address/' + address;
+  }
 
   render() {
     const isError = !!this.props.error;
@@ -82,7 +87,7 @@ export default class InputGroup extends Component {
                 {this.props.isBalanceLoading ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.sourceToken.balance)} {this.props.sourceToken.symbol}
               </div>
               <div className={"common__flexbox input-group__address"}>
-                {this.props.accountAddress ? formatAddress(this.props.accountAddress, 20) : ""}
+                {this.props.accountAddress ? <a href={this.formatUrlScan(this.props.accountAddress)} target="_blank">{formatAddress(this.props.accountAddress, 20)}</a> : ""}
               </div>
             </Fragment>
           )}
