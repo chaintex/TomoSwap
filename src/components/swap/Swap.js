@@ -78,6 +78,13 @@ class Swap extends Component {
 
     this.props.resetAllTxStatus();
     this.props.setIsConfirmModalActive((true));
+    
+    // set focus to input password
+    if (this.swapView && this.swapView.passwdInput) {
+      setTimeout(() => {
+        this.swapView.passwdInput.setFocus();
+      }, 500);
+    }
   };
 
   closeModal = () => {
@@ -112,6 +119,7 @@ class Swap extends Component {
         setDestToken={this.props.setDestToken}
         openModal={this.openModal}
         closeModal={this.closeModal}
+        onRef={ref => (this.swapView = ref)} 
       />
     )
   }

@@ -33,6 +33,18 @@ class PasswordInput extends Component {
     this.setState({isPasswordDisplayed: !this.state.isPasswordDisplayed});
   };
 
+  setFocus = () => {
+    this.passInput.focus();
+  }
+
+  componentDidMount() {
+    this.props.onRef(this);
+  }
+
+  componentWillUnmount() {
+    this.props.onRef(undefined)
+  }
+
   onKeyUp = e => {
     // User pressed the enter key
     if (e.keyCode === 13) {
@@ -47,7 +59,15 @@ class PasswordInput extends Component {
       <div className={"exchange__modal-password"}>
         <div className={"exchange__modal-text"}>Sign and broadcast</div>
         <div className={`common__password-container ${this.state.isPasswordDisplayed ? 'common__password-container--unlock' : ''}`}>
-          <input onKeyUp={this.onKeyUp} className={"common__password"} value={this.props.walletPassword} onChange={(e) => this.handleSetWalletPassword(e)} type="text" autoComplete="new-password" placeholder={"Enter your password/passphrase"}/>
+          <input className={"common__password"} 
+            value={this.props.walletPassword} 
+            onChange={(e) => this.handleSetWalletPassword(e)} 
+            type="text" 
+            autoComplete="new-password" 
+            onKeyUp={this.onKeyUp}
+            placeholder={"Enter your password/passphrase"}
+            ref={(input) => { this.passInput = input; }}
+            />
           <div className={"common__password-icon"} onClick={() => this.togglePassword()}/>
         </div>
       </div>
