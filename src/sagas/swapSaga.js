@@ -92,6 +92,9 @@ function *fetchTokenPairRateWithInterval() {
 
 function *fetchTokenPairRate(isBackgroundLoading = false) {
   const swap = yield select(getSwapState);
+
+  if (isBackgroundLoading && swap.error) return;
+
   const account = yield select(getAccountState);
   const srcToken = swap.sourceToken;
   const destToken = swap.destToken;
@@ -116,7 +119,8 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
     yield put(swapActions.setDestAmount(destAmount));
     yield put(swapActions.setTokenPairRate(expectedRate));
   } catch (e) {
-    console.log(e);
+    yield put(swapActions.setError(`We cannot handle that amount at the moment`));
+    yield put(swapActions.setDestAmount(0));
   }
 
   yield put(swapActions.setTokenPairRateLoading(false));
@@ -143,7 +147,7 @@ function *validateValidInput(swap, account) {
   const sourceTokenDecimals = sourceToken.decimals;
   const sourceAmountDecimals = sourceAmountString.split(".")[1];
 
-  yield put(swapActions.setError(''));
+  yield put(swapActions.setError());
 
   if (swap.sourceToken.address === swap.destToken.address) {
     yield call(setError, 'Cannot exchange the same token');
