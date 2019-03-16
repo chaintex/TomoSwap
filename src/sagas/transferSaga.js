@@ -20,7 +20,10 @@ function *transfer() {
   const transfer = yield select(getTransferState);
 
   const isValidInput = yield call(validateValidInput);
-  if (!isValidInput) return;
+  if (!isValidInput) {
+      yield put(transferActions.setIsConfirmModalActive(false));
+      return
+  }
 
   yield put(txActions.setConfirmingError());
   yield call(setTxStatusBasedOnWalletType, account.walletType, true);
