@@ -2,7 +2,9 @@ import { delay } from 'redux-saga';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { getSwapABI, getRate, getAllowance, getApproveABI } from "../services/networkService";
 import * as swapActions from "../actions/swapAction";
+import * as accountActions from '../actions/accountAction';
 import * as txActions from "../actions/transactionAction";
+import * as tokenActions from '../actions/tokenAction';
 import {
   calculateMinConversionRate,
   formatBigNumber,
@@ -96,15 +98,9 @@ function *fetchTokenPairRateWithInterval() {
 function *fetchTokenPairRate(isBackgroundLoading = false) {
   const swap = yield select(getSwapState);
 
-  if (isBackgroundLoading && swap.error) return;
-
-  const account = yield select(getAccountState);
   const srcToken = swap.sourceToken;
   const destToken = swap.destToken;
   const sourceAmount = swap.sourceAmount ? swap.sourceAmount : 1;
-  const isValidInput = yield call(validateValidInput, swap, account);
-
-  if (!isValidInput) return;
 
   yield put(swapActions.setTokenPairRateLoading(true));
   yield put(swapActions.setBgTokenPairRateLoading(isBackgroundLoading));
@@ -113,7 +109,7 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
     let { expectedRate } = yield call(getRate, srcToken.address, srcToken.decimals, destToken.address, sourceAmount);
 
     if (!+expectedRate) {
-      yield put(swapActions.setError(`Your source amount exceeds our max capacity`));
+      yield call(setError, `Your source amount exceeds our max capacity, please reduce your amount`);
     }
 
     expectedRate = formatBigNumber(expectedRate);
@@ -121,8 +117,10 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
 
     yield put(swapActions.setDestAmount(destAmount));
     yield put(swapActions.setTokenPairRate(expectedRate));
+    yield call(validateInputAmountMightChange);
   } catch (e) {
-    yield put(swapActions.setError(`We cannot handle that amount at the moment`));
+    yield call(setError, `We cannot handle that amount at the moment`);
+    yield put(swapActions.setTokenPairRate(0));
     yield put(swapActions.setDestAmount(0));
   }
 
@@ -141,6 +139,12 @@ function *checkSrcTokenAllowance(action) {
   }
 }
 
+function *validateInputAmountMightChange() {
+  const swap = yield select(getSwapState);
+  const account = yield select(getAccountState);
+  yield call(validateValidInput, swap, account);
+}
+
 function *validateValidInput(swap, account) {
   const isAccountImported = !!account.address;
   const sourceToken = swap.sourceToken;
@@ -150,7 +154,10 @@ function *validateValidInput(swap, account) {
   const sourceTokenDecimals = sourceToken.decimals;
   const sourceAmountDecimals = sourceAmountString.split(".")[1];
 
-  yield put(swapActions.setError());
+  if (swap.tokenPairRate === 0) {
+    yield put(swapActions.setError(`Your source amount exceeds our max capacity, please reduce your amount`));
+    return false;
+  }
 
   if (swap.sourceToken.address === swap.destToken.address) {
     yield call(setError, 'Cannot exchange the same token');
@@ -176,6 +183,8 @@ function *validateValidInput(swap, account) {
     yield call(setError, 'Your source amount is invalid');
     return false;
   }
+
+  yield put(swapActions.setError());
 
   return true;
 }
@@ -207,18 +216,34 @@ export function *getSwapTxObject(gasLimit) {
 }
 
 function *setError(errorMessage) {
+  const swap = yield select(getSwapState);
+  // only make animation for a different type of error message
+  if (swap.error !== errorMessage) {
+    yield put(swapActions.setError());
+  }
   yield put(swapActions.setError(errorMessage));
   yield put(swapActions.setTokenPairRateLoading(false));
-  yield put(swapActions.setTokenPairRate(0));
-  yield put(swapActions.setDestAmount(0));
 }
 
 export default function* swapWatcher() {
   yield takeLatest(swapActions.swapActionTypes.CHECK_SRC_TOKEN_ALLOWANCE, checkSrcTokenAllowance);
   yield takeLatest(swapActions.swapActionTypes.FETCH_TOKEN_PAIR_RATE, fetchTokenPairRateWithInterval);
-  yield takeLatest(swapActions.swapActionTypes.SET_SOURCE_TOKEN, forceFetchNewDataFromNode);
-  yield takeLatest(swapActions.swapActionTypes.SET_DEST_TOKEN, forceFetchNewDataFromNode);
-  yield takeLatest(swapActions.swapActionTypes.SET_SOURCE_AMOUNT, forceFetchNewDataFromNode);
+  yield takeLatest(
+    [
+      swapActions.swapActionTypes.SET_DEST_TOKEN,
+      swapActions.swapActionTypes.SET_SOURCE_TOKEN,
+      swapActions.swapActionTypes.SET_SOURCE_AMOUNT
+    ], forceFetchNewDataFromNode
+  );
+  // to immediately update validation message
+  yield takeLatest(
+    [
+      swapActions.swapActionTypes.SET_SOURCE_TOKEN,
+      swapActions.swapActionTypes.SET_SOURCE_AMOUNT,
+      accountActions.accountActionTypes.SET_WALLET,
+      tokenActions.tokenActionTypes.SET_TOKENS
+    ], validateInputAmountMightChange
+  );
   yield takeLatest(swapActions.swapActionTypes.SWAP_TOKEN, swapToken);
   yield takeLatest(swapActions.swapActionTypes.APPROVE, approve);
 }

@@ -49,7 +49,8 @@ class Transfer extends Component {
     if (this.props.web3.utils.isAddress(toAddress)) {
       this.props.setAddressError();
     } else {
-      this.props.setAddressError("Given address is invalid");
+      const errorMessage = toAddress === '' ? "To Address is required to make a transfer" : "Given address is invalid";
+      this.props.setAddressError(errorMessage);
     }
 
     this.props.setToAddress(toAddress);
