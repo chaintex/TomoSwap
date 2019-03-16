@@ -48,7 +48,7 @@ function *swapToken() {
 
     yield call(fetchTransactionReceipt, txHash);
   } catch (error) {
-    yield put(txActions.setConfirmingError(error.message));
+    yield put(txActions.setConfirmingError(error));
     yield call(setTxStatusBasedOnWalletType, account.walletType, false);
   }
 }

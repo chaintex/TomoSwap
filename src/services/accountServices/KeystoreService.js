@@ -13,7 +13,7 @@ export default class KeystoreService {
       account = this.web3.eth.accounts.decrypt(this.keystore, password);
     }
     catch (error) {
-      throw error;
+      throw error.message;
     }
 
     const tx = new Transaction(txObject);
