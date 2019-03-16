@@ -17,6 +17,7 @@ function mapStateToProps(store) {
     toAddress: transfer.toAddress,
     error: transfer.error,
     addressError: transfer.addressError,
+    accountAddress: account.address,
     isAccountImported: !!account.address,
     isBalanceLoading: account.isBalanceLoading,
     txFeeInTOMO: transfer.txFeeInTOMO,
@@ -102,6 +103,7 @@ class Transfer extends Component {
         setSourceToken={this.props.setSourceToken}
         setSourceAmount={this.props.setSourceAmount}
         handleSetToAddress={this.handleSetToAddress}
+        accountAddress={this.props.accountAddress}
         transfer={this.props.transfer}
         isAccountImported={this.props.isAccountImported}
         isBalanceLoading={this.props.isBalanceLoading}
