@@ -79,6 +79,13 @@ class Transfer extends Component {
 
     this.props.resetAllTxStatus();
     this.props.setIsConfirmModalActive(true);
+
+    // set focus to input password
+    if (this.transferView && this.transferView.passwdInput) {
+      setTimeout(() => {
+        this.transferView.passwdInput.setFocus();
+      }, 500);
+    }
   };
 
   closeConfirmModal = () => {
@@ -107,6 +114,7 @@ class Transfer extends Component {
         addressError={this.props.addressError}
         walletType={this.props.walletType}
         tx={this.props.tx}
+        onRef={ref => (this.transferView = ref)}
       />
     )
   }
