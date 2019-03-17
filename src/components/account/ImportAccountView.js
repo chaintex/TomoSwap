@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import envConfig from '../../config/env';
 
 export default class ImportAccountView extends Component {
   render() {
@@ -36,6 +37,10 @@ export default class ImportAccountView extends Component {
         {this.props.address && (
           <div className={"account__title account__title--pointer common__fade-in"} onClick={() => this.props.unsetWallet()}>Connect other Wallet</div>
         )}
+
+        {envConfig.IS_TESTNET &&
+          <p className={"body__faucet"}>Receive some TOMO testnet <a href="https://faucet.testnet.tomochain.com" target="_blank" rel="noopener noreferrer">here</a></p>
+        }
       </div>
     )
   }
