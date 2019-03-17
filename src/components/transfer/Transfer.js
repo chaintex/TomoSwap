@@ -44,6 +44,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 class Transfer extends Component {
+  componentDidMount = () => {
+    this.props.setSourceToken(this.props.sourceToken);
+  }
+
   handleSetToAddress = (event) => {
     const toAddress = (event.target.value).toLowerCase();
 

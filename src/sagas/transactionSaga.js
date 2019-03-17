@@ -50,6 +50,24 @@ export function *setTxStatusBasedOnWalletType(walletType, status) {
   }
 }
 
+// To update default est gas used when src/dest token changed
+export function *fetchTxEstimatedGasUsedTokensChanged() {
+  let defaultGasUsed;
+  const exchangeMode = yield select(getExchangeMode);
+  if (exchangeMode === appConfig.EXCHANGE_SWAP_MODE) {
+    const swap = yield select(getSwapState);
+    const isSwapTOMO = swap.sourceToken.address === TOMO.address || swap.destToken.address === TOMO.address;
+    defaultGasUsed = isSwapTOMO ? appConfig.DEFAULT_SWAP_TOMO_GAS_LIMIT : appConfig.DEFAULT_SWAP_TOKEN_GAS_LIMIT;
+  } else {
+    const transfer = yield select(getTransferState);
+    const isTransferTOMO = transfer.sourceToken.address === TOMO.address;
+    defaultGasUsed = isTransferTOMO ? appConfig.DEFAULT_TRANSFER_TOMO_GAS_LIMIT : appConfig.DEFAULT_TRANSFER_TOKEN_GAS_LIMIT;
+  }
+  const txFee = defaultGasUsed * appConfig.DEFAULT_GAS_PRICE / Math.pow(10.0, TOMO.decimals);
+  yield call(setTxFeeAndGasLimit, txFee, defaultGasUsed, exchangeMode);
+  yield call(fetchTxEstimatedGasUsed);
+}
+
 export function *fetchTxEstimatedGasUsed() {
   const isAccountImported = yield select(getAccountAddress);
 

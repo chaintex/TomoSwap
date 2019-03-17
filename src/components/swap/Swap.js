@@ -56,6 +56,8 @@ function mapDispatchToProps(dispatch) {
 
 class Swap extends Component {
   componentDidMount = () => {
+    this.props.setSourceToken(this.props.sourceToken);
+    this.props.setDestToken(this.props.destToken);
     this.props.fetchTokenPairRate();
   };
 
@@ -78,7 +80,7 @@ class Swap extends Component {
 
     this.props.resetAllTxStatus();
     this.props.setIsConfirmModalActive((true));
-    
+
     // set focus to input password
     if (this.swapView && this.swapView.passwdInput) {
       setTimeout(() => {
@@ -119,7 +121,7 @@ class Swap extends Component {
         setDestToken={this.props.setDestToken}
         openModal={this.openModal}
         closeModal={this.closeModal}
-        onRef={ref => (this.swapView = ref)} 
+        onRef={ref => (this.swapView = ref)}
       />
     )
   }
