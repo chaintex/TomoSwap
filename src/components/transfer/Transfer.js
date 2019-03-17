@@ -63,6 +63,11 @@ class Transfer extends Component {
       return;
     }
 
+    if (!this.props.sourceToken.balance) {
+      this.props.setError("Please wait for your balance to be loaded");
+      return;
+    }
+
     const sourceAmount = +this.props.sourceAmount;
     const sourceBalance = this.props.sourceToken.balance ? +this.props.sourceToken.balance : 0;
     if (sourceAmount > sourceBalance) {
