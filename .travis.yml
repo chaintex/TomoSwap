@@ -13,7 +13,7 @@ services:
   - docker
 
 install:
-  - NODE_ENV=production npm ci
+  - NODE_ENV=production npm install
 
 
 script:
