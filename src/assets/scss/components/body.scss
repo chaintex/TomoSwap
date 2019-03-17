@@ -25,6 +25,15 @@
     color: $purple-soft;
   }
 
+  &__faucet {
+    text-align: center;
+    position: relative;
+    top: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: $purple-soft;
+  }
+
   &__container {
     display: flex;
     justify-content: space-between;
