@@ -154,6 +154,15 @@ function *validateValidInput(swap, account) {
   const sourceTokenDecimals = sourceToken.decimals;
   const sourceAmountDecimals = sourceAmountString.split(".")[1];
 
+  let sourceAmountInTOMO;
+  if (sourceToken.address === TOMO.address) {
+    sourceAmountInTOMO = sourceAmount;
+  } else if (swap.destToken.address === TOMO.address) {
+    sourceAmountInTOMO = swap.destAmount ? +swap.destAmount : 0;
+  } else {
+    sourceAmountInTOMO = sourceAmount * sourceToken.sellRate;
+  }
+
   if (swap.tokenPairRate === 0) {
     yield put(swapActions.setError(`Your source amount exceeds our max capacity, please reduce your amount`));
     return false;
@@ -181,6 +190,11 @@ function *validateValidInput(swap, account) {
 
   if (sourceAmountString !== '' && sourceAmount === 0) {
     yield call(setError, 'Your source amount is invalid');
+    return false;
+  }
+
+  if (sourceAmountString !== '' && sourceAmountInTOMO < 0.01) {
+    yield call(setError, 'Your source amount is too small, minimum supported amount is 0.01 TOMO equivalent ');
     return false;
   }
 
