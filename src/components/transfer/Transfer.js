@@ -63,6 +63,13 @@ class Transfer extends Component {
       return;
     }
 
+    const sourceAmount = +this.props.sourceAmount;
+    const sourceBalance = this.props.sourceToken.balance ? +this.props.sourceToken.balance : 0;
+    if (sourceAmount > sourceBalance) {
+      this.props.setError('Your source amount is bigger than your real balance');
+      return;
+    }
+
     if (!this.props.toAddress) {
       this.props.setAddressError("To Address is required to make a transfer");
       return;
