@@ -2,15 +2,8 @@ sudo: required
 
 language: node_js
 
-cache:
-    directories:
-      - node_modules
-
 node_js:
   - "8"
-
-services:
-  - docker
 
 install:
   - NODE_ENV=production npm install
@@ -21,12 +14,18 @@ script:
   # - npm test
   # - npm run build-prod
 
-after_success:
-  - docker --version
-  - docker build -f Dockerfile -t chaintex/tomoswap:$TRAVIS_COMMIT .
+install:
+  - npm install
+  - npm run build
 
 deploy:
-  - provider: script
-    script: bash .travis/docker_push.sh
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: testnet.tomoswap.com
+    region: ap-southeast-1
+    acl: public_read
+    local_dir: build
+    skip_cleanup: true
     on:
-      all_branches: true
+      branch: develop
