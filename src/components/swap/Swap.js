@@ -56,6 +56,8 @@ function mapDispatchToProps(dispatch) {
 
 class Swap extends Component {
   componentDidMount = () => {
+    this.props.setSourceToken(this.props.sourceToken);
+    this.props.setDestToken(this.props.destToken);
     this.props.fetchTokenPairRate();
   };
 
