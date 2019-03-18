@@ -13,7 +13,6 @@ const initialState = {
   txFeeInTOMO: 0,
   gasLimit: null,
   error: null,
-  isSwapNowShowing: true,
   isConfirmModalActive: false,
 };
 

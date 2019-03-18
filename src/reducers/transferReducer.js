@@ -8,7 +8,6 @@ const initialState = {
   txFeeInTOMO: 0,
   error: null,
   addressError: null,
-  isTransferNowShowing: true,
   isConfirmModalActive: false,
 };
 
