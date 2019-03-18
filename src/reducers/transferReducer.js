@@ -45,12 +45,6 @@ export default function transferReducer(state = initialState, action) {
         gasLimit: action.payload
       }
     }
-    case transferActionTypes.SET_IS_TRANSFER_NOW_SHOWING: {
-      return {
-        ...state,
-        isTransferNowShowing: action.payload
-      }
-    }
     case transferActionTypes.SET_ERROR: {
       return {
         ...state,

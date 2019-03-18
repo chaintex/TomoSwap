@@ -80,12 +80,6 @@ export default function swapReducer(state = initialState, action) {
         gasLimit: action.payload
       }
     }
-    case swapActionTypes.SET_IS_SWAP_NOW_SHOWING: {
-      return {
-        ...state,
-        isSwapNowShowing: action.payload
-      }
-    }
     case swapActionTypes.SET_ERROR: {
       return {
         ...state,

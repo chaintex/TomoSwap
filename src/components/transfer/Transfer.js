@@ -41,13 +41,23 @@ function mapDispatchToProps(dispatch) {
     setIsConfirmModalActive: (isActive) => {dispatch(transferAction.setIsConfirmModalActive(isActive))},
     setGlobalError: (error) => {dispatch(setGlobalError(error))},
     resetAllTxStatus: () => {dispatch(resetAllTxStatus())},
-    setIsTransferNowShowing: (isShowing) => {dispatch(transferAction.setIsTransferNowShowing(isShowing))},
   }
 }
 
 class Transfer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {isTransferNowShowing: true};
+  }
+
   componentDidMount = () => {
     this.props.setSourceToken(this.props.sourceToken);
+  }
+
+  componentDidUpdate(preProps) {
+    if (this.props.isAccountImported !== preProps.isAccountImported) {
+      this.setState({isTransferNowShowing: true});
+    }
   }
 
   handleSetToAddress = (event) => {
@@ -80,7 +90,7 @@ class Transfer extends Component {
     }
 
     if (!this.props.isAccountImported) {
-      this.props.setIsTransferNowShowing(false);
+      this.setState({isTransferNowShowing: false});
       return;
     }
 
@@ -127,7 +137,7 @@ class Transfer extends Component {
         isBalanceLoading={this.props.isBalanceLoading}
         txFeeInTOMO={this.props.txFeeInTOMO}
         gasLimit={this.props.gasLimit}
-        isTransferNowShowing={this.props.isTransferNowShowing}
+        isTransferNowShowing={this.state.isTransferNowShowing || this.props.isAccountImported}
         isConfirmModalActive={this.props.isConfirmModalActive}
         openConfirmModal={this.openConfirmModal}
         closeConfirmModal={this.closeConfirmModal}

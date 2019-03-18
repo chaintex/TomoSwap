@@ -52,16 +52,26 @@ function mapDispatchToProps(dispatch) {
     setWalletPassword: (password) => {dispatch(setWalletPassword(password))},
     setIsConfirmModalActive: (isActive) => {dispatch(swapActions.setIsConfirmModalActive(isActive))},
     resetAllTxStatus: () => {dispatch(resetAllTxStatus())},
-    setIsSwapNowShowing: (isShowing) => {dispatch(swapActions.setIsSwapNowShowing(isShowing))},
   }
 }
 
 class Swap extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {isSwapNowShowing: true};
+  }
+
   componentDidMount = () => {
     this.props.setSourceToken(this.props.sourceToken);
     this.props.setDestToken(this.props.destToken);
     this.props.fetchTokenPairRate();
   };
+
+  componentDidUpdate(preProps) {
+    if (this.props.isAccountImported !== preProps.isAccountImported) {
+      this.setState({isSwapNowShowing: true});
+    }
+  }
 
   openModal = () => {
     if (!this.props.sourceAmount) {
@@ -70,7 +80,7 @@ class Swap extends Component {
     }
 
     if (!this.props.isAccountImported) {
-      this.props.setIsSwapNowShowing(false);
+      this.setState({isSwapNowShowing: false});
       return;
     }
 
@@ -126,7 +136,7 @@ class Swap extends Component {
         isBgTokenPairRateLoading={this.props.isBgTokenPairRateLoading}
         txFeeInTOMO={this.props.txFeeInTOMO}
         gasLimit={this.props.gasLimit}
-        isSwapNowShowing={this.props.isSwapNowShowing}
+        isSwapNowShowing={this.state.isSwapNowShowing || this.props.isAccountImported}
         isBalanceLoading={this.props.isBalanceLoading}
         tx={this.props.tx}
         approve={this.props.approve}

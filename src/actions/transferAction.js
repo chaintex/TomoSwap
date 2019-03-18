@@ -5,7 +5,6 @@ export const transferActionTypes = {
   SET_TO_ADDRESS: 'TRANSFER.SET_TO_ADDRESS',
   SET_TX_FEE_IN_TOMO: 'TRANSFER.SET_TX_FEE_IN_TOMO',
   SET_TX_GAS_LIMIT: 'TRANSFER.SET_TX_GAS_LIMIT',
-  SET_IS_TRANSFER_NOW_SHOWING: 'TRANSFER.SET_IS_TRANSFER_NOW_SHOWING',
   SET_ERROR: 'TRANSFER.SET_ERROR',
   SET_ADDRESS_ERROR: 'TRANSFER.SET_ADDRESS_ERROR',
   SET_IS_CONFIRM_MODAL_ACTIVE: 'TRANSFER.SET_IS_CONFIRM_MODAL_ACTIVE',
@@ -49,13 +48,6 @@ export function setTxGasLimit(gasLimit) {
   return {
     type: transferActionTypes.SET_TX_GAS_LIMIT,
     payload: gasLimit
-  }
-}
-
-export function setIsTransferNowShowing(isShowing) {
-  return {
-    type: transferActionTypes.SET_IS_TRANSFER_NOW_SHOWING,
-    payload: isShowing
   }
 }
 

@@ -1,8 +1,6 @@
 import { delay } from 'redux-saga';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import * as accountActions from "../actions/accountAction";
-import * as transferActions from "../actions/transferAction";
-import * as swapActions from "../actions/swapAction";
 import { getTokenBalances } from "../services/networkService";
 import { setTokens } from "../actions/tokenAction";
 import { formatBigNumber } from "../utils/helpers";
@@ -12,14 +10,6 @@ import { fetchTxEstimatedGasUsed } from "./transactionSaga";
 
 const getTokens = state => state.token.tokens;
 const getAccountAddress = state => state.account.address;
-
-function *accountImportedDidChange() {
-  let address = yield select(getAccountAddress);
-  if (!address) { return; }
-  // account imported, should show Swap/Transfer Now buttons
-  yield put(swapActions.setIsSwapNowShowing(true));
-  yield put(transferActions.setIsTransferNowShowing(true));
-}
 
 function *fetchBalancesChannel() {
   let address = yield select(getAccountAddress);
@@ -51,6 +41,5 @@ function *fetchBalance(address, isFirstLoading = false) {
 
 export default function* accountWatcher() {
   yield takeLatest(accountActions.accountActionTypes.SET_WALLET, fetchTxEstimatedGasUsed);
-  yield takeLatest(accountActions.accountActionTypes.SET_WALLET, accountImportedDidChange);
   yield takeLatest(accountActions.accountActionTypes.FETCH_BALANCES, fetchBalancesChannel);
 }
