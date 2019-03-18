@@ -23,6 +23,7 @@ function mapStateToProps(store) {
     txFeeInTOMO: transfer.txFeeInTOMO,
     gasLimit: transfer.gasLimit,
     isConfirmModalActive: transfer.isConfirmModalActive,
+    isTransferNowShowing: transfer.isTransferNowShowing,
     web3: account.web3,
     walletType: account.walletType,
     tx: store.tx,
@@ -40,6 +41,7 @@ function mapDispatchToProps(dispatch) {
     setIsConfirmModalActive: (isActive) => {dispatch(transferAction.setIsConfirmModalActive(isActive))},
     setGlobalError: (error) => {dispatch(setGlobalError(error))},
     resetAllTxStatus: () => {dispatch(resetAllTxStatus())},
+    setIsTransferNowShowing: (isShowing) => {dispatch(transferAction.setIsTransferNowShowing(isShowing))},
   }
 }
 
@@ -78,7 +80,7 @@ class Transfer extends Component {
     }
 
     if (!this.props.isAccountImported) {
-      this.props.setGlobalError("Please connect your wallet by choosing one of our supported methods.");
+      this.props.setIsTransferNowShowing(false);
       return;
     }
 
@@ -125,6 +127,7 @@ class Transfer extends Component {
         isBalanceLoading={this.props.isBalanceLoading}
         txFeeInTOMO={this.props.txFeeInTOMO}
         gasLimit={this.props.gasLimit}
+        isTransferNowShowing={this.props.isTransferNowShowing}
         isConfirmModalActive={this.props.isConfirmModalActive}
         openConfirmModal={this.openConfirmModal}
         closeConfirmModal={this.closeConfirmModal}

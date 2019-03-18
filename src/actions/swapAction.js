@@ -13,6 +13,7 @@ export const swapActionTypes = {
   SET_DEST_AMOUNT: 'SWAP.SET_DEST_AMOUNT',
   SET_TX_FEE_IN_TOMO: 'SWAP.SET_TX_FEE_IN_TOMO',
   SET_TX_GAS_LIMIT: 'SWAP.SET_TX_GAS_LIMIT',
+  SET_IS_SWAP_NOW_SHOWING: 'SWAP.SET_IS_SWAP_NOW_SHOWING',
   SET_ERROR: 'SWAP.SET_ERROR',
   SET_IS_CONFIRM_MODAL_ACTIVE: 'SWAP.SET_IS_CONFIRM_MODAL_ACTIVE',
 };
@@ -109,6 +110,13 @@ export function setTxGasLimit(gasLimit) {
   return {
     type: swapActionTypes.SET_TX_GAS_LIMIT,
     payload: gasLimit
+  }
+}
+
+export function setIsSwapNowShowing(isShowing) {
+  return {
+    type: swapActionTypes.SET_IS_SWAP_NOW_SHOWING,
+    payload: isShowing
   }
 }
 

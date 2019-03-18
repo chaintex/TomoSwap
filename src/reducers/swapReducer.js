@@ -13,6 +13,7 @@ const initialState = {
   txFeeInTOMO: 0,
   gasLimit: null,
   error: null,
+  isSwapNowShowing: true,
   isConfirmModalActive: false,
 };
 
@@ -77,6 +78,12 @@ export default function swapReducer(state = initialState, action) {
       return {
         ...state,
         gasLimit: action.payload
+      }
+    }
+    case swapActionTypes.SET_IS_SWAP_NOW_SHOWING: {
+      return {
+        ...state,
+        isSwapNowShowing: action.payload
       }
     }
     case swapActionTypes.SET_ERROR: {

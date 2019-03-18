@@ -26,6 +26,7 @@ function mapStateToProps(store) {
     isBgTokenPairRateLoading: swap.isBgTokenPairRateLoading,
     txFeeInTOMO: swap.txFeeInTOMO,
     gasLimit: swap.gasLimit,
+    isSwapNowShowing: swap.isSwapNowShowing,
     error: swap.error,
     isConfirmModalActive: swap.isConfirmModalActive,
     accountAddress: account.address,
@@ -51,6 +52,7 @@ function mapDispatchToProps(dispatch) {
     setWalletPassword: (password) => {dispatch(setWalletPassword(password))},
     setIsConfirmModalActive: (isActive) => {dispatch(swapActions.setIsConfirmModalActive(isActive))},
     resetAllTxStatus: () => {dispatch(resetAllTxStatus())},
+    setIsSwapNowShowing: (isShowing) => {dispatch(swapActions.setIsSwapNowShowing(isShowing))},
   }
 }
 
@@ -68,7 +70,7 @@ class Swap extends Component {
     }
 
     if (!this.props.isAccountImported) {
-      this.props.setGlobalError("Please connect your wallet by choosing one of our supported methods.");
+      this.props.setIsSwapNowShowing(false);
       return;
     }
 
@@ -124,6 +126,7 @@ class Swap extends Component {
         isBgTokenPairRateLoading={this.props.isBgTokenPairRateLoading}
         txFeeInTOMO={this.props.txFeeInTOMO}
         gasLimit={this.props.gasLimit}
+        isSwapNowShowing={this.props.isSwapNowShowing}
         isBalanceLoading={this.props.isBalanceLoading}
         tx={this.props.tx}
         approve={this.props.approve}

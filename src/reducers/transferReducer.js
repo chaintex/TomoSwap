@@ -8,6 +8,7 @@ const initialState = {
   txFeeInTOMO: 0,
   error: null,
   addressError: null,
+  isTransferNowShowing: true,
   isConfirmModalActive: false,
 };
 
@@ -42,6 +43,12 @@ export default function transferReducer(state = initialState, action) {
       return {
         ...state,
         gasLimit: action.payload
+      }
+    }
+    case transferActionTypes.SET_IS_TRANSFER_NOW_SHOWING: {
+      return {
+        ...state,
+        isTransferNowShowing: action.payload
       }
     }
     case transferActionTypes.SET_ERROR: {
