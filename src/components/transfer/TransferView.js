@@ -24,6 +24,7 @@ export default class TransferView extends Component {
       <div className={"exchange"}>
         <div className={"exchange__container"}>
           <InputGroup
+            isSwap={false}
             tokens={this.props.tokens}
             sourceToken={this.props.sourceToken}
             sourceAmount={this.props.sourceAmount}
@@ -50,9 +51,11 @@ export default class TransferView extends Component {
           </div>
         </div>
 
-        <div className={"exchange__button-container common__fade-in"}>
-          <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openConfirmModal()}>Transfer Now</div>
-        </div>
+        {this.props.isTransferNowShowing &&
+          <div className={"exchange__button-container common__fade-in"}>
+            <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openConfirmModal()}>Transfer Now</div>
+          </div>
+        }
 
         <Modal isActive={this.props.isConfirmModalActive} handleClose={() => this.props.closeConfirmModal()}>
           <div className={"exchange__modal"}>

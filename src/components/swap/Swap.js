@@ -26,6 +26,7 @@ function mapStateToProps(store) {
     isBgTokenPairRateLoading: swap.isBgTokenPairRateLoading,
     txFeeInTOMO: swap.txFeeInTOMO,
     gasLimit: swap.gasLimit,
+    isSwapNowShowing: swap.isSwapNowShowing,
     error: swap.error,
     isConfirmModalActive: swap.isConfirmModalActive,
     accountAddress: account.address,
@@ -55,9 +56,22 @@ function mapDispatchToProps(dispatch) {
 }
 
 class Swap extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {isSwapNowShowing: true};
+  }
+
   componentDidMount = () => {
+    this.props.setSourceToken(this.props.sourceToken);
+    this.props.setDestToken(this.props.destToken);
     this.props.fetchTokenPairRate();
   };
+
+  componentDidUpdate(preProps) {
+    if (this.props.isAccountImported !== preProps.isAccountImported) {
+      this.setState({isSwapNowShowing: true});
+    }
+  }
 
   openModal = () => {
     if (!this.props.sourceAmount) {
@@ -66,7 +80,19 @@ class Swap extends Component {
     }
 
     if (!this.props.isAccountImported) {
-      this.props.setGlobalError("Please connect your wallet by choosing one of our supported methods.");
+      this.setState({isSwapNowShowing: false});
+      return;
+    }
+
+    if (!this.props.sourceToken.balance) {
+      this.props.setError("Please wait for your balance to be loaded");
+      return;
+    }
+
+    const sourceAmount = +this.props.sourceAmount;
+    const sourceBalance = +this.props.sourceToken.balance;
+    if (sourceAmount > sourceBalance) {
+      this.props.setError("Your source amount is bigger than your real balance");
       return;
     }
 
@@ -78,7 +104,7 @@ class Swap extends Component {
 
     this.props.resetAllTxStatus();
     this.props.setIsConfirmModalActive((true));
-    
+
     // set focus to input password
     if (this.swapView && this.swapView.passwdInput) {
       setTimeout(() => {
@@ -110,6 +136,7 @@ class Swap extends Component {
         isBgTokenPairRateLoading={this.props.isBgTokenPairRateLoading}
         txFeeInTOMO={this.props.txFeeInTOMO}
         gasLimit={this.props.gasLimit}
+        isSwapNowShowing={this.state.isSwapNowShowing || this.props.isAccountImported}
         isBalanceLoading={this.props.isBalanceLoading}
         tx={this.props.tx}
         approve={this.props.approve}
@@ -119,7 +146,7 @@ class Swap extends Component {
         setDestToken={this.props.setDestToken}
         openModal={this.openModal}
         closeModal={this.closeModal}
-        onRef={ref => (this.swapView = ref)} 
+        onRef={ref => (this.swapView = ref)}
       />
     )
   }

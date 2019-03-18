@@ -9,6 +9,7 @@ import { TOMO } from "../config/tokens";
 import {
   fetchTransactionReceipt,
   fetchTxEstimatedGasUsed,
+  fetchTxEstimatedGasUsedTokensChanged,
   getTxObject,
   setTxStatusBasedOnWalletType
 } from "./transactionSaga";
@@ -130,7 +131,8 @@ function *setError(errorMessage) {
 
 export default function* transferWatcher() {
   yield takeLatest(transferActions.transferActionTypes.TRANSFER, transfer);
-  yield takeLatest([transferActions.transferActionTypes.SET_SOURCE_AMOUNT, transferActions.transferActionTypes.SET_SOURCE_TOKEN], fetchTxEstimatedGasUsed);
+  yield takeLatest(transferActions.transferActionTypes.SET_SOURCE_TOKEN, fetchTxEstimatedGasUsedTokensChanged);
+  yield takeLatest(transferActions.transferActionTypes.SET_SOURCE_AMOUNT, fetchTxEstimatedGasUsed);
   yield takeLatest(
     [
       transferActions.transferActionTypes.SET_SOURCE_AMOUNT,
