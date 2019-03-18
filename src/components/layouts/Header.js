@@ -30,7 +30,7 @@ class Header extends Component {
             <a href="/" className={"header__content-item active"}>Swap</a>
             <a href="/" className={"header__content-item"}>Why Us</a>
             <a href="/" className={"header__content-item"}>FAQ</a>
-            <a href="/" className={"header__content-item"}>Contact Us</a>
+            <a href="https://goo.gl/forms/PPgKR2d6A5KtV7tH2" target="_blank" rel="noopener noreferrer" className={"header__content-item"}>Contact Us</a>
             <a href="/" className={"header__content-item"}>Blog</a>
           </div>
         </div>
