@@ -74,9 +74,9 @@ export default class InputGroup extends Component {
               <div className={`common__arrow-drop-down grey-light ${this.props.isBalanceBoxOpen ? 'up' : 'down'}`}/>
             </DropdownTrigger>
             <DropdownContent className={"input-group__dropdown-content common__fade-in"}>
-              <div onClick={() => this.addSrcAmountByBalancePercentage(25)}>Swap 25%</div>
-              <div onClick={() => this.addSrcAmountByBalancePercentage(50)}>Swap 50%</div>
-              <div onClick={() => this.addSrcAmountByBalancePercentage(100)}>Swap 100%</div>
+              <div onClick={() => this.addSrcAmountByBalancePercentage(25)}>{this.props.isSwap ? "Swap" : "Transfer"} 25%</div>
+              <div onClick={() => this.addSrcAmountByBalancePercentage(50)}>{this.props.isSwap ? "Swap" : "Transfer"} 50%</div>
+              <div onClick={() => this.addSrcAmountByBalancePercentage(100)}>{this.props.isSwap ? "Swap" : "Transfer"} 100%</div>
             </DropdownContent>
           </Dropdown>
         </div>
