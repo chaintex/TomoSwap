@@ -57,9 +57,11 @@ export default class SwapView extends Component {
           </div>
         </div>
 
-        <div className={"exchange__button-container common__fade-in"}>
-          <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openModal()}>Swap Now</div>
-        </div>
+        {this.props.isSwapNowShowing &&
+          <div className={"exchange__button-container common__fade-in"}>
+            <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openModal()}>Swap Now</div>
+          </div>
+        }
 
         <Modal isActive={this.props.isConfirmModalActive} handleClose={() => this.props.closeModal()}>
           {!this.props.isApproveNeeded && (
@@ -79,7 +81,7 @@ export default class SwapView extends Component {
 
                   {this.props.walletType === appConfig.WALLET_TYPE_KEYSTORE && (
                     <PasswordInput
-                      onRef={ref => (this.passwdInput = ref)}  
+                      onRef={ref => (this.passwdInput = ref)}
                       onKeyUp={this.props.swap}
                     />
                   )}

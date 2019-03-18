@@ -23,6 +23,7 @@ function mapStateToProps(store) {
     txFeeInTOMO: transfer.txFeeInTOMO,
     gasLimit: transfer.gasLimit,
     isConfirmModalActive: transfer.isConfirmModalActive,
+    isTransferNowShowing: transfer.isTransferNowShowing,
     web3: account.web3,
     walletType: account.walletType,
     tx: store.tx,
@@ -44,8 +45,19 @@ function mapDispatchToProps(dispatch) {
 }
 
 class Transfer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {isTransferNowShowing: true};
+  }
+
   componentDidMount = () => {
     this.props.setSourceToken(this.props.sourceToken);
+  }
+
+  componentDidUpdate(preProps) {
+    if (this.props.isAccountImported !== preProps.isAccountImported) {
+      this.setState({isTransferNowShowing: true});
+    }
   }
 
   handleSetToAddress = (event) => {
@@ -78,7 +90,7 @@ class Transfer extends Component {
     }
 
     if (!this.props.isAccountImported) {
-      this.props.setGlobalError("Please connect your wallet by choosing one of our supported methods.");
+      this.setState({isTransferNowShowing: false});
       return;
     }
 
@@ -125,6 +137,7 @@ class Transfer extends Component {
         isBalanceLoading={this.props.isBalanceLoading}
         txFeeInTOMO={this.props.txFeeInTOMO}
         gasLimit={this.props.gasLimit}
+        isTransferNowShowing={this.state.isTransferNowShowing || this.props.isAccountImported}
         isConfirmModalActive={this.props.isConfirmModalActive}
         openConfirmModal={this.openConfirmModal}
         closeConfirmModal={this.closeConfirmModal}
