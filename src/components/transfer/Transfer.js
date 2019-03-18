@@ -67,18 +67,6 @@ class Transfer extends Component {
       return;
     }
 
-    if (!this.props.sourceToken.balance) {
-      this.props.setError("Please wait for your balance to be loaded");
-      return;
-    }
-
-    const sourceAmount = +this.props.sourceAmount;
-    const sourceBalance = +this.props.sourceToken.balance;
-    if (sourceAmount > sourceBalance) {
-      this.props.setError('Your source amount is bigger than your real balance');
-      return;
-    }
-
     if (!this.props.toAddress) {
       this.props.setAddressError("To Address is required to make a transfer");
       return;
@@ -91,6 +79,18 @@ class Transfer extends Component {
 
     if (!this.props.isAccountImported) {
       this.props.setGlobalError("Please connect your wallet by choosing one of our supported methods.");
+      return;
+    }
+
+    if (!this.props.sourceToken.balance) {
+      this.props.setError("Please wait for your balance to be loaded");
+      return;
+    }
+
+    const sourceAmount = +this.props.sourceAmount;
+    const sourceBalance = +this.props.sourceToken.balance;
+    if (sourceAmount > sourceBalance) {
+      this.props.setError('Your source amount is bigger than your real balance');
       return;
     }
 
