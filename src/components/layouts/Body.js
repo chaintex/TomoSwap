@@ -10,6 +10,7 @@ import * as accountActions from "../../actions/accountAction";
 import AppConfig from "../../config/app";
 import Modal from "../../components/commons/Modal";
 import { getWeb3Instance } from "../../services/web3Service";
+import AboutUs from './AboutUs';
 
 function mapStateToProps(store) {
   const global = store.global;
@@ -66,6 +67,7 @@ class Body extends Component {
           </div>
           <Market/>
         </div>
+        <AboutUs/>
         <Modal isActive={!!this.props.globalError} handleClose={() => this.props.resetGlobalError()}>
           <div className={"modal__header modal__header--error"}>Error!</div>
           <div className={"modal__body"}>
