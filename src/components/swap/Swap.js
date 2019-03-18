@@ -65,6 +65,18 @@ class Swap extends Component {
       return;
     }
 
+    if (!this.props.sourceToken.balance) {
+      this.props.setError("Please wait for your balance to be loaded");
+      return;
+    }
+
+    const sourceAmount = +this.props.sourceAmount;
+    const sourceBalance = +this.props.sourceToken.balance;
+    if (sourceAmount > sourceBalance) {
+      this.props.setError("Your source amount is bigger than your real balance");
+      return;
+    }
+
     if (!this.props.isAccountImported) {
       this.props.setGlobalError("Please connect your wallet by choosing one of our supported methods.");
       return;
@@ -78,7 +90,7 @@ class Swap extends Component {
 
     this.props.resetAllTxStatus();
     this.props.setIsConfirmModalActive((true));
-    
+
     // set focus to input password
     if (this.swapView && this.swapView.passwdInput) {
       setTimeout(() => {
@@ -119,7 +131,7 @@ class Swap extends Component {
         setDestToken={this.props.setDestToken}
         openModal={this.openModal}
         closeModal={this.closeModal}
-        onRef={ref => (this.swapView = ref)} 
+        onRef={ref => (this.swapView = ref)}
       />
     )
   }
