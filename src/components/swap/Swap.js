@@ -67,6 +67,11 @@ class Swap extends Component {
       return;
     }
 
+    if (!this.props.isAccountImported) {
+      this.props.setGlobalError("Please connect your wallet by choosing one of our supported methods.");
+      return;
+    }
+
     if (!this.props.sourceToken.balance) {
       this.props.setError("Please wait for your balance to be loaded");
       return;
@@ -76,11 +81,6 @@ class Swap extends Component {
     const sourceBalance = +this.props.sourceToken.balance;
     if (sourceAmount > sourceBalance) {
       this.props.setError("Your source amount is bigger than your real balance");
-      return;
-    }
-
-    if (!this.props.isAccountImported) {
-      this.props.setGlobalError("Please connect your wallet by choosing one of our supported methods.");
       return;
     }
 
