@@ -24,6 +24,7 @@ export default class TransferView extends Component {
       <div className={"exchange"}>
         <div className={"exchange__container"}>
           <InputGroup
+            isSwap={false}
             tokens={this.props.tokens}
             sourceToken={this.props.sourceToken}
             sourceAmount={this.props.sourceAmount}
