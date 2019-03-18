@@ -69,7 +69,7 @@ class Transfer extends Component {
     }
 
     const sourceAmount = +this.props.sourceAmount;
-    const sourceBalance = this.props.sourceToken.balance ? +this.props.sourceToken.balance : 0;
+    const sourceBalance = +this.props.sourceToken.balance;
     if (sourceAmount > sourceBalance) {
       this.props.setError('Your source amount is bigger than your real balance');
       return;
