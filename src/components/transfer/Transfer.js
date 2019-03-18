@@ -44,6 +44,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 class Transfer extends Component {
+  componentDidMount = () => {
+    this.props.setSourceToken(this.props.sourceToken);
+  }
+
   handleSetToAddress = (event) => {
     const toAddress = (event.target.value).toLowerCase();
 
@@ -60,6 +64,18 @@ class Transfer extends Component {
   openConfirmModal = () => {
     if (!this.props.sourceAmount) {
       this.props.setError("Source amount is required to make a transfer");
+      return;
+    }
+
+    if (!this.props.sourceToken.balance) {
+      this.props.setError("Please wait for your balance to be loaded");
+      return;
+    }
+
+    const sourceAmount = +this.props.sourceAmount;
+    const sourceBalance = +this.props.sourceToken.balance;
+    if (sourceAmount > sourceBalance) {
+      this.props.setError('Your source amount is bigger than your real balance');
       return;
     }
 
