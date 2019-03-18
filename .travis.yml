@@ -8,7 +8,6 @@ node_js:
 install:
   - npm install
 
-
 script:
   - echo 'Nothing to build'
   # - npm test
@@ -16,6 +15,7 @@ script:
 
 install:
   - npm install
+  - npm install web3
   - npm run build
 
 deploy:
