@@ -22,11 +22,12 @@ export function *fetchTransactionReceipt(txHash) {
 
   while(!isTxMined) {
     const txReceipt = yield call(web3.eth.getTransactionReceipt, txHash);
+    console.log(txReceipt);
 
-    if (txReceipt && txReceipt.status) {
+    if (txReceipt && txReceipt.status === '0x1') {
       yield put(txActions.setIsTxMined(txReceipt.status));
       isTxMined = true;
-    } else if (txReceipt && !txReceipt.status) {
+    } else if (txReceipt && txReceipt.status === '0x0') {
       yield put(txActions.setTxError("There is something wrong with the transaction!"));
       isTxMined = true;
     } else {
