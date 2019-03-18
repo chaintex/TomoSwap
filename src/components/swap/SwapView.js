@@ -26,6 +26,7 @@ export default class SwapView extends Component {
       <div className={"exchange"}>
         <div className={"exchange__container"}>
           <InputGroup
+            isSwap={true}
             tokens={this.props.tokens}
             sourceToken={this.props.sourceToken}
             sourceAmount={this.props.sourceAmount}
