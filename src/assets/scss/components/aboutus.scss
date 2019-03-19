@@ -84,13 +84,13 @@
     }
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: $medium-breakpoint) {
     &__team-member {
       width: 30%;
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: $small-breakpoint) {
     &__team-member {
       width: 45%;
     }
