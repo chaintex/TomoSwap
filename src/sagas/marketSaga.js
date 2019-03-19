@@ -61,16 +61,15 @@ function *getTokenBasedRates(tokens) {
 
   let sellRates = yield call(getAllRates, srcAddresses, srcDecimals, destAddresses, srcAmounts);
   let buyRates = yield call(getAllRates, destAddresses, srcDecimals, srcAddresses, srcAmounts);
-  
-  let index = 0;
-  return tokens.map((token, idx) => {
+
+  return tokens.map((token) => {
     if (token.address === TOMO.address) {
       token.sellRate = 1;
       token.buyRate = 1;
     } else {
+      const index = srcAddresses.findIndex(x => x === token.address);
       token.sellRate = formatBigNumber(sellRates[index]);
       token.buyRate = buyRates[index] === 0 ? 0 : 1 / formatBigNumber(buyRates[index]);
-      index = idx;
     }
 
     return token;
