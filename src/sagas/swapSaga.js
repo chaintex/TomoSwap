@@ -145,6 +145,10 @@ function *checkSrcTokenAllowance(action) {
   }
 }
 
+function *resetDataSrcTokenDidChange() {
+  yield put(swapActions.setSourceAmount(''));
+}
+
 function *validateInputAmountMightChange() {
   const swap = yield select(getSwapState);
   const account = yield select(getAccountState);
@@ -270,6 +274,7 @@ export default function* swapWatcher() {
       swapActions.swapActionTypes.SET_DEST_TOKEN,
     ], fetchTxEstimatedGasUsedTokensChanged
   )
+  yield takeLatest(swapActions.swapActionTypes.SET_SOURCE_TOKEN, resetDataSrcTokenDidChange);
   yield takeLatest(swapActions.swapActionTypes.SWAP_TOKEN, swapToken);
   yield takeLatest(swapActions.swapActionTypes.APPROVE, approve);
 }
