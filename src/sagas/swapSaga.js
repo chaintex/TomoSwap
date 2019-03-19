@@ -119,7 +119,7 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
     }
 
     expectedRate = formatBigNumber(expectedRate);
-    const destAmount = expectedRate * sourceAmount;
+    const destAmount = expectedRate * +swap.sourceAmount;
 
     yield put(swapActions.setDestAmount(destAmount));
     yield put(swapActions.setTokenPairRate(expectedRate));
