@@ -34,12 +34,7 @@ class Market extends Component {
 
   sortClick = (sortBy) => {
     let {sort} = this.state;
-    if (sort === 'asc') {
-      sort = 'desc';
-    }
-    else {
-      sort = 'asc';
-    }
+    sort = (sort === 'asc') ? 'desc' : 'asc'
 
     this.setState({sort: sort, sortProp: sortBy}, () => {
       this.tokensSort();
@@ -62,14 +57,9 @@ class Market extends Component {
   compare = (a, b) => {
     const {sortProp} = this.state;
 
-    if (sortProp === null) {
-      return 0;
-    }
-
-    if (a[sortProp] < b[sortProp])
-      return -1;
-    if (a[sortProp] > b[sortProp])
-      return 1;
+    if (sortProp === null) return 0;
+    if (a[sortProp] < b[sortProp]) return -1;
+    if (a[sortProp] > b[sortProp]) return 1;
     return 0;
   }
 

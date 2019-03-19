@@ -12,8 +12,7 @@ export default class MarketView extends Component {
       
       if (sort === 'asc') {
         return "market__table-header-up";
-      }
-      else {
+      } else {
         return "market__table-header-down";
       }
     };
