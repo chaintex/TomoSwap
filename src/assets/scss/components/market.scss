@@ -105,8 +105,24 @@
         display: inline-block;
         width: 11px;
         height: 11px;
-        background-image: url($image-path + 'icons/arrow-blue-up.svg');
         margin-right: 8px;
+      }
+
+      &-sortable {
+        cursor: pointer;
+      }
+
+      &-up::before {
+        background-image: url($image-path + 'icons/arrow-blue-up.svg');
+      }
+
+      &-down::before {
+        background-image: url($image-path + 'icons/arrow-blue-up.svg');
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
       }
     }
 
