@@ -3,6 +3,7 @@ import BigNumber from 'bignumber.js';
 export function formatAmount(number, precision = 6) {
   if (number === undefined) return;
 
+  if (number <= Math.pow(10, -precision)) { return 0; }
   const amountString = number.toString();
 
   return parseFloat(amountString.slice(0, (amountString.indexOf('.')) + (precision + 1)));
@@ -65,6 +66,6 @@ export function formatAddress(fullAddress, length = 20) {
   const lString = fullAddress.substr(0, 14);
   let rString = reverseStr(fullAddress).substr(0, rLength);
   rString = reverseStr(rString);
-  
+
   return lString + '...' + rString;
 }

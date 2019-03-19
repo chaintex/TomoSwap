@@ -8,11 +8,11 @@ export function getWeb3Instance() {
 export function getNetworkProxyContract() {
   const web3 = getWeb3Instance();
 
-  return web3.eth.Contract(envConfig.NETWORK_PROXY_ABI, envConfig.NETWORK_PROXY_ADDRESS);
+  return new web3.eth.Contract(envConfig.NETWORK_PROXY_ABI, envConfig.NETWORK_PROXY_ADDRESS);
 }
 
 export function getTokenContract(srcTokenAddress, web3 = null) {
   web3 = web3 ? web3 : getWeb3Instance();
 
-  return web3.eth.Contract(envConfig.TOKEN_ABI, srcTokenAddress);
+  return new web3.eth.Contract(envConfig.TOKEN_ABI, srcTokenAddress);
 }

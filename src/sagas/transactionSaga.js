@@ -22,11 +22,12 @@ export function *fetchTransactionReceipt(txHash) {
 
   while(!isTxMined) {
     const txReceipt = yield call(web3.eth.getTransactionReceipt, txHash);
+    console.log(txReceipt);
 
-    if (txReceipt && txReceipt.status) {
+    if (txReceipt && txReceipt.status === '0x1') {
       yield put(txActions.setIsTxMined(txReceipt.status));
       isTxMined = true;
-    } else if (txReceipt && !txReceipt.status) {
+    } else if (txReceipt && txReceipt.status === '0x0') {
       yield put(txActions.setTxError("There is something wrong with the transaction!"));
       isTxMined = true;
     } else {
@@ -48,6 +49,24 @@ export function *setTxStatusBasedOnWalletType(walletType, status) {
   } else if (walletType === appConfig.WALLET_TYPE_KEYSTORE) {
     yield put(txActions.setIsBroadcasting(status));
   }
+}
+
+// To update default est gas used when src/dest token changed
+export function *fetchTxEstimatedGasUsedTokensChanged() {
+  let defaultGasUsed;
+  const exchangeMode = yield select(getExchangeMode);
+  if (exchangeMode === appConfig.EXCHANGE_SWAP_MODE) {
+    const swap = yield select(getSwapState);
+    const isSwapTOMO = swap.sourceToken.address === TOMO.address || swap.destToken.address === TOMO.address;
+    defaultGasUsed = isSwapTOMO ? appConfig.DEFAULT_SWAP_TOMO_GAS_LIMIT : appConfig.DEFAULT_SWAP_TOKEN_GAS_LIMIT;
+  } else {
+    const transfer = yield select(getTransferState);
+    const isTransferTOMO = transfer.sourceToken.address === TOMO.address;
+    defaultGasUsed = isTransferTOMO ? appConfig.DEFAULT_TRANSFER_TOMO_GAS_LIMIT : appConfig.DEFAULT_TRANSFER_TOKEN_GAS_LIMIT;
+  }
+  const txFee = defaultGasUsed * appConfig.DEFAULT_GAS_PRICE / Math.pow(10.0, TOMO.decimals);
+  yield call(setTxFeeAndGasLimit, txFee, defaultGasUsed, exchangeMode);
+  yield call(fetchTxEstimatedGasUsed);
 }
 
 export function *fetchTxEstimatedGasUsed() {
