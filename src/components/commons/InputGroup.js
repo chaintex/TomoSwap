@@ -40,8 +40,10 @@ export default class InputGroup extends Component {
       const defaultGasLimit = this.props.isSwap ? appConfig.DEFAULT_SWAP_TOMO_GAS_LIMIT : appConfig.DEFAULT_TRANSFER_TOMO_GAS_LIMIT;
       deductAmountForTxFee = defaultGasLimit * appConfig.DEFAULT_GAS_PRICE / Math.pow(10.0, TOMO.decimals);
     }
+    var srcAmount = Math.min(sourceAmountByPercentage, srcTokenBalance - deductAmountForTxFee);
+    if (srcAmount <= 1e-9) { srcAmount = 0; }
 
-    this.props.setSourceAmount(Math.min(sourceAmountByPercentage, srcTokenBalance - deductAmountForTxFee));
+    this.props.setSourceAmount(srcAmount);
     this.closeBalanceBox();
   };
 

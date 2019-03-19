@@ -84,7 +84,7 @@ class Swap extends Component {
       return;
     }
 
-    if (!this.props.sourceToken.balance) {
+    if (this.props.sourceToken.balance === undefined) {
       this.props.setError("Please wait for your balance to be loaded");
       return;
     }
