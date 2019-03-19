@@ -103,6 +103,7 @@ class Swap extends Component {
     }
 
     this.props.resetAllTxStatus();
+    this.props.setWalletPassword('');
     this.props.setIsConfirmModalActive((true));
 
     // set focus to input password
@@ -114,6 +115,7 @@ class Swap extends Component {
   };
 
   closeModal = () => {
+    this.props.setWalletPassword('');
     this.props.setIsConfirmModalActive((false));
   };
 
