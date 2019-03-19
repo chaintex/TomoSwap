@@ -123,16 +123,16 @@ class ImportAccount extends Component {
 
   openModalEnterPrivateKey = () => {
     this.props.setIsShowingModalEnterPrivateKey((true));
+    // set focus to input password
+    if (this.importAccountView && this.importAccountView.keyInput) {
+      setTimeout(() => {
+        this.importAccountView.keyInput.setFocus();
+      }, 500);
+    }
   };
 
   openModal = () => {
     this.props.setPrivateKeyErrorMessage();
-    // set focus to input password
-    if (this.importAccountView && this.importAccountView.input) {
-      setTimeout(() => {
-        this.importAccountView.input.setFocus();
-      }, 500);
-    }
   };
 
   closeModal = () => {
