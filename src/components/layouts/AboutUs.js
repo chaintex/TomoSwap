@@ -8,7 +8,6 @@ class AboutUs extends Component {
                 <div className={"container"}>
                     <div className={"about-us__header"}>
                         <div className={"about-us__header-who-we-are"}>Our Team</div>
-                        <div className={"about-us__header-description"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis sollicitudin ultricies. Nam viverra urna quis vulputate pulvinar.</div>
                     </div>
                     <div className={"about-us__container"}>
                         <div className={"about-us__team-members"}>
@@ -33,7 +32,6 @@ class AboutUs extends Component {
                     <div className={"container"}>
                         <div className={"about-us__header"}>
                             <div className={"about-us__header-who-we-are"}>Our Advisors</div>
-                            <div className={"about-us__header-description"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis sollicitudin ultricies. Nam viverra urna quis vulputate pulvinar.</div>
                         </div>
                         <div className={"about-us__container"}>
                             <div className={"about-us__team-members"}>
