@@ -107,6 +107,7 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
   const srcToken = swap.sourceToken;
   const destToken = swap.destToken;
   const sourceAmount = swap.sourceAmount ? swap.sourceAmount : 1;
+  const realSourceAmount = swap.sourceAmount ? +swap.sourceAmount : 0;
 
   yield put(swapActions.setTokenPairRateLoading(true));
   yield put(swapActions.setBgTokenPairRateLoading(isBackgroundLoading));
@@ -119,7 +120,7 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
     }
 
     expectedRate = formatBigNumber(expectedRate);
-    const destAmount = expectedRate * sourceAmount;
+    const destAmount = expectedRate * realSourceAmount;
 
     yield put(swapActions.setDestAmount(destAmount));
     yield put(swapActions.setTokenPairRate(expectedRate));
