@@ -107,6 +107,7 @@ class Transfer extends Component {
     }
 
     this.props.resetAllTxStatus();
+    this.props.setWalletPassword('');
     this.props.setIsConfirmModalActive(true);
 
     // set focus to input password
@@ -118,6 +119,7 @@ class Transfer extends Component {
   };
 
   closeConfirmModal = () => {
+    this.props.setWalletPassword('');
     this.props.setIsConfirmModalActive(false);
   };
 
