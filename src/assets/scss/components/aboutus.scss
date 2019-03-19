@@ -43,10 +43,10 @@
   }
 
   &__team-member {
-    width: 23%;
+    width: 22%;
     display: inline-block;
     vertical-align: top;
-    margin: 0 10px 50px 0;
+    margin: 0 4% 50px 0;
     opacity: 0;
     transform: translateY(20px);
     animation: fade-in 0.5s forwards;
@@ -76,7 +76,6 @@
     }
 
     &-title {
-      height: 18px;
       font-family: Montserrat;
       font-size: 14px;
       font-weight: 500;
@@ -85,9 +84,13 @@
     }
   }
 
+  &__team-member:last-child {
+    margin-right: 0;
+  }
+
   @media (max-width: $medium-breakpoint) {
     &__team-member {
-      width: 30%;
+      width: 28%;
     }
   }
 

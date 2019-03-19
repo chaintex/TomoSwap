@@ -28,7 +28,7 @@ class Header extends Component {
           </div>
           <div className={"header__content"}>
             <a href="/" className={"header__content-item active"}>Swap</a>
-            <a href="/" className={"header__content-item"}>About Us</a>
+            <a href="#aboutus" className={"header__content-item"}>About Us</a>
             <a href="/" className={"header__content-item"}>FAQ</a>
             <a href="https://goo.gl/forms/PPgKR2d6A5KtV7tH2" target="_blank" rel="noopener noreferrer" className={"header__content-item"}>Contact Us</a>
             <a href="https://medium.com/@tomoswap" target="_blank" rel="noopener noreferrer" className={"header__content-item"}>Blog</a>
