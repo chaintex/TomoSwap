@@ -43,7 +43,7 @@ class Body extends Component {
         <div className={"container"}>
           <div className={"body__container"}>
             <div className={"body__content"}>
-              <h3 className={"body__title"}>TomoSwap - The first decentralised exchange platform on TomoChain</h3>
+              <h3 className={"body__title"}>TomoSwap - The first decentralized exchange platform on TomoChain</h3>
               <p className={"body__subtitle"}>The fastest, simplest and most secure way to exchange tokens.</p>
             </div>
             <div className={"body__content"}>
