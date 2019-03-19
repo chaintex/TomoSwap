@@ -4,6 +4,20 @@ import { TOMO, USD } from '../../config/tokens';
 
 export default class MarketView extends Component {
   render() {
+    const getClass = (prop) => {
+      let { sort, sortProp } = this.props;
+      if (prop !== sortProp) {
+        return "";
+      }
+      
+      if (sort === 'asc') {
+        return "market__table-header-up";
+      }
+      else {
+        return "market__table-header-down";
+      }
+    };
+
     const getTokenList = () => {
       return this.props.tokens.map((token, index) => {
         if (!token.symbol.includes(this.props.searchText) || (token.symbol === TOMO.symbol)) {
@@ -13,7 +27,7 @@ export default class MarketView extends Component {
         const isUSDMarket = this.props.indexToken.symbol === USD.symbol;
         const sellRate = isUSDMarket ? `${formatAmount(token.usdSellRate)} ${USD.symbol}` : `${formatAmount(token.sellRate)} ${TOMO.symbol}`;
         const buyRate = isUSDMarket ? `${formatAmount(token.usdBuyRate)} ${USD.symbol}` : `${formatAmount(token.buyRate)} ${TOMO.symbol}`;
-
+        
         return (
           <tr key={index} className={"common__fade-in"}>
             <td className={"common__flexbox common__flexbox--left"}>
@@ -59,8 +73,8 @@ export default class MarketView extends Component {
                   )
                 })}
               </th>
-              <th className={"market__table-header"}>Sell Price</th>
-              <th className={"market__table-header"}>Buy Price</th>
+              <th className={`market__table-header market__table-header-sortable ${getClass("sellRate")}`} onClick={() => this.props.onSortClick("sellRate")}>Sell Price</th>
+              <th className={`market__table-header market__table-header-sortable ${getClass("buyRate")}`} onClick={() => this.props.onSortClick("buyRate")}>Buy Price</th>
               <th className={"market__table-header"}>24hr Change</th>
             </tr>
             {!this.props.isLoading && (

@@ -9,6 +9,7 @@ export function formatAmount(number, precision = 6) {
 }
 
 export function formatBigNumber(number, decimals = 18) {
+  if (number === undefined) return;
   let result = new BigNumber(number.toString());
 
   result = result.div(Math.pow(10, decimals));

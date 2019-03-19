@@ -26,8 +26,51 @@ class Market extends Component {
 
     this.state = {
       searchText: '',
-      basedTokens: appConfig.MARKET_BASED_TOKENS
+      basedTokens: appConfig.MARKET_BASED_TOKENS,
+      sort: null,
+      sortProp: null,
     }
+  }
+
+  sortClick = (sortBy) => {
+    let {sort} = this.state;
+    if (sort === 'asc') {
+      sort = 'desc';
+    }
+    else {
+      sort = 'asc';
+    }
+
+    this.setState({sort: sort, sortProp: sortBy}, () => {
+      this.tokensSort();
+    })
+  } 
+
+  tokensSort = () => {
+    if (this.state.sort === null) {
+      return this.props.tokens;
+    }
+
+    let tokensSorted = this.props.tokens.sort(this.compare);
+    if (this.state.sort === 'asc') {
+      return tokensSorted;
+    }
+
+    return tokensSorted.reverse();
+  }
+
+  compare = (a, b) => {
+    const {sortProp} = this.state;
+
+    if (sortProp === null) {
+      return 0;
+    }
+
+    if (a[sortProp] < b[sortProp])
+      return -1;
+    if (a[sortProp] > b[sortProp])
+      return 1;
+    return 0;
   }
 
   componentDidMount = () => {
@@ -42,7 +85,9 @@ class Market extends Component {
   render() {
     return (
       <MarketView
-        tokens={this.props.tokens}
+        tokens={this.tokensSort()}
+        sort={this.state.sort}
+        sortProp={this.state.sortProp}
         searchText={this.state.searchText}
         basedTokens={this.state.basedTokens}
         indexToken={this.props.indexToken}
@@ -50,6 +95,7 @@ class Market extends Component {
         isBackgroundLoading={this.props.isBackgroundLoading}
         setIndexToken={this.props.setIndexToken}
         onTypingSearch={this.handleOnTypingSearch}
+        onSortClick={this.sortClick}
       />
     )
   }
