@@ -84,7 +84,7 @@
     }
   }
 
-  &__team-member:last-child {
+  &__team-member:nth-child(4n+1) {
     margin-right: 0;
   }
 
@@ -99,4 +99,8 @@
       width: 45%;
     }
   }
+}
+
+.advisor {
+  background-color: #1d244d;
 }
