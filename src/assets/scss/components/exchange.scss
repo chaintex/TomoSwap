@@ -40,9 +40,20 @@
       }
 
       &--address {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        text-align: left !important;
+
+        &-label {
+          opacity: 0.4;
+          font-size: 14px;
+          margin: 0 0 5px 0;
+        }
+
+        &-text {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 15px;
+        }
       }
     }
 

@@ -64,7 +64,10 @@ export default class TransferView extends Component {
               <div className={"modal__body-top common__flexbox exchange__modal-number"}>
                 <div className={"exchange__modal-box"}>{formatAmount(this.props.sourceAmount)} {this.props.sourceToken.symbol}</div>
                 <div className={"exchange__modal-icon"}/>
-                <div className={"exchange__modal-box exchange__modal-box--address"}>{this.props.toAddress}</div>
+                <div className={"exchange__modal-box exchange__modal-box--address"}>
+                  <div className={"exchange__modal-box--address-label"}>Address: </div>
+                  <div className={"exchange__modal-box--address-text"} title={this.props.toAddress}>{this.props.toAddress}</div>
+                </div>
               </div>
               <div className={"modal__body-bot"}>
                 <div>
