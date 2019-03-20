@@ -53,6 +53,7 @@ export default class InputGroup extends Component {
 
   render() {
     const isError = !!this.props.error;
+    const isBalanceShown = this.props.isAccountImported && !this.props.isBalanceLoading && (this.props.sourceToken.balance !== undefined);
     const isBalanceBoxShown = this.props.isAccountImported && !this.props.isBalanceLoading;
 
     return (
@@ -91,7 +92,7 @@ export default class InputGroup extends Component {
           {this.props.isAccountImported && (
             <Fragment>
               <div className={"common__flexbox input-group__balance_color"}>
-                {this.props.isBalanceLoading ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.sourceToken.balance)} {this.props.sourceToken.symbol}
+                {!isBalanceShown ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.sourceToken.balance)} {this.props.sourceToken.symbol}
               </div>
               <div className={"common__flexbox input-group__address"}>
                 {this.props.accountAddress ? <a href={this.formatUrlScan(this.props.accountAddress)} target="_blank" rel="noopener noreferrer" title={this.props.accountAddress}>Add: {formatAddress(this.props.accountAddress, 20)}</a> : ""}
