@@ -76,7 +76,7 @@ class Transfer extends Component {
   };
 
   openConfirmModal = () => {
-    if (!this.props.sourceAmount) {
+    if (this.props.sourceAmount === '') {
       this.props.setError("Source amount is required to make a transfer");
       return;
     }
@@ -96,7 +96,7 @@ class Transfer extends Component {
       return;
     }
 
-    if (!this.props.sourceToken.balance) {
+    if (this.props.sourceToken.balance === undefined) {
       this.props.setError("Please wait for your balance to be loaded");
       return;
     }

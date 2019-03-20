@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { setWalletPassword } from "../../actions/accountAction";
 import * as swapActions from "../../actions/swapAction";
 import { setGlobalError } from "../../actions/globalAction";
-import { resetAllTxStatus } from "../../actions/transactionAction";
+import { resetAllTxStatus, setTxHashApprove } from "../../actions/transactionAction";
 import { TOMO } from "../../config/tokens";
 
 function mapStateToProps(store) {
@@ -52,13 +52,17 @@ function mapDispatchToProps(dispatch) {
     setWalletPassword: (password) => {dispatch(setWalletPassword(password))},
     setIsConfirmModalActive: (isActive) => {dispatch(swapActions.setIsConfirmModalActive(isActive))},
     resetAllTxStatus: () => {dispatch(resetAllTxStatus())},
+    setTxHashApprove: (hash) => {dispatch(setTxHashApprove(hash))}
   }
 }
 
 class Swap extends Component {
   constructor(props) {
     super(props);
-    this.state = {isSwapNowShowing: true};
+    this.state = {
+      isSwapNowShowing: true,
+      isCheckingApproval: false
+    };
   }
 
   componentDidMount = () => {
@@ -84,7 +88,7 @@ class Swap extends Component {
       return;
     }
 
-    if (!this.props.sourceToken.balance) {
+    if (this.props.sourceToken.balance === undefined) {
       this.props.setError("Please wait for your balance to be loaded");
       return;
     }
@@ -96,6 +100,8 @@ class Swap extends Component {
       return;
     }
 
+    this.setState({isCheckingApproval: true});
+    this.props.setTxHashApprove(null);
     if (this.props.sourceToken.symbol !== TOMO.symbol && this.props.isAccountImported) {
       this.props.checkSrcTokenAllowance(this.props.sourceToken.address, this.props.accountAddress);
     } else {
@@ -119,12 +125,20 @@ class Swap extends Component {
     this.props.setIsConfirmModalActive((false));
   };
 
+  closeApproveModal = () => {
+    // user cancelled confirm modal
+    this.setState({isCheckingApproval: false});
+    this.props.setWalletPassword('');
+    this.props.setIsConfirmModalActive((false));
+    this.props.resetAllTxStatus();
+  }
+
   render() {
     return (
       <SwapView
         accountAddress={this.props.accountAddress}
         sourceToken={this.props.sourceToken}
-        isApproveNeeded={this.props.isApproveNeeded}
+        isApproveNeeded={this.props.isApproveNeeded && this.state.isCheckingApproval}
         destToken={this.props.destToken}
         sourceAmount={this.props.sourceAmount}
         destAmount={this.props.destAmount}
@@ -148,6 +162,7 @@ class Swap extends Component {
         setDestToken={this.props.setDestToken}
         openModal={this.openModal}
         closeModal={this.closeModal}
+        closeApproveModal={this.closeApproveModal}
         onRef={ref => (this.swapView = ref)}
       />
     )
