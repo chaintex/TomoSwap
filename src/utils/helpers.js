@@ -19,8 +19,8 @@ export function formatBigNumber(number, decimals = 18) {
 }
 
 export function numberToHex(number, decimals = 18) {
-  let bigNumber = new BigNumber(number).times(Math.pow(10, decimals));
-
+  var bigNumber = new BigNumber(number).times(Math.pow(10, decimals));
+  bigNumber = new BigNumber(bigNumber.toFixed(0));
   return "0x" + bigNumber.toString(16);
 }
 
