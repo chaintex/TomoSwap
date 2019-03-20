@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Modal from "../../components/commons/Modal";
 import envConfig from "../../config/env";
 import appConfig from "../../config/app";
-import { formatAmount } from "../../utils/helpers";
+import { formatAmount, formatAddress } from "../../utils/helpers";
 
 export default class TransactionView extends Component {
   render() {
@@ -79,7 +79,7 @@ export default class TransactionView extends Component {
                       <Fragment>
                         <span>{formatAmount(this.props.sourceAmount)} {this.props.sourceToken.symbol}</span>
                         <span className={"tx__token-text--light"}> to </span>
-                        <span className={"tx__address"}>{this.props.toAddress}</span>
+                        <span className={"tx__address"}>{formatAddress(this.props.toAddress, 24)}</span>
                       </Fragment>
                     )}
                   </div>
