@@ -24,6 +24,17 @@ function *fetchBalancesChannel() {
   }
 }
 
+function *resetTokenBalancesIfNeeded() {
+  let address = yield select(getAccountAddress);
+  if (!address) {
+    const tokens = yield select(getTokens);
+    tokens.forEach((token, index) => {
+      token.balance = undefined;
+    });
+    yield put(setTokens(tokens));
+  }
+}
+
 function *fetchBalance(address, isFirstLoading = false) {
   yield put(setBalanceLoading(isFirstLoading));
 
@@ -41,5 +52,6 @@ function *fetchBalance(address, isFirstLoading = false) {
 
 export default function* accountWatcher() {
   yield takeLatest(accountActions.accountActionTypes.SET_WALLET, fetchTxEstimatedGasUsed);
+  yield takeLatest(accountActions.accountActionTypes.SET_WALLET, resetTokenBalancesIfNeeded);
   yield takeLatest(accountActions.accountActionTypes.FETCH_BALANCES, fetchBalancesChannel);
 }
