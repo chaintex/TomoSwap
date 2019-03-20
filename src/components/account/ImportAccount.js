@@ -34,7 +34,7 @@ class ImportAccount extends Component {
       this.props.setGlobalError(`Cannot connect to Metamask. Please make sure you have Metamask installed`);
       return;
     } else if (+window.ethereum.networkVersion !== envConfig.NETWORK_ID) {
-      this.props.setGlobalError(`Your Network ID should be ${envConfig.NETWORK_ID} that represents TomoChain Network`);
+      this.props.setGlobalError(`Metamask should be on ${envConfig.NETWORK_NAME} network`);
       return;
     }
 
