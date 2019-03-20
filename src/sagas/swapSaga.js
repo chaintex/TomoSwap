@@ -68,6 +68,9 @@ function *approve(action) {
   const swap = yield select(getSwapState);
   const account = yield select(getAccountState);
 
+  yield put(txActions.setConfirmingError());
+  yield call(setTxStatusBasedOnWalletType, account.walletType, true);
+
   try {
     const approveABI = yield call(getApproveABI, action.payload, getBiggestNumber());
 
@@ -81,8 +84,11 @@ function *approve(action) {
 
     const txHashApprove = yield call(account.walletService.sendTransaction, txObject, account.walletPassword);
 
+    yield put(txActions.resetAllTxStatus());
     yield put(txActions.setTxHashApprove(txHashApprove));
   } catch (e) {
+    yield put(txActions.setConfirmingError(e));
+    yield call(setTxStatusBasedOnWalletType, account.walletType, false);
     console.log(e);
   }
 }

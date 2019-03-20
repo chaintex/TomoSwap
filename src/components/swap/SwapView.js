@@ -107,9 +107,21 @@ export default class SwapView extends Component {
                   <div className={"exchange__modal-address"}>{this.props.accountAddress}</div>
                 </div>
               </div>
-              <div className={"modal__footer common__flexbox common__flexbox--center"}>
-                <div className={"modal__button modal__button--gradient"} onClick={() => this.props.approve(this.props.sourceToken.address)}>Approve</div>
+              <div className={"modal__body-bot"}>
+                {this.props.walletType === appConfig.WALLET_TYPE_KEYSTORE && (
+                  <PasswordInput
+                    onRef={ref => (this.passwdInput = ref)}
+                    onKeyUp={() => this.props.approve(this.props.sourceToken.address)}
+                  />
+                )}
               </div>
+              <ConfirmButton
+                isConfirming={this.props.tx.isConfirming}
+                isBroadcasting={this.props.tx.isBroadcasting}
+                confirmingError={this.props.tx.confirmingError}
+                closeModal={this.props.closeApproveModal}
+                confirm={() => this.props.approve(this.props.sourceToken.address)}
+              />
             </div>
           )}
         </Modal>
