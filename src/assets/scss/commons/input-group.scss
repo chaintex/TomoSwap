@@ -159,4 +159,25 @@
       justify-content: flex-end;
     }
   }
+
+
+  @media (max-width: $smaller-breakpoint) {
+    &__info {
+      &-address {
+        margin-bottom: 25px;
+        display: block; 
+      }
+    }
+
+    &__balance-text {
+      display: inline;
+    }
+
+    &__address {
+      float: inherit;
+      right: inherit;
+    }
+  }
+
+  
 }
