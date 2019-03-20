@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import InputGroup from '../commons/InputGroup';
 import PasswordInput from '../commons/PasswordInput';
-import { formatAmount } from "../../utils/helpers";
+import { formatAmount, formatAddress  } from "../../utils/helpers";
 import { TOMO } from "../../config/tokens";
 import appConfig from "../../config/app";
 import Modal from "../../components/commons/Modal";
@@ -61,10 +61,14 @@ export default class TransferView extends Component {
           <div className={"exchange__modal"}>
             <div className={"modal__header"}>Confirm Transfer</div>
             <div className={"modal__body exchange__modal-body"}>
-              <div className={"modal__body-top common__flexbox exchange__modal-number"}>
+              <div className={"modal__body-top common__flexbox exchange__modal-number exchange__modal-number-small-padding"}>
                 <div className={"exchange__modal-box"}>{formatAmount(this.props.sourceAmount)} {this.props.sourceToken.symbol}</div>
                 <div className={"exchange__modal-icon"}/>
-                <div className={"exchange__modal-box exchange__modal-box--address"}>{this.props.toAddress}</div>
+                <div className={"exchange__modal-box exchange__modal-box--address"}>
+                  <div className={"exchange__modal-box--address-label"}>Address: </div>
+                  <div className={"exchange__modal-box--address-text exchange__modal-box--address-text-full"} title={this.props.toAddress}>{formatAddress(this.props.toAddress, 19, 12)}</div>
+                  <div className={"exchange__modal-box--address-text exchange__modal-box--address-text-mobile"} title={this.props.toAddress}>{formatAddress(this.props.toAddress, 13, 8)}</div>
+                </div>
               </div>
               <div className={"modal__body-bot"}>
                 <div>

@@ -50,20 +50,23 @@ export function reverseStr(str) {
   return str.split("").reverse().join("");
 }
 
-export function formatAddress(fullAddress, length = 20) {
-  if (!length || length < 20) {
+export function formatAddress(fullAddress, length = 20, lLength = 13) {
+  if (!length) {
     length = 20;
+  }
+
+  if (!lLength) {
+    length = 13;
   }
 
   if (!fullAddress || fullAddress.length <= length) {
     return fullAddress;
   }
 
-  const lLength = 13;
   const dotLength = 3;
   const rLength = length - (lLength + dotLength);
 
-  const lString = fullAddress.substr(0, 14);
+  const lString = fullAddress.substr(0, lLength);
   let rString = reverseStr(fullAddress).substr(0, rLength);
   rString = reverseStr(rString);
 
