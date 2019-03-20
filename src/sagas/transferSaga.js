@@ -89,6 +89,10 @@ export function *getTransferTxObject(gasLimit) {
   });
 }
 
+function *resetDataSrcTokenDidChange() {
+  yield put(transferActions.setSourceAmount(''));
+}
+
 function *validateValidInput() {
   const transfer = yield select(getTransferState);
   const account = yield select(getAccountState);
@@ -141,4 +145,5 @@ export default function* transferWatcher() {
       tokenActions.tokenActionTypes.SET_TOKENS
     ], validateValidInput
   );
+  yield takeLatest(transferActions.transferActionTypes.SET_SOURCE_TOKEN, resetDataSrcTokenDidChange);
 }
