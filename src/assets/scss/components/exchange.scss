@@ -23,6 +23,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @media (max-width: $small-breakpoint) {
+        &-small-padding {
+          padding-right: 30px;
+        }
+      }
     }
 
     &-box {
@@ -40,9 +46,39 @@
       }
 
       &--address {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        text-align: left !important;
+
+        &-label {
+          opacity: 0.4;
+          font-size: 14px;
+          margin: 0 0 5px 0;
+        }
+
+        &-text {
+          overflow: hidden;
+          font-size: 15px;
+
+          &-full {
+            display: inherit;
+          }
+
+          &-mobile {
+            display: none;
+          }
+        }
+
+        @media (max-width: $small-breakpoint) {
+          &-text {
+            &-full {
+              display: none;
+            }
+            
+            &-mobile {
+              display: inherit;
+            }
+          }
+
+        }
       }
     }
 
