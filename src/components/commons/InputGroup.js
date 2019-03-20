@@ -87,7 +87,7 @@ export default class InputGroup extends Component {
           <div className={"common__text common__text--error under-input"}>{this.props.error}</div>
         )}
 
-        <div className={"input-group__info"}>
+        <div className={"input-group__info input-group__info-address"}>
           {this.props.isAccountImported && (
             <Fragment>
               <div className={"common__flexbox input-group__balance_color"}>
