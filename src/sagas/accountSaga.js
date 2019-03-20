@@ -25,14 +25,11 @@ function *fetchBalancesChannel() {
 }
 
 function *resetTokenBalancesIfNeeded() {
+  const tokens = yield select(getTokens);
+  tokens.forEach((token, index) => { token.balance = undefined; });
+  yield put(setTokens(tokens));
   let address = yield select(getAccountAddress);
-  if (!address) {
-    const tokens = yield select(getTokens);
-    tokens.forEach((token, index) => {
-      token.balance = undefined;
-    });
-    yield put(setTokens(tokens));
-  }
+  if (address) { yield call(fetchBalance, address, true); }
 }
 
 function *fetchBalance(address, isFirstLoading = false) {
