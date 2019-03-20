@@ -63,7 +63,7 @@ export default class InputGroup extends Component {
             tokens={this.props.tokens}
             showBalance={true}
           />
-          <input className={"input-group__input"} type="text" placeholder="0" value={this.props.sourceAmount} onChange={(e) => this.handleSourceAmountChange(e)} autoFocus={true}/>
+          <input className={"input-group__input input-group__input-swap"} type="text" placeholder="0" value={this.props.sourceAmount} onChange={(e) => this.handleSourceAmountChange(e)} autoFocus={true}/>
           <Dropdown
             className={"input-group__dropdown"}
             active={this.state.isBalanceBoxOpen}
