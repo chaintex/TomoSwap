@@ -23,6 +23,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @media (max-width: $small-breakpoint) {
+        &-small-padding {
+          padding-right: 30px;
+        }
+      }
     }
 
     &-box {
@@ -49,10 +55,29 @@
         }
 
         &-text {
-          white-space: nowrap;
           overflow: hidden;
-          text-overflow: ellipsis;
           font-size: 15px;
+
+          &-full {
+            display: inherit;
+          }
+
+          &-mobile {
+            display: none;
+          }
+        }
+
+        @media (max-width: $small-breakpoint) {
+          &-text {
+            &-full {
+              display: none;
+            }
+            
+            &-mobile {
+              display: inherit;
+            }
+          }
+
         }
       }
     }
