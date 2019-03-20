@@ -5,6 +5,7 @@ import { filterInputNumber } from "../../utils/validators";
 import { formatAmount, formatAddress } from "../../utils/helpers";
 import { TOMO } from "../../config/tokens";
 import envConfig from "../../config/env";
+import appConfig from "../../config/app";
 
 export default class InputGroup extends Component {
   constructor(props) {
@@ -34,7 +35,11 @@ export default class InputGroup extends Component {
   addSrcAmountByBalancePercentage = (balancePercentage) => {
     const srcTokenBalance = this.props.sourceToken.balance;
     const sourceAmountByPercentage = srcTokenBalance * (balancePercentage / 100);
-    const deductAmountForTxFee = this.props.sourceToken.address === TOMO.address ? +this.props.txFeeInTOMO : 0;
+    var deductAmountForTxFee = 0;
+    if (this.props.sourceToken.address === TOMO.address) {
+      const defaultGasLimit = this.props.isSwap ? appConfig.DEFAULT_SWAP_TOMO_GAS_LIMIT : appConfig.DEFAULT_TRANSFER_TOMO_GAS_LIMIT;
+      deductAmountForTxFee = defaultGasLimit * appConfig.DEFAULT_GAS_PRICE / Math.pow(10.0, TOMO.decimals);
+    }
 
     this.props.setSourceAmount(Math.min(sourceAmountByPercentage, srcTokenBalance - deductAmountForTxFee));
     this.closeBalanceBox();
@@ -69,9 +74,9 @@ export default class InputGroup extends Component {
               <div className={`common__arrow-drop-down grey-light ${this.props.isBalanceBoxOpen ? 'up' : 'down'}`}/>
             </DropdownTrigger>
             <DropdownContent className={"input-group__dropdown-content common__fade-in"}>
-              <div onClick={() => this.addSrcAmountByBalancePercentage(25)}>Swap 25%</div>
-              <div onClick={() => this.addSrcAmountByBalancePercentage(50)}>Swap 50%</div>
-              <div onClick={() => this.addSrcAmountByBalancePercentage(100)}>Swap 100%</div>
+              <div onClick={() => this.addSrcAmountByBalancePercentage(25)}>{this.props.isSwap ? "Swap" : "Transfer"} 25%</div>
+              <div onClick={() => this.addSrcAmountByBalancePercentage(50)}>{this.props.isSwap ? "Swap" : "Transfer"} 50%</div>
+              <div onClick={() => this.addSrcAmountByBalancePercentage(100)}>{this.props.isSwap ? "Swap" : "Transfer"} 100%</div>
             </DropdownContent>
           </Dropdown>
         </div>

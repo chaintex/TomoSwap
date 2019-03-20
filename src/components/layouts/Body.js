@@ -10,6 +10,7 @@ import * as accountActions from "../../actions/accountAction";
 import AppConfig from "../../config/app";
 import Modal from "../../components/commons/Modal";
 import { getWeb3Instance } from "../../services/web3Service";
+import AboutUs from './AboutUs';
 
 function mapStateToProps(store) {
   const global = store.global;
@@ -42,7 +43,7 @@ class Body extends Component {
         <div className={"container"}>
           <div className={"body__container"}>
             <div className={"body__content"}>
-              <h3 className={"body__title"}>TomoSwap - The first decentralised exchange platform on TomoChain</h3>
+              <h3 className={"body__title"}>TomoSwap - The first decentralized exchange platform on TomoChain</h3>
               <p className={"body__subtitle"}>The fastest, simplest and most secure way to exchange tokens.</p>
             </div>
             <div className={"body__content"}>
@@ -66,6 +67,7 @@ class Body extends Component {
           </div>
           <Market/>
         </div>
+        <AboutUs/>
         <Modal isActive={!!this.props.globalError} handleClose={() => this.props.resetGlobalError()}>
           <div className={"modal__header modal__header--error"}>Error!</div>
           <div className={"modal__body"}>

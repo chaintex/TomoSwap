@@ -50,6 +50,7 @@ export function getRate(srcAddress, srcDecimals, destAddress, srcAmount) {
   const networkProxyContract = Web3Service.getNetworkProxyContract();
 
   srcAmount = numberToHex(srcAmount, srcDecimals);
+  console.log("Source Amount: " + srcAmount);
 
   return networkProxyContract.methods.getExpectedRate(srcAddress, destAddress, srcAmount).call().then((result) => {
     const expectedRate = result.expectedRate;

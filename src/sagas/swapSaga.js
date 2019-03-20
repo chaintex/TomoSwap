@@ -14,7 +14,13 @@ import {
 import appConfig from "../config/app";
 import envConfig from "../config/env";
 import { TOMO } from "../config/tokens";
-import { getTxObject, fetchTransactionReceipt, fetchTxEstimatedGasUsed, setTxStatusBasedOnWalletType } from "./transactionSaga";
+import {
+  getTxObject,
+  fetchTransactionReceipt,
+  fetchTxEstimatedGasUsed,
+  fetchTxEstimatedGasUsedTokensChanged,
+  setTxStatusBasedOnWalletType
+} from "./transactionSaga";
 
 const getSwapState = state => state.swap;
 const getAccountState = state => state.account;
@@ -113,7 +119,7 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
     }
 
     expectedRate = formatBigNumber(expectedRate);
-    const destAmount = expectedRate * sourceAmount;
+    const destAmount = expectedRate * +swap.sourceAmount;
 
     yield put(swapActions.setDestAmount(destAmount));
     yield put(swapActions.setTokenPairRate(expectedRate));
@@ -137,6 +143,10 @@ function *checkSrcTokenAllowance(action) {
   } catch (e) {
     console.log(e);
   }
+}
+
+function *resetDataSrcTokenDidChange() {
+  yield put(swapActions.setSourceAmount(''));
 }
 
 function *validateInputAmountMightChange() {
@@ -163,7 +173,7 @@ function *validateValidInput(swap, account) {
     sourceAmountInTOMO = sourceAmount * sourceToken.sellRate;
   }
 
-  if (swap.tokenPairRate === 0) {
+  if (sourceAmountString !== '' && swap.tokenPairRate === 0) {
     yield put(swapActions.setError(`Your source amount exceeds our max capacity, please reduce your amount`));
     return false;
   }
@@ -258,6 +268,13 @@ export default function* swapWatcher() {
       tokenActions.tokenActionTypes.SET_TOKENS
     ], validateInputAmountMightChange
   );
+  yield takeLatest(
+    [
+      swapActions.swapActionTypes.SET_SOURCE_TOKEN,
+      swapActions.swapActionTypes.SET_DEST_TOKEN,
+    ], fetchTxEstimatedGasUsedTokensChanged
+  )
+  yield takeLatest(swapActions.swapActionTypes.SET_SOURCE_TOKEN, resetDataSrcTokenDidChange);
   yield takeLatest(swapActions.swapActionTypes.SWAP_TOKEN, swapToken);
   yield takeLatest(swapActions.swapActionTypes.APPROVE, approve);
 }

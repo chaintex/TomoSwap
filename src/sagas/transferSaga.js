@@ -9,6 +9,7 @@ import { TOMO } from "../config/tokens";
 import {
   fetchTransactionReceipt,
   fetchTxEstimatedGasUsed,
+  fetchTxEstimatedGasUsedTokensChanged,
   getTxObject,
   setTxStatusBasedOnWalletType
 } from "./transactionSaga";
@@ -88,6 +89,10 @@ export function *getTransferTxObject(gasLimit) {
   });
 }
 
+function *resetDataSrcTokenDidChange() {
+  yield put(transferActions.setSourceAmount(''));
+}
+
 function *validateValidInput() {
   const transfer = yield select(getTransferState);
   const account = yield select(getAccountState);
@@ -130,7 +135,8 @@ function *setError(errorMessage) {
 
 export default function* transferWatcher() {
   yield takeLatest(transferActions.transferActionTypes.TRANSFER, transfer);
-  yield takeLatest([transferActions.transferActionTypes.SET_SOURCE_AMOUNT, transferActions.transferActionTypes.SET_SOURCE_TOKEN], fetchTxEstimatedGasUsed);
+  yield takeLatest(transferActions.transferActionTypes.SET_SOURCE_TOKEN, fetchTxEstimatedGasUsedTokensChanged);
+  yield takeLatest(transferActions.transferActionTypes.SET_SOURCE_AMOUNT, fetchTxEstimatedGasUsed);
   yield takeLatest(
     [
       transferActions.transferActionTypes.SET_SOURCE_AMOUNT,
@@ -139,4 +145,5 @@ export default function* transferWatcher() {
       tokenActions.tokenActionTypes.SET_TOKENS
     ], validateValidInput
   );
+  yield takeLatest(transferActions.transferActionTypes.SET_SOURCE_TOKEN, resetDataSrcTokenDidChange);
 }
