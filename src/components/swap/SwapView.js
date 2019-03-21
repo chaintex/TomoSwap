@@ -60,11 +60,11 @@ export default class SwapView extends Component {
 
         {this.props.isSwapNowShowing &&
           <div className={"exchange__button-container common__fade-in"}>
-            <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openModal()}>Swap Now</div>
+            <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openConfirmSwapModal()}>Swap Now</div>
           </div>
         }
 
-        <Modal isActive={this.props.isConfirmModalActive} handleClose={() => this.props.closeModal()}>
+        <Modal isActive={this.props.isConfirmModalActive} handleClose={() => this.props.closeConfirmSwapModal()}>
           {!this.props.isApproveNeeded && (
             <div className={"exchange__modal"}>
               <div className={"modal__header"}>Confirm Swap</div>
@@ -92,7 +92,7 @@ export default class SwapView extends Component {
                 isConfirming={this.props.tx.isConfirming}
                 isBroadcasting={this.props.tx.isBroadcasting}
                 confirmingError={this.props.tx.confirmingError}
-                closeModal={this.props.closeModal}
+                closeModal={this.props.closeConfirmSwapModal}
                 confirm={this.props.swap}
               />
             </div>
@@ -103,7 +103,12 @@ export default class SwapView extends Component {
               <div className={"modal__header"}>Approve Token</div>
               <div className={"modal__body modal__body--left"}>
                 <div className={"modal__body-top"}>
-                  <div className={"exchange__modal-approve"}>You need to grant permission for TomoSwap to interact with {this.props.sourceToken.symbol} with this Address:</div>
+                  {this.props.srcTokenAllowance === 0 &&
+                    <div className={"exchange__modal-approve"}>You need to grant permission for TomoSwap to interact with {this.props.sourceToken.symbol} with this Address:</div>
+                  }
+                  {this.props.srcTokenAllowance > 0 &&
+                    <div className={"exchange__modal-approve"}>You need to reset allowance {this.props.sourceToken.symbol} of TomoSwap with this Address:</div>
+                  }
                   <div className={"exchange__modal-address"}>{this.props.accountAddress}</div>
                 </div>
               </div>
