@@ -22,7 +22,7 @@ export default class TransactionView extends Component {
       textInput.setAttribute("id", "tx-hash");
       document.body.appendChild(textInput);
     }
-    
+
     this.setState({txtCopy: textInput}, () => {
       callback();
     });
@@ -34,9 +34,9 @@ export default class TransactionView extends Component {
       textField.select();
       document.execCommand('copy');
       document.body.removeChild(textField);
-  
+
       this.setState({copied: true});
-  
+
       setTimeout(() => this.setState({copied: false}), 1000);
     });
   }
@@ -126,7 +126,7 @@ export default class TransactionView extends Component {
               </div>
               <div className={"modal__footer common__flexbox"}>
                 <div className={"modal__button"} onClick={() => this.props.handleSetExchangeMode(otherExchangeMode)}>{otherExchangeMode}</div>
-                <div className={"modal__button modal__button--gradient"} onClick={() => this.props.unsetTxHash()}>New {this.props.exchangeMode}</div>
+                <div className={"modal__button modal__button--gradient"} onClick={() => this.props.handleSetExchangeMode(this.props.exchangeMode)}>New {this.props.exchangeMode}</div>
               </div>
             </div>
           )}

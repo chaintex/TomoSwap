@@ -61,7 +61,9 @@ function mapDispatchToProps(dispatch) {
 class Transaction extends Component {
   handleSetExchangeMode = (exchangeMode) => {
     this.props.unsetTxHash();
-    this.props.setExchangeMode(exchangeMode);
+    if (this.props.exchangeMode !== exchangeMode) {
+      this.props.setExchangeMode(exchangeMode);
+    }
     this.resetData();
   };
 
