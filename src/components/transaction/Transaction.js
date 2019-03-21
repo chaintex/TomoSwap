@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { setTxHash, setTxError } from "../../actions/transactionAction";
+import * as transferActions from "../../actions/transferAction";
+import * as swapActions from "../../actions/swapAction";
 import { setExchangeMode } from "../../actions/globalAction";
 import TransactionView from "./TransactionView";
 import appConfig from "../../config/app";
@@ -49,6 +51,9 @@ function mapDispatchToProps(dispatch) {
   return {
     unsetTxHash: () => { dispatch(setTxHash()) },
     unsetTxError: () => { dispatch(setTxError()) },
+    setToAddress: (address) => { dispatch(transferActions.setToAddress(address))},
+    setTransferSourceAmount: (amount) => { dispatch(transferActions.setSourceAmount(amount))},
+    setSwapSourceAmount: (amount) => { dispatch(swapActions.setSourceAmount(amount))},
     setExchangeMode: (exchangeMode) => { dispatch(setExchangeMode(exchangeMode)) },
   }
 }
@@ -57,12 +62,20 @@ class Transaction extends Component {
   handleSetExchangeMode = (exchangeMode) => {
     this.props.unsetTxHash();
     this.props.setExchangeMode(exchangeMode);
+    this.resetData();
   };
 
   handleCloseModal = () => {
     this.props.unsetTxError();
     this.props.unsetTxHash();
+    this.resetData();
   };
+
+  resetData = () => {
+    this.props.setToAddress('');
+    this.props.setSwapSourceAmount('');
+    this.props.setTransferSourceAmount('');
+  }
 
   render() {
     return (
