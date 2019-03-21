@@ -37,12 +37,8 @@ export default class TransactionView extends Component {
   
       this.setState({copied: true});
   
-      setTimeout(this.hideAlert.bind(this), 1000);
+      setTimeout(() => this.setState({copied: false}), 1000);
     });
-  }
-
-  hideAlert = () => {
-    this.setState({copied: false});
   }
 
   render() {
