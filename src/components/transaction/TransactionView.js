@@ -9,25 +9,40 @@ export default class TransactionView extends Component {
     super(props);
     this.state = {
       copied: false,
+      txtCopy: null,
     }
   }
 
+  createTextCopy(text, callback) {
+    let textInput = document.getElementById('tx-hash');
+    if (textInput === null || textInput.length === 0) {
+      textInput = document.createElement('input');
+      textInput.value = text;
+      textInput.setAttribute("class", "common__copy-icon-text-copy");
+      textInput.setAttribute("id", "tx-hash");
+      document.body.appendChild(textInput);
+    }
+    
+    this.setState({txtCopy: textInput}, () => {
+      callback();
+    });
+  }
+
   copyToClipboard = () => {
-    var textField = document.getElementById('tx-hash');
-    textField.select();
-    document.execCommand('copy');
-
-    let {copied} = this.state;
-    copied = true;
-    this.setState({copied});
-
-    setTimeout(this.hideAlert.bind(this), 1000);
+    this.createTextCopy(this.props.txHash, () => {
+      var textField = this.state.txtCopy;
+      textField.select();
+      document.execCommand('copy');
+      document.body.removeChild(textField);
+  
+      this.setState({copied: true});
+  
+      setTimeout(this.hideAlert.bind(this), 1000);
+    });
   }
 
   hideAlert = () => {
-    let {copied} = this.state;
-    copied = false;
-    this.setState({copied});
+    this.setState({copied: false});
   }
 
   render() {
@@ -89,7 +104,6 @@ export default class TransactionView extends Component {
                   <div className={"common__flexbox common__txhash"}>
                     <a className={"tx__hash"} href={`${envConfig.EXPLORER_URL}/txs/${this.props.txHash}`} target="_blank" rel="noopener noreferrer">{this.props.txHash}</a>
                     <div className={"common__copy-icon"} onClick={() => this.copyToClipboard()}/>
-                    <input id={"tx-hash"} type="text" style={{display: "none"}} value={this.props.txHash} />
                     {this.state.copied && <em className="common__copy-icon-alert">Copied</em>}
                   </div>
                 </div>
