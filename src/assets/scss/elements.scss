@@ -46,3 +46,13 @@ h1, h2, h3, h4, h5, h6 {
     z-index: -1;
   }
 }
+
+@font-face {
+  font-family: 'text-security-disc';
+  src: url($font-path + 'text-security-disc.eot');
+  src: url($font-path + 'text-security-disc.eot?#iefix') format('embedded-opentype'),
+      url($font-path + 'text-security-disc.woff2') format('woff2'),
+      url($font-path + 'text-security-disc.woff') format('woff'),
+      url($font-path + 'text-security-disc.ttf') format('truetype'),
+      url($font-path + 'text-security-disc.svg#text-security') format('svg');
+}
