@@ -5,7 +5,6 @@ import Modal from "../../components/commons/Modal";
 import ConfirmButton from "../../components/commons/ConfirmButton";
 import PrivateKeyInput from "../../components/commons/PrivateKeyInput";
 import appConfig from "../../config/app";
-import envConfig from "../../config/env";
 
 export default class ImportAccountView extends Component {
 
