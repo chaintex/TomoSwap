@@ -155,7 +155,7 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
     let { expectedRate } = yield call(getRate, srcToken.address, srcToken.decimals, destToken.address, sourceAmount);
 
     if (!+expectedRate) {
-      yield call(setError, `Your source amount exceeds our max capacity, please reduce your amount`);
+      yield call(setError, `We cannot handle that amount at the moment`);
     }
 
     expectedRate = formatBigNumber(expectedRate);
@@ -217,7 +217,7 @@ function *validateValidInput(swap, account) {
   }
 
   if (sourceAmountString !== '' && swap.tokenPairRate === 0) {
-    yield put(swapActions.setError(`Your source amount exceeds our max capacity, please reduce your amount`));
+    yield put(swapActions.setError(`We cannot handle that amount at the moment`));
     return false;
   }
 
