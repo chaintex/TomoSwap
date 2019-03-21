@@ -5,6 +5,42 @@ import appConfig from "../../config/app";
 import { formatAmount, formatAddress } from "../../utils/helpers";
 
 export default class TransactionView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      copied: false,
+      txtCopy: null,
+    }
+  }
+
+  createTextCopy(text, callback) {
+    let textInput = document.getElementById('tx-hash');
+    if (textInput === null || textInput.length === 0) {
+      textInput = document.createElement('input');
+      textInput.value = text;
+      textInput.setAttribute("class", "common__copy-icon-text-copy");
+      textInput.setAttribute("id", "tx-hash");
+      document.body.appendChild(textInput);
+    }
+    
+    this.setState({txtCopy: textInput}, () => {
+      callback();
+    });
+  }
+
+  copyToClipboard = () => {
+    this.createTextCopy(this.props.txHash, () => {
+      var textField = this.state.txtCopy;
+      textField.select();
+      document.execCommand('copy');
+      document.body.removeChild(textField);
+  
+      this.setState({copied: true});
+  
+      setTimeout(() => this.setState({copied: false}), 1000);
+    });
+  }
+
   render() {
     const isError = !!this.props.txError;
     const otherExchangeMode = this.props.isSwapMode ? appConfig.EXCHANGE_TRANSFER_MODE: appConfig.EXCHANGE_SWAP_MODE;
@@ -18,9 +54,10 @@ export default class TransactionView extends Component {
               <div className={"modal__body"}>
                 <div className={"modal__body-top"}>
                   <div className={"tx__text"}>Transaction Hash</div>
-                  <div className={"common__flexbox"}>
+                  <div className={"common__flexbox common__txhash"}>
                     <a className={"tx__hash"} href={`${envConfig.EXPLORER_URL}/txs/${this.props.txHash}`} target="_blank" rel="noopener noreferrer">{this.props.txHash}</a>
-                    <div className={"common__copy-icon"}/>
+                    <div className={"common__copy-icon"} onClick={() => this.copyToClipboard()}/>
+                    {this.state.copied && <em className="common__copy-icon-alert">Copied</em>}
                   </div>
                 </div>
                 <div className={"modal__body-bot common__flexbox common__flexbox--center"}>
@@ -40,9 +77,10 @@ export default class TransactionView extends Component {
               <div className={"modal__body"}>
                 <div className={"modal__body-top"}>
                   <div className={"tx__text"}>Transaction Hash</div>
-                  <div className={"common__flexbox"}>
+                  <div className={"common__flexbox common__txhash"}>
                     <a className={"tx__hash"} href={`${envConfig.EXPLORER_URL}/txs/${this.props.txHash}`} target="_blank" rel="noopener noreferrer">{this.props.txHash}</a>
-                    <div className={"common__copy-icon"}/>
+                    <div className={"common__copy-icon"} onClick={() => this.copyToClipboard()}/>
+                    {this.state.copied && <em className="common__copy-icon-alert">Copied</em>}
                   </div>
                 </div>
                 <div className={"modal__body-bot common__flexbox common__flexbox--center"}>{this.props.txError}</div>
@@ -59,9 +97,10 @@ export default class TransactionView extends Component {
               <div className={"modal__body"}>
                 <div className={"modal__body-top"}>
                   <div className={"tx__text"}>Transaction Hash</div>
-                  <div className={"common__flexbox"}>
+                  <div className={"common__flexbox common__txhash"}>
                     <a className={"tx__hash"} href={`${envConfig.EXPLORER_URL}/txs/${this.props.txHash}`} target="_blank" rel="noopener noreferrer">{this.props.txHash}</a>
-                    <div className={"common__copy-icon"}/>
+                    <div className={"common__copy-icon"} onClick={() => this.copyToClipboard()}/>
+                    {this.state.copied && <em className="common__copy-icon-alert">Copied</em>}
                   </div>
                 </div>
                 <div className={"modal__body-bot"}>
