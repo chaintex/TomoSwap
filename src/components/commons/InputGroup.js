@@ -33,6 +33,10 @@ export default class InputGroup extends Component {
   };
 
   addSrcAmountByBalancePercentage = (balancePercentage) => {
+    if (this.props.sourceToken.balance === undefined) {
+      this.closeBalanceBox();
+      return;
+    }
     const srcTokenBalance = this.props.sourceToken.balance;
     const sourceAmountByPercentage = srcTokenBalance * (balancePercentage / 100);
     var deductAmountForTxFee = 0;
@@ -41,6 +45,8 @@ export default class InputGroup extends Component {
       deductAmountForTxFee = defaultGasLimit * appConfig.DEFAULT_GAS_PRICE / Math.pow(10.0, TOMO.decimals);
     }
     var srcAmount = Math.min(sourceAmountByPercentage, srcTokenBalance - deductAmountForTxFee);
+    srcAmount -= 1e-12; // prevent it is slightly bigger than balance and failed the tx
+    srcAmount = +srcAmount.toFixed(this.props.sourceToken.decimals);
     if (srcAmount <= 1e-9) { srcAmount = 0; }
 
     this.props.setSourceAmount(srcAmount);
