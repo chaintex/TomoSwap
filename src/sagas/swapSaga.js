@@ -16,6 +16,7 @@ import envConfig from "../config/env";
 import { TOMO } from "../config/tokens";
 import {
   getTxObject,
+  getTxNonce,
   fetchTransactionReceipt,
   fetchTxEstimatedGasUsed,
   fetchTxEstimatedGasUsedTokensChanged,
@@ -38,13 +39,38 @@ function *swapToken() {
   yield put(txActions.setConfirmingError());
   yield call(setTxStatusBasedOnWalletType, account.walletType, true);
 
+  var nonce = yield call(getTxNonce, account.address);
+
+  if (
+    account.walletType !== appConfig.WALLET_TYPE_METAMASK
+    && swap.sourceToken.address !== TOMO.address
+    && swap.srcTokenAllowance !== null
+    && swap.srcTokenAllowance < swap.sourceAmount
+  ) {
+    // need to send approve in background
+    try {
+      if (swap.srcTokenAllowance > 0) {
+        // need to approve to zero first
+        yield call(approve, swap.sourceToken.address, true, 0, nonce);
+        nonce += 1
+      }
+      // approve max value
+      yield call(approve, swap.sourceToken.address, true, getBiggestNumber(), nonce);
+      nonce += 1;
+    } catch (e) {
+      yield put(txActions.setConfirmingError(e));
+      yield call(setTxStatusBasedOnWalletType, account.walletType, false);
+      return;
+    }
+  }
+
   const isSwapTOMO = swap.sourceToken.address === TOMO.address || swap.destToken.address === TOMO.address;
   const defaultGasUsed = isSwapTOMO ? appConfig.DEFAULT_SWAP_TOMO_GAS_LIMIT : appConfig.DEFAULT_SWAP_TOKEN_GAS_LIMIT;
   const gasLimit = swap.gasLimit ? swap.gasLimit : defaultGasUsed;
   let txObject, txHash;
 
   try {
-    txObject = yield call(getSwapTxObject, gasLimit);
+    txObject = yield call(getSwapTxObject, gasLimit, nonce);
   } catch (error) {
     console.log(error);
     return;
@@ -64,15 +90,18 @@ function *swapToken() {
   }
 }
 
-function *approve(action) {
+function *approve(action, isBackgroundCall = false, value = getBiggestNumber(), nonce = 0) {
   const swap = yield select(getSwapState);
   const account = yield select(getAccountState);
 
-  yield put(txActions.setConfirmingError());
-  yield call(setTxStatusBasedOnWalletType, account.walletType, true);
+  if (!isBackgroundCall) {
+    if (swap.srcTokenAllowance > 0) { value = 0; } // need to reset to zero first
+    yield put(txActions.setConfirmingError());
+    yield call(setTxStatusBasedOnWalletType, account.walletType, true);
+  }
 
   try {
-    const approveABI = yield call(getApproveABI, action.payload, getBiggestNumber());
+    const approveABI = yield call(getApproveABI, action.payload, value);
 
     const txObject = yield call(getTxObject, {
       from: account.address,
@@ -80,16 +109,21 @@ function *approve(action) {
       value: '0x0',
       gasLimit: appConfig.DEFAULT_APPROVE_GAS_LIMIT,
       data: approveABI
-    });
+    }, nonce);
 
     const txHashApprove = yield call(account.walletService.sendTransaction, txObject, account.walletPassword);
 
-    yield put(txActions.resetAllTxStatus());
-    yield put(txActions.setTxHashApprove(txHashApprove));
+    if (!isBackgroundCall) { yield put(txActions.resetAllTxStatus()); }
+    if (!isBackgroundCall && value > 0) { yield put(txActions.setTxHashApprove(txHashApprove)) };
+
+    yield put(swapActions.setSrcTokenAllowance(formatBigNumber(value, swap.sourceToken.decimals)));
   } catch (e) {
-    yield put(txActions.setConfirmingError(e));
-    yield call(setTxStatusBasedOnWalletType, account.walletType, false);
+    if (!isBackgroundCall) {
+      yield put(txActions.setConfirmingError(e));
+      yield call(setTxStatusBasedOnWalletType, account.walletType, false);
+    }
     console.log(e);
+    if (isBackgroundCall) { throw e; }
   }
 }
 
@@ -142,10 +176,11 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
 
 function *checkSrcTokenAllowance(action) {
   const { srcTokenAddress, accountAddress } = action.payload;
+  const swap = yield select(getSwapState);
 
   try {
     const allowance = yield call(getAllowance, srcTokenAddress, accountAddress, envConfig.NETWORK_PROXY_ADDRESS);
-    yield put(swapActions.setSrcTokenAllowance(allowance));
+    yield put(swapActions.setSrcTokenAllowance(formatBigNumber(allowance, swap.sourceToken.decimals)));
   } catch (e) {
     console.log(e);
   }
@@ -153,6 +188,8 @@ function *checkSrcTokenAllowance(action) {
 
 function *resetDataSrcTokenDidChange() {
   yield put(swapActions.setSourceAmount(''));
+  yield put(swapActions.setSrcTokenAllowance(null));
+  yield put(txActions.setTxHashApprove(null));
 }
 
 function *validateInputAmountMightChange() {
@@ -219,7 +256,7 @@ function *validateValidInput(swap, account) {
   return true;
 }
 
-export function *getSwapTxObject(gasLimit) {
+export function *getSwapTxObject(gasLimit, nonce = -1) {
   const swap = yield select(getSwapState);
   const account = yield select(getAccountState);
   const srcToken = swap.sourceToken;
@@ -242,7 +279,7 @@ export function *getSwapTxObject(gasLimit) {
     value: srcToken.address === TOMO.address ? srcAmount : '0x0',
     gasLimit: gasLimit,
     data: swapABI
-  });
+  }, nonce);
 }
 
 function *setError(errorMessage) {
