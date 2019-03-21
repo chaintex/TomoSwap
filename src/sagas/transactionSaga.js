@@ -118,9 +118,16 @@ function *setTxFeeAndGasLimit(txFee, gasLimit, exchangeMode) {
   }
 }
 
-export function *getTxObject(data) {
+export function *getTxNonce(from) {
   const web3 = yield select(getWeb3Instance);
-  const nonce = yield call(web3.eth.getTransactionCount, data.from);
+  return yield call(web3.eth.getTransactionCount, from);
+}
+
+export function *getTxObject(data, nonce = -1) {
+  const web3 = yield select(getWeb3Instance);
+  if (nonce === -1) {
+    nonce = yield call(web3.eth.getTransactionCount, data.from);
+  }
 
   return {
     from: data.from,
