@@ -147,12 +147,13 @@
     width: 100%;
     border-radius: 25px;
     border: solid 1px #dedede;
-    -webkit-text-security: disc;
+    font-family: 'text-security-disc';
 
     &::placeholder {
       font-size: 14px;
       font-weight: 500;
       color: #7a82a9;
+      font-family: $font-montserrat;
     }
 
     &-container {
@@ -160,7 +161,7 @@
 
       &--unlock {
         .common__password {
-          -webkit-text-security: none;
+          font-family: $font-montserrat;
         }
 
         .common__password-icon {
