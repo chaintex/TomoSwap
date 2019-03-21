@@ -5,6 +5,31 @@ import appConfig from "../../config/app";
 import { formatAmount, formatAddress } from "../../utils/helpers";
 
 export default class TransactionView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      copied: false,
+    }
+  }
+
+  copyToClipboard = () => {
+    var textField = document.getElementById('tx-hash');
+    textField.select();
+    document.execCommand('copy');
+
+    let {copied} = this.state;
+    copied = true;
+    this.setState({copied});
+
+    setTimeout(this.hideAlert.bind(this), 1000);
+  }
+
+  hideAlert = () => {
+    let {copied} = this.state;
+    copied = false;
+    this.setState({copied});
+  }
+
   render() {
     const isError = !!this.props.txError;
     const otherExchangeMode = this.props.isSwapMode ? appConfig.EXCHANGE_TRANSFER_MODE: appConfig.EXCHANGE_SWAP_MODE;
@@ -18,9 +43,10 @@ export default class TransactionView extends Component {
               <div className={"modal__body"}>
                 <div className={"modal__body-top"}>
                   <div className={"tx__text"}>Transaction Hash</div>
-                  <div className={"common__flexbox"}>
+                  <div className={"common__flexbox common__txhash"}>
                     <a className={"tx__hash"} href={`${envConfig.EXPLORER_URL}/txs/${this.props.txHash}`} target="_blank" rel="noopener noreferrer">{this.props.txHash}</a>
-                    <div className={"common__copy-icon"}/>
+                    <div className={"common__copy-icon"} onClick={() => this.copyToClipboard()}/>
+                    {this.state.copied && <em className="common__copy-icon-alert">Copied</em>}
                   </div>
                 </div>
                 <div className={"modal__body-bot common__flexbox common__flexbox--center"}>
@@ -40,9 +66,10 @@ export default class TransactionView extends Component {
               <div className={"modal__body"}>
                 <div className={"modal__body-top"}>
                   <div className={"tx__text"}>Transaction Hash</div>
-                  <div className={"common__flexbox"}>
+                  <div className={"common__flexbox common__txhash"}>
                     <a className={"tx__hash"} href={`${envConfig.EXPLORER_URL}/txs/${this.props.txHash}`} target="_blank" rel="noopener noreferrer">{this.props.txHash}</a>
-                    <div className={"common__copy-icon"}/>
+                    <div className={"common__copy-icon"} onClick={() => this.copyToClipboard()}/>
+                    {this.state.copied && <em className="common__copy-icon-alert">Copied</em>}
                   </div>
                 </div>
                 <div className={"modal__body-bot common__flexbox common__flexbox--center"}>{this.props.txError}</div>
@@ -59,9 +86,11 @@ export default class TransactionView extends Component {
               <div className={"modal__body"}>
                 <div className={"modal__body-top"}>
                   <div className={"tx__text"}>Transaction Hash</div>
-                  <div className={"common__flexbox"}>
+                  <div className={"common__flexbox common__txhash"}>
                     <a className={"tx__hash"} href={`${envConfig.EXPLORER_URL}/txs/${this.props.txHash}`} target="_blank" rel="noopener noreferrer">{this.props.txHash}</a>
-                    <div className={"common__copy-icon"}/>
+                    <div className={"common__copy-icon"} onClick={() => this.copyToClipboard()}/>
+                    <input id={"tx-hash"} type="text" style={{display: "none"}} value={this.props.txHash} />
+                    {this.state.copied && <em className="common__copy-icon-alert">Copied</em>}
                   </div>
                 </div>
                 <div className={"modal__body-bot"}>

@@ -8,7 +8,10 @@
       text-align: center;
     }
   }
-
+  &__txhash {
+    position: relative;
+  }
+  
   &__flexbox {
     display: flex;
     justify-content: space-between;
@@ -130,6 +133,28 @@
     background-image: url($image-path + 'icons/copy.svg');
     background-size: contain;
     cursor: pointer;
+
+    &-alert {
+      position: absolute;
+      right: -25px;
+      top: -35px;
+      padding: 3px 5px;
+      transition: opacity 0.3s;
+      color: #fff;
+      background: linear-gradient(to bottom, #36cef9, #279df4) 0 100%;
+      border-radius: 5px;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #279df4 transparent transparent transparent;
+    }
+    }
   }
 
   &__fade-in {
@@ -147,12 +172,13 @@
     width: 100%;
     border-radius: 25px;
     border: solid 1px #dedede;
-    -webkit-text-security: disc;
+    font-family: 'text-security-disc';
 
     &::placeholder {
       font-size: 14px;
       font-weight: 500;
       color: #7a82a9;
+      font-family: $font-montserrat;
     }
 
     &-container {
@@ -160,7 +186,7 @@
 
       &--unlock {
         .common__password {
-          -webkit-text-security: none;
+          font-family: $font-montserrat;
         }
 
         .common__password-icon {
