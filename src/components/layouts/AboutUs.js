@@ -45,7 +45,7 @@ class AboutUs extends Component {
                                     <div className="about-us__team-member-avatar about-us__team-member-avatar--bio"
                                         data-title={"Mike Le"}
                                         data-sub-title={"CEO & Co-Founder"}
-                                        data-bio={"Mike Le is..."}
+                                        data-bio={"Mike Le is an experienced developer with strong knowledge in competitive program, data structures and CS fundamentals. He started programming in 2010, achieved Bronze Medal in the International Olympics of Information (IOI) in 2013 and was offered the full ride ASEAN scholarship by National University of Singapore (NUS). During his time as an NUS student, he represented the university to compete at various regional programming contests, advanced to the ACM/ICPC World Final in Beijing 2018, which is one of the biggest annual competition for programming students all over the world. In 2017, Mike developed his own start-up which was a mobile payment service and successfully launched in NUS campus. Mike graduated from NUS with Honors in 2018 and since then, he has been working with blockchain technology, especially Ethereum."}
                                         data-img={require("../../assets/images/aboutus/mike_le.png")}
                                         style={{backgroundImage: "url(" + require("../../assets/images/aboutus/mike_le.png") + ")"}}
                                         onClick={this.bioDetailClick.bind()}
@@ -81,7 +81,7 @@ class AboutUs extends Component {
                                         <div className="about-us__team-member-avatar about-us__team-member-avatar--bio"
                                             data-title={"Loi Luu"}
                                             data-sub-title={"CEO & Co-Founder of Kyber Network"}
-                                            data-bio={"Loi Luu is a researcher working on cryptocurrencies, smart contract security and distributed consensus algorithms. He is also a regular invited speaker at Bitcoin and Ethereum workshops such as DevCon2, EDCON.<br><br>Loi believes in the force of the Ethereum and Blockchain technology. Much of his work revolves around this community. He developed Oyente, the first open-source security analyzer for Ethereum smart contracts. Loi also cofounded SmartPool, another open source project which embraces decentralization of mining pools in existing cryptocurrency. He continues to champion decentralisation and trustless properties of the Blockchain with KyberNetwork, taking inspiration and developing value for the community."}
+                                            data-bio={"Loi Luu is a researcher working on cryptocurrencies, smart contract security and distributed consensus algorithms. He is also a regular invited speaker at Bitcoin and Ethereum workshops such as DevCon2, EDCON. Loi believes in the force of the Ethereum and Blockchain technology. Much of his work revolves around this community. He developed Oyente, the first open-source security analyzer for Ethereum smart contracts. Loi also cofounded SmartPool, another open source project which embraces decentralization of mining pools in existing cryptocurrency. He continues to champion decentralisation and trustless properties of the Blockchain with KyberNetwork, taking inspiration and developing value for the community."}
                                             data-img={require("../../assets/images/aboutus/loi_luu.png")}
                                             style={{backgroundImage: "url(" + require("../../assets/images/aboutus/loi_luu.png") + ")"}}
                                             onClick={this.bioDetailClick.bind()}
@@ -134,7 +134,7 @@ class AboutUs extends Component {
                         </div>
                     </div>
                 </div>
-                <Modal isActive={!!this.state.isActive} handleClose={() => this.handleClose()}>
+                <Modal isActive={!!this.state.isActive} handleClose={() => this.handleClose()} className={"about-us-modal"}>
                     <div className={"modal__header about-us-modal-header"}>
                         <div className={"img"} style={{backgroundImage: "url(" + this.state.srcImg + ")"}}></div>
                         <div className={"title"}>{this.state.title}</div>

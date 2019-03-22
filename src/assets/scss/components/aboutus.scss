@@ -118,6 +118,8 @@
   }
 
   &-modal {
+    max-width: 50% !important;
+
     &-header {
       display: inline-block;
       position: relative;
@@ -164,15 +166,29 @@
     }
   }
   
+  @media (max-width: $large-breakpoint) {
+    &-modal {
+      max-width: 60% !important;
+    }
+  }
+
   @media (max-width: $medium-breakpoint) {
     &__team-member {
       width: 28%;
+    }
+
+    &-modal {
+      max-width: 70% !important;
     }
   }
 
   @media (max-width: $small-breakpoint) {
     &__team-member {
       width: 45%;
+    }
+
+    &-modal {
+      max-width: 80% !important;
     }
   }
 }
