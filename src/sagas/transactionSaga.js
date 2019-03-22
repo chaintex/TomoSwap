@@ -41,6 +41,11 @@ export function *fetchTransactionReceipt(txHash) {
 
     yield call(delay, appConfig.TX_TRACKING_INTERVAL);
   }
+
+  if (isTxMined) {
+    // pause update desAmount
+    yield put(swapActions.setIsUpdateToAmount(false));
+  }
 }
 
 export function *setTxStatusBasedOnWalletType(walletType, status) {
