@@ -6,6 +6,7 @@ import * as swapActions from "../../actions/swapAction";
 import { setGlobalError } from "../../actions/globalAction";
 import { resetAllTxStatus, setTxHashApprove } from "../../actions/transactionAction";
 import { TOMO } from "../../config/tokens";
+import appConfig from "../../config/app";
 
 function mapStateToProps(store) {
   const token = store.token;
@@ -18,6 +19,7 @@ function mapStateToProps(store) {
     tokens: tokens,
     sourceToken: swap.sourceToken,
     isApproveNeeded: tx.txHashApprove ? false : swap.srcTokenAllowance !== null && swap.srcTokenAllowance < swap.sourceAmount,
+    srcTokenAllowance: swap.srcTokenAllowance,
     destToken: swap.destToken,
     sourceAmount: swap.sourceAmount,
     destAmount: swap.destAmount,
@@ -61,7 +63,7 @@ class Swap extends Component {
     super(props);
     this.state = {
       isSwapNowShowing: true,
-      isCheckingApproval: false
+      iShowingApproveNeeded: false
     };
   }
 
@@ -77,7 +79,7 @@ class Swap extends Component {
     }
   }
 
-  openModal = () => {
+  openConfirmSwapModal = () => {
     if (!this.props.sourceAmount) {
       this.props.setError("Source amount is required to make a swap");
       return;
@@ -100,9 +102,9 @@ class Swap extends Component {
       return;
     }
 
-    this.setState({isCheckingApproval: true});
+    this.setState({iShowingApproveNeeded: this.props.walletType === appConfig.WALLET_TYPE_METAMASK});
     this.props.setTxHashApprove(null);
-    if (this.props.sourceToken.symbol !== TOMO.symbol && this.props.isAccountImported) {
+    if (this.props.sourceToken.address !== TOMO.address && this.props.isAccountImported) {
       this.props.checkSrcTokenAllowance(this.props.sourceToken.address, this.props.accountAddress);
     } else {
       this.props.resetSrcTokenAllowance();
@@ -120,14 +122,14 @@ class Swap extends Component {
     }
   };
 
-  closeModal = () => {
+  closeConfirmSwapModal = () => {
     this.props.setWalletPassword('');
     this.props.setIsConfirmModalActive((false));
   };
 
   closeApproveModal = () => {
     // user cancelled confirm modal
-    this.setState({isCheckingApproval: false});
+    this.setState({iShowingApproveNeeded: false});
     this.props.setWalletPassword('');
     this.props.setIsConfirmModalActive((false));
     this.props.resetAllTxStatus();
@@ -138,7 +140,8 @@ class Swap extends Component {
       <SwapView
         accountAddress={this.props.accountAddress}
         sourceToken={this.props.sourceToken}
-        isApproveNeeded={this.props.isApproveNeeded && this.state.isCheckingApproval}
+        isApproveNeeded={this.props.isApproveNeeded && this.state.iShowingApproveNeeded}
+        srcTokenAllowance={this.props.srcTokenAllowance}
         destToken={this.props.destToken}
         sourceAmount={this.props.sourceAmount}
         destAmount={this.props.destAmount}
@@ -160,8 +163,8 @@ class Swap extends Component {
         setSourceToken={this.props.setSourceToken}
         setSourceAmount={this.props.setSourceAmount}
         setDestToken={this.props.setDestToken}
-        openModal={this.openModal}
-        closeModal={this.closeModal}
+        openConfirmSwapModal={this.openConfirmSwapModal}
+        closeConfirmSwapModal={this.closeConfirmSwapModal}
         closeApproveModal={this.closeApproveModal}
         onRef={ref => (this.swapView = ref)}
       />
