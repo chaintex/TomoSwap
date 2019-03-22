@@ -237,7 +237,7 @@ function *validateValidInput(swap, account) {
   }
 
   if (isAccountImported && sourceToken.address === TOMO.address && sourceAmount + +swap.txFeeInTOMO > sourceBalance) {
-    yield call(setError, `You don't have enough balance to pay for transaction fee`);
+    yield call(setError, `You don't have enough TOMO balance to pay for transaction fee`);
     return false;
   }
 
