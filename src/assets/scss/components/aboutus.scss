@@ -52,19 +52,48 @@
     animation: fade-in 0.5s forwards;
 
 
-    &-avatar--bio {
-      cursor: pointer;
-    }
+    &-avatar {
 
-    &-avatar img {
+      display: inline-block;
+      margin: 0 auto 15px;
       width: 103px;
       height: 103px;
-      object-fit: contain;
       border-radius: 50%;
-      display: block;
-      margin: 0 auto;
-    }
+      position: relative;
+      background: center no-repeat;
+      background-size: cover;
 
+      &--bio {
+        cursor: pointer;
+      }
+
+      &::after {
+        color: #fff !important;
+        content: 'Read Bio';
+        font-size: 14px;
+        font-weight: 600;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        position: absolute;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: all .3s;
+
+      }
+
+      &:hover {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+    
     &-name {
       height: 19px;
       font-family: Montserrat;
@@ -88,6 +117,53 @@
     margin-right: 0;
   }
 
+  &-modal {
+    &-header {
+      display: inline-block;
+      position: relative;
+
+      .img {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        position: absolute;
+        top: -100px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        background-size: cover;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.21), 0 6px 13px rgba(0,0,0,0.11);
+      }
+
+      .title {
+        height: 19px;
+        font-family: Montserrat;
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+        color: #aab1d4;
+        margin: 15px 0;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      .sub-title {
+        font-family: Montserrat;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        color: #7a82a9;
+        text-transform: none;
+      }
+    }
+
+    &-body {
+      text-align: left;
+      color: #212529;
+      line-height: 1.7;
+    }
+  }
+  
   @media (max-width: $medium-breakpoint) {
     &__team-member {
       width: 28%;
