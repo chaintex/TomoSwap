@@ -55,6 +55,7 @@ function mapDispatchToProps(dispatch) {
     setTransferSourceAmount: (amount) => { dispatch(transferActions.setSourceAmount(amount))},
     setSwapSourceAmount: (amount) => { dispatch(swapActions.setSourceAmount(amount))},
     setExchangeMode: (exchangeMode) => { dispatch(setExchangeMode(exchangeMode)) },
+    setIsUpdateToAmount: (isAvtive) => { dispatch(swapActions.setIsUpdateToAmount(isAvtive)) },
   }
 }
 
@@ -77,6 +78,8 @@ class Transaction extends Component {
     this.props.setToAddress('');
     this.props.setSwapSourceAmount('');
     this.props.setTransferSourceAmount('');
+    // resume update desAmount
+    this.props.setIsUpdateToAmount(true);
   }
 
   render() {

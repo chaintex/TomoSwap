@@ -125,15 +125,24 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
     }
 
     expectedRate = formatBigNumber(expectedRate);
-    const destAmount = expectedRate * +swap.sourceAmount;
 
-    yield put(swapActions.setDestAmount(destAmount));
+    //continue update desAmount
+    if (swap.isUpdateDesAmount !== false) {
+      const destAmount = expectedRate * +swap.sourceAmount;
+
+      yield put(swapActions.setDestAmount(destAmount));
+    }
+
     yield put(swapActions.setTokenPairRate(expectedRate));
     yield call(validateInputAmountMightChange);
   } catch (e) {
     yield call(setError, `We cannot handle that amount at the moment`);
     yield put(swapActions.setTokenPairRate(0));
-    yield put(swapActions.setDestAmount(0));
+
+    //continue update desAmount
+    if (swap.isUpdateDesAmount !== false) {
+      yield put(swapActions.setDestAmount(0));
+    }
   }
 
   yield put(swapActions.setTokenPairRateLoading(false));

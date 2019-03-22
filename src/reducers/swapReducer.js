@@ -14,6 +14,7 @@ const initialState = {
   gasLimit: null,
   error: null,
   isConfirmModalActive: false,
+  isUpdateDesAmount: true,
 };
 
 export default function swapReducer(state = initialState, action) {
@@ -89,6 +90,12 @@ export default function swapReducer(state = initialState, action) {
       return {
         ...state,
         isConfirmModalActive: action.payload
+      }
+    }
+    case swapActionTypes.SET_IS_UPDATE_DES_AMOUNT: {
+      return {
+        ...state,
+        isUpdateDesAmount: action.payload
       }
     }
     default:
