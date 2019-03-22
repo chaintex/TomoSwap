@@ -5,6 +5,7 @@ import { setWalletPassword } from "../../actions/accountAction";
 import * as transferAction from "../../actions/transferAction";
 import { setGlobalError } from "../../actions/globalAction";
 import { resetAllTxStatus } from "../../actions/transactionAction";
+import { TOMO } from "../../config/tokens";
 
 function mapStateToProps(store) {
   const tokens = store.token.tokens;
@@ -105,6 +106,17 @@ class Transfer extends Component {
     const sourceBalance = +this.props.sourceToken.balance;
     if (sourceAmount > sourceBalance) {
       this.props.setError('Your source amount is bigger than your real balance');
+      return;
+    }
+
+    const txFee = +this.props.txFeeInTOMO;
+    if (this.props.sourceToken.address === TOMO.address && sourceAmount + txFee > sourceBalance) {
+      this.props.setError(`You don't have enough TOMO balance to pay for transaction fee`);
+      return;
+    }
+
+    if (this.props.sourceToken.address !== TOMO.address && txFee > +TOMO.balance) {
+      this.props.setError(`You don't have enough TOMO balance to pay for transaction fee`);
       return;
     }
 
