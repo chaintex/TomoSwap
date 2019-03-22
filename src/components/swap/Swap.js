@@ -102,6 +102,17 @@ class Swap extends Component {
       return;
     }
 
+    const txFee = +this.props.txFeeInTOMO;
+    if (this.props.sourceToken.address === TOMO.address && sourceAmount + txFee > sourceBalance) {
+      this.props.setError(`You don't have enough TOMO balance to pay for transaction fee`);
+      return;
+    }
+
+    if (this.props.sourceToken.address !== TOMO.address && txFee > +TOMO.balance) {
+      this.props.setError(`You don't have enough TOMO balance to pay for transaction fee`);
+      return;
+    }
+
     this.setState({iShowingApproveNeeded: this.props.walletType === appConfig.WALLET_TYPE_METAMASK});
     this.props.setTxHashApprove(null);
     if (this.props.sourceToken.address !== TOMO.address && this.props.isAccountImported) {
