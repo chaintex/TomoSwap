@@ -63,7 +63,7 @@ export default function transferReducer(state = initialState, action) {
         isConfirmModalActive: action.payload
       }
     }
-    case transferActionTypes.SET_IS_UPDATE_DES_AMOUNT: {
+    case transferActionTypes.SET_IS_UPDATE_DEST_AMOUNT: {
       return {
         ...state,
         isUpdateDesAmount: action.payload

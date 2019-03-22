@@ -92,7 +92,7 @@ export default function swapReducer(state = initialState, action) {
         isConfirmModalActive: action.payload
       }
     }
-    case swapActionTypes.SET_IS_UPDATE_DES_AMOUNT: {
+    case swapActionTypes.SET_IS_UPDATE_DEST_AMOUNT: {
       return {
         ...state,
         isUpdateDesAmount: action.payload

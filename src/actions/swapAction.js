@@ -15,7 +15,7 @@ export const swapActionTypes = {
   SET_TX_GAS_LIMIT: 'SWAP.SET_TX_GAS_LIMIT',
   SET_ERROR: 'SWAP.SET_ERROR',
   SET_IS_CONFIRM_MODAL_ACTIVE: 'SWAP.SET_IS_CONFIRM_MODAL_ACTIVE',
-  SET_IS_UPDATE_DES_AMOUNT: 'SWAP.SET_IS_UPDATE_DES_AMOUNT',
+  SET_IS_UPDATE_DEST_AMOUNT: 'SWAP.SET_IS_UPDATE_DEST_AMOUNT',
 };
 
 export function approve() {
@@ -129,7 +129,7 @@ export function setIsConfirmModalActive(isActive) {
 
 export function setIsUpdateToAmount(isActive) {
   return {
-    type: swapActionTypes.SET_IS_UPDATE_DES_AMOUNT,
+    type: swapActionTypes.SET_IS_UPDATE_DEST_AMOUNT,
     payload: isActive
   }
 }
