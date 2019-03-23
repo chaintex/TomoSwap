@@ -26,6 +26,7 @@ function mapDispatchToProps(dispatch) {
     unsetWallet: () => {dispatch(accountActions.setWallet())},
     fetchBalances: () => {dispatch(accountActions.fetchBalances())},
     setIsShowingModalEnterPrivateKey: (isShowing) => {dispatch(accountActions.setIsShowingModalEnterPrivateKey(isShowing))},
+    setPrivateKey: (key) => {dispatch(accountActions.setPrivateKey(key))},
     setPrivateKeyErrorMessage: (message) => {dispatch(accountActions.setPrivateKeyErrorMessage(message))}
   }
 }
@@ -131,11 +132,9 @@ class ImportAccount extends Component {
     }
   };
 
-  openModal = () => {
-    this.props.setPrivateKeyErrorMessage();
-  };
-
-  closeModal = () => {
+  closePrivateKeyModal = () => {
+    this.props.setPrivateKey("");
+    this.props.setPrivateKeyErrorMessage("");
     this.props.setIsShowingModalEnterPrivateKey((false));
   };
 
@@ -154,8 +153,7 @@ class ImportAccount extends Component {
         privateKeyErrorMessage={this.props.privateKeyErrorMessage}
         confirmPrivateKey={() => this.connectToPrivateKey(this.props.privateKey)}
         unsetWallet={this.props.unsetWallet}
-        openModal={this.openModal}
-        closeModal={this.closeModal}
+        closePrivateKeyModal={this.closePrivateKeyModal}
         onRef={ref => (this.importAccountView = ref)}
       />
     )

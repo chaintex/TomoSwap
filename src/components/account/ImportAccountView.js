@@ -56,13 +56,14 @@ export default class ImportAccountView extends Component {
           <p className={"body__faucet"}>Receive some TOMO testnet <a href="https://faucet.testnet.tomochain.com" target="_blank" rel="noopener noreferrer">here</a></p>
         }
 
-        <Modal isActive={this.props.isPrivateKeyModalActive} handleClose={() => this.props.closeModal()}>
+        <Modal isActive={this.props.isPrivateKeyModalActive} handleClose={() => this.props.closePrivateKeyModal()}>
           <div className={"private_key__modal"}>
             <div className={"modal__header"}>Enter Private Key</div>
             <div className={"modal__body exchange__modal-body"}>
               <div className={"modal__body-bot"}>
                 <div className={"exchange__modal"}></div>
                 <PrivateKeyInput
+                  privateKey={this.props.privateKey}
                   onRef={ref => (this.keyInput = ref)}
                   onKeyUp={this.props.confirmPrivateKey}
                 />
@@ -72,7 +73,7 @@ export default class ImportAccountView extends Component {
               isConfirming={false}
               isBroadcasting={false}
               confirmingError={this.props.privateKeyErrorMessage}
-              closeModal={this.props.closeModal}
+              closeModal={this.props.closePrivateKeyModal}
               confirm={this.props.confirmPrivateKey}
             />
           </div>
