@@ -59,11 +59,11 @@ class PasswordInput extends Component {
       <div className={"exchange__modal-password"}>
         <div className={"exchange__modal-text"}>Sign and broadcast</div>
         <div className={`common__password-container ${this.state.isPasswordDisplayed ? 'common__password-container--unlock' : ''}`}>
-          <input className={"common__password"} 
-            value={this.props.walletPassword} 
-            onChange={(e) => this.handleSetWalletPassword(e)} 
-            type="text" 
-            autoComplete="new-password" 
+          <input className={"common__password"}
+            value={this.props.walletPassword}
+            onChange={(e) => this.handleSetWalletPassword(e)}
+            type="text"
+            autoComplete="new-password"
             onKeyUp={this.onKeyUp}
             placeholder={"Enter your password/passphrase"}
             ref={(input) => { this.passInput = input; }}

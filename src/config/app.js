@@ -22,6 +22,7 @@ const AppConfig = {
   DEFAULT_APPROVE_GAS_LIMIT: 100000,
   WALLET_TYPE_METAMASK: 'Metamask',
   WALLET_TYPE_KEYSTORE: 'Keystore',
+  WALLET_TYPE_PRIVATE_KEY: 'Private Key',
 };
 
 export default AppConfig;

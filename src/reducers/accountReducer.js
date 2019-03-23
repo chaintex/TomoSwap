@@ -5,8 +5,10 @@ const initialState = {
   walletService: null,
   walletType: null,
   walletPassword: '',
+  privateKey: '',
   web3: null,
   isBalanceLoading: false,
+  isPrivateKeyModalActive: false,
 };
 
 export default function accountReducer(state = initialState, action) {
@@ -26,6 +28,15 @@ export default function accountReducer(state = initialState, action) {
     }
     case accountActionTypes.SET_WALLET_PASSWORD: {
       return {...state, walletPassword: action.payload}
+    }
+    case accountActionTypes.SET_IS_SHOWING_MODAL_ENTER_PRIVATE_KEY: {
+      return {...state, isPrivateKeyModalActive: action.payload}
+    }
+    case accountActionTypes.SET_PRIVATE_KEY: {
+      return {...state, privateKey: action.payload}
+    }
+    case accountActionTypes.SET_PRIVATE_KEY_ERROR: {
+      return {...state, privateKeyErrorMessage: action.payload}
     }
     default:
       return state;
