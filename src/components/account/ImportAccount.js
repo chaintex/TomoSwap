@@ -7,10 +7,15 @@ import appConfig from '../../config/app';
 import envConfig from "../../config/env";
 import MetamaskService from "../../services/accountServices/MetamaskService";
 import KeystoreService from "../../services/accountServices/KeystoreService";
+import PrivateKeyService from "../../services/accountServices/PrivateKeyService";
+import { getWeb3Instance } from "../../services/web3Service";
 
 function mapStateToProps(store) {
   return {
     address: store.account.address,
+    isPrivateKeyModalActive: store.account.isPrivateKeyModalActive,
+    privateKey: store.account.privateKey,
+    privateKeyErrorMessage: store.account.privateKeyErrorMessage,
   };
 }
 
@@ -20,6 +25,9 @@ function mapDispatchToProps(dispatch) {
     setWallet: (address, walletType, walletService) => {dispatch(accountActions.setWallet(address, walletType, walletService))},
     unsetWallet: () => {dispatch(accountActions.setWallet())},
     fetchBalances: () => {dispatch(accountActions.fetchBalances())},
+    setIsShowingModalEnterPrivateKey: (isShowing) => {dispatch(accountActions.setIsShowingModalEnterPrivateKey(isShowing))},
+    setPrivateKey: (key) => {dispatch(accountActions.setPrivateKey(key))},
+    setPrivateKeyErrorMessage: (message) => {dispatch(accountActions.setPrivateKeyErrorMessage(message))}
   }
 }
 
@@ -93,6 +101,43 @@ class ImportAccount extends Component {
     this.keystoreInputRef.current.click();
   };
 
+  connectToPrivateKey = (privateKey) => {
+    if (privateKey === '') {
+      this.props.setPrivateKeyErrorMessage("Please enter your private key to continue");
+      return
+    }
+    if (privateKey.length !== 64) {
+      this.props.setPrivateKeyErrorMessage("Your private key must have exactly 64 characters");
+      return
+    }
+    try {
+      const web3 = getWeb3Instance();
+      const account = web3.eth.accounts.privateKeyToAccount("0x" + privateKey);
+      const walletService = new PrivateKeyService(account);
+      this.closePrivateKeyModal();
+      this.props.setWallet(account.address, appConfig.WALLET_TYPE_PRIVATE_KEY, walletService);
+      this.props.fetchBalances();
+    } catch (e) {
+      this.props.setPrivateKeyErrorMessage("Your private key is invalid");
+    }
+  };
+
+  openModalEnterPrivateKey = () => {
+    this.props.setIsShowingModalEnterPrivateKey((true));
+    // set focus to input password
+    if (this.importAccountView && this.importAccountView.keyInput) {
+      setTimeout(() => {
+        this.importAccountView.keyInput.setFocus();
+      }, 500);
+    }
+  };
+
+  closePrivateKeyModal = () => {
+    this.props.setPrivateKey("");
+    this.props.setPrivateKeyErrorMessage("");
+    this.props.setIsShowingModalEnterPrivateKey((false));
+  };
+
   render() {
     return (
       <ImportAccountView
@@ -100,8 +145,16 @@ class ImportAccount extends Component {
         keystoreInputRef={this.keystoreInputRef}
         connectToMetamask={this.connectToMetamask}
         connectToKeystore={this.connectToKeystore}
+        connectToPrivateKey={this.connectToPrivateKey}
+        openModalEnterPrivateKey={this.openModalEnterPrivateKey}
         openKeystoreFileSelection={this.openKeystoreFileSelection}
+        isPrivateKeyModalActive={this.props.isPrivateKeyModalActive}
+        privateKey={this.props.privateKey}
+        privateKeyErrorMessage={this.props.privateKeyErrorMessage}
+        confirmPrivateKey={() => this.connectToPrivateKey(this.props.privateKey)}
         unsetWallet={this.props.unsetWallet}
+        closePrivateKeyModal={this.closePrivateKeyModal}
+        onRef={ref => (this.importAccountView = ref)}
       />
     )
   }
