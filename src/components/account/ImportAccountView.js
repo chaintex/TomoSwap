@@ -4,7 +4,6 @@ import { isMobileAndTablet } from "../../utils/helpers";
 import Modal from "../../components/commons/Modal";
 import ConfirmButton from "../../components/commons/ConfirmButton";
 import PrivateKeyInput from "../../components/commons/PrivateKeyInput";
-import appConfig from "../../config/app";
 
 export default class ImportAccountView extends Component {
 
@@ -33,19 +32,9 @@ export default class ImportAccountView extends Component {
                 <div className={"account__icon account__icon--keystore"}/>
                 <div className={"account__name"}>Keystore</div>
               </div>
-              <div className={`account__item account__item--inactive ${isMobile ? "account__item-none" : ""}`}>
-              {appConfig.IMPORT_PRIVATE_KEY_ENABLED &&
-                <div className={"account__item"} onClick={() => this.props.openModalEnterPrivateKey()}>
-                  <div className={"account__icon account__icon--privatekey"}/>
-                  <div className={"account__name"}>Private Key</div>
-                </div>
-              }
-              {!appConfig.IMPORT_PRIVATE_KEY_ENABLED &&
-                <div className={"account__item account__item--inactive"}>
-                  <div className={"account__icon account__icon--privatekey"}/>
-                  <div className={"account__name"}>Private Key</div>
-                </div>
-              }
+              <div className={"account__item"} onClick={() => this.props.openModalEnterPrivateKey()}>
+                <div className={"account__icon account__icon--privatekey"}/>
+                <div className={"account__name"}>Private Key</div>
               </div>
               <div className={"account__item account__item--inactive"}>
                 <div className={"account__icon account__icon--ledger"}/>

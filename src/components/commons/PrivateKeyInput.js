@@ -3,10 +3,8 @@ import React, { Component } from 'react';
 import { setPrivateKey, setPrivateKeyErrorMessage } from "../../actions/accountAction";
 
 function mapStateToProps(store) {
-  const account = store.account;
-
   return {
-    privateKey: account.privateKey,
+    privateKey: this.props.privateKey,
     isKeyDisplayed: false,
   };
 }
