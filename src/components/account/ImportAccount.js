@@ -114,7 +114,7 @@ class ImportAccount extends Component {
       const web3 = getWeb3Instance();
       const account = web3.eth.accounts.privateKeyToAccount("0x" + privateKey);
       const walletService = new PrivateKeyService(account);
-      this.props.setIsShowingModalEnterPrivateKey((false));
+      this.closePrivateKeyModal();
       this.props.setWallet(account.address, appConfig.WALLET_TYPE_PRIVATE_KEY, walletService);
       this.props.fetchBalances();
     } catch (e) {
