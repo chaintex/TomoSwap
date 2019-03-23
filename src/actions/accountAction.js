@@ -4,6 +4,9 @@ export const accountActionTypes = {
   SET_BALANCE_LOADING: 'ACCOUNT.SET_BALANCE_LOADING',
   SET_WALLET: 'ACCOUNT.SET_WALLET',
   SET_WALLET_PASSWORD: 'ACCOUNT.SET_WALLET_PASSWORD',
+  SET_IS_SHOWING_MODAL_ENTER_PRIVATE_KEY: 'ACCOUNT.SET_IS_SHOWING_MODAL_ENTER_PRIVATE_KEY',
+  SET_PRIVATE_KEY: 'ACCOUNT.SET_PRIVATE_KEY',
+  SET_PRIVATE_KEY_ERROR: 'ACCOUNT.SET_PRIVATE_KEY_ERROR',
 };
 
 export function fetchBalances() {
@@ -37,5 +40,26 @@ export function setBalanceLoading(isLoading) {
   return {
     type: accountActionTypes.SET_BALANCE_LOADING,
     payload: isLoading
+  }
+}
+
+export function setIsShowingModalEnterPrivateKey(isShowing) {
+  return {
+    type: accountActionTypes.SET_IS_SHOWING_MODAL_ENTER_PRIVATE_KEY,
+    payload: isShowing
+  }
+}
+
+export function setPrivateKey(privateKey) {
+  return {
+    type: accountActionTypes.SET_PRIVATE_KEY,
+    payload: privateKey
+  }
+}
+
+export function setPrivateKeyErrorMessage(errorMessage = null) {
+  return {
+    type: accountActionTypes.SET_PRIVATE_KEY_ERROR,
+    payload: errorMessage
   }
 }
