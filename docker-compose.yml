@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  web-dev:
+    build:
+      context: .
+      dockerfile: dockers/Dockerfile
+    volumes:
+      - ./:/tomoswap/
+      - '/tomoswap/node_modules'
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    tty: true
+  web:
+    build:
+      context: .
+      dockerfile: dockers/Nginx.Dockerfile
+    volumes:
+      - ./build/:/home/app/www/public/
+    ports:
+      - "80:80"
+      - "443:443"
+    tty: true

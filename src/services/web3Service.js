@@ -1,7 +1,14 @@
 import envConfig from "../config/env";
 import Web3 from "web3";
+import DappService from "./accountServices/DappService";
 
 export function getWeb3Instance() {
+  if (window.web3) {
+    if (window.web3.currentProvider && window.web3.currentProvider.isTomoWallet) {
+      return new DappService();
+    }
+  }
+
   return new Web3(new Web3.providers.HttpProvider(envConfig.RPC_ENDPOINT));
 }
 
