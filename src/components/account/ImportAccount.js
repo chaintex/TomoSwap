@@ -9,6 +9,7 @@ import MetamaskService from "../../services/accountServices/MetamaskService";
 import KeystoreService from "../../services/accountServices/KeystoreService";
 import PrivateKeyService from "../../services/accountServices/PrivateKeyService";
 import { getWeb3Instance } from "../../services/web3Service";
+import { getTranslate } from 'react-localize-redux';
 
 function mapStateToProps(store) {
   return {
@@ -21,6 +22,7 @@ function mapStateToProps(store) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    translate: getTranslate(store.locale),
     setGlobalError: (error) => {dispatch(setGlobalError(error))},
     setWallet: (address, walletType, walletService) => {dispatch(accountActions.setWallet(address, walletType, walletService))},
     unsetWallet: () => {dispatch(accountActions.setWallet())},
@@ -38,6 +40,7 @@ class ImportAccount extends Component {
   }
 
   connectToMetamask = async () => {
+    console.log(this.props.translate("Cannot connect to Metamask. Please make sure you have Metamask installed"))
     if (!window.ethereum) {
       this.props.setGlobalError(`Cannot connect to Metamask. Please make sure you have Metamask installed`);
       return;
