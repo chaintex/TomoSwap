@@ -44,7 +44,7 @@ function *swapToken() {
   try {
     nonce = yield call(getTxNonce, account.address);
   } catch (e) {
-    console.log("Get nonce error: " + e);
+    yield put(txActions.setConfirmingError(e));
     return
   }
 
