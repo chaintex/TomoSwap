@@ -8,12 +8,14 @@ import * as transferActions from "../actions/transferAction";
 import * as swapActions from "../actions/swapAction";
 import { getSwapTxObject } from "./swapSaga";
 import { getTransferTxObject } from "./transferSaga";
+import { formatBigNumber } from "../utils/helpers";
 
 const getWeb3Instance = state => state.account.web3;
 const getAccountAddress = state => state.account.address;
 const getExchangeMode = state => state.global.exchangeMode;
 const getSwapState = state => state.swap;
 const getTransferState = state => state.transfer;
+const getTokens = state => state.token.tokens;
 
 export function *fetchTransactionReceipt(txHash) {
   const web3 = yield select(getWeb3Instance);
@@ -26,6 +28,13 @@ export function *fetchTransactionReceipt(txHash) {
 
     if (txReceipt && txReceipt.status === '0x1') {
       yield put(txActions.setIsTxMined(txReceipt.status));
+      for (let id in txReceipt.logs) {
+        const log = txReceipt.logs[id];
+        if (log.topics && log.topics.length > 0 && log.topics[0] === envConfig.TRADE_TOPIC) {
+          yield call(extractDataFromLogs, log);
+          break;
+        }
+      }
       isTxMined = true;
     } else if (txReceipt && txReceipt.status === '0x0') {
       yield put(txActions.setTxError("There is something wrong with the transaction!"));
@@ -45,6 +54,33 @@ export function *fetchTransactionReceipt(txHash) {
   if (isTxMined) {
     // pause update desAmount
     yield put(swapActions.setIsUpdateToAmount(false));
+  }
+}
+
+export function *extractDataFromLogs(log) {
+  const web3 = yield select(getWeb3Instance);
+  const params = ["address", "address", "uint256", "address", "address", "uint256"]
+  // srcAddress, srcToken, srcAmount, destAddress, destToken, destAmount
+  try {
+    const results = yield web3.eth.abi.decodeParameters(params, log.data);
+    let srcAmount = 0;
+    let destAmount = 0;
+    const tokens = yield select(getTokens);
+    for (let id in tokens) {
+      if (tokens[id].address.toLowerCase() === results[1].toLowerCase()) {
+        // src token
+        srcAmount = formatBigNumber(results[2], tokens[id].decimals);
+      }
+      if (tokens[id].address.toLowerCase() === results[4].toLowerCase()) {
+        // dest token
+        destAmount = formatBigNumber(results[5], tokens[id].decimals);
+      }
+    }
+    if (srcAmount !== 0 && destAmount !== 0) {
+      // TOMO: Update src and dest amount here
+    }
+  } catch (e) {
+    console.log("Error: " + e);
   }
 }
 
