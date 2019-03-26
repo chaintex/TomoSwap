@@ -5,6 +5,7 @@ import appConfig from "../config/app";
 import envConfig from "../config/env";
 import { TOMO } from "../config/tokens";
 import * as transferActions from "../actions/transferAction";
+import { getRate } from "../services/networkService";
 import * as swapActions from "../actions/swapAction";
 import { getSwapTxObject } from "./swapSaga";
 import { getTransferTxObject } from "./transferSaga";
@@ -50,10 +51,35 @@ export function *fetchTransactionReceipt(txHash) {
 
     yield call(delay, appConfig.TX_TRACKING_INTERVAL);
   }
+}
 
-  if (isTxMined) {
-    // pause update desAmount
-    yield put(swapActions.setIsUpdateToAmount(false));
+export function *forceLoadTxPairRate() {
+  const swap = yield select(getSwapState);
+
+  const srcToken = swap.sourceToken;
+  const destToken = swap.destToken;
+  const sourceAmount = swap.sourceAmount ? swap.sourceAmount : 1;
+
+  try {
+    let { expectedRate } = yield call(getRate, srcToken.address, srcToken.decimals, destToken.address, sourceAmount);
+
+    if (!+expectedRate) {
+      yield call(txActions.setTxError(`We cannot handle that amount at the moment`));
+      return;
+    }
+
+    expectedRate = formatBigNumber(expectedRate);
+
+    const destAmount = expectedRate * +swap.sourceAmount;
+    yield put(txActions.setTxSwapInfor({
+      srcAmount: swap.sourceAmount,
+      destAmount,
+      tokenPairRate: expectedRate
+    }));
+
+    yield put(txActions.setConfirmLocking(false));
+  } catch (e) {
+    yield call(txActions.setTxError(`We cannot handle that amount at the moment`));
   }
 }
 
@@ -77,7 +103,12 @@ export function *extractDataFromLogs(log) {
       }
     }
     if (srcAmount !== 0 && destAmount !== 0) {
-      // TOMO: Update src and dest amount here
+      const tokenPairRate = destAmount / srcAmount;
+      yield put(txActions.setTxSwapInfor({
+        srcAmount,
+        destAmount,
+        tokenPairRate
+      }));
     }
   } catch (e) {
     console.log("Error: " + e);
