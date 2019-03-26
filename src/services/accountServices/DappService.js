@@ -8,4 +8,14 @@ export default class DappService {
       this.web3.eth.net = this.web3.net
     }
   }
+
+  getAccount = (callback) => {
+    this.web3.eth.getAccounts((error, result) => {
+        if (error || result.length === 0) {
+          console.log("Cannot get account");
+        } else {
+            callback(result[0]);
+        }
+    })
+  }
 } 

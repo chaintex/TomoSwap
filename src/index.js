@@ -15,7 +15,7 @@ const store = createStore(
   applyMiddleware(sagaMiddleware, logger),
 );
 
-sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga).done.catch(e => console.warn(e));
 
 render(
   <Provider store={store}>

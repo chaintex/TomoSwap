@@ -11,6 +11,8 @@ import AppConfig from "../../config/app";
 import Modal from "../../components/commons/Modal";
 import { getWeb3Instance } from "../../services/web3Service";
 import AboutUs from './AboutUs';
+import DappService from "../../services/accountServices/DappService";
+import MetamaskService from "../../services/accountServices/MetamaskService";
 
 function mapStateToProps(store) {
   const global = store.global;
@@ -26,13 +28,26 @@ function mapDispatchToProps(dispatch) {
     setWeb3Service: (web3) => {dispatch(accountActions.setWeb3Service(web3))},
     setExchangeMode: (exchangeMode) => {dispatch(globalActions.setExchangeMode(exchangeMode))},
     resetGlobalError: () => {dispatch(globalActions.setGlobalError())},
+    fetchBalances: () => {dispatch(accountActions.fetchBalances())},
+    setWallet: (address, walletType, walletService) => {dispatch(accountActions.setWallet(address, walletType, walletService))},
   }
 }
 
 class Body extends Component {
   componentDidMount = () => {
-    const web3 = getWeb3Instance();
-    this.props.setWeb3Service(web3);
+    if (window.web3 && window.web3.currentProvider && window.web3.currentProvider.isTomoWallet) {
+      let dApp = new DappService();
+      this.props.setWeb3Service(dApp);
+
+      dApp.getAccount((address) => {
+        const walletService = new MetamaskService();
+        this.props.setWallet(address, AppConfig.WALLET_TYPE_METAMASK, walletService);
+        this.props.fetchBalances();
+      });
+    } else {
+      const web3 = getWeb3Instance();
+      this.props.setWeb3Service(web3);
+    } 
   };
 
   render() {
