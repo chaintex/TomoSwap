@@ -45,6 +45,9 @@ export default class TransactionView extends Component {
     const isError = !!this.props.txError;
     const otherExchangeMode = this.props.isSwapMode ? appConfig.EXCHANGE_TRANSFER_MODE: appConfig.EXCHANGE_SWAP_MODE;
 
+    const txSrcAmount = this.props.tx.txSrcAmount > 0 ? this.props.tx.txSrcAmount : this.props.sourceAmount;
+    const txDestAmount = this.props.tx.txDestAmount > 0 ? this.props.tx.txDestAmount : this.props.destAmount;
+
     return (
       <div className={"tx"}>
         <Modal isActive={!!this.props.txHash} handleClose={() => this.props.handleCloseModal()}>
@@ -108,9 +111,9 @@ export default class TransactionView extends Component {
                   <div className={"tx__token-text"}>
                     {this.props.isSwapMode && (
                       <Fragment>
-                        <span>{formatAmount(this.props.sourceAmount)} {this.props.sourceToken.symbol}</span>
+                        <span>{formatAmount(txSrcAmount)} {this.props.sourceToken.symbol}</span>
                         <span className={"tx__token-text--light"}> to </span>
-                        <span>{formatAmount(this.props.destAmount)} {this.props.destToken.symbol}</span>
+                        <span>{formatAmount(txDestAmount)} {this.props.destToken.symbol}</span>
                       </Fragment>
                     )}
 
