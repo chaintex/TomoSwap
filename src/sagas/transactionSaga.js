@@ -51,11 +51,6 @@ export function *fetchTransactionReceipt(txHash) {
 
     yield call(delay, appConfig.TX_TRACKING_INTERVAL);
   }
-
-  if (isTxMined) {
-    // pause update desAmount
-    yield put(swapActions.setIsUpdateToAmount(false));
-  }
 }
 
 export function *forceLoadTxPairRate() {
@@ -70,6 +65,7 @@ export function *forceLoadTxPairRate() {
 
     if (!+expectedRate) {
       yield call(txActions.setTxError(`We cannot handle that amount at the moment`));
+      return;
     }
 
     expectedRate = formatBigNumber(expectedRate);
@@ -80,11 +76,11 @@ export function *forceLoadTxPairRate() {
       destAmount,
       tokenPairRate: expectedRate
     }));
+
+    yield put(txActions.setConfirmLocking(false));
   } catch (e) {
     yield call(txActions.setTxError(`We cannot handle that amount at the moment`));
   }
-
-  yield put(txActions.setConfirmLocking(false));
 }
 
 export function *extractDataFromLogs(log) {

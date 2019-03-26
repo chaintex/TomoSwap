@@ -78,8 +78,6 @@ class Transaction extends Component {
     this.props.setToAddress('');
     this.props.setSwapSourceAmount('');
     this.props.setTransferSourceAmount('');
-    // resume update desAmount
-    this.props.setIsUpdateToAmount(true);
   }
 
   render() {
