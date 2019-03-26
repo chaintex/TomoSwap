@@ -20,7 +20,8 @@ import {
   fetchTransactionReceipt,
   fetchTxEstimatedGasUsed,
   fetchTxEstimatedGasUsedTokensChanged,
-  setTxStatusBasedOnWalletType
+  setTxStatusBasedOnWalletType,
+  forceLoadTxPairRate,
 } from "./transactionSaga";
 
 const getSwapState = state => state.swap;
@@ -329,4 +330,5 @@ export default function* swapWatcher() {
   yield takeLatest(swapActions.swapActionTypes.SET_SOURCE_TOKEN, resetDataSrcTokenDidChange);
   yield takeLatest(swapActions.swapActionTypes.SWAP_TOKEN, swapToken);
   yield takeLatest(swapActions.swapActionTypes.APPROVE, approve);
+  yield takeLatest(txActions.txActionTypes.GET_TX_SWAP_INFO, forceLoadTxPairRate);
 }

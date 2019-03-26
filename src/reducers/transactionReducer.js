@@ -74,6 +74,15 @@ export default function transactionReducer(state = initialState, action) {
         txTokenPairRate: 0,
       }
     }
+    case txActionTypes.SET_TX_SWAP_INFO: {
+      const {srcAmount, destAmount, tokenPairRate} = action.payload;
+      return {
+        ...state,
+        txSrcAmount: srcAmount,
+        txDestAmount: destAmount,
+        txTokenPairRate: tokenPairRate,
+      }
+    }
     case txActionTypes.SET_IS_CONFIRM_LOCKING: {
       return {
         ...state,
