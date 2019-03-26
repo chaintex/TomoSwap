@@ -198,7 +198,11 @@ export function *getTxNonce(from) {
 export function *getTxObject(data, nonce = -1) {
   const web3 = yield select(getWeb3Instance);
   if (nonce === -1) {
-    nonce = yield call(web3.eth.getTransactionCount, data.from);
+    try {
+      nonce = yield call(web3.eth.getTransactionCount, data.from);
+    } catch (e) {
+      console.log("Get nonce error: " + e);
+    }
   }
 
   return {

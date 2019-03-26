@@ -63,9 +63,13 @@ export async function getAllRates(srcAddresses, srcDecimals, destAddresses, srcA
   let rates = [];
 
   for (let i = 0; i < srcAddresses.length; i++) {
-    const { expectedRate } = await getRate(srcAddresses[i], srcDecimals[i], destAddresses[i], srcAmounts[i]);
-
-    rates.push(expectedRate);
+    try {
+      const { expectedRate } = await getRate(srcAddresses[i], srcDecimals[i], destAddresses[i], srcAmounts[i]);
+      rates.push(expectedRate);
+    } catch (e) {
+      console.log("Get rate error: " + e);
+      rates.push(0);
+    }
   }
 
   return rates;
@@ -76,8 +80,12 @@ export async function getTokenBalances(tokens, address) {
   let balances = [];
 
   for (let i = 0; i < tokens.length; i++) {
-    const balance = await tokenContract.methods.getBalance(tokens[i].address, address).call();
-    balances.push(balance);
+    try {
+      const balance = await tokenContract.methods.getBalance(tokens[i].address, address).call();
+      balances.push(balance);
+    } catch (e) {
+      balances.push(tokens[i].balance ? tokens[i].balance : 0);
+    }
   }
 
   return balances;

@@ -40,7 +40,13 @@ function *swapToken() {
   yield put(txActions.setConfirmingError());
   yield call(setTxStatusBasedOnWalletType, account.walletType, true);
 
-  var nonce = yield call(getTxNonce, account.address);
+  var nonce;
+  try {
+    nonce = yield call(getTxNonce, account.address);
+  } catch (e) {
+    yield put(txActions.setConfirmingError(e));
+    return
+  }
 
   if (
     account.walletType !== appConfig.WALLET_TYPE_METAMASK
