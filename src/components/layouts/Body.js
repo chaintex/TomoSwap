@@ -12,7 +12,6 @@ import Modal from "../../components/commons/Modal";
 import { getWeb3Instance } from "../../services/web3Service";
 import AboutUs from './AboutUs';
 import DappService from "../../services/accountServices/DappService";
-import MetamaskService from "../../services/accountServices/MetamaskService";
 
 function mapStateToProps(store) {
   const global = store.global;
