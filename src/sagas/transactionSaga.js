@@ -5,15 +5,18 @@ import appConfig from "../config/app";
 import envConfig from "../config/env";
 import { TOMO } from "../config/tokens";
 import * as transferActions from "../actions/transferAction";
+import { getRate } from "../services/networkService";
 import * as swapActions from "../actions/swapAction";
 import { getSwapTxObject } from "./swapSaga";
 import { getTransferTxObject } from "./transferSaga";
+import { formatBigNumber } from "../utils/helpers";
 
 const getWeb3Instance = state => state.account.web3;
 const getAccountAddress = state => state.account.address;
 const getExchangeMode = state => state.global.exchangeMode;
 const getSwapState = state => state.swap;
 const getTransferState = state => state.transfer;
+const getTokens = state => state.token.tokens;
 
 export function *fetchTransactionReceipt(txHash) {
   const web3 = yield select(getWeb3Instance);
@@ -26,6 +29,13 @@ export function *fetchTransactionReceipt(txHash) {
 
     if (txReceipt && txReceipt.status === '0x1') {
       yield put(txActions.setIsTxMined(txReceipt.status));
+      for (let id in txReceipt.logs) {
+        const log = txReceipt.logs[id];
+        if (log.topics && log.topics.length > 0 && log.topics[0] === envConfig.TRADE_TOPIC) {
+          yield call(extractDataFromLogs, log);
+          break;
+        }
+      }
       isTxMined = true;
     } else if (txReceipt && txReceipt.status === '0x0') {
       yield put(txActions.setTxError("There is something wrong with the transaction!"));
@@ -41,10 +51,67 @@ export function *fetchTransactionReceipt(txHash) {
 
     yield call(delay, appConfig.TX_TRACKING_INTERVAL);
   }
+}
 
-  if (isTxMined) {
-    // pause update desAmount
-    yield put(swapActions.setIsUpdateToAmount(false));
+export function *forceLoadTxPairRate() {
+  const swap = yield select(getSwapState);
+
+  const srcToken = swap.sourceToken;
+  const destToken = swap.destToken;
+  const sourceAmount = swap.sourceAmount ? swap.sourceAmount : 1;
+
+  try {
+    let { expectedRate } = yield call(getRate, srcToken.address, srcToken.decimals, destToken.address, sourceAmount);
+
+    if (!+expectedRate) {
+      yield call(txActions.setTxError(`We cannot handle that amount at the moment`));
+      return;
+    }
+
+    expectedRate = formatBigNumber(expectedRate);
+
+    const destAmount = expectedRate * +swap.sourceAmount;
+    yield put(txActions.setTxSwapInfor({
+      srcAmount: swap.sourceAmount,
+      destAmount,
+      tokenPairRate: expectedRate
+    }));
+
+    yield put(txActions.setConfirmLocking(false));
+  } catch (e) {
+    yield call(txActions.setTxError(`We cannot handle that amount at the moment`));
+  }
+}
+
+export function *extractDataFromLogs(log) {
+  const web3 = yield select(getWeb3Instance);
+  const params = ["address", "address", "uint256", "address", "address", "uint256"]
+  // srcAddress, srcToken, srcAmount, destAddress, destToken, destAmount
+  try {
+    const results = yield web3.eth.abi.decodeParameters(params, log.data);
+    let srcAmount = 0;
+    let destAmount = 0;
+    const tokens = yield select(getTokens);
+    for (let id in tokens) {
+      if (tokens[id].address.toLowerCase() === results[1].toLowerCase()) {
+        // src token
+        srcAmount = formatBigNumber(results[2], tokens[id].decimals);
+      }
+      if (tokens[id].address.toLowerCase() === results[4].toLowerCase()) {
+        // dest token
+        destAmount = formatBigNumber(results[5], tokens[id].decimals);
+      }
+    }
+    if (srcAmount !== 0 && destAmount !== 0) {
+      const tokenPairRate = destAmount / srcAmount;
+      yield put(txActions.setTxSwapInfor({
+        srcAmount,
+        destAmount,
+        tokenPairRate
+      }));
+    }
+  } catch (e) {
+    console.log("Error: " + e);
   }
 }
 
@@ -131,7 +198,11 @@ export function *getTxNonce(from) {
 export function *getTxObject(data, nonce = -1) {
   const web3 = yield select(getWeb3Instance);
   if (nonce === -1) {
-    nonce = yield call(web3.eth.getTransactionCount, data.from);
+    try {
+      nonce = yield call(web3.eth.getTransactionCount, data.from);
+    } catch (e) {
+      console.log("Get nonce error: " + e);
+    }
   }
 
   return {

@@ -35,18 +35,18 @@ function mapDispatchToProps(dispatch) {
 
 class Body extends Component {
   componentDidMount = () => {
+
+    const web3 = getWeb3Instance();
+    this.props.setWeb3Service(web3);
+
     if (window.web3 && window.web3.currentProvider && window.web3.currentProvider.isTomoWallet) {
       let dApp = new DappService();
-      this.props.setWeb3Service(dApp);
 
       dApp.getAccount((address) => {
-        const walletService = new MetamaskService();
-        this.props.setWallet(address, AppConfig.WALLET_TYPE_METAMASK, walletService);
+        this.props.setWallet(address, AppConfig.WALLET_TYPE_METAMASK, dApp);
         this.props.fetchBalances();
       });
     } else {
-      const web3 = getWeb3Instance();
-      this.props.setWeb3Service(web3);
     } 
   };
 

@@ -21,6 +21,8 @@ export default class SwapView extends Component {
   render() {
     const isLoadingRateShown = this.props.isTokenPairRateLoading && !this.props.isBgTokenPairRateLoading;
     const disabledClass = (!!this.props.error || isLoadingRateShown) ? 'disabled' : '';
+    const txSrcAmount = this.props.tx.txSrcAmount > 0 ? this.props.tx.txSrcAmount : this.props.sourceAmount;
+    const txDestAmount = this.props.tx.txDestAmount > 0 ? this.props.tx.txDestAmount : this.props.destAmount;
 
     return (
       <div className={"exchange"}>
@@ -70,13 +72,13 @@ export default class SwapView extends Component {
               <div className={"modal__header"}>Confirm Swap</div>
               <div className={"modal__body exchange__modal-body"}>
                 <div className={"modal__body-top common__flexbox exchange__modal-number"}>
-                  <div className={"exchange__modal-box"}>{formatAmount(this.props.sourceAmount)} {this.props.sourceToken.symbol}</div>
+                  <div className={"exchange__modal-box"}>{formatAmount(txSrcAmount)} {this.props.sourceToken.symbol}</div>
                   <div className={"exchange__modal-icon"}/>
-                  <div className={"exchange__modal-box"}>{formatAmount(this.props.destAmount)} {this.props.destToken.symbol}</div>
+                  <div className={"exchange__modal-box"}>{formatAmount(txDestAmount)} {this.props.destToken.symbol}</div>
                 </div>
                 <div className={"modal__body-bot"}>
                   <div>
-                    <div className={"exchange__modal-text"}>1 {this.props.sourceToken.symbol} = {formatAmount(this.props.tokenPairRate)} {this.props.destToken.symbol}</div>
+                    <div className={"exchange__modal-text"}>1 {this.props.sourceToken.symbol} = {this.props.tx.isConfirmLocking ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.tx.txTokenPairRate)} {this.props.destToken.symbol}</div>
                     <div className={"exchange__modal-text-light"}>GAS fee: {formatAmount(this.props.txFeeInTOMO, 9)} {TOMO.symbol}</div>
                   </div>
 
@@ -94,6 +96,7 @@ export default class SwapView extends Component {
                 confirmingError={this.props.tx.confirmingError}
                 closeModal={this.props.closeConfirmSwapModal}
                 confirm={this.props.swap}
+                isConfirmLocking={this.props.tx.isConfirmLocking}
               />
             </div>
           )}

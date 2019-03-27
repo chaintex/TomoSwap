@@ -7,6 +7,9 @@ export const txActionTypes = {
   SET_IS_BROADCASTING: 'TX.SET_IS_BROADCASTING',
   SET_CONFIRMING_ERROR: 'TX.SET_CONFIRMING_ERROR',
   RESET_ALL_TX_STATUS: 'TX.RESET_ALL_TX_STATUS',
+  GET_TX_SWAP_INFO: 'TX.GET_TX_SWAP_INFO',
+  SET_IS_CONFIRM_LOCKING: 'TX.SET_IS_CONFIRM_LOCKING',
+  SET_TX_SWAP_INFO: 'TX.SET_TX_SWAP_INFO',
 };
 
 export function setTxHash(hash = null) {
@@ -60,5 +63,25 @@ export function setConfirmingError(error = null) {
 export function resetAllTxStatus() {
   return {
     type: txActionTypes.RESET_ALL_TX_STATUS
+  }
+}
+
+export function getTxSwapInfor() {
+  return {
+    type: txActionTypes.GET_TX_SWAP_INFO
+  }
+}
+
+export function setTxSwapInfor(data) {
+  return {
+    type: txActionTypes.SET_TX_SWAP_INFO,
+    payload: data
+  }
+}
+
+export function setConfirmLocking(isLock) {
+  return {
+    type: txActionTypes.SET_IS_CONFIRM_LOCKING,
+    payload: isLock
   }
 }

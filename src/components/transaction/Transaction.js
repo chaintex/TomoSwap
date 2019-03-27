@@ -43,7 +43,8 @@ function mapStateToProps(store) {
     destAmount,
     toAddress,
     txFeeInTOMO,
-    gasLimit
+    gasLimit,
+    tx
   };
 }
 
@@ -78,8 +79,6 @@ class Transaction extends Component {
     this.props.setToAddress('');
     this.props.setSwapSourceAmount('');
     this.props.setTransferSourceAmount('');
-    // resume update desAmount
-    this.props.setIsUpdateToAmount(true);
   }
 
   render() {
@@ -102,6 +101,7 @@ class Transaction extends Component {
         gasLimit={this.props.gasLimit}
         handleCloseModal={this.handleCloseModal}
         handleSetExchangeMode={this.handleSetExchangeMode}
+        tx={this.props.tx}
       />
     )
   }

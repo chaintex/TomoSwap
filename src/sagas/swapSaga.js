@@ -20,7 +20,8 @@ import {
   fetchTransactionReceipt,
   fetchTxEstimatedGasUsed,
   fetchTxEstimatedGasUsedTokensChanged,
-  setTxStatusBasedOnWalletType
+  setTxStatusBasedOnWalletType,
+  forceLoadTxPairRate,
 } from "./transactionSaga";
 
 const getSwapState = state => state.swap;
@@ -39,7 +40,13 @@ function *swapToken() {
   yield put(txActions.setConfirmingError());
   yield call(setTxStatusBasedOnWalletType, account.walletType, true);
 
-  var nonce = yield call(getTxNonce, account.address);
+  var nonce;
+  try {
+    nonce = yield call(getTxNonce, account.address);
+  } catch (e) {
+    yield put(txActions.setConfirmingError(e));
+    return
+  }
 
   if (
     account.walletType !== appConfig.WALLET_TYPE_METAMASK
@@ -329,4 +336,5 @@ export default function* swapWatcher() {
   yield takeLatest(swapActions.swapActionTypes.SET_SOURCE_TOKEN, resetDataSrcTokenDidChange);
   yield takeLatest(swapActions.swapActionTypes.SWAP_TOKEN, swapToken);
   yield takeLatest(swapActions.swapActionTypes.APPROVE, approve);
+  yield takeLatest(txActions.txActionTypes.GET_TX_SWAP_INFO, forceLoadTxPairRate);
 }

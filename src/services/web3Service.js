@@ -5,7 +5,7 @@ import DappService from "./accountServices/DappService";
 export function getWeb3Instance() {
   if (window.web3) {
     if (window.web3.currentProvider && window.web3.currentProvider.isTomoWallet) {
-      return new DappService();
+      return new Web3(window.web3.currentProvider);
     }
   }
 
@@ -14,8 +14,11 @@ export function getWeb3Instance() {
 
 export function getNetworkProxyContract() {
   const web3 = getWeb3Instance();
-
-  return new web3.eth.Contract(envConfig.NETWORK_PROXY_ABI, envConfig.NETWORK_PROXY_ADDRESS);
+  try {
+    return new web3.eth.Contract(envConfig.NETWORK_PROXY_ABI, envConfig.NETWORK_PROXY_ADDRESS);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export function getTokenContract(srcTokenAddress, web3 = null) {
