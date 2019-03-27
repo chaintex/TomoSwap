@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Offline } from "react-detect-offline";
 
 class Header extends Component {
   constructor(props) {
@@ -36,6 +37,13 @@ class Header extends Component {
             <a href="https://medium.com/@tomoswap" target="_blank" rel="noopener noreferrer" className={"header__content-item"}>Blog</a>
           </div>
         </div>
+        <Offline polling={{ interval: 2000 }}>
+          <div className="header__offline_alert">
+            <div>
+              <label><b>Your connection seems to be offline. Please check and reconnect</b></label>
+            </div>
+          </div>
+        </Offline>
       </div>
     )
   }
