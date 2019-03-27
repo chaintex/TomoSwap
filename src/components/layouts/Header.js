@@ -21,7 +21,9 @@ class Header extends Component {
     return (
       <div className={"header"}>
         <div className={`header__container container ${this.state.isMobileMenuActive ? 'active' : ''}`}>
-          <div className={"header__logo"}/>
+          <div className={"header__logo"}>
+            <a href="/#exchange"></a>
+          </div>
           <div className={"header__mobile-opener"} onClick={() => this.handleToggleMobileMenu()}>
             <div className={"header__mobile-opener-bar"}/>
             <div className={"header__mobile-opener-bar"}/>

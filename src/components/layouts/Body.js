@@ -61,7 +61,7 @@ class Body extends Component {
               <p className={"body__subtitle"}>The fastest, simplest and most secure way to exchange tokens.</p>
             </div>
             <div className={"body__content"}>
-              <div className={"body__exchange"}>
+              <div className={"body__exchange"} id={"exchange"}>
                 <div className={"body__exchange-wrapper"}>
                   <div className={`body__exchange-content body__exchange-content--${isSwapMode ? AppConfig.EXCHANGE_SWAP_MODE : AppConfig.EXCHANGE_TRANSFER_MODE}`}>
                     <div className={`body__exchange-button ${isSwapMode ? 'body__exchange-button--active' : ''}`} onClick={() => this.props.setExchangeMode(AppConfig.EXCHANGE_SWAP_MODE)}>Swap</div>
