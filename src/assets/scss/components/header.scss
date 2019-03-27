@@ -12,14 +12,15 @@
 
     div{
       text-align: center;
-      background-color: #ffdd0e;
+      background-color: #f9f8f5;
       width: 100%;
-      padding-top: 5px;
+      padding-top: 3px;
+      padding-bottom: 3px;
       border-radius: 5px;
     }
 
     label{
-      color: #000;
+      color: RGB(254, 169, 73);
     }
 
     @media (max-width: $medium-breakpoint) {
