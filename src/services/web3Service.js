@@ -1,6 +1,5 @@
 import envConfig from "../config/env";
 import Web3 from "web3";
-import DappService from "./accountServices/DappService";
 
 export function getWeb3Instance() {
   if (window.web3) {

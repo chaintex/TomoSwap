@@ -1,5 +1,4 @@
 import { getWeb3Instance } from "../web3Service";
-import { numberToHex } from "../../utils/helpers";
 
 export default class DappService {
   constructor() {
