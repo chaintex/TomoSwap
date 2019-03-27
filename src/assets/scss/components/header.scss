@@ -3,6 +3,44 @@
   padding: 10px 0;
   z-index: 1;
 
+
+  &__offline_alert{
+    position: fixed;
+    width: 100%;
+    padding: 0 5px 0 5px;
+    top: 1px;
+
+    div{
+      text-align: center;
+      background-color: #ffdd0e;
+      width: 100%;
+      padding-top: 5px;
+      border-radius: 5px;
+    }
+
+    label{
+      color: #000;
+    }
+
+    @media (max-width: $medium-breakpoint) {
+      label{
+        font-size: 90%;
+      }
+    }
+
+    @media (max-width: $small-breakpoint) {
+      label{
+        font-size: 80%;
+      }
+    }
+
+    @media (max-width: $smaller-breakpoint) {
+      label{
+        font-size: 70%;
+      }
+    }
+  }
+
   &__container {
     display: flex;
     justify-content: space-between;
