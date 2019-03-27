@@ -21,20 +21,16 @@ export default class DappService {
   }
 
   sendTransaction = (txObject) => {
-    txObject.nonce = numberToHex(txObject.nonce);
-    return this.sendRawTransaction(txObject);
-  };
-
-  sendRawTransaction(signedTxData) {
     return new Promise((resolve, reject) => {
       this.web3.currentProvider.sendAsync({
         method: 'eth_sendTransaction',
-        params: [signedTxData],
-        from: signedTxData.from,
+        params: [txObject],
+        from: txObject.from,
       }, function (data, response) {
         if (response.error) {
           reject(response.error.message);
         }
+
         resolve(response.result);
       });
     });
