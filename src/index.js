@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { logger } from 'redux-logger';
+import { LocalizeProvider } from 'react-localize-redux';
 import reducer from './reducers';
 import App from './components/layouts/App';
 import rootSaga from './sagas';
@@ -19,7 +20,9 @@ sagaMiddleware.run(rootSaga);
 
 render(
   <Provider store={store}>
-    <App/>
+    <LocalizeProvider store={store}>
+      <App/>
+    </LocalizeProvider>
   </Provider>,
   document.getElementById('root'),
 );
