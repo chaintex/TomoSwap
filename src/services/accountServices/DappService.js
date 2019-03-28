@@ -13,7 +13,7 @@ export default class DappService {
     return new Promise((resolve, reject) => {
       this.web3.eth.net.getId((error, result) => {
         if (error || !result) {
-          var error = new Error("Cannot get network id")
+          error = new Error("Cannot get network id")
           reject(error)
         } else {
           callback(result);
