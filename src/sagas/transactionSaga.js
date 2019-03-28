@@ -9,7 +9,7 @@ import { getRate } from "../services/networkService";
 import * as swapActions from "../actions/swapAction";
 import { getSwapTxObject } from "./swapSaga";
 import { getTransferTxObject } from "./transferSaga";
-import { formatBigNumber } from "../utils/helpers";
+import { formatBigNumber, numberToHex } from "../utils/helpers";
 
 const getWeb3Instance = state => state.account.web3;
 const getAccountAddress = state => state.account.address;
@@ -210,8 +210,8 @@ export function *getTxObject(data, nonce = -1) {
     to: data.to,
     value: data.value,
     data: data.data,
-    gasPrice: appConfig.DEFAULT_GAS_PRICE,
-    gasLimit: data.gasLimit,
+    gasPrice: numberToHex(appConfig.DEFAULT_GAS_PRICE, 0),
+    gasLimit: numberToHex(data.gasLimit.toFixed(0), 0),
     nonce: nonce,
     chainId: envConfig.NETWORK_ID,
   };
