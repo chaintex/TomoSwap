@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { setWalletPassword } from "../../actions/accountAction";
 import * as swapActions from "../../actions/swapAction";
 import { setGlobalError } from "../../actions/globalAction";
-import { resetAllTxStatus, setTxHashApprove } from "../../actions/transactionAction";
+import { resetAllTxStatus, setTxHashApprove, getTxSwapInfor, setConfirmLocking } from "../../actions/transactionAction";
 import { TOMO } from "../../config/tokens";
 import appConfig from "../../config/app";
 
@@ -54,7 +54,9 @@ function mapDispatchToProps(dispatch) {
     setWalletPassword: (password) => {dispatch(setWalletPassword(password))},
     setIsConfirmModalActive: (isActive) => {dispatch(swapActions.setIsConfirmModalActive(isActive))},
     resetAllTxStatus: () => {dispatch(resetAllTxStatus())},
-    setTxHashApprove: (hash) => {dispatch(setTxHashApprove(hash))}
+    setTxHashApprove: (hash) => {dispatch(setTxHashApprove(hash))},
+    getTxSwapInfor: () => {dispatch(getTxSwapInfor())},
+    setConfirmLocking: (isLocking) => {dispatch(setConfirmLocking(isLocking))},
   }
 }
 
@@ -124,6 +126,8 @@ class Swap extends Component {
     this.props.resetAllTxStatus();
     this.props.setWalletPassword('');
     this.props.setIsConfirmModalActive((true));
+    this.props.getTxSwapInfor();
+    this.props.setConfirmLocking(true);
 
     // set focus to input password
     if (this.swapView && this.swapView.passwdInput) {

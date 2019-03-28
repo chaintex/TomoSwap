@@ -7,7 +7,11 @@ const initialState = {
   isConfirming: false,
   isBroadcasting: false,
   confirmingError: null,
-  error: null
+  error: null,
+  txSrcAmount: '',
+  txDestAmount: 0,
+  txTokenPairRate: 0,
+  isConfirmLocking: false,
 };
 
 export default function transactionReducer(state = initialState, action) {
@@ -60,6 +64,29 @@ export default function transactionReducer(state = initialState, action) {
         isConfirming: false,
         isBroadcasting: false,
         confirmingError: null
+      }
+    }
+    case txActionTypes.GET_TX_SWAP_INFO: {
+      return {
+        ...state,
+        txSrcAmount: '',
+        txDestAmount: 0,
+        txTokenPairRate: 0,
+      }
+    }
+    case txActionTypes.SET_TX_SWAP_INFO: {
+      const {srcAmount, destAmount, tokenPairRate} = action.payload;
+      return {
+        ...state,
+        txSrcAmount: srcAmount,
+        txDestAmount: destAmount,
+        txTokenPairRate: tokenPairRate,
+      }
+    }
+    case txActionTypes.SET_IS_CONFIRM_LOCKING: {
+      return {
+        ...state,
+        isConfirmLocking: action.payload
       }
     }
     default:

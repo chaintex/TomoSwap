@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 export default class ConfirmButton extends Component {
   render() {
     const isConfirmButtonShown = !this.props.isConfirming && !this.props.isBroadcasting;
+    const isConfirmLocking = this.props.isConfirmLocking;
 
     return (
       <div className={"modal__footer"}>
@@ -21,7 +22,7 @@ export default class ConfirmButton extends Component {
         {isConfirmButtonShown && (
           <div className={"common__flexbox common__fade-in"}>
             <div className={"modal__button"} onClick={() => this.props.closeModal()}>Cancel</div>
-            <div className={"modal__button modal__button--gradient"} onClick={() => this.props.confirm()}>Confirm</div>
+            <div className={`modal__button modal__button--gradient ${isConfirmLocking ? "modal__button-disable" : ""}`} onClick={() => this.props.confirm()}>Confirm</div>
           </div>
         )}
       </div>

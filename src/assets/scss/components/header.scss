@@ -3,6 +3,46 @@
   padding: 10px 0;
   z-index: 1;
 
+
+  &__offline_alert{
+    position: fixed;
+    width: 100%;
+    padding: 0 5px 0 5px;
+    top: 1px;
+    z-index: 9999;
+
+    div{
+      text-align: center;
+      background-color: #f9f8f5;
+      width: 100%;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      border-radius: 5px;
+    }
+
+    label{
+      color: RGB(254, 169, 73);
+    }
+
+    @media (max-width: $medium-breakpoint) {
+      label{
+        font-size: 90%;
+      }
+    }
+
+    @media (max-width: $small-breakpoint) {
+      label{
+        font-size: 80%;
+      }
+    }
+
+    @media (max-width: $smaller-breakpoint) {
+      label{
+        font-size: 70%;
+      }
+    }
+  }
+
   &__container {
     display: flex;
     justify-content: space-between;
@@ -13,6 +53,12 @@
     width: 118px;
     height: 76px;
     background-image: url($image-path + 'logos/tomoswap.svg');
+
+    a {
+      width: 100%;
+      height: 100%;
+      display: block;  
+    }
   }
 
   &__content {
