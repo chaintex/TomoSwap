@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Offline } from "react-detect-offline";
+import { withLocalize, Translate } from 'react-localize-redux';
+import { initLanguage } from '../../services/language'
 
 class Header extends Component {
   constructor(props) {
@@ -8,6 +10,10 @@ class Header extends Component {
     this.state = {
       isMobileMenuActive: false,
     }
+
+    const { languagePack } = initLanguage();
+    console.log(languagePack);
+    this.props.addTranslation(languagePack);
   }
 
   handleToggleMobileMenu = () => {
@@ -30,8 +36,8 @@ class Header extends Component {
             <div className={"header__mobile-opener-bar"}/>
           </div>
           <div className={"header__content"}>
-            <a href="/" className={"header__content-item active"}>Swap</a>
-            <a href="#aboutus" className={"header__content-item"}>About Us</a>
+            <a href="/" className={"header__content-item active"}><Translate id={`Swap`}></Translate></a>
+            <a href="#aboutus" className={"header__content-item"}><Translate id={`About_Us`} /></a>
             <a href="/" className={"header__content-item"}>FAQ</a>
             <a href="https://goo.gl/forms/PPgKR2d6A5KtV7tH2" target="_blank" rel="noopener noreferrer" className={"header__content-item"}>Contact Us</a>
             <a href="https://medium.com/@tomoswap" target="_blank" rel="noopener noreferrer" className={"header__content-item"}>Blog</a>
@@ -49,4 +55,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withLocalize(Header);

@@ -6,6 +6,7 @@ import swapReducer from "./swapReducer";
 import globalReducer from "./globalReducer";
 import transferReducer from "./transferReducer";
 import transactionReducer from "./transactionReducer";
+import { localizeReducer } from 'react-localize-redux';
 
 const reducer = combineReducers({
   global: globalReducer,
@@ -14,7 +15,8 @@ const reducer = combineReducers({
   market: marketReducer,
   swap: swapReducer,
   transfer: transferReducer,
-  tx: transactionReducer
+  tx: transactionReducer,
+  localize: localizeReducer,
 });
 
 export default reducer
