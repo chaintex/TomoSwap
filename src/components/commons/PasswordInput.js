@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import React, { Component } from 'react';
+import { withLocalize } from 'react-localize-redux';
 import { setWalletPassword } from "../../actions/accountAction";
 
 function mapStateToProps(store) {
@@ -57,7 +58,7 @@ class PasswordInput extends Component {
   render() {
     return (
       <div className={"exchange__modal-password"}>
-        <div className={"exchange__modal-text"}>Sign and broadcast</div>
+        <div className={"exchange__modal-text"}>{this.props.translate("components.commons.PasswordInput.Sign_and_broadcast")}</div>
         <div className={`common__password-container ${this.state.isPasswordDisplayed ? 'common__password-container--unlock' : ''}`}>
           <input className={"common__password"}
             value={this.props.walletPassword}
@@ -65,7 +66,7 @@ class PasswordInput extends Component {
             type="text"
             autoComplete="new-password"
             onKeyUp={this.onKeyUp}
-            placeholder={"Enter your password/passphrase"}
+            placeholder={this.props.translate("components.commons.PasswordInput.Enter_your_password_passphrase")}
             ref={(input) => { this.passInput = input; }}
             />
           <div className={"common__password-icon"} onClick={() => this.togglePassword()}/>
@@ -75,4 +76,4 @@ class PasswordInput extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PasswordInput);
+export default connect(mapStateToProps, mapDispatchToProps)(withLocalize(PasswordInput));

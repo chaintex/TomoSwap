@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withLocalize, Translate } from 'react-localize-redux';
+import { withLocalize } from 'react-localize-redux';
 import ImportAccountView from "./ImportAccountView";
 import * as accountActions from '../../actions/accountAction';
 import { setGlobalError } from '../../actions/globalAction';

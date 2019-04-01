@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { withLocalize } from 'react-localize-redux';
 import TokenSelector from '../commons/TokenSelector';
 import Dropdown, { DropdownTrigger, DropdownContent } from "react-simple-dropdown";
 import { filterInputNumber } from "../../utils/validators";
@@ -7,7 +8,7 @@ import { TOMO } from "../../config/tokens";
 import envConfig from "../../config/env";
 import appConfig from "../../config/app";
 
-export default class InputGroup extends Component {
+class InputGroup extends Component {
   constructor(props) {
     super(props);
 
@@ -110,3 +111,5 @@ export default class InputGroup extends Component {
     )
   }
 }
+
+export default withLocalize(InputGroup);

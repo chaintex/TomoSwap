@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import { withLocalize } from 'react-localize-redux';
 import TokenSelector from '../commons/TokenSelector';
 import PasswordInput from '../commons/PasswordInput';
-import { formatAmount } from "../../utils/helpers";
+import { formatAmount, stringFormat } from "../../utils/helpers";
 import InputGroup from '../commons/InputGroup';
 import Modal from "../../components/commons/Modal";
 import ConfirmButton from "../../components/commons/ConfirmButton";
 import { TOMO } from "../../config/tokens";
 import appConfig from "../../config/app";
 
-export default class SwapView extends Component {
+class SwapView extends Component {
 
   componentDidMount() {
     this.props.onRef(this);
@@ -50,7 +51,7 @@ export default class SwapView extends Component {
                 tokens={this.props.tokens}
               />
               <div className={"input-group__input"}>
-                {this.props.sourceAmount ? isLoadingRateShown ? 'Loading...' : formatAmount(this.props.destAmount) : 0}
+                {this.props.sourceAmount ? isLoadingRateShown ? this.props.translate("components.swap.SwapView.Loading") : formatAmount(this.props.destAmount) : 0}
               </div>
             </div>
 
@@ -62,14 +63,14 @@ export default class SwapView extends Component {
 
         {this.props.isSwapNowShowing &&
           <div className={"exchange__button-container common__fade-in"}>
-            <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openConfirmSwapModal()}>Swap Now</div>
+            <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openConfirmSwapModal()}>{this.props.translate("components.swap.SwapView.Swap_Now")}</div>
           </div>
         }
 
         <Modal isActive={this.props.isConfirmModalActive} handleClose={() => this.props.closeConfirmSwapModal()}>
           {!this.props.isApproveNeeded && (
             <div className={"exchange__modal"}>
-              <div className={"modal__header"}>Confirm Swap</div>
+              <div className={"modal__header"}>{this.props.translate("components.swap.SwapView.Confirm_Swap")}</div>
               <div className={"modal__body exchange__modal-body"}>
                 <div className={"modal__body-top common__flexbox exchange__modal-number"}>
                   <div className={"exchange__modal-box"}>{formatAmount(txSrcAmount)} {this.props.sourceToken.symbol}</div>
@@ -79,7 +80,7 @@ export default class SwapView extends Component {
                 <div className={"modal__body-bot"}>
                   <div>
                     <div className={"exchange__modal-text"}>1 {this.props.sourceToken.symbol} = {this.props.tx.isConfirmLocking ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.tx.txTokenPairRate)} {this.props.destToken.symbol}</div>
-                    <div className={"exchange__modal-text-light"}>GAS fee: {formatAmount(this.props.txFeeInTOMO, 9)} {TOMO.symbol}</div>
+                    <div className={"exchange__modal-text-light"}>{this.props.translate("components.swap.SwapView.GAS_fee")} {formatAmount(this.props.txFeeInTOMO, 9)} {TOMO.symbol}</div>
                   </div>
 
                   {this.props.walletType === appConfig.WALLET_TYPE_KEYSTORE && (
@@ -103,14 +104,14 @@ export default class SwapView extends Component {
 
           {this.props.isApproveNeeded && (
             <div className={"exchange__modal common__fade-in"}>
-              <div className={"modal__header"}>Approve Token</div>
+              <div className={"modal__header"}>{this.props.translate("components.swap.SwapView.Approve_Token")}</div>
               <div className={"modal__body modal__body--left"}>
                 <div className={"modal__body-top"}>
                   {this.props.srcTokenAllowance === 0 &&
-                    <div className={"exchange__modal-approve"}>You need to grant permission for TomoSwap to interact with {this.props.sourceToken.symbol} with this Address:</div>
+                    <div className={"exchange__modal-approve"}>{stringFormat(this.props.translate("components.swap.SwapView.You_need_to_grant_permission_for_TomoSwap_to_interact_with_with_this_Address"), this.props.sourceToken.symbol)}</div>
                   }
                   {this.props.srcTokenAllowance > 0 &&
-                    <div className={"exchange__modal-approve"}>You need to reset allowance {this.props.sourceToken.symbol} of TomoSwap with this Address:</div>
+                    <div className={"exchange__modal-approve"}>{stringFormat(this.props.translate("components.swap.SwapView.You_need_to_reset_allowance_of_TomoSwap_with_this_Address"), this.props.sourceToken.symbol)}</div>
                   }
                   <div className={"exchange__modal-address"}>{this.props.accountAddress}</div>
                 </div>
@@ -137,3 +138,5 @@ export default class SwapView extends Component {
     )
   }
 }
+
+export default withLocalize(SwapView);

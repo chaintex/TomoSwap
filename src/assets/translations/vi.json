@@ -18,7 +18,10 @@
         "Ledger": "Ledger",
         "Trezor":	"Trezor",
         "Private_Key": "Private Key",
-        "Connect_other_Wallet": "Kết nối với ví khác"
+        "Enter_Private_Key": "Nhập private key",
+        "Connect_other_Wallet": "Kết nối với ví khác",
+        "Receive_some_TOMO_testnet": "Nhận TOMO testnet tại",
+        "here": "đây"
       }
     },
     "commons" : {
@@ -75,6 +78,7 @@
     },
     "market": {
       "MarketView": {
+        "Search": "Tìm kiếm",
         "Market": "Thị trường",
         "Sell_Price": "Giá bán",
         "Buy_Price": "Giá mua",
@@ -94,6 +98,7 @@
         "Loading": "Đang tải...",
         "Swap_Now": "Trao Đổi Ngay",
         "Confirm_Swap": "Xác nhận trao đổi",
+        "GAS_fee": "Phí GAS:",
         "Approve_Token": "Cho phép sử dụng token",
         "You_need_to_grant_permission_for_TomoSwap_to_interact_with_with_this_Address:": "Bạn cần cấp quyền cho TomoSwap để tương tác với {0} với địa chỉ này:",
         "You_need_to_reset_allowance_of_TomoSwap_with_this_Address:": "Bạn cần đặt lại quyền cho TomoSwap tương tác với {0} với địa chỉ này:"
@@ -109,9 +114,11 @@
         "Done": "Xong!",
         "Successfully": "Thành công {0}",
         "to": "đến",
-        "New": "Mới",
+        "New": "{0} Mới",
         "transferred": "chuyển đi",
-        "swapped": "trao đổi"
+        "swapped": "trao đổi",
+        "Swap":	"Trao đổi",
+        "Transfer":	"Chuyển đi"
       }
     },
     "transfer": {
@@ -119,7 +126,7 @@
         "To_Address_is_required_to_make_a_transfer": "Vui lòng nhập địa chỉ để chuyển",
         "Given_address_is_invalid": "Địa chỉ không hợp lệ",
         "Source_amount_is_required_to_make_a_transfer": "Vui lòng điền số lượng muốn chuyển",
-        "Please_wait_for_your_balance_to_be_loaded": "Please wait for your balance to be loaded",
+        "Please_wait_for_your_balance_to_be_loaded": "Vui lòng đợi cập nhật số dư của bạn",
         "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance",
         "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "You don't have enough TOMO balance to pay for transaction fee"
       },
