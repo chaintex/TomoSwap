@@ -32,8 +32,8 @@
         "Confirm": "Confirm"
       },
       "InputGroup": {
-        "From:":	"From:",
-        "To:":	"To:",
+        "From":	"From:",
+        "To":	"To:",
         "Swap":	"Swap",
         "Transfer":	"Transfer"
       },
@@ -131,11 +131,12 @@
         "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "You don't have enough TOMO balance to pay for transaction fee"
       },
       "TransferView": {
+        "From": "From:",
         "To_Address": "To Address:",
         "Transfer_Now": "Transfer Now",
         "Confirm_Transfer": "Confirm Transfer",
-        "Address:": "Address:",
-        "GAS_fee:": "GAS fee:"
+        "Address": "Address:",
+        "GAS_fee": "GAS fee:"
       }
     }
   },

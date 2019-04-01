@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withLocalize } from 'react-localize-redux';
 import envConfig from '../../config/env';
-import { isMobileAndTablet, stringFormat } from "../../utils/helpers";
+import { isMobileAndTablet } from "../../utils/helpers";
 import Modal from "../../components/commons/Modal";
 import ConfirmButton from "../../components/commons/ConfirmButton";
 import PrivateKeyInput from "../../components/commons/PrivateKeyInput";

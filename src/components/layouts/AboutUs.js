@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withLocalize, Translate } from 'react-localize-redux';
+import { withLocalize } from 'react-localize-redux';
 import Modal from "../../components/commons/Modal";
 
 class AboutUs extends Component {
@@ -37,7 +37,7 @@ class AboutUs extends Component {
                 <div className={"about-us"}>
                     <div className={"container"}>
                         <div className={"about-us__header"}>
-                            <div className={"about-us__header-who-we-are"}><Translate id={"components.layouts.AboutUs.Our_Team"}/></div>
+                            <div className={"about-us__header-who-we-are"}>{this.props.translate("components.layouts.AboutUs.Our_Team")}</div>
                             <div className={"over"}></div>
                         </div>
                         <div className={"about-us__container"}>
@@ -74,7 +74,7 @@ class AboutUs extends Component {
                     <div className={"about-us advisor"}>
                         <div className={"container"}>
                             <div className={"about-us__header"}>
-                                <div className={"about-us__header-who-we-are"}><Translate id={"components.layouts.AboutUs.Our_Advisors"}/></div>
+                                <div className={"about-us__header-who-we-are"}>{this.props.translate("components.layouts.AboutUs.Our_Advisors")}</div>
                             </div>
                             <div className={"about-us__container"}>
                                 <div className={"about-us__team-members"}>

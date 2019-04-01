@@ -43,7 +43,7 @@ class SwapView extends Component {
           />
 
           <div className={"input-group"}>
-            <div className={"input-group__title"}>To:</div>
+            <div className={"input-group__title"}>{this.props.translate("components.swap.SwapView.To")}</div>
             <div className={`input-group__wrapper`}>
               <TokenSelector
                 selectedToken={this.props.destToken}

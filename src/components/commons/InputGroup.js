@@ -65,7 +65,7 @@ class InputGroup extends Component {
 
     return (
       <div className={"input-group"}>
-        <div className={"input-group__title"}>From:</div>
+        <div className={"input-group__title"}>{this.props.translate("components.commons.InputGroup.From")}</div>
         <div className={`input-group__wrapper ${isError ? 'input-group__wrapper--error' : ''} ${isBalanceBoxShown ? 'input-group__wrapper--imported' : ''}`}>
           <TokenSelector
             selectedToken={this.props.sourceToken}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withLocalize } from 'react-localize-redux';
 import InputGroup from '../commons/InputGroup';
 import PasswordInput from '../commons/PasswordInput';
 import { formatAmount, formatAddress  } from "../../utils/helpers";
@@ -7,7 +8,7 @@ import appConfig from "../../config/app";
 import Modal from "../../components/commons/Modal";
 import ConfirmButton from "../../components/commons/ConfirmButton";
 
-export default class TransferView extends Component {
+class TransferView extends Component {
 
   componentDidMount() {
     this.props.onRef(this);
@@ -38,7 +39,7 @@ export default class TransferView extends Component {
           />
 
           <div className={"input-group"}>
-            <div className={"input-group__title"}>To Address:</div>
+            <div className={"input-group__title"}>{this.props.translate("components.transfer.TransferView.To_Address")}</div>
             <div className={`input-group__wrapper ${!!this.props.addressError ? 'input-group__wrapper--error' : ''}`}>
               <input className={"input-group__input input-group__input--full"} value={this.props.toAddress} onChange={(e) => this.props.handleSetToAddress(e)} type="text"/>
             </div>
@@ -53,26 +54,26 @@ export default class TransferView extends Component {
 
         {this.props.isTransferNowShowing &&
           <div className={"exchange__button-container common__fade-in"}>
-            <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openConfirmModal()}>Transfer Now</div>
+            <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openConfirmModal()}>{this.props.translate("components.transfer.TransferView.Transfer_Now")}</div>
           </div>
         }
 
         <Modal isActive={this.props.isConfirmModalActive} handleClose={() => this.props.closeConfirmModal()}>
           <div className={"exchange__modal"}>
-            <div className={"modal__header"}>Confirm Transfer</div>
+            <div className={"modal__header"}>{this.props.translate("components.transfer.TransferView.Confirm_Transfer")}</div>
             <div className={"modal__body exchange__modal-body"}>
               <div className={"modal__body-top common__flexbox exchange__modal-number exchange__modal-number-small-padding"}>
                 <div className={"exchange__modal-box"}>{formatAmount(this.props.sourceAmount)} {this.props.sourceToken.symbol}</div>
                 <div className={"exchange__modal-icon"}/>
                 <div className={"exchange__modal-box exchange__modal-box--address"}>
-                  <div className={"exchange__modal-box--address-label"}>Address: </div>
+                  <div className={"exchange__modal-box--address-label"}>{this.props.translate("components.transfer.TransferView.Address")} </div>
                   <div className={"exchange__modal-box--address-text exchange__modal-box--address-text-full"} title={this.props.toAddress}>{formatAddress(this.props.toAddress, 19, 12)}</div>
                   <div className={"exchange__modal-box--address-text exchange__modal-box--address-text-mobile"} title={this.props.toAddress}>{formatAddress(this.props.toAddress, 13, 7)}</div>
                 </div>
               </div>
               <div className={"modal__body-bot"}>
                 <div>
-                  <div className={"exchange__modal-gas"}>GAS fee: {formatAmount(this.props.txFeeInTOMO, 9)} {TOMO.symbol}</div>
+                  <div className={"exchange__modal-gas"}>{this.props.translate("components.transfer.TransferView.GAS_fee")} {formatAmount(this.props.txFeeInTOMO, 9)} {TOMO.symbol}</div>
                 </div>
                 {this.props.walletType === appConfig.WALLET_TYPE_KEYSTORE && (
                   <PasswordInput
@@ -95,3 +96,5 @@ export default class TransferView extends Component {
     )
   }
 }
+
+export default withLocalize(TransferView);

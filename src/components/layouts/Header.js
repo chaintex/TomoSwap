@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Offline } from "react-detect-offline";
-import { withLocalize, Translate } from 'react-localize-redux';
+import { withLocalize } from 'react-localize-redux';
 import { avalableLanguages, currentLanguage } from '../../services/language'
 
 class Header extends Component {
@@ -42,14 +42,14 @@ class Header extends Component {
             <div className={"header__mobile-opener-bar"}/>
           </div>
           <div className={"header__content"}>
-            <a href="/" className={"header__content-item active"}><Translate id={`components.layouts.Header.Swap`}/></a>
-            <a href="#aboutus" className={"header__content-item"}><Translate id={`components.layouts.Header.About_Us`} /></a>
-            <a href="/" className={"header__content-item"}><Translate id={`components.layouts.Header.FAQ`} /></a>
+            <a href="/" className={"header__content-item active"}>{this.props.translate(`components.layouts.Header.Swap`)}</a>
+            <a href="#aboutus" className={"header__content-item"}>{this.props.translate(`components.layouts.Header.About_Us`)}</a>
+            <a href="/" className={"header__content-item"}>{this.props.translate(`components.layouts.Header.FAQ`)}</a>
             <a href="https://goo.gl/forms/PPgKR2d6A5KtV7tH2" target="_blank" rel="noopener noreferrer" className={"header__content-item"}>
-            <Translate id={`components.layouts.Header.Contact_Us`} />
+            {this.props.translate(`components.layouts.Header.Contact_Us`)}
             </a>
             <a href="https://medium.com/@tomoswap" target="_blank" rel="noopener noreferrer" className={"header__content-item"}>
-            <Translate id={`Blog`} />
+            {this.props.translate(`components.layouts.Header.Blog`)}
             </a>
             <div className={"header__content-item header__content-lang"}>
               <span>{name}</span>
@@ -63,7 +63,7 @@ class Header extends Component {
         <Offline polling={{ interval: 2000 }}>
           <div className="header__offline_alert">
             <div>
-              <label><b><Translate id={"components.layouts.Header.Your_connection_seems_to_be_offline_Please_check_and_reconnect"}/></b></label>
+              <label><b>{this.props.translate("components.layouts.Header.Your_connection_seems_to_be_offline_Please_check_and_reconnect")}</b></label>
             </div>
           </div>
         </Offline>

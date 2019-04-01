@@ -32,8 +32,8 @@
         "Confirm": "Xác nhận"
       },
       "InputGroup": {
-        "From:":	"Đổi từ:",
-        "To:":	"Đổi sang:",
+        "From":	"Đổi từ:",
+        "To":	"Đổi sang:",
         "Swap":	"Trao đổi",
         "Transfer":	"Chuyển đi"
       },
@@ -94,7 +94,7 @@
         "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "Bạn không có đủ TOMO để trả phí giao dịch"
       },
       "SwapView": {
-        "To": "To:",
+        "To": "Đổi sang:",
         "Loading": "Đang tải...",
         "Swap_Now": "Trao Đổi Ngay",
         "Confirm_Swap": "Xác nhận trao đổi",
@@ -131,11 +131,12 @@
         "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "You don't have enough TOMO balance to pay for transaction fee"
       },
       "TransferView": {
-        "To_Address:": "Địa chỉ nhận:",
+        "From": "Chuyển từ:",
+        "To_Address": "Địa chỉ nhận:",
         "Transfer_Now": "Chuyển Ngay",
         "Confirm_Transfer": "Xác nhận chuyển đi",
-        "Address:": "Địa chỉ:",
-        "GAS_fee:": "Phí GAS:"
+        "Address": "Địa chỉ:",
+        "GAS_fee": "Phí GAS:"
       }
     }
   },
