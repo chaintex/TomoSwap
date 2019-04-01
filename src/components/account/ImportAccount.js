@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withLocalize, Translate } from 'react-localize-redux';
 import ImportAccountView from "./ImportAccountView";
 import * as accountActions from '../../actions/accountAction';
 import { setGlobalError } from '../../actions/globalAction';
@@ -9,6 +10,7 @@ import MetamaskService from "../../services/accountServices/MetamaskService";
 import KeystoreService from "../../services/accountServices/KeystoreService";
 import PrivateKeyService from "../../services/accountServices/PrivateKeyService";
 import { getWeb3Instance } from "../../services/web3Service";
+import { stringFormat } from "../../utils/helpers"
 
 function mapStateToProps(store) {
   return {
@@ -38,12 +40,11 @@ class ImportAccount extends Component {
   }
 
   connectToMetamask = async () => {
-    console.log(this.props.translate("Cannot connect to Metamask. Please make sure you have Metamask installed"))
     if (!window.ethereum) {
-      this.props.setGlobalError(`Cannot connect to Metamask. Please make sure you have Metamask installed`);
+      this.props.setGlobalError(this.props.translate("components.account.ImportAccount.Cannot_connect_to_Metamask_Please_make_sure_you_have_Metamask_installed"));
       return;
     } else if (+window.ethereum.networkVersion !== envConfig.NETWORK_ID) {
-      this.props.setGlobalError(`Metamask should be on ${envConfig.NETWORK_NAME} network`);
+      this.props.setGlobalError(stringFormat(this.props.translate("components.account.ImportAccount.Metamask_should_be_on_network"), envConfig.NETWORK_NAME));
       return;
     }
 
@@ -80,7 +81,7 @@ class ImportAccount extends Component {
           const keystore = JSON.parse(keystoreString);
 
           if (!keystore.address || !keystore.crypto) {
-            this.props.setGlobalError("You have chosen an invalid Keystore file");
+            this.props.setGlobalError(this.props.translate("components.account.ImportAccount.You_have_chosen_an_invalid_Keystore_file"));
             return;
           }
 
@@ -90,11 +91,11 @@ class ImportAccount extends Component {
           this.props.setWallet(address, appConfig.WALLET_TYPE_KEYSTORE, walletService);
           this.props.fetchBalances();
         } catch (e) {
-          this.props.setGlobalError("You have chosen a malformed Keystore file");
+          this.props.setGlobalError(this.props.translate("components.account.ImportAccount.You_have_chosen_a_malformed_Keystore_file"));
         }
       };
     } catch (e) {
-      this.props.setGlobalError("There is something wrong with the chosen file");
+      this.props.setGlobalError(this.props.translate("components.account.ImportAccount.There_is_something_wrong_with_the_chosen_file"));
     }
   };
 
@@ -104,11 +105,11 @@ class ImportAccount extends Component {
 
   connectToPrivateKey = (privateKey) => {
     if (privateKey === '') {
-      this.props.setPrivateKeyErrorMessage("Please enter your private key to continue");
+      this.props.setPrivateKeyErrorMessage(this.props.translate("components.account.ImportAccount.Please_enter_your_private_key_to_continue"));
       return
     }
     if (privateKey.length !== 64) {
-      this.props.setPrivateKeyErrorMessage("Your private key must have exactly 64 characters");
+      this.props.setPrivateKeyErrorMessage(this.props.translate("components.account.ImportAccount.Your_private_key_must_have_exactly_64_characters"));
       return
     }
     try {
@@ -119,7 +120,7 @@ class ImportAccount extends Component {
       this.props.setWallet(account.address, appConfig.WALLET_TYPE_PRIVATE_KEY, walletService);
       this.props.fetchBalances();
     } catch (e) {
-      this.props.setPrivateKeyErrorMessage("Your private key is invalid");
+      this.props.setPrivateKeyErrorMessage(this.props.translate("components.account.ImportAccount.Your_private_key_is_invalid"));
     }
   };
 
@@ -161,4 +162,4 @@ class ImportAccount extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImportAccount);
+export default connect(mapStateToProps, mapDispatchToProps)(withLocalize(ImportAccount));

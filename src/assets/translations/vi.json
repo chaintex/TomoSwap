@@ -1,81 +1,159 @@
 {
-  "Cannot_connect_to_Metamask_Please_make_sure_you_have_Metamask_installed": "Không thể kết nối đến Metamask. Hãy chắc chắn rằng Metamask của bạn đã được cài",
-  "Metamask_should_be_on_network": "Metamask cần chạy {0}",
-  "You_have_chosen_an_invalid_Keystore_file": "Cập nhật JSON file của bạn không hợp lệ. Vui lòng tải lên đúng keystore JSON.",
-  "You_have_chosen_a_malformed_Keystore_file": "Cập nhật JSON file của bạn không hợp lệ. Vui lòng tải lên đúng keystore JSON.",
-  "There_is_something_wrong_with_the_chosen_file":	"Có vấn đề xảy ra với file của bạn.",
-  "Your_private_key_must_have_exactly_64_characters":	"Private Key nên có đúng 64 kí tự",
-  "Please_enter_your_private_key_to_continue": "Vui lòng điền private key để tiếp tục",
-  "Your_private_key_is_invalid": "Private key không đúng định dạng",
-  "Connect_with": "Kết nối với",
-  "Metamask": "Metamask",
-  "Keystore": "Keystore",
-  "Ledger": "Ledger",
-  "Trezor":	"Trezor",
-  "Private_Key": "Private Key",
-  "Connect_other_Wallet": "Kết nối với ví khác",
-  "Waiting_for_confirmation_from_your_wallel": "Chờ xác nhận từ ví của bạn...",
-  "The_transaction_is_broadcasting_to_the_blockchain": "Giao dịch đang được gửi lên...",
-  "Cancel": "Huỷ bỏ",
-  "Confirm": "Xác nhận",
-  "From:":	"Đổi từ:",
-  "To:":	"Đổi sang:",
-  "Swap":	"Trao đổi",
-  "Transfer":	"Chuyển đi",
-  "Sign_and_broadcast":	"Kí và thực hiện giao dịch",
-  "Enter_your_password_passphrase":	"Nhập mật khẩu",
-  "Enter_your_private_key": "Nhập private key",
-  "Search": "Tìm kiếm",
-  "Our_Team": "Về chúng tôi",
-  "Our_Advisors": "Cố vấn",
-  "TomoSwap_The_first_decentralized_exchange_platform_on_TomoChain": "TomoSwap - Nền tảng giao dịch phi tập trung đầu tiên trên TomoChain",
-  "The_fastest_simplest_and_most_secure_way_to_exchange_tokens.": "Nhanh nhất, dễ nhất và an toàn nhất để trao đổi tokens.",
-  "Error": "Lỗi!",
-  "Try_Again": "Thử lại",
-  "About_Us": "Về chúng tôi",
-  "FAQ": "FAQ",
-  "Contact_Us": "Liên hệ",
-  "Blog": "Blog",
-  "2019_ChainTEX_All_rights_reserved": "Bản quyền thuộc về @ 2019 ChainTEX.",
-  "Market": "Thị trường",
-  "Sell_Price": "Giá bán",
-  "Buy_Price": "Giá mua",
-  "24hr_Change": "Thay đổi 24h",
-  "Fetching_market_rates": "Đang cập nhật giá thị trường...",
-  "Source_amount_is_required_to_make_a_swap": "Vui lòng điển số lượng bạn muốn trao đổi",
-  "Please_wait_for_your_balance_to_be_loaded": "Vui lòng đợi cập nhật số dư của bạn",
-  "Your_source_amount_is_bigger_than_your_real_balance": "Số lượng trao đổi lớn hơn số dư của bạn",
-  "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "Bạn không có đủ TOMO để trả phí giao dịch",
-  "Loading": "Đang tải...",
-  "Swap_Now": "Trao Đổi Ngay",
-  "Confirm_Swap": "Xác nhận trao đổi",
-  "Approve_Token": "Cho phép sử dụng token",
-  "You_need_to_grant_permission_for_TomoSwap_to_interact_with_with_this_Address:": "Bạn cần cấp quyền cho TomoSwap để tương tác với {0} với địa chỉ này:",
-  "You_need_to_reset_allowance_of_TomoSwap_with_this_Address:": "Bạn cần đặt lại quyền cho TomoSwap tương tác với {0} với địa chỉ này:",
-  "Broadcasted": "Đã gửi!",
-  "Transaction_Hash": "Mã giao dịch (hash)",
-  "Copied": "Sao chép",
-  "Waiting_for_the_transaction_to_be_mined": "Chờ giao dịch được thực hiện",
-  "Back_to": "Quay lại {0}",
-  "Done": "Xong!",
-  "Successfully": "Thành công {0}",
-  "to": "đến",
-  "New": "Mới",
-  "transferred": "chuyển đi",
-  "swapped": "trao đổi",
-  "To_Address_is_required_to_make_a_transfer": "Vui lòng nhập địa chỉ để chuyển",
-  "Given_address_is_invalid": "Địa chỉ không hợp lệ",
-  "Source_amount_is_required_to_make_a_transfer": "Vui lòng điền số lượng muốn chuyển",
-  "To_Address:": "Địa chỉ nhận:",
-  "Transfer_Now": "Chuyển Ngay",
-  "Confirm_Transfer": "Xác nhận chuyển đi",
-  "Address:": "Địa chỉ:",
-  "GAS_fee:": "Phí GAS:",
-  "We_cannot_handle_that_amount_at_the_moment":	"Không thể xử lí số lượng này vào lúc này",
-  "Cannot_exchange_the_same_token": "Không thể trao đổi cùng token",
-  "Your_source_amounts_decimals_should_be_no_longer_than_characters":	"Số lượng giao dịch không nên có nhiều hơn {0} chữ số thập phân",
-  "Your_source_amount_is_invalid": "Số lượng giao dịch không hợp lệ",
-  "Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent": "Số lương giao dịch quá nhỏ, tối thiểu tương đương 0.01 TOMO",
-  "There_is_something_wrong_with_the_transaction": "Đã có vấn đề xảy ra với giao dịch!",
-  "Password_is_required_to_decrypt": "Vui lòng nhập mật khẩu"
+  "components": {
+    "account": {
+      "ImportAccount": {
+        "Cannot_connect_to_Metamask_Please_make_sure_you_have_Metamask_installed": "Không thể kết nối đến Metamask. Hãy chắc chắn rằng Metamask của bạn đã được cài",
+        "Metamask_should_be_on_network": "Metamask cần chạy {0}",
+        "You_have_chosen_an_invalid_Keystore_file": "Cập nhật JSON file của bạn không hợp lệ. Vui lòng tải lên đúng keystore JSON.",
+        "You_have_chosen_a_malformed_Keystore_file": "Cập nhật JSON file của bạn không hợp lệ. Vui lòng tải lên đúng keystore JSON.",
+        "There_is_something_wrong_with_the_chosen_file":	"Có vấn đề xảy ra với file của bạn.",
+        "Your_private_key_must_have_exactly_64_characters":	"Private Key nên có đúng 64 kí tự",
+        "Please_enter_your_private_key_to_continue": "Vui lòng điền private key để tiếp tục",
+        "Your_private_key_is_invalid": "Private key không đúng định dạng"
+      },
+      "ImportAccountView": {
+        "Connect_with": "Kết nối với",
+        "Metamask": "Metamask",
+        "Keystore": "Keystore",
+        "Ledger": "Ledger",
+        "Trezor":	"Trezor",
+        "Private_Key": "Private Key",
+        "Connect_other_Wallet": "Kết nối với ví khác"
+      }
+    },
+    "commons" : {
+      "ConfirmButton": {
+        "Waiting_for_confirmation_from_your_wallel": "Chờ xác nhận từ ví của bạn...",
+        "The_transaction_is_broadcasting_to_the_blockchain": "Giao dịch đang được gửi lên...",
+        "Cancel": "Huỷ bỏ",
+        "Confirm": "Xác nhận"
+      },
+      "InputGroup": {
+        "From:":	"Đổi từ:",
+        "To:":	"Đổi sang:",
+        "Swap":	"Trao đổi",
+        "Transfer":	"Chuyển đi"
+      },
+      "PasswordInput": {
+        "Sign_and_broadcast":	"Kí và thực hiện giao dịch",
+        "Enter_your_password_passphrase":	"Nhập mật khẩu",
+        "Enter_your_private_key": "Nhập private key"
+      },
+      "TokenSelector": {
+        "Search": "Tìm kiếm"
+      }
+    },
+    "layouts": {
+      "AboutUs": {
+        "Our_Team": "Về chúng tôi",
+        "Our_Advisors": "Cố vấn"
+      },
+      "Body": {
+        "TomoSwap_The_first_decentralized_exchange_platform_on_TomoChain": "TomoSwap - Nền tảng giao dịch phi tập trung đầu tiên trên TomoChain",
+        "The_fastest_simplest_and_most_secure_way_to_exchange_tokens": "Nhanh nhất, dễ nhất và an toàn nhất để trao đổi tokens.",
+        "Swap":	"Trao đổi",
+        "Transfer":	"Chuyển đi",
+        "Error": "Lỗi!",
+        "Try_Again": "Thử lại"
+      },
+      "Footer": {
+        "ChainTEX": "ChainTEX",
+        "About_Us": "Về chúng tôi",
+        "FAQ": "FAQ",
+        "Contact_Us": "Liên hệ",
+        "Blog": "Blog",
+        "2019_ChainTEX_All_rights_reserved": "Bản quyền thuộc về @ 2019 ChainTEX."
+      },
+      "Header": {
+        "Swap":	"Trao đổi",
+        "About_Us": "Về chúng tôi",
+        "FAQ": "FAQ",
+        "Contact_Us": "Liên hệ",
+        "Blog": "Blog",
+        "Your_connection_seems_to_be_offline_Please_check_and_reconnect": "Mất kết nối internet. hãy kiểm tra lại kết nối"
+      }
+    },
+    "market": {
+      "MarketView": {
+        "Market": "Thị trường",
+        "Sell_Price": "Giá bán",
+        "Buy_Price": "Giá mua",
+        "24hr_Change": "Thay đổi 24h",
+        "Fetching_market_rates": "Đang cập nhật giá thị trường..."
+      }
+    },
+    "swap": {
+      "Swap": {
+        "Source_amount_is_required_to_make_a_swap": "Vui lòng điển số lượng bạn muốn trao đổi",
+        "Please_wait_for_your_balance_to_be_loaded": "Vui lòng đợi cập nhật số dư của bạn",
+        "Your_source_amount_is_bigger_than_your_real_balance": "Số lượng trao đổi lớn hơn số dư của bạn",
+        "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "Bạn không có đủ TOMO để trả phí giao dịch"
+      },
+      "SwapView": {
+        "To": "To:",
+        "Loading": "Đang tải...",
+        "Swap_Now": "Trao Đổi Ngay",
+        "Confirm_Swap": "Xác nhận trao đổi",
+        "Approve_Token": "Cho phép sử dụng token",
+        "You_need_to_grant_permission_for_TomoSwap_to_interact_with_with_this_Address:": "Bạn cần cấp quyền cho TomoSwap để tương tác với {0} với địa chỉ này:",
+        "You_need_to_reset_allowance_of_TomoSwap_with_this_Address:": "Bạn cần đặt lại quyền cho TomoSwap tương tác với {0} với địa chỉ này:"
+      }
+    },
+    "transaction": {
+      "TransactionView": {
+        "Broadcasted": "Đã gửi!",
+        "Transaction_Hash": "Mã giao dịch (hash)",
+        "Copied": "Sao chép",
+        "Waiting_for_the_transaction_to_be_mined": "Chờ giao dịch được thực hiện",
+        "Back_to": "Quay lại {0}",
+        "Done": "Xong!",
+        "Successfully": "Thành công {0}",
+        "to": "đến",
+        "New": "Mới",
+        "transferred": "chuyển đi",
+        "swapped": "trao đổi"
+      }
+    },
+    "transfer": {
+      "Transfer": {
+        "To_Address_is_required_to_make_a_transfer": "Vui lòng nhập địa chỉ để chuyển",
+        "Given_address_is_invalid": "Địa chỉ không hợp lệ",
+        "Source_amount_is_required_to_make_a_transfer": "Vui lòng điền số lượng muốn chuyển",
+        "Please_wait_for_your_balance_to_be_loaded": "Please wait for your balance to be loaded",
+        "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance",
+        "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "You don't have enough TOMO balance to pay for transaction fee"
+      },
+      "TransferView": {
+        "To_Address:": "Địa chỉ nhận:",
+        "Transfer_Now": "Chuyển Ngay",
+        "Confirm_Transfer": "Xác nhận chuyển đi",
+        "Address:": "Địa chỉ:",
+        "GAS_fee:": "Phí GAS:"
+      }
+    }
+  },
+  "reducers": {
+    "index": {
+      "We_cannot_handle_that_amount_at_the_moment":	"Không thể xử lí số lượng này vào lúc này",
+      "Cannot_exchange_the_same_token": "Không thể trao đổi cùng token",
+      "Your_source_amounts_decimals_should_be_no_longer_than_characters":	"Số lượng giao dịch không nên có nhiều hơn {0} chữ số thập phân",
+      "Your_source_amount_is_invalid": "Số lượng giao dịch không hợp lệ",
+      "Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent": "Số lương giao dịch quá nhỏ, tối thiểu tương đương 0.01 TOMO",
+      "There_is_something_wrong_with_the_transaction": "Đã có vấn đề xảy ra với giao dịch!",
+      "Password_is_required_to_decrypt": "Vui lòng nhập mật khẩu",
+      "Your_connection_seems_to_be_offline_Please_check_and_reconnect": "Your connection seems to be offline. Please check and reconnect"
+    },
+    "transactionSaga": {
+      "Your_source_amounts_decimals_should_be_no_longer_than_characters": "Your source amount's decimals should be no longer than {0} characters",
+      "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance",
+      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "You don't have enough TOMO balance to pay for transaction fee"
+    }
+  },
+  "services": {
+    "accountServices": {
+      "KeystoreService": {
+        "Password_is_required_to_decrypt": "Password is required to decrypt"
+      }
+    }
+  }
 }

@@ -5,26 +5,34 @@ import './../../assets/scss/index.scss';
 import Header from './Header';
 import Body from './Body';
 import Footer from './Footer';
-import defaultTranslate from '../../assets/translations/en.json';
+import { currentLanguage, avalableLanguages } from '../../services/language'
 
 class App extends Component {
   constructor(props) {
     super(props);
 
+    const { data } = currentLanguage();
     this.props.initialize({
-      languages: [
-        { name: 'English', code: 'en' },
-        { name: 'Tiếng việt', code: 'vi' }
-      ],
-      translation: defaultTranslate,
-      options: { renderToStaticMarkup }
+      languages: avalableLanguages,
+      translation: data,
+      options: { 
+        renderToStaticMarkup,
+        renderInnerHtml: true,
+        onMissingTranslation: this.onMissingTranslation
+      }
     });
+
   }
+
+  onMissingTranslation = ({ translationId, languageCode }) => {
+    console.log(`==========${languageCode} Missing TransactionId ${translationId}`);
+    return translationId;
+  };
 
   render() {
     return (
       <div className={"app-container"}>
-        <Header/>
+        <Header />
         <Body/>
         <Footer/>
       </div>

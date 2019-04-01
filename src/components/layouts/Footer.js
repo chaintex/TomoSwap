@@ -1,15 +1,16 @@
 import React from 'react'
+import { withLocalize, Translate } from 'react-localize-redux';
 
 const Footer = () => (
   <div className={"footer"}>
     <div className={"footer__container"}>
       <div className={"container common__flexbox"}>
         <div className={"footer__content"}>
-          <a href="/" className={"footer__content-item"}>ChainTEX</a>
-          <a href="#aboutus" className={"footer__content-item"}>About Us</a>
-          <a href="/" className={"footer__content-item"}>FAQ</a>
-          <a href="https://goo.gl/forms/PPgKR2d6A5KtV7tH2" target="_blank" rel="noopener noreferrer" className={"footer__content-item"}>Contact Us</a>
-          <a href="https://medium.com/@tomoswap" target="_blank" rel="noopener noreferrer" className={"footer__content-item"}>Blog</a>
+          <a href="/" className={"footer__content-item"}><Translate id={"components.layouts.Footer.ChainTEX"}/></a>
+          <a href="#aboutus" className={"footer__content-item"}><Translate id={"components.layouts.Footer.About_Us"}/></a>
+          <a href="/" className={"footer__content-item"}><Translate id={"components.layouts.Footer.FAQ"}/></a>
+          <a href="https://goo.gl/forms/PPgKR2d6A5KtV7tH2" target="_blank" rel="noopener noreferrer" className={"footer__content-item"}><Translate id={"components.layouts.Footer.Contact_Us"}/></a>
+          <a href="https://medium.com/@tomoswap" target="_blank" rel="noopener noreferrer" className={"footer__content-item"}><Translate id={"components.layouts.Footer.Blog"}/></a>
         </div>
 
         <div className={"footer__logo"}>
@@ -21,8 +22,8 @@ const Footer = () => (
       </div>
     </div>
 
-    <div className={"footer__copyright"}>@ 2019 ChainTEX. All rights reserved.</div>
+    <div className={"footer__copyright"}><Translate id={"components.layouts.Footer.2019_ChainTEX_All_rights_reserved"}/></div>
   </div>
 );
 
-export default Footer
+export default withLocalize(Footer)

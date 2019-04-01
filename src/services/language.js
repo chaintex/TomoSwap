@@ -8,8 +8,13 @@ function getParameterByName(name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-export function initLanguage(){
-  const defaultLanguage = "vi";
+const avalableLanguages = [
+    { name: 'English', code: 'en' },
+    { name: 'Tiếng việt', code: 'vi' }
+];
+
+function currentLanguage(){
+  const defaultLanguage = "en";
   let languagePack, packName;
   try {
     packName = getParameterByName('lang')
@@ -38,8 +43,13 @@ export function initLanguage(){
     languagePack = require("../assets/translations/" + packName + ".json")
   }
 
+  const langItem = avalableLanguages.find(x => x.code === packName);
+
   return {
-    languagePack,
-    packName
+    data: languagePack,
+    code: packName,
+    name: langItem.name,
   }
 }
+
+export { currentLanguage, avalableLanguages };
