@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import React, { Component } from 'react';
+import { withLocalize } from 'react-localize-redux';
 import { setPrivateKey, setPrivateKeyErrorMessage } from "../../actions/accountAction";
 
 function mapStateToProps(store) {
@@ -62,7 +63,7 @@ class PasswordInput extends Component {
             type="text"
             autoComplete="new-password"
             onKeyUp={this.onKeyUp}
-            placeholder={"Enter your private key"}
+            placeholder={this.props.translate("components.commons.PasswordInput.Enter_your_private_key")}
             ref={(input) => { this.keyInput = input; }}
             />
           <div className={"common__password-icon"} onClick={() => this.toggleShowPrivateKey()}/>
@@ -72,4 +73,4 @@ class PasswordInput extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PasswordInput);
+export default connect(mapStateToProps, mapDispatchToProps)(withLocalize(PasswordInput));

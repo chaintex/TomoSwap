@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { withLocalize } from 'react-localize-redux';
 import TokenSelector from '../commons/TokenSelector';
 import Dropdown, { DropdownTrigger, DropdownContent } from "react-simple-dropdown";
 import { filterInputNumber } from "../../utils/validators";
@@ -7,7 +8,7 @@ import { TOMO } from "../../config/tokens";
 import envConfig from "../../config/env";
 import appConfig from "../../config/app";
 
-export default class InputGroup extends Component {
+class InputGroup extends Component {
   constructor(props) {
     super(props);
 
@@ -64,7 +65,7 @@ export default class InputGroup extends Component {
 
     return (
       <div className={"input-group"}>
-        <div className={"input-group__title"}>From:</div>
+        <div className={"input-group__title"}>{this.props.translate("components.commons.InputGroup.From")}</div>
         <div className={`input-group__wrapper ${isError ? 'input-group__wrapper--error' : ''} ${isBalanceBoxShown ? 'input-group__wrapper--imported' : ''}`}>
           <TokenSelector
             selectedToken={this.props.sourceToken}
@@ -91,7 +92,7 @@ export default class InputGroup extends Component {
         </div>
 
         {this.props.error && (
-          <div className={"common__text common__text--error under-input"}>{this.props.error}</div>
+          <div className={"common__text common__text--error under-input"}>{this.props.translate(this.props.error)}</div>
         )}
 
         <div className={"input-group__info input-group__info-address"}>
@@ -110,3 +111,5 @@ export default class InputGroup extends Component {
     )
   }
 }
+
+export default withLocalize(InputGroup);
