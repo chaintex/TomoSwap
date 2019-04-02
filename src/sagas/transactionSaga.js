@@ -7,6 +7,7 @@ import { TOMO } from "../config/tokens";
 import * as transferActions from "../actions/transferAction";
 import { getRate } from "../services/networkService";
 import * as swapActions from "../actions/swapAction";
+import * as accountActions from "../actions/accountAction";
 import { getSwapTxObject } from "./swapSaga";
 import { getTransferTxObject } from "./transferSaga";
 import { formatBigNumber, numberToHex } from "../utils/helpers";
@@ -50,6 +51,11 @@ export function *fetchTransactionReceipt(txHash) {
     }
 
     yield call(delay, appConfig.TX_TRACKING_INTERVAL);
+  }
+
+  if (isTxMined) {
+    //load balance
+    yield put(accountActions.fetchBalances());
   }
 }
 
