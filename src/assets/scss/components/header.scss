@@ -288,6 +288,10 @@
       transform: translateX(270px);
       transition: all .3s ease-out;
 
+      &-lang {
+        display: inline-flex !important;
+      }
+
       &-item {
         padding: 0 30px;
         display: block;
