@@ -5,7 +5,6 @@ class ConfirmButton extends Component {
   render() {
     const isConfirmButtonShown = !this.props.isConfirming && !this.props.isBroadcasting;
     const isConfirmLocking = this.props.isConfirmLocking;
-
     return (
       <div className={"modal__footer"}>
         {this.props.isConfirming && (

@@ -141,20 +141,26 @@
     }
   },
   "reducers": {
-    "index": {
+    "swapSaga": {
       "We_cannot_handle_that_amount_at_the_moment":	"Không thể xử lí số lượng này vào lúc này",
       "Cannot_exchange_the_same_token": "Không thể trao đổi cùng token",
-      "Your_source_amounts_decimals_should_be_no_longer_than_characters":	"Số lượng giao dịch không nên có nhiều hơn {0} chữ số thập phân",
+      "Too_many_fraction_digits":	"Quá nhiều chữ số phần thập phân.",
       "Your_source_amount_is_invalid": "Số lượng giao dịch không hợp lệ",
       "Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent": "Số lương giao dịch quá nhỏ, tối thiểu tương đương 0.01 TOMO",
       "There_is_something_wrong_with_the_transaction": "Đã có vấn đề xảy ra với giao dịch!",
       "Password_is_required_to_decrypt": "Vui lòng nhập mật khẩu",
-      "Your_connection_seems_to_be_offline_Please_check_and_reconnect": "Your connection seems to be offline. Please check and reconnect"
+      "Your_source_amount_is_bigger_than_your_real_balance": "Số lượng giao dịch lớn hơn số dư của bạn",
+      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "Bạn không có đủ TOMO để trả phí giao dịch"
     },
     "transactionSaga": {
-      "Your_source_amounts_decimals_should_be_no_longer_than_characters": "Your source amount's decimals should be no longer than {0} characters",
-      "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance",
-      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "You don't have enough TOMO balance to pay for transaction fee"
+      "There_is_something_wrong_with_the_transaction": "Đã có vấn đề xảy ra với giao dịch!",
+      "Too_many_fraction_digits": "Quá nhiều chữ số phần thập phân.",
+      "Your_source_amount_is_bigger_than_your_real_balance": "Số lượng giao dịch lớn hơn số dư của bạn"
+    },
+    "transferSaga": {
+      "Too_many_fraction_digits": "Quá nhiều chữ số phần thập phân.",
+      "Your_source_amount_is_bigger_than_your_real_balance": "Số lượng giao dịch lớn hơn số dư của bạn",
+      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "Bạn không có đủ TOMO để trả phí giao dịch"
     }
   },
   "services": {

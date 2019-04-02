@@ -105,17 +105,17 @@ function *validateValidInput() {
   const sourceAmountDecimals = sourceAmountString.split(".")[1];
 
   if (sourceAmountDecimals && sourceAmountDecimals.length > sourceTokenDecimals) {
-    yield call(setError, `Your source amount's decimals should be no longer than ${sourceTokenDecimals} characters`);
+    yield call(setError, `reducers.transferSaga.Too_many_fraction_digits`);
     return false;
   }
 
   if (isAccountImported && sourceAmount > sourceBalance) {
-    yield call(setError, 'Your source amount is bigger than your real balance');
+    yield call(setError, 'reducers.transferSaga.Your_source_amount_is_bigger_than_your_real_balance');
     return false;
   }
 
   if (isAccountImported && sourceToken.address === TOMO.address && sourceAmount + +transfer.txFeeInTOMO > sourceBalance) {
-    yield call(setError, `You don't have enough TOMO balance to pay for transaction fee`);
+    yield call(setError, `reducers.transferSaga.You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee`);
     return false;
   }
 

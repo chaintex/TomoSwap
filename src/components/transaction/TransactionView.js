@@ -44,7 +44,7 @@ class TransactionView extends Component {
 
   render() {
     const isError = !!this.props.txError;
-    const otherExchangeMode = this.props.translate(this.props.isSwapMode ? appConfig.EXCHANGE_TRANSFER_MODE: appConfig.EXCHANGE_SWAP_MODE);
+    const otherExchangeMode = this.props.isSwapMode ? appConfig.EXCHANGE_TRANSFER_MODE: appConfig.EXCHANGE_SWAP_MODE;
 
     const txSrcAmount = this.props.tx.txSrcAmount > 0 ? this.props.tx.txSrcAmount : this.props.sourceAmount;
     const txDestAmount = this.props.tx.txDestAmount > 0 ? this.props.tx.txDestAmount : this.props.destAmount;
@@ -129,7 +129,7 @@ class TransactionView extends Component {
                 </div>
               </div>
               <div className={"modal__footer common__flexbox"}>
-                <div className={"modal__button"} onClick={() => this.props.handleSetExchangeMode(otherExchangeMode)}>{otherExchangeMode}</div>
+                <div className={"modal__button"} onClick={() => this.props.handleSetExchangeMode(otherExchangeMode)}>{this.props.translate(`components.transaction.TransactionView.${otherExchangeMode}`)}</div>
                 <div className={"modal__button modal__button--gradient"} onClick={() => this.props.handleSetExchangeMode(this.props.exchangeMode)}>{stringFormat(this.props.translate("components.transaction.TransactionView.New"), this.props.exchangeMode)}</div>
               </div>
             </div>

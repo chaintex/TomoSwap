@@ -162,7 +162,7 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
     let { expectedRate } = yield call(getRate, srcToken.address, srcToken.decimals, destToken.address, sourceAmount);
 
     if (!+expectedRate) {
-      yield call(setError, `We cannot handle that amount at the moment`);
+      yield call(setError, `reducers.swapSaga.We_cannot_handle_that_amount_at_the_moment`);
     }
 
     expectedRate = formatBigNumber(expectedRate);
@@ -177,7 +177,7 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
     yield put(swapActions.setTokenPairRate(expectedRate));
     yield call(validateInputAmountMightChange);
   } catch (e) {
-    yield call(setError, `We cannot handle that amount at the moment`);
+    yield call(setError, `reducers.swapSaga.We_cannot_handle_that_amount_at_the_moment`);
     yield put(swapActions.setTokenPairRate(0));
 
     //continue update desAmount
@@ -233,37 +233,37 @@ function *validateValidInput(swap, account) {
   }
 
   if (sourceAmountString !== '' && swap.tokenPairRate === 0) {
-    yield put(swapActions.setError(`We cannot handle that amount at the moment`));
+    yield put(swapActions.setError(`reducers.swapSaga.We_cannot_handle_that_amount_at_the_moment`));
     return false;
   }
 
   if (swap.sourceToken.address === swap.destToken.address) {
-    yield call(setError, 'Cannot exchange the same token');
+    yield call(setError, 'reducers.swapSaga.Cannot_exchange_the_same_token');
     return false;
   }
 
   if (sourceAmountDecimals && sourceAmountDecimals.length > sourceTokenDecimals) {
-    yield call(setError, `Your source amount's decimals should be no longer than ${sourceTokenDecimals} characters`);
+    yield call(setError, `reducers.swapSaga.Too_many_fraction_digits`);
     return false;
   }
 
   if (isAccountImported && sourceAmount > sourceBalance) {
-    yield call(setError, 'Your source amount is bigger than your real balance');
+    yield call(setError, 'reducers.swapSaga.Your_source_amount_is_bigger_than_your_real_balance');
     return false;
   }
 
   if (isAccountImported && sourceToken.address === TOMO.address && sourceAmount + +swap.txFeeInTOMO > sourceBalance) {
-    yield call(setError, `You don't have enough TOMO balance to pay for transaction fee`);
+    yield call(setError, `reducers.swapSaga.You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee`);
     return false;
   }
 
   if (sourceAmountString !== '' && sourceAmount === 0) {
-    yield call(setError, 'Your source amount is invalid');
+    yield call(setError, 'reducers.swapSaga.Your_source_amount_is_invalid');
     return false;
   }
 
   if (sourceAmountString !== '' && sourceAmountInTOMO < 0.01) {
-    yield call(setError, 'Your source amount is too small, minimum supported amount is 0.01 TOMO equivalent ');
+    yield call(setError, 'reducers.swapSaga.Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent');
     return false;
   }
 
