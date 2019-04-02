@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withLocalize } from 'react-localize-redux';
-import { formatAmount } from "../../utils/helpers";
+import { formatAmount, stringFormat } from "../../utils/helpers";
 import { TOMO, USD } from '../../config/tokens';
 
 class MarketView extends Component {
@@ -47,7 +47,7 @@ class MarketView extends Component {
     return (
       <div className={"market"}>
         <div className={"market__header common__flexbox"}>
-          <div className={"market__header-title"}>{this.props.indexToken.symbol} {this.props.translate("components.market.MarketView.Market")}</div>
+          <div className={"market__header-title"}>{stringFormat(this.props.translate("components.market.MarketView.Market"), this.props.indexToken.symbol)}</div>
           <div className={"market__header-input"}>
             <input type="text" placeholder={this.props.translate("components.market.MarketView.Search")} value={this.props.searchText} onChange={(e) => this.props.onTypingSearch(e)}/>
           </div>

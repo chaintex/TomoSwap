@@ -79,7 +79,7 @@
     "market": {
       "MarketView": {
         "Search": "Search",
-        "Market": "Market",
+        "Market": "{0} Market",
         "Sell_Price": "Sell Price",
         "Buy_Price": "Buy Price",
         "24hr_Change": "24hr Change",

@@ -10,7 +10,7 @@ function getParameterByName(name, url) {
 
 const avalableLanguages = [
     { name: 'English', code: 'en' },
-    { name: 'Tiếng việt', code: 'vi' }
+    { name: 'Tiếng Việt', code: 'vi' }
 ];
 
 function currentLanguage(){

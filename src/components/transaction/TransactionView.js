@@ -70,7 +70,7 @@ class TransactionView extends Component {
                 </div>
               </div>
               <div className={"modal__footer common__flexbox common__flexbox--center"}>
-                <div className={"modal__button"} onClick={() => this.props.unsetTxHash()}>{this.props.translate("components.transaction.TransactionView.Back_to")} {this.props.exchangeMode}</div>
+                <div className={"modal__button"} onClick={() => this.props.unsetTxHash()}>{stringFormat(this.props.translate("components.transaction.TransactionView.Back_to"), this.props.translate(`components.transaction.TransactionView.${this.props.exchangeMode}`))}</div>
               </div>
             </Fragment>
           )}
@@ -108,7 +108,7 @@ class TransactionView extends Component {
                   </div>
                 </div>
                 <div className={"modal__body-bot"}>
-                  <div className={"tx__text tx__text--bold"}>{this.props.translate("components.transaction.TransactionView.Successfully")} {this.props.isSwapMode ? this.props.translate("components.transaction.TransactionView.swapped") : this.props.translate("components.transaction.TransactionView.transferred")}</div>
+                  <div className={"tx__text tx__text--bold"}>{stringFormat(this.props.translate("components.transaction.TransactionView.Successfully"), this.props.isSwapMode ? this.props.translate("components.transaction.TransactionView.swapped") : this.props.translate("components.transaction.TransactionView.transferred"))}</div>
                   <div className={"tx__token-text"}>
                     {this.props.isSwapMode && (
                       <Fragment>
@@ -130,7 +130,7 @@ class TransactionView extends Component {
               </div>
               <div className={"modal__footer common__flexbox"}>
                 <div className={"modal__button"} onClick={() => this.props.handleSetExchangeMode(otherExchangeMode)}>{this.props.translate(`components.transaction.TransactionView.${otherExchangeMode}`)}</div>
-                <div className={"modal__button modal__button--gradient"} onClick={() => this.props.handleSetExchangeMode(this.props.exchangeMode)}>{stringFormat(this.props.translate("components.transaction.TransactionView.New"), this.props.exchangeMode)}</div>
+                <div className={"modal__button modal__button--gradient"} onClick={() => this.props.handleSetExchangeMode(this.props.exchangeMode)}>{this.props.translate(`components.transaction.TransactionView.${this.props.exchangeMode}`)}</div>
               </div>
             </div>
           )}

@@ -57,7 +57,11 @@
     border-radius: 10px;
     box-shadow: 0 42px 154px 0 rgba(1, 1, 1, 0.16);
     background-image: linear-gradient(to bottom, #43508e, #313b6e);
-
+    
+    &-tomo {
+      padding-bottom: 30px;
+    }
+    
     &-wrapper {
       padding: 30px 50px;
       text-align: center;

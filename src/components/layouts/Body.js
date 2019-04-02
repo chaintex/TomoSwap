@@ -34,6 +34,12 @@ function mapDispatchToProps(dispatch) {
 }
 
 class Body extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isTomoWallet: false
+    }
+  }
   componentDidMount = () => {
 
     const web3 = getWeb3Instance();
@@ -46,13 +52,14 @@ class Body extends Component {
         this.props.setWallet(address, AppConfig.WALLET_TYPE_METAMASK, dApp);
         this.props.fetchBalances();
       });
-    } else {
-    } 
+      
+      this.setState({isTomoWallet: true});
+    }
   };
 
   render() {
     const isSwapMode = this.props.exchangeMode === AppConfig.EXCHANGE_SWAP_MODE;
-
+    const {isTomoWallet} = this.state;
     return (
       <div className={"body"}>
         <div className={"container"}>
@@ -62,7 +69,7 @@ class Body extends Component {
               <p className={"body__subtitle"}>{this.props.translate("components.layouts.Body.The_fastest_simplest_and_most_secure_way_to_exchange_tokens")}</p>
             </div>
             <div className={"body__content"}>
-              <div className={"body__exchange"} id={"exchange"}>
+              <div className={`body__exchange ${isTomoWallet ? "body__exchange-tomo" : null}`} id={"exchange"}>
                 <div className={"body__exchange-wrapper"}>
                   <div className={`body__exchange-content body__exchange-content--${isSwapMode ? AppConfig.EXCHANGE_SWAP_MODE : AppConfig.EXCHANGE_TRANSFER_MODE}`}>
                     <div className={`body__exchange-button ${isSwapMode ? 'body__exchange-button--active' : ''}`} onClick={() => this.props.setExchangeMode(AppConfig.EXCHANGE_SWAP_MODE)}>
@@ -79,7 +86,9 @@ class Body extends Component {
                 {!isSwapMode && (
                   <Transfer/>
                 )}
-                <ImportAccount/>
+                {!isTomoWallet && (
+                  <ImportAccount/>
+                )}
                 <Transaction/>
               </div>
             </div>
@@ -90,7 +99,7 @@ class Body extends Component {
         <Modal isActive={!!this.props.globalError} handleClose={() => this.props.resetGlobalError()}>
           <div className={"modal__header modal__header--error"}>{this.props.translate("components.layouts.Body.Error")}</div>
           <div className={"modal__body"}>
-            <div className={"modal__body-top"}>{this.props.globalError}</div>
+            <div className={"modal__body-top"}>{this.props.globalError ? this.props.translate(this.props.globalError) : null}</div>
           </div>
           <div className={"modal__footer common__flexbox common__flexbox--center"}>
             <div className={"modal__button modal__button--gradient"} onClick={() => this.props.resetGlobalError()}>{this.props.translate("components.layouts.Body.Try_Again")}</div>

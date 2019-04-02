@@ -1,7 +1,7 @@
 const EnvConfig = {
   IS_TESTNET: true,
   NETWORK_NAME: "TomoChain Testnet",
-  NETWORK_ID: 819,
+  NETWORK_ID: 89,
   RPC_ENDPOINT: 'https://testnet.tomochain.com',
   WEBSOCKET_ENDPOINT: 'wss://testnet.tomochain.com/ws',
   EXPLORER_URL: 'https://scan.testnet.tomochain.com',

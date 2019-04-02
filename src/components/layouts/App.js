@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   onMissingTranslation = ({ translationId, languageCode }) => {
-    console.log(`==========${languageCode} Missing TransactionId ${translationId}`);
+    console.warn(`Missing TransactionId ${translationId}`);
     return translationId;
   };
 

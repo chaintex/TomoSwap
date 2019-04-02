@@ -79,7 +79,7 @@
     "market": {
       "MarketView": {
         "Search": "Tìm kiếm",
-        "Market": "Thị trường",
+        "Market": "Thị trường theo {0}",
         "Sell_Price": "Giá bán",
         "Buy_Price": "Giá mua",
         "24hr_Change": "Thay đổi 24h",
@@ -112,7 +112,7 @@
         "Waiting_for_the_transaction_to_be_mined": "Chờ giao dịch được thực hiện",
         "Back_to": "Quay lại {0}",
         "Done": "Xong!",
-        "Successfully": "Thành công {0}",
+        "Successfully": "{0} thành công",
         "to": "đến",
         "New": "{0} Mới",
         "transferred": "chuyển đi",
