@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SwapView from './SwapView';
 import { connect } from 'react-redux';
+import { withLocalize } from 'react-localize-redux';
 import { setWalletPassword } from "../../actions/accountAction";
 import * as swapActions from "../../actions/swapAction";
 import { setGlobalError } from "../../actions/globalAction";
@@ -83,7 +84,7 @@ class Swap extends Component {
 
   openConfirmSwapModal = () => {
     if (!this.props.sourceAmount) {
-      this.props.setError("Source amount is required to make a swap");
+      this.props.setError(this.props.translate("components.swap.Swap.Source_amount_is_required_to_make_a_swap"));
       return;
     }
 
@@ -93,25 +94,25 @@ class Swap extends Component {
     }
 
     if (this.props.sourceToken.balance === undefined) {
-      this.props.setError("Please wait for your balance to be loaded");
+      this.props.setError(this.props.translate("components.swap.Swap.Please_wait_for_your_balance_to_be_loaded"));
       return;
     }
 
     const sourceAmount = +this.props.sourceAmount;
     const sourceBalance = +this.props.sourceToken.balance;
     if (sourceAmount > sourceBalance) {
-      this.props.setError("Your source amount is bigger than your real balance");
+      this.props.setError(this.props.translate("components.swap.Swap.Your_source_amount_is_bigger_than_your_real_balance"));
       return;
     }
 
     const txFee = +this.props.txFeeInTOMO;
     if (this.props.sourceToken.address === TOMO.address && sourceAmount + txFee > sourceBalance) {
-      this.props.setError(`You don't have enough TOMO balance to pay for transaction fee`);
+      this.props.setError(this.props.translate("components.swap.Swap.You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee"));
       return;
     }
 
     if (this.props.sourceToken.address !== TOMO.address && txFee > +TOMO.balance) {
-      this.props.setError(`You don't have enough TOMO balance to pay for transaction fee`);
+      this.props.setError(this.props.translate("components.swap.Swap.You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee"));
       return;
     }
 
@@ -187,4 +188,4 @@ class Swap extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Swap);
+export default connect(mapStateToProps, mapDispatchToProps)(withLocalize(Swap));

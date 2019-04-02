@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { formatAmount } from "../../utils/helpers";
+import { withLocalize } from 'react-localize-redux';
+import { formatAmount, stringFormat } from "../../utils/helpers";
 import { TOMO, USD } from '../../config/tokens';
 
-export default class MarketView extends Component {
+class MarketView extends Component {
   render() {
     const getClass = (prop) => {
       let { sort, sortProp } = this.props;
@@ -46,9 +47,9 @@ export default class MarketView extends Component {
     return (
       <div className={"market"}>
         <div className={"market__header common__flexbox"}>
-          <div className={"market__header-title"}>{this.props.indexToken.symbol} Market</div>
+          <div className={"market__header-title"}>{stringFormat(this.props.translate("components.market.MarketView.Market"), this.props.indexToken.symbol)}</div>
           <div className={"market__header-input"}>
-            <input type="text" placeholder="Search" value={this.props.searchText} onChange={(e) => this.props.onTypingSearch(e)}/>
+            <input type="text" placeholder={this.props.translate("components.market.MarketView.Search")} value={this.props.searchText} onChange={(e) => this.props.onTypingSearch(e)}/>
           </div>
         </div>
 
@@ -72,9 +73,9 @@ export default class MarketView extends Component {
                   )
                 })}
               </th>
-              <th className={`market__table-header market__table-header-sortable ${getClass("sellRate")}`} onClick={() => this.props.onSortClick("sellRate")}>Sell Price</th>
-              <th className={`market__table-header market__table-header-sortable ${getClass("buyRate")}`} onClick={() => this.props.onSortClick("buyRate")}>Buy Price</th>
-              <th className={"market__table-header"}>24hr Change</th>
+              <th className={`market__table-header market__table-header-sortable ${getClass("sellRate")}`} onClick={() => this.props.onSortClick("sellRate")}>{this.props.translate("components.market.MarketView.Sell_Price")}</th>
+              <th className={`market__table-header market__table-header-sortable ${getClass("buyRate")}`} onClick={() => this.props.onSortClick("buyRate")}>{this.props.translate("components.market.MarketView.Buy_Price")}</th>
+              <th className={"market__table-header"}>{this.props.translate("components.market.MarketView.24hr_Change")}</th>
             </tr>
             {!this.props.isLoading && (
               getTokenList()
@@ -93,3 +94,5 @@ export default class MarketView extends Component {
     )
   }
 }
+
+export default withLocalize(MarketView);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withLocalize } from 'react-localize-redux';
 import TransferView from './TransferView';
 import { connect } from 'react-redux';
 import { setWalletPassword } from "../../actions/accountAction";
@@ -69,7 +70,7 @@ class Transfer extends Component {
     if (this.props.web3.utils.isAddress(toAddress)) {
       this.props.setAddressError();
     } else {
-      const errorMessage = toAddress === '' ? "To Address is required to make a transfer" : "Given address is invalid";
+      const errorMessage = toAddress === '' ? this.props.translate("components.transfer.Transfer.To_Address_is_required_to_make_a_transfer") : this.props.translate("components.transfer.Transfer.Given_address_is_invalid");
       this.props.setAddressError(errorMessage);
     }
 
@@ -78,17 +79,17 @@ class Transfer extends Component {
 
   openConfirmModal = () => {
     if (this.props.sourceAmount === '') {
-      this.props.setError("Source amount is required to make a transfer");
+      this.props.setError(this.props.translate("components.transfer.Transfer.Source_amount_is_required_to_make_a_transfer"));
       return;
     }
 
     if (!this.props.toAddress) {
-      this.props.setAddressError("To Address is required to make a transfer");
+      this.props.setAddressError(this.props.translate("components.transfer.Transfer.To_Address_is_required_to_make_a_transfer"));
       return;
     }
 
     if (!this.props.web3.utils.isAddress(this.props.toAddress)) {
-      this.props.setAddressError("Given address is invalid");
+      this.props.setAddressError(this.props.translate("components.transfer.Transfer.Given_address_is_invalid"));
       return;
     }
 
@@ -98,25 +99,25 @@ class Transfer extends Component {
     }
 
     if (this.props.sourceToken.balance === undefined) {
-      this.props.setError("Please wait for your balance to be loaded");
+      this.props.setError(this.props.translate("components.transfer.Transfer.Please_wait_for_your_balance_to_be_loaded"));
       return;
     }
 
     const sourceAmount = +this.props.sourceAmount;
     const sourceBalance = +this.props.sourceToken.balance;
     if (sourceAmount > sourceBalance) {
-      this.props.setError('Your source amount is bigger than your real balance');
+      this.props.setError(this.props.translate("components.transfer.Transfer.Your_source_amount_is_bigger_than_your_real_balance"));
       return;
     }
 
     const txFee = +this.props.txFeeInTOMO;
     if (this.props.sourceToken.address === TOMO.address && sourceAmount + txFee > sourceBalance) {
-      this.props.setError(`You don't have enough TOMO balance to pay for transaction fee`);
+      this.props.setError(this.props.translate("components.transfer.Transfer.You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee"));
       return;
     }
 
     if (this.props.sourceToken.address !== TOMO.address && txFee > +TOMO.balance) {
-      this.props.setError(`You don't have enough TOMO balance to pay for transaction fee`);
+      this.props.setError(this.props.translate("components.transfer.Transfer.You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee"));
       return;
     }
 
@@ -167,4 +168,4 @@ class Transfer extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Transfer);
+export default connect(mapStateToProps, mapDispatchToProps)(withLocalize(Transfer));

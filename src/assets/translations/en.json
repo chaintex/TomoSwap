@@ -1,81 +1,173 @@
 {
-  "Cannot connect to Metamask. Please make sure you have Metamask installed": "Cannot connect to Metamask. Please make sure you have Metamask installed",
-  "Metamask should be on '{0}' network": "Metamask should be on {0} network",
-  "You have chosen an invalid Keystore file": "You have chosen an invalid Keystore file.",
-  "You have chosen a malformed Keystore file": "You have chosen a malformed Keystore file.",
-  "There is something wrong with the chosen file":	"There is something wrong with the chosen file.",
-  "Your private key must have exactly 64 characters":	"Your private key must have exactly 64 characters",
-  "Please enter your private key to continue": "Please enter your private key to continue",
-  "Your private key is invalid": "Your private key is invalid",
-  "Connect with": "Connect with",
-  "Metamask": "Metamask",
-  "Keystore": "Keystore",
-  "Ledger": "Ledger",
-  "Trezor":	"Trezor",
-  "Private Key": "Private Key",
-  "Connect other Wallet": "Connect other Wallet",
-  "Waiting for confirmation from your wallet…": "Waiting for confirmation from your wallet…",
-  "The transaction is broadcasting to the blockchain...": "The transaction is broadcasting to the blockchain...",
-  "Cancel": "Cancel",
-  "Confirm": "Confirm",
-  "From:":	"From:",
-  "To:":	"To:",
-  "Swap":	"Swap",
-  "Transfer":	"Transfer",
-  "Sign and broadcast":	"Sign and broadcast",
-  "Enter your password/passphrase":	"Enter your password/passphrase",
-  "Enter your private key": "Enter your private key",
-  "Search": "Search",
-  "Our Team": "Our Team",
-  "Our Advisors": "Our Advisors",
-  "TomoSwap - The first decentralized exchange platform on TomoChain": "TomoSwap - The first decentralized exchange platform on TomoChain",
-  "The fastest, simplest and most secure way to exchange tokens.": "The fastest, simplest and most secure way to exchange tokens.",
-  "Error!": "Error!",
-  "Try Again": "Try Again",
-  "About Us": "About Us",
-  "FAQ": "FAQ",
-  "Contact Us": "Contact Us",
-  "Blog": "Blog",
-  "@ 2019 ChainTEX. All rights reserved.": "@ 2019 ChainTEX. All rights reserved.",
-  "Market": "Market",
-  "Sell Price": "Sell Price",
-  "Buy Price": "Buy Price",
-  "24hr Change": "24hr Change",
-  "Fetching market rates...": "Fetching market rates...",
-  "Source amount is required to make a swap": "Source amount is required to make a swap",
-  "Please wait for your balance to be loaded": "Please wait for your balance to be loaded",
-  "Your source amount is bigger than your real balance": "Your source amount is bigger than your real balance",
-  "You don't have enough TOMO balance to pay for transaction fee": "You don't have enough TOMO balance to pay for transaction fee",
-  "Loading...": "Loading",
-  "Swap Now": "Swap Now",
-  "Confirm Swap": "Confirm Swap",
-  "Approve Token": "Approve Token",
-  "You need to grant permission for TomoSwap to interact with '{0}' with this Address:": "You need to grant permission for TomoSwap to interact with {0} with this Address:",
-  "You need to reset allowance '{0}' of TomoSwap with this Address:": "You need to reset allowance '{0}' of TomoSwap with this Address:",
-  "Broadcasted!": "Broadcasted!",
-  "Transaction Hash": "Transaction Hash",
-  "Copied": "Copied",
-  "Waiting for the transaction to be mined": "Waiting for the transaction to be mined",
-  "Back to '{0}'": "Back to {0}",
-  "Done!": "Done!",
-  "Successfully '{0}'": "Successfully {0}",
-  "to": "to",
-  "New": "New",
-  "transferred": "transferred",
-  "swapped": "swapped",
-  "To Address is required to make a transfer": "Vui lòng nhập địa chỉ để chuyển",
-  "Given address is invalid": "Given address is invalid",
-  "Source amount is required to make a transfer": "Source amount is required to make a transfer",
-  "To Address:": "To Address:",
-  "Transfer Now": "Transfer Now",
-  "Confirm Transfer": "Confirm Transfer",
-  "Address:": "Address:",
-  "GAS fee:": "GAS fee:",
-  "We cannot handle that amount at the moment":	"We cannot handle that amount at the moment",
-  "Cannot exchange the same token": "Cannot exchange the same token",
-  "Your source amount's decimals should be no longer than {0} characters":	"Your source amount's decimals should be no longer than {0} characters",
-  "Your source amount is invalid": "Your source amount is invalid",
-  "Your source amount is too small, minimum supported amount is 0.01 TOMO equivalent": "Your source amount is too small, minimum supported amount is 0.01 TOMO equivalent",
-  "There is something wrong with the transaction!": "There is something wrong with the transaction!",
-  "Password is required to decrypt": "Password is required to decrypt"
+  "components": {
+    "account": {
+      "ImportAccount": {
+        "Cannot_connect_to_Metamask_Please_make_sure_you_have_Metamask_installed": "Cannot connect to Metamask. Please make sure you have Metamask installed",
+        "Metamask_should_be_on_network": "Metamask should be on {0} network",
+        "You_have_chosen_an_invalid_Keystore_file": "You have chosen an invalid Keystore file.",
+        "You_have_chosen_a_malformed_Keystore_file": "You have chosen a malformed Keystore file.",
+        "There_is_something_wrong_with_the_chosen_file":	"There is something wrong with the chosen file.",
+        "Your_private_key_must_have_exactly_64_characters":	"Your private key must have exactly 64 characters",
+        "Please_enter_your_private_key_to_continue": "Please enter your private key to continue",
+        "Your_private_key_is_invalid": "Your private key is invalid"
+      },
+      "ImportAccountView": {
+        "Connect_with": "Connect with",
+        "Metamask": "Metamask",
+        "Keystore": "Keystore",
+        "Ledger": "Ledger",
+        "Trezor":	"Trezor",
+        "Private_Key": "Private Key",
+        "Enter_Private_Key": "Enter private key",
+        "Connect_other_Wallet": "Connect other Wallet",
+        "Receive_some_TOMO_testnet": "Receive some TOMO testnet",
+        "here": "here"
+      }
+    },
+    "commons" : {
+      "ConfirmButton": {
+        "Waiting_for_confirmation_from_your_wallet": "Waiting for confirmation from your wallet…",
+        "The_transaction_is_broadcasting_to_the_blockchain": "The transaction is broadcasting to the blockchain...",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm"
+      },
+      "InputGroup": {
+        "From":	"From:",
+        "To":	"To:",
+        "Swap":	"Swap",
+        "Transfer":	"Transfer"
+      },
+      "PasswordInput": {
+        "Sign_and_broadcast":	"Sign and broadcast",
+        "Enter_your_password_passphrase":	"Enter your password/passphrase",
+        "Enter_your_private_key": "Enter your private key"
+      },
+      "TokenSelector": {
+        "Search": "Search"
+      }
+    },
+    "layouts": {
+      "AboutUs": {
+        "Our_Team": "Our Team",
+        "Our_Advisors": "Our Advisors"
+      },
+      "Body": {
+        "TomoSwap_The_first_decentralized_exchange_platform_on_TomoChain": "TomoSwap - The first decentralized exchange platform on TomoChain",
+        "The_fastest_simplest_and_most_secure_way_to_exchange_tokens": "The fastest, simplest and most secure way to exchange tokens.",
+        "Swap":	"Swap",
+        "Transfer":	"Transfer",
+        "Error": "Error!",
+        "Try_Again": "Try Again"
+      },
+      "Footer": {
+        "ChainTEX": "ChainTEX",
+        "About_Us": "About Us",
+        "FAQ": "FAQ",
+        "Contact_Us": "Contact Us",
+        "2019_ChainTEX_All_rights_reserved.": "@ 2019 ChainTEX. All rights reserved.",
+        "Blog": "Blog"
+      },
+      "Header": {
+        "Swap":	"Swap",
+        "About_Us": "About Us",
+        "FAQ": "FAQ",
+        "Contact_Us": "Contact Us",
+        "Blog": "Blog",
+        "Your_connection_seems_to_be_offline_Please_check_and_reconnect": "Your connection seems to be offline. Please check and reconnect"
+      }
+    },
+    "market": {
+      "MarketView": {
+        "Search": "Search",
+        "Market": "{0} Market",
+        "Sell_Price": "Sell Price",
+        "Buy_Price": "Buy Price",
+        "24hr_Change": "24hr Change",
+        "Fetching_market_rates...": "Fetching market rates..."
+      }
+    },
+    "swap": {
+      "Swap": {
+        "Source_amount_is_required_to_make_a_swap": "Source amount is required to make a swap",
+        "Please_wait_for_your_balance_to_be_loaded": "Please wait for your balance to be loaded",
+        "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance",
+        "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "You don't have enough TOMO balance to pay for transaction fee"
+      },
+      "SwapView": {
+        "To": "To:",
+        "Loading": "Loading",
+        "Swap_Now": "Swap Now",
+        "Confirm_Swap": "Confirm Swap",
+        "GAS_fee": "GAS fee:",
+        "Approve_Token": "Approve Token",
+        "You_need_to_grant_permission_for_TomoSwap_to_interact_with_with_this_Address": "You need to grant permission for TomoSwap to interact with {0} with this Address:",
+        "You_need_to_reset_allowance_of_TomoSwap_with_this_Address": "You need to reset allowance {0} of TomoSwap with this Address:"
+      }
+    },
+    "transaction": {
+      "TransactionView": {
+        "Broadcasted": "Broadcasted!",
+        "Transaction_Hash": "Transaction Hash",
+        "Copied": "Copied",
+        "Waiting_for_the_transaction_to_be_mined": "Waiting for the transaction to be mined",
+        "Back_to": "Back to {0}",
+        "Done": "Done!",
+        "Successfully": "Successfully {0}",
+        "to": "to",
+        "New": "New {0}",
+        "transferred": "transferred",
+        "swapped": "swapped",
+        "Swap":	"Swap",
+        "Transfer":	"Transfer"
+      }
+    },
+    "transfer": {
+      "Transfer": {
+        "To_Address_is_required_to_make_a_transfer": "To Address is required to make a transfer",
+        "Given_address_is_invalid": "Given address is invalid",
+        "Source_amount_is_required_to_make_a_transfer": "Source amount is required to make a transfer",
+        "Please_wait_for_your_balance_to_be_loaded": "Please wait for your balance to be loaded",
+        "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance",
+        "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "You don't have enough TOMO balance to pay for transaction fee"
+      },
+      "TransferView": {
+        "From": "From:",
+        "To_Address": "To Address:",
+        "Transfer_Now": "Transfer Now",
+        "Confirm_Transfer": "Confirm Transfer",
+        "Address": "Address:",
+        "GAS_fee": "GAS fee:"
+      }
+    }
+  },
+  "reducers": {
+    "swapSaga": {
+      "We_cannot_handle_that_amount_at_the_moment":	"We cannot handle that amount at the moment",
+      "Cannot_exchange_the_same_token": "Cannot exchange the same token",
+      "Too_many_fraction_digits":	"Too many fraction digits.",
+      "Your_source_amount_is_invalid": "Your source amount is invalid",
+      "Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent": "Your source amount is too small, minimum supported amount is 0.01 TOMO equivalent",
+      "There_is_something_wrong_with_the_transaction": "There is something wrong with the transaction!",
+      "Password_is_required_to_decrypt": "Password is required to decrypt",
+      "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance",
+      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "You don't have enough TOMO balance to pay for transaction fee"
+    },
+    "transactionSaga": {
+      "There_is_something_wrong_with_the_transaction": "There is something wrong with the transaction!",
+      "Too_many_fraction_digits": "Too many fraction digits.",
+      "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance"
+    },
+    "transferSaga": {
+      "Too_many_fraction_digits": "Too many fraction digits.",
+      "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance",
+      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "You don't have enough TOMO balance to pay for transaction fee"
+    }
+  },
+  "services": {
+    "accountServices": {
+      "KeystoreService": {
+        "Password_is_required_to_decrypt": "Password is required to decrypt"
+      }
+    }
+  }
 }

@@ -38,13 +38,13 @@ export function *fetchTransactionReceipt(txHash) {
       }
       isTxMined = true;
     } else if (txReceipt && txReceipt.status === '0x0') {
-      yield put(txActions.setTxError("There is something wrong with the transaction!"));
+      yield put(txActions.setTxError("reducers.transactionSaga.There_is_something_wrong_with_the_transaction"));
       isTxMined = true;
     } else {
       let currentTime = Date.now(); // current time
       if (Math.abs(currentTime - startTime) >= appConfig.TRANSACTION_TIME_OUT) {
         // transaction could be lost
-        yield put(txActions.setTxError("There is something wrong with the transaction!"));
+        yield put(txActions.setTxError("reducers.transactionSaga.There_is_something_wrong_with_the_transaction"));
         isTxMined = true;
       }
     }
@@ -64,7 +64,7 @@ export function *forceLoadTxPairRate() {
     let { expectedRate } = yield call(getRate, srcToken.address, srcToken.decimals, destToken.address, sourceAmount);
 
     if (!+expectedRate) {
-      yield call(txActions.setTxError(`We cannot handle that amount at the moment`));
+      yield call(txActions.setTxError(`reducers.transactionSaga.We_cannot_handle_that_amount_at_the_moment`));
       return;
     }
 
@@ -79,7 +79,7 @@ export function *forceLoadTxPairRate() {
 
     yield put(txActions.setConfirmLocking(false));
   } catch (e) {
-    yield call(txActions.setTxError(`We cannot handle that amount at the moment`));
+    yield call(txActions.setTxError(`reducers.transactionSaga.We_cannot_handle_that_amount_at_the_moment`));
   }
 }
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Dropdown, { DropdownTrigger, DropdownContent } from "react-simple-dropdown";
+import { withLocalize } from 'react-localize-redux';
 import { formatAmount } from "../../utils/helpers";
 
-export default class TokenSelector extends Component {
+class TokenSelector extends Component {
   constructor(props) {
     super(props);
 
@@ -61,7 +62,7 @@ export default class TokenSelector extends Component {
           <DropdownContent className={"common__fade-in"}>
             <div className={"token-selector__container"}>
               <div className={"token-selector__input-container"}>
-                <input className={"token-selector__input"} placeholder='Search' type="text" value={this.state.searchText} onChange={(e) => this.handleOnTypingSearch(e)}/>
+                <input className={"token-selector__input"} placeholder={this.props.translate("components.commons.TokenSelector.Search")} type="text" value={this.state.searchText} onChange={(e) => this.handleOnTypingSearch(e)}/>
               </div>
               <div className={"token-selector__item-container"}>
                 {getTokenList()}
@@ -74,3 +75,5 @@ export default class TokenSelector extends Component {
   }
 
 }
+
+export default withLocalize(TokenSelector);

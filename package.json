@@ -9,6 +9,7 @@
     "react": "^16.7.0",
     "react-detect-offline": "^2.1.2",
     "react-dom": "^16.7.0",
+    "react-localize-redux": "^3.5.2",
     "react-redux": "^6.0.0",
     "react-scripts": "^2.1.5",
     "react-simple-dropdown": "^3.2.3",
