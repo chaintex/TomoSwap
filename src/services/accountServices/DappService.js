@@ -9,6 +9,20 @@ export default class DappService {
     }
   }
 
+  getNetworkId = (callback = () => {}) => {
+    return new Promise((resolve, reject) => {
+      this.web3.eth.net.getId((error, result) => {
+        if (error || !result) {
+          error = new Error("Cannot get network id")
+          reject(error)
+        } else {
+          callback(result);
+          resolve(result)
+        }
+      })
+    })
+  }
+
   getAccount = (callback) => {
     this.web3.eth.getAccounts((error, result) => {
         if (error || result.length === 0) {
