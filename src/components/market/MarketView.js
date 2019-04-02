@@ -19,7 +19,7 @@ export default class MarketView extends Component {
 
     const getTokenList = () => {
       return this.props.tokens.map((token, index) => {
-        if (!token.symbol.includes(this.props.searchText) || (token.symbol === TOMO.symbol)) {
+        if (!token.symbol.toUpperCase().includes(this.props.searchText) || (token.symbol === TOMO.symbol)) {
           return null;
         }
 
