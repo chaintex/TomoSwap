@@ -56,8 +56,8 @@ function *transfer() {
 
     yield call(fetchTransactionReceipt, txHash);
   } catch (error) {
-    error = translate(error);
-    yield put(txActions.setConfirmingError(error));
+    const errorMsg = translate(error);
+    yield put(txActions.setConfirmingError(errorMsg));
     yield call(setTxStatusBasedOnWalletType, account.walletType, false);
   }
 }
