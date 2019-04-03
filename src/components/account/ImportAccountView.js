@@ -37,7 +37,7 @@ class ImportAccountView extends Component {
                 <div className={"account__icon account__icon--privatekey"}/>
                 <div className={"account__name"}>{this.props.translate("components.account.ImportAccountView.Private_Key")}</div>
               </div>
-              <div className={"account__item account__item--inactive"}>
+              <div className={`account__item account__item--inactive ${isMobile ? "account__item-none" : ""}`}>
                 <div className={"account__icon account__icon--ledger"}/>
                 <div className={"account__name"}>{this.props.translate("components.account.ImportAccountView.Ledger")}</div>
               </div>
