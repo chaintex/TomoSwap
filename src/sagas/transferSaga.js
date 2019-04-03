@@ -91,15 +91,20 @@ export function *getTransferTxObject(gasLimit) {
     srcAmount, 
     txTo
   );
-
-  return yield call(getTxObject, {
+  
+  let txObject = {
     from: account.address,
     to: txTo ? txTo : defaultAddress,
     value: txValue,
     data: txData,
-    gasLimit: gasLimit,
-    metadata: metadata
-  });
+    gasLimit: gasLimit
+  };
+
+  if (account.isTomoWalletBrowser) {
+    txObject["metadata"] = metadata;
+  }
+  
+  return yield call(getTxObject, txObject);
 }
 
 function *resetDataSrcTokenDidChange() {

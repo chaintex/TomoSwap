@@ -9,10 +9,17 @@ const initialState = {
   web3: null,
   isBalanceLoading: false,
   isPrivateKeyModalActive: false,
+  isTomoWalletBrowser: 'false',
 };
 
 export default function accountReducer(state = initialState, action) {
   switch (action.type) {
+    case accountActionTypes.SET_IS_TOMOWALLET_BROWSER_ENV: {
+      return {
+        ...state,
+        isTomoWalletBrowser: action.payload
+      }
+    }
     case accountActionTypes.SET_BALANCE_LOADING: {
       return {
         ...state,

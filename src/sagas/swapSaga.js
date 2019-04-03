@@ -306,14 +306,19 @@ export function *getSwapTxObject(gasLimit, nonce = -1) {
     appConfig.DEFAULT_WALLET_ID
   );
 
-  return yield call(getTxObject, {
+  let txObject = {
     from: account.address,
     to: envConfig.NETWORK_PROXY_ADDRESS,
     value: srcToken.address === TOMO.address ? srcAmount : '0x0',
     gasLimit: gasLimit,
-    data: swapABI,
-    metadata: metadata
-  }, nonce);
+    data: swapABI
+  };
+
+  if (account.isTomoWalletBrowser) {
+    txObject["metadata"] = metadata;
+  }
+  
+  return yield call(getTxObject, txObject, nonce);
 }
 
 function *setError(errorMessage) {
