@@ -144,7 +144,7 @@
     "swapSaga": {
       "We_cannot_handle_that_amount_at_the_moment":	"We cannot handle that amount at the moment",
       "Cannot_exchange_the_same_token": "Cannot exchange the same token",
-      "Too_many_fraction_digits":	"Too many fraction digits.",
+      "Too_many_fraction_digits":	"Your source amount's decimals should be no longer than {0} characters",
       "Your_source_amount_is_invalid": "Your source amount is invalid",
       "Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent": "Your source amount is too small, minimum supported amount is 0.01 TOMO equivalent",
       "There_is_something_wrong_with_the_transaction": "There is something wrong with the transaction!",
@@ -154,11 +154,11 @@
     },
     "transactionSaga": {
       "There_is_something_wrong_with_the_transaction": "There is something wrong with the transaction!",
-      "Too_many_fraction_digits": "Too many fraction digits.",
+      "Too_many_fraction_digits": "Your source amount's decimals should be no longer than {0} characters",
       "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance"
     },
     "transferSaga": {
-      "Too_many_fraction_digits": "Too many fraction digits.",
+      "Too_many_fraction_digits": "Your source amount's decimals should be no longer than {0} characters",
       "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance",
       "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "You don't have enough TOMO balance to pay for transaction fee"
     }
@@ -166,7 +166,14 @@
   "services": {
     "accountServices": {
       "KeystoreService": {
-        "Password_is_required_to_decrypt": "Password is required to decrypt"
+        "Password_is_required_to_decrypt": "Password is required to decrypt",
+        "Key_derivation_failed_possibly_wrong_password": "Key derivation failed - possibly wrong password"
+      },
+      "MetamaskService": {
+        "User_denied_transaction_signature": "User denied transaction signature."
+      },
+      "DappService": {
+        "Cancelled": "User denied transaction signature."
       }
     }
   }

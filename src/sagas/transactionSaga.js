@@ -210,7 +210,7 @@ export function *getTxObject(data, nonce = -1) {
       console.log("Get nonce error: " + e);
     }
   }
-
+  
   return {
     from: data.from,
     to: data.to,
@@ -220,5 +220,6 @@ export function *getTxObject(data, nonce = -1) {
     gasLimit: numberToHex(data.gasLimit.toFixed(0), 0),
     nonce: nonce,
     chainId: envConfig.NETWORK_ID,
+    metadata: data.metadata
   };
 }

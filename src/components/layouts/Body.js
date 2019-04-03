@@ -31,6 +31,7 @@ function mapDispatchToProps(dispatch) {
     resetGlobalError: () => {dispatch(globalActions.setGlobalError())},
     setGlobalError: (error) => {dispatch(globalActions.setGlobalError(error))},
     fetchBalances: () => {dispatch(accountActions.fetchBalances())},
+    setIsTomoWalletBrowser: (flag) => {accountActions.setIsTomoWalletBrowser(flag)},
     setWallet: (address, walletType, walletService) => {dispatch(accountActions.setWallet(address, walletType, walletService))},
   }
 }
@@ -62,6 +63,7 @@ class Body extends Component {
       });
       
       this.setState({isTomoWallet: true});
+      this.props.setIsTomoWalletBrowser(true);
     }
   };
 
@@ -107,7 +109,7 @@ class Body extends Component {
         <Modal isActive={!!this.props.globalError} handleClose={() => this.props.resetGlobalError()}>
           <div className={"modal__header modal__header--error"}>{this.props.translate("components.layouts.Body.Error")}</div>
           <div className={"modal__body"}>
-            <div className={"modal__body-top"}>{this.props.globalError ? this.props.translate(this.props.globalError) : null}</div>
+            <div className={"modal__body-top"}>{this.props.globalError}</div>
           </div>
           <div className={"modal__footer common__flexbox common__flexbox--center"}>
             <div className={"modal__button modal__button--gradient"} onClick={() => this.props.resetGlobalError()}>{this.props.translate("components.layouts.Body.Try_Again")}</div>

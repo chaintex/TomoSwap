@@ -7,7 +7,15 @@ export const accountActionTypes = {
   SET_IS_SHOWING_MODAL_ENTER_PRIVATE_KEY: 'ACCOUNT.SET_IS_SHOWING_MODAL_ENTER_PRIVATE_KEY',
   SET_PRIVATE_KEY: 'ACCOUNT.SET_PRIVATE_KEY',
   SET_PRIVATE_KEY_ERROR: 'ACCOUNT.SET_PRIVATE_KEY_ERROR',
+  SET_IS_TOMOWALLET_BROWSER_ENV: 'ACCOUNT.SET_IS_TOMOWALLET_BROWSER_ENV',
 };
+
+export function setIsTomoWalletBrowser(flag) {
+  return {
+    type: accountActionTypes.SET_IS_TOMOWALLET_BROWSER_ENV,
+    payload: flag
+  }
+}
 
 export function fetchBalances() {
   return {
