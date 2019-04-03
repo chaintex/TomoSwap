@@ -1,9 +1,10 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
+import { getTranslate } from 'react-localize-redux';
 import * as transferActions from '../actions/transferAction';
 import * as txActions from "../actions/transactionAction";
 import * as accountActions from '../actions/accountAction';
 import * as tokenActions from '../actions/tokenAction';
-import { getDefaultAddress, numberToHex } from "../utils/helpers";
+import { getDefaultAddress, numberToHex, stringFormat } from "../utils/helpers";
 import { getTransferABI } from "../services/networkService";
 import { TOMO } from "../config/tokens";
 import {
@@ -14,13 +15,17 @@ import {
   setTxStatusBasedOnWalletType
 } from "./transactionSaga";
 import appConfig from "../config/app";
+import EnvConfig from '../config/env';
 
 const getTransferState = state => state.transfer;
 const getAccountState = state => state.account;
+const getLocalizeState = state => state.localize;
 
 function *transfer() {
   const account = yield select(getAccountState);
   const transfer = yield select(getTransferState);
+  const localizeState = yield select(getLocalizeState);
+  const translate = getTranslate(localizeState);
 
   const isValidInput = yield call(validateValidInput);
   if (!isValidInput) {
@@ -52,7 +57,8 @@ function *transfer() {
 
     yield call(fetchTransactionReceipt, txHash);
   } catch (error) {
-    yield put(txActions.setConfirmingError(error));
+    const errorMsg = translate(error);
+    yield put(txActions.setConfirmingError(errorMsg));
     yield call(setTxStatusBasedOnWalletType, account.walletType, false);
   }
 }
@@ -80,13 +86,25 @@ export function *getTransferTxObject(gasLimit) {
     });
   }
 
-  return yield call(getTxObject, {
+  const metadata = stringFormat(EnvConfig.METADATA_TRANSFER_DEFINED, 
+    srcToken.address, 
+    srcAmount, 
+    txTo
+  );
+  
+  let txObject = {
     from: account.address,
     to: txTo ? txTo : defaultAddress,
     value: txValue,
     data: txData,
     gasLimit: gasLimit
-  });
+  };
+
+  if (account.isTomoWalletBrowser) {
+    txObject["metadata"] = metadata;
+  }
+  
+  return yield call(getTxObject, txObject);
 }
 
 function *resetDataSrcTokenDidChange() {
@@ -103,19 +121,21 @@ function *validateValidInput() {
   const sourceAmountString = transfer.sourceAmount.toString();
   const sourceTokenDecimals = sourceToken.decimals;
   const sourceAmountDecimals = sourceAmountString.split(".")[1];
+  const localizeState = yield select(getLocalizeState);
+  const translate = getTranslate(localizeState);
 
   if (sourceAmountDecimals && sourceAmountDecimals.length > sourceTokenDecimals) {
-    yield call(setError, `reducers.transferSaga.Too_many_fraction_digits`);
+    yield call(setError, stringFormat(translate(`reducers.transferSaga.Too_many_fraction_digits`), sourceTokenDecimals));
     return false;
   }
 
   if (isAccountImported && sourceAmount > sourceBalance) {
-    yield call(setError, 'reducers.transferSaga.Your_source_amount_is_bigger_than_your_real_balance');
+    yield call(setError, translate('reducers.transferSaga.Your_source_amount_is_bigger_than_your_real_balance'));
     return false;
   }
 
   if (isAccountImported && sourceToken.address === TOMO.address && sourceAmount + +transfer.txFeeInTOMO > sourceBalance) {
-    yield call(setError, `reducers.transferSaga.You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee`);
+    yield call(setError, translate(`reducers.transferSaga.You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee`));
     return false;
   }
 
