@@ -100,8 +100,8 @@
         "Confirm_Swap": "Xác nhận trao đổi",
         "GAS_fee": "Phí GAS:",
         "Approve_Token": "Cho phép sử dụng token",
-        "You_need_to_grant_permission_for_TomoSwap_to_interact_with_with_this_Address:": "Bạn cần cấp quyền cho TomoSwap để tương tác với {0} với địa chỉ này:",
-        "You_need_to_reset_allowance_of_TomoSwap_with_this_Address:": "Bạn cần đặt lại quyền cho TomoSwap tương tác với {0} với địa chỉ này:"
+        "You_need_to_grant_permission_for_TomoSwap_to_interact_with_with_this_Address": "Bạn cần cấp quyền cho TomoSwap để tương tác với {0} với địa chỉ này:",
+        "You_need_to_reset_allowance_of_TomoSwap_with_this_Address": "Bạn cần đặt lại quyền cho TomoSwap tương tác với {0} với địa chỉ này:"
       }
     },
     "transaction": {
@@ -171,6 +171,9 @@
       },
       "MetamaskService": {
         "User_denied_transaction_signature": "Huỷ bỏ xác nhận kí giao dịch."
+      },
+      "DappService": {
+        "Cancelled": "Huỷ bỏ xác nhận kí giao dịch."
       }
     }
   }

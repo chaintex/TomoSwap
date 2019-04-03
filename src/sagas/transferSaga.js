@@ -15,6 +15,7 @@ import {
   setTxStatusBasedOnWalletType
 } from "./transactionSaga";
 import appConfig from "../config/app";
+import EnvConfig from '../config/env';
 
 const getTransferState = state => state.transfer;
 const getAccountState = state => state.account;
@@ -85,12 +86,19 @@ export function *getTransferTxObject(gasLimit) {
     });
   }
 
+  const metadata = stringFormat(EnvConfig.METADATA_TRANSFER_DEFINED, 
+    srcToken.address, 
+    srcAmount, 
+    txTo
+  );
+
   return yield call(getTxObject, {
     from: account.address,
     to: txTo ? txTo : defaultAddress,
     value: txValue,
     data: txData,
-    gasLimit: gasLimit
+    gasLimit: gasLimit,
+    metadata: metadata
   });
 }
 

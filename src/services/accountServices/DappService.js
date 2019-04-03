@@ -41,6 +41,9 @@ export default class DappService {
         from: txObject.from,
       }, function (data, response) {
         if (response.error) {
+          if (response.error.message.includes('cancelled')) {
+            reject('services.accountServices.DappService.Cancelled');
+          }
           reject(response.error.message);
         }
 

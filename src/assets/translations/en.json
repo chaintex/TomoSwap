@@ -171,6 +171,9 @@
       },
       "MetamaskService": {
         "User_denied_transaction_signature": "User denied transaction signature."
+      },
+      "DappService": {
+        "Cancelled": "User denied transaction signature."
       }
     }
   }

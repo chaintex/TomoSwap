@@ -13,7 +13,7 @@ export default class KeystoreService {
     try {
       account = this.web3.eth.accounts.decrypt(this.keystore, password);
     } catch (error) {
-      if (error.message === 'Key derivation failed - possibly wrong password') {
+      if (error.message.includes('Key derivation failed - possibly wrong password')) {
         throw new Error('services.accountServices.KeystoreService.Key_derivation_failed_possibly_wrong_password').message;
       }
 

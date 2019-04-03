@@ -7,7 +7,7 @@ import rootSaga from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
-var middlewareArray = [sagaMiddleware, logger];
+var middlewareArray = [sagaMiddleware];
 
 const middleware = applyMiddleware(
   ...middlewareArray

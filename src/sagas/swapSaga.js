@@ -298,12 +298,21 @@ export function *getSwapTxObject(gasLimit, nonce = -1) {
     walletId: appConfig.DEFAULT_WALLET_ID
   });
 
+  const metadata = stringFormat(envConfig.METADATA_SWAP_DEFINED, 
+    srcToken.address, 
+    srcAmount, 
+    swap.destToken.address,
+    minConversionRate,
+    appConfig.DEFAULT_WALLET_ID
+  );
+
   return yield call(getTxObject, {
     from: account.address,
     to: envConfig.NETWORK_PROXY_ADDRESS,
     value: srcToken.address === TOMO.address ? srcAmount : '0x0',
     gasLimit: gasLimit,
-    data: swapABI
+    data: swapABI,
+    metadata: metadata
   }, nonce);
 }
 
