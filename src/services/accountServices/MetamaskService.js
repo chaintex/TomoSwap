@@ -11,9 +11,12 @@ export default class MetamaskService {
         from: txObject.from,
       }, function (data, response) {
         if (response.error) {
-          reject(response.error.message);
+          if (response.error.message.includes("User denied transaction signature.")) {
+            reject("services.accountServices.MetamaskService.User_denied_transaction_signature");
+          } else {
+            reject(response.error.message);
+          }
         }
-
         resolve(response.result);
       });
     });

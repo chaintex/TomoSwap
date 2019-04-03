@@ -16,7 +16,7 @@ class ConfirmButton extends Component {
         )}
 
         {this.props.confirmingError && (
-          <div className={"common__text common__text--error common__text--mb"}>{this.props.translate(this.props.confirmingError)}</div>
+          <div className={"common__text common__text--error common__text--mb"}>{this.props.confirmingError}</div>
         )}
 
         {isConfirmButtonShown && (

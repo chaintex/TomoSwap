@@ -1,10 +1,12 @@
 import { delay } from 'redux-saga';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
+import { getTranslate } from 'react-localize-redux';
 import { getSwapABI, getRate, getAllowance, getApproveABI } from "../services/networkService";
 import * as swapActions from "../actions/swapAction";
 import * as accountActions from '../actions/accountAction';
 import * as txActions from "../actions/transactionAction";
 import * as tokenActions from '../actions/tokenAction';
+import { stringFormat } from '../utils/helpers';
 import {
   calculateMinConversionRate,
   formatBigNumber,
@@ -26,10 +28,13 @@ import {
 
 const getSwapState = state => state.swap;
 const getAccountState = state => state.account;
+const getLocalizeState = state => state.localize;
 
 function *swapToken() {
   const swap = yield select(getSwapState);
   const account = yield select(getAccountState);
+  const localizeState = yield select(getLocalizeState);
+  const translate = getTranslate(localizeState);
 
   const isValidInput = yield call(validateValidInput, swap, account);
   if (!isValidInput) {
@@ -92,7 +97,7 @@ function *swapToken() {
 
     yield call(fetchTransactionReceipt, txHash);
   } catch (error) {
-    yield put(txActions.setConfirmingError(error));
+    yield put(txActions.setConfirmingError(translate(error)));
     yield call(setTxStatusBasedOnWalletType, account.walletType, false);
   }
 }
@@ -129,7 +134,7 @@ function *approve(action, isBackgroundCall = false, value = getBiggestNumber(), 
       yield put(txActions.setConfirmingError(e));
       yield call(setTxStatusBasedOnWalletType, account.walletType, false);
     }
-    console.log(e);
+
     if (isBackgroundCall) { throw e; }
   }
 }
@@ -150,6 +155,8 @@ function *fetchTokenPairRateWithInterval() {
 
 function *fetchTokenPairRate(isBackgroundLoading = false) {
   const swap = yield select(getSwapState);
+  const localizeState = yield select(getLocalizeState);
+  const translate = getTranslate(localizeState);
 
   const srcToken = swap.sourceToken;
   const destToken = swap.destToken;
@@ -162,7 +169,7 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
     let { expectedRate } = yield call(getRate, srcToken.address, srcToken.decimals, destToken.address, sourceAmount);
 
     if (!+expectedRate) {
-      yield call(setError, `reducers.swapSaga.We_cannot_handle_that_amount_at_the_moment`);
+      yield call(setError, translate(`reducers.swapSaga.We_cannot_handle_that_amount_at_the_moment`));
     }
 
     expectedRate = formatBigNumber(expectedRate);
@@ -177,7 +184,7 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
     yield put(swapActions.setTokenPairRate(expectedRate));
     yield call(validateInputAmountMightChange);
   } catch (e) {
-    yield call(setError, `reducers.swapSaga.We_cannot_handle_that_amount_at_the_moment`);
+    yield call(setError, translate(`reducers.swapSaga.We_cannot_handle_that_amount_at_the_moment`));
     yield put(swapActions.setTokenPairRate(0));
 
     //continue update desAmount
@@ -222,7 +229,9 @@ function *validateValidInput(swap, account) {
   const sourceAmountString = swap.sourceAmount.toString();
   const sourceTokenDecimals = sourceToken.decimals;
   const sourceAmountDecimals = sourceAmountString.split(".")[1];
-
+  const localizeState = yield select(getLocalizeState);
+  const translate = getTranslate(localizeState);
+  
   let sourceAmountInTOMO;
   if (sourceToken.address === TOMO.address) {
     sourceAmountInTOMO = sourceAmount;
@@ -233,37 +242,37 @@ function *validateValidInput(swap, account) {
   }
 
   if (sourceAmountString !== '' && swap.tokenPairRate === 0) {
-    yield put(swapActions.setError(`reducers.swapSaga.We_cannot_handle_that_amount_at_the_moment`));
+    yield put(swapActions.setError(translate(`reducers.swapSaga.We_cannot_handle_that_amount_at_the_moment`)));
     return false;
   }
 
   if (swap.sourceToken.address === swap.destToken.address) {
-    yield call(setError, 'reducers.swapSaga.Cannot_exchange_the_same_token');
+    yield call(setError, translate('reducers.swapSaga.Cannot_exchange_the_same_token'));
     return false;
   }
 
   if (sourceAmountDecimals && sourceAmountDecimals.length > sourceTokenDecimals) {
-    yield call(setError, `reducers.swapSaga.Too_many_fraction_digits`);
+    yield call(setError, stringFormat(translate(`reducers.swapSaga.Too_many_fraction_digits`), sourceTokenDecimals));
     return false;
   }
 
   if (isAccountImported && sourceAmount > sourceBalance) {
-    yield call(setError, 'reducers.swapSaga.Your_source_amount_is_bigger_than_your_real_balance');
+    yield call(setError, translate('reducers.swapSaga.Your_source_amount_is_bigger_than_your_real_balance'));
     return false;
   }
 
   if (isAccountImported && sourceToken.address === TOMO.address && sourceAmount + +swap.txFeeInTOMO > sourceBalance) {
-    yield call(setError, `reducers.swapSaga.You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee`);
+    yield call(setError, translate(`reducers.swapSaga.You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee`));
     return false;
   }
 
   if (sourceAmountString !== '' && sourceAmount === 0) {
-    yield call(setError, 'reducers.swapSaga.Your_source_amount_is_invalid');
+    yield call(setError, translate('reducers.swapSaga.Your_source_amount_is_invalid'));
     return false;
   }
 
   if (sourceAmountString !== '' && sourceAmountInTOMO < 0.01) {
-    yield call(setError, 'reducers.swapSaga.Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent');
+    yield call(setError, translate('reducers.swapSaga.Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent'));
     return false;
   }
 
