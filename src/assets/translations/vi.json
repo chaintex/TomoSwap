@@ -57,7 +57,9 @@
         "Swap":	"Trao đổi",
         "Transfer":	"Chuyển đi",
         "Error": "Lỗi!",
-        "Try_Again": "Thử lại"
+        "Try_Again": "Thử lại",
+        "Comming_Soon": "Sắp ra mắt. . .",
+        "You_can_try_testnet_version_here": "Bạn có thể dùng thử phiên bản testnet tại"
       },
       "Footer": {
         "ChainTEX": "ChainTEX",

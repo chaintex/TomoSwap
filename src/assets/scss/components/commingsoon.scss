@@ -1,0 +1,50 @@
+.commingsoon {
+    height: 720px;
+    align-items: center;
+    display: flex;
+
+    .container {
+        width: 100%;
+
+        .body__content{
+            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+
+            .body__title::before {
+                background-color: inherit;
+            }
+        }
+    }
+
+}
+
+@media (max-width: $smallest-breakpoint) {
+    .commingsoon {
+        height: 270px !important;
+    }
+}
+
+@media (max-width: $smaller-breakpoint) {
+    .commingsoon {
+        height: 380px !important;
+    }
+}
+
+@media (max-width: $small-breakpoint) {
+    .commingsoon {
+        height: 450px !important;
+    }
+}
+
+@media (max-width: $medium-breakpoint) {
+    .commingsoon {
+        height: 520px !important;
+    }
+}
+
+@media (max-width: $large-breakpoint) {
+    .commingsoon {
+        height: 800px !important;
+    }
+}

@@ -57,7 +57,9 @@
         "Swap":	"Swap",
         "Transfer":	"Transfer",
         "Error": "Error!",
-        "Try_Again": "Try Again"
+        "Try_Again": "Try Again",
+        "Comming_Soon": "Comming soon. . .",
+        "You_can_try_testnet_version_here": "You can try testnet version"
       },
       "Footer": {
         "ChainTEX": "ChainTEX",
