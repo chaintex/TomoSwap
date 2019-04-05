@@ -59,6 +59,13 @@ export function getRate(srcAddress, srcDecimals, destAddress, srcAmount) {
   });
 }
 
+export function getUserCap(accAddress) {
+  const networkProxyContract = Web3Service.getNetworkProxyContract();
+  return networkProxyContract.methods.getUserCapInWei(accAddress).call().then((result) => {
+    return result;
+  });
+}
+
 export async function getAllRates(srcAddresses, srcDecimals, destAddresses, srcAmounts) {
   let rates = [];
 

@@ -150,7 +150,8 @@
       "There_is_something_wrong_with_the_transaction": "There is something wrong with the transaction!",
       "Password_is_required_to_decrypt": "Password is required to decrypt",
       "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance",
-      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "You don't have enough TOMO balance to pay for transaction fee"
+      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "You don't have enough TOMO balance to pay for transaction fee",
+      "Your_source_amount_is_bigger_than_your_capacity_limit": "Your source amount exceeds your capacity limit"
     },
     "transactionSaga": {
       "There_is_something_wrong_with_the_transaction": "There is something wrong with the transaction!",
