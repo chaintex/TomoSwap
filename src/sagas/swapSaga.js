@@ -1,7 +1,7 @@
 import { delay } from 'redux-saga';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { getTranslate } from 'react-localize-redux';
-import { getSwapABI, getRate, getAllowance, getApproveABI } from "../services/networkService";
+import { getSwapABI, getRate, getAllowance, getApproveABI, getUserCap } from "../services/networkService";
 import * as swapActions from "../actions/swapAction";
 import * as accountActions from '../actions/accountAction';
 import * as txActions from "../actions/transactionAction";
@@ -39,6 +39,19 @@ function *swapToken() {
   const isValidInput = yield call(validateValidInput, swap, account);
   if (!isValidInput) {
     yield put(swapActions.setIsConfirmModalActive(false));
+    return;
+  }
+
+  //check usercap 
+  try {
+    const usrCap = yield call(getUserCap, account.address);
+    
+    if (swap.sourceAmount > formatBigNumber(usrCap)) {
+      yield put(txActions.setConfirmingError(translate(`reducers.swapSaga.Your_source_amount_is_bigger_than_your_capacity_limit`)));
+      return;
+    }
+  } catch (e) {
+    yield put(txActions.setConfirmingError(e));
     return;
   }
 
