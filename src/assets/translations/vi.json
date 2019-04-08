@@ -150,7 +150,8 @@
       "There_is_something_wrong_with_the_transaction": "Đã có vấn đề xảy ra với giao dịch!",
       "Password_is_required_to_decrypt": "Vui lòng nhập mật khẩu",
       "Your_source_amount_is_bigger_than_your_real_balance": "Số lượng giao dịch lớn hơn số dư của bạn",
-      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "Bạn không có đủ TOMO để trả phí giao dịch"
+      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "Bạn không có đủ TOMO để trả phí giao dịch",
+      "Your_source_amount_is_bigger_than_your_capacity_limit": "Số lượng giao dịch vượt quá giới hạn cho phép"
     },
     "transactionSaga": {
       "There_is_something_wrong_with_the_transaction": "Đã có vấn đề xảy ra với giao dịch!",
