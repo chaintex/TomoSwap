@@ -60,7 +60,7 @@ class Header extends Component {
             </div>
             <div className={"header__content-item header__content-notify"}>
               <span className={"icon-notify"}></span>
-              <div className="header__content-lang-langswitch langswitch">
+              <div className="header__content-lang-langswitch notifycations">
                 {getLanguages}
               </div>
             </div>
