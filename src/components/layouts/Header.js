@@ -58,6 +58,12 @@ class Header extends Component {
                 {getLanguages}
               </div>
             </div>
+            <div className={"header__content-item header__content-notify"}>
+              <span className={"icon-notify"}></span>
+              <div className="header__content-lang-langswitch langswitch">
+                {getLanguages}
+              </div>
+            </div>
           </div>
         </div>
         <Offline polling={{ interval: 2000 }}>
