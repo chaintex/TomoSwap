@@ -28,16 +28,7 @@ const transactions = props.txs.map((tx) => {
 
     const hash = tx.hash;
 
-    if (tx && tx.error === "transaction.error_tx_log" && classTx === "failed") {
-      return (
-        <li key={hash}>
-          <a className={classTx} href={hashDetailLink(tx.hash)} target="_blank" rel="noopener noreferrer">
-            <div className="link">{formatAddress(hash, 25, 13)}</div>
-          </a>
-        </li>
-      )
-    } else {
-      return (
+    return (
         <li key={hash}>
           <a className={classTx} href={hashDetailLink(tx.hash)} target="_blank" rel="noopener noreferrer">
             <div className="link">{formatAddress(hash, 25, 13)}</div>
@@ -46,8 +37,7 @@ const transactions = props.txs.map((tx) => {
             }
           </a>
         </li>
-      )
-    }
+    );
   });
 
   return (
