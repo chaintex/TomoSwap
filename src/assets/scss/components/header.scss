@@ -398,9 +398,10 @@
 
         .notifycations {
           border-radius: 3px;
+          right: -103px;
 
           &::before {
-            right: 25px;
+            right: 125px;
           }
         }
       }
