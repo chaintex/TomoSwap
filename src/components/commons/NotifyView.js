@@ -30,7 +30,7 @@ const transactions = props.txs.map((tx) => {
 
     return (
         <li key={hash}>
-          <a className={classTx} href={hashDetailLink(tx.hash)} target="_blank" rel="noopener noreferrer">
+          <a className={classTx} href={hashDetailLink(hash)} target="_blank" rel="noopener noreferrer">
             <div className="link">{formatAddress(hash, 25, 13)}</div>
             {classTx === "failed" &&
               <div className="reason">{tx.message}</div>
