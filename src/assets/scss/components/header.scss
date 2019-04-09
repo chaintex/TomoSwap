@@ -84,7 +84,7 @@
       }
 
       .notifycations {
-        width: 150px;
+        width: 250px;
         padding: 20px 10px 20px 10px;
         position: absolute;
         top: 33px;
@@ -97,6 +97,41 @@
         pointer-events: none;
         transition: all .3s;
 
+        .sub-title {
+          color: #000;
+          align-items: center;
+          text-align: center;
+
+          &::after {
+            display: inline-block;
+            content: '';
+            width: 100%;
+            border-bottom: 1px solid #e8e8e8;
+          }
+        }
+
+        .items {
+          li {
+            display: inline-block;
+            border-bottom: 1px dotted #e8e8e8;
+            width: 100%;
+
+            .success {
+              color:#0386e2 !important;
+              background-color:#effaf6;
+            }
+
+            .error {
+              color: $red !important;
+              background-color:#FCF4F6;
+            }
+
+            .pending {
+              color:#fcae6a !important;
+              background-color:#FEF6EF;
+            }
+          }
+        }
         &::before {
           top: -10px;
           right: 0;
@@ -109,6 +144,11 @@
         }
       }
 
+      .has-tx {
+        &::before {
+          opacity: 1 !important;
+        }
+      }
       .icon-notify {
         width: 18px;
         height: 18px;
@@ -128,6 +168,7 @@
           position: absolute;
           right: -2px;
           top: 0px;
+          opacity: 0;
         }
       }
     }

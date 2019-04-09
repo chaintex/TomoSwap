@@ -44,6 +44,9 @@
       },
       "TokenSelector": {
         "Search": "Search"
+      },
+      "NotifyView": {
+        "Your_transactions": "Your transactions"
       }
     },
     "layouts": {

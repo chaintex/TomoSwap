@@ -12,10 +12,37 @@ const initialState = {
   txDestAmount: 0,
   txTokenPairRate: 0,
   isConfirmLocking: false,
+  txs: [],
 };
 
 export default function transactionReducer(state = initialState, action) {
   switch (action.type) {
+    case txActionTypes.SET_TX_HASH_TO_QUESE: {
+      let txs = state.txs;
+      var index = txs.findIndex(x => x.hash === action.payload.hash);
+      if (index !== -1)
+      {
+        txs.splice(index, 1);
+      }
+      
+      return {
+        ...state,
+        txs: state.txs.concat([action.payload]),
+      }
+    }
+    case txActionTypes.REMOVE_TX_HASH_FROM_QUESE: {
+      let txs = state.txs;
+      var index = txs.findIndex(x => x.hash === action.payload.hash);
+      if (index !== -1)
+      {
+        txs.splice(index, 1);
+      }
+
+      return {
+        ...state,
+        txs: txs
+      }
+    }
     case txActionTypes.SET_TX_HASH: {
       return {
         ...state,

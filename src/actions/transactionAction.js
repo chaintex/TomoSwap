@@ -10,7 +10,23 @@ export const txActionTypes = {
   GET_TX_SWAP_INFO: 'TX.GET_TX_SWAP_INFO',
   SET_IS_CONFIRM_LOCKING: 'TX.SET_IS_CONFIRM_LOCKING',
   SET_TX_SWAP_INFO: 'TX.SET_TX_SWAP_INFO',
+  SET_TX_HASH_TO_QUESE: 'TX.SET_TX_HASH_TO_QUESE',
+  REMOVE_TX_HASH_FROM_QUESE: 'TX.REMOVE_TX_HASH_FROM_QUESE'
 };
+
+export function setTxHashToQuese(tx = null) {
+  return {
+    type: txActionTypes.SET_TX_HASH_TO_QUESE,
+    payload: tx
+  }
+}
+
+export function removeTxHashFromQuese(hash = null) {
+  return {
+    type: txActionTypes.REMOVE_TX_HASH_FROM_QUESE,
+    payload: hash
+  }
+}
 
 export function setTxHash(hash = null) {
   return {

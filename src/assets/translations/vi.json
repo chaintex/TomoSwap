@@ -44,6 +44,9 @@
       },
       "TokenSelector": {
         "Search": "Tìm kiếm"
+      },
+      "NotifyView": {
+        "Your_transactions": "Giao dịch của bạn"
       }
     },
     "layouts": {
