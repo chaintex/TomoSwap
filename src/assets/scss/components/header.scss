@@ -122,6 +122,11 @@
             a {
               padding: 5px 10px 5px 5px;
 
+              .title {
+                .amount {
+                  font-weight: bold;
+                }
+              }
               .link {
                 font-style: italic;
                 padding-left: 3px;
@@ -132,20 +137,23 @@
                 padding-left: 3px;
                 color: $red !important;
               }
+
+              .message {
+                font-style: italic;
+                padding-left: 3px;
+                color: green !important;
+              }
             }
             .success {
-              color:#0386e2 !important;
-              border-left: 5px solid #0386e2;
+              border-left: 5px solid #0bb10b;
             }
 
             .error {
               border-left: 5px solid $red;
-              color: $red !important;
             }
 
             .pending {
               border-left: 5px solid $grey;
-              color:$grey !important;
             }
           }
         }

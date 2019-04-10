@@ -42,7 +42,7 @@ export function *fetchTransactionReceipt(txHash) {
           break;
         }
       }
-      yield call(setNotifyForTx, txHash, 'success', 'success');
+      yield call(setNotifyForTx, txHash, 'success', translate("reducers.transactionSaga.Success"));
       isTxMined = true;
     } else if (txReceipt && txReceipt.status === '0x0') {
       const msg = translate("reducers.transactionSaga.There_is_something_wrong_with_the_transaction");
