@@ -28,7 +28,8 @@ export function *fetchTransactionReceipt(txHash) {
 
   let isTxMined = false;
   let startTime = Date.now(); // start time
-  
+  yield call(setNotifyForTx, txHash, 'pending', translate("reducers.transactionSaga.Pending"));
+
   while(!isTxMined) {
     const txReceipt = yield call(web3.eth.getTransactionReceipt, txHash);
     console.log(txReceipt);
@@ -45,17 +46,15 @@ export function *fetchTransactionReceipt(txHash) {
       yield call(setNotifyForTx, txHash, 'success', translate("reducers.transactionSaga.Success"));
       isTxMined = true;
     } else if (txReceipt && txReceipt.status === '0x0') {
-      const msg = translate("reducers.transactionSaga.There_is_something_wrong_with_the_transaction");
-      yield put(txActions.setTxError(msg));
-      yield call(setNotifyForTx, txHash, 'failed', msg);
+      yield put(txActions.setTxError(translate("reducers.transactionSaga.There_is_something_wrong_with_the_transaction")));
+      yield call(setNotifyForTx, txHash, 'failed', translate("reducers.transactionSaga.Error"));
       isTxMined = true;
     } else {
       let currentTime = Date.now(); // current time
       if (Math.abs(currentTime - startTime) >= appConfig.TRANSACTION_TIME_OUT) {
         // transaction could be lost
-        const msg = translate("reducers.transactionSaga.There_is_something_wrong_with_the_transaction");
-        yield put(txActions.setTxError(msg));
-        yield call(setNotifyForTx, txHash, 'failed', msg);
+        yield put(txActions.setTxError(translate("reducers.transactionSaga.There_is_something_wrong_with_the_transaction")));
+        yield call(setNotifyForTx, txHash, 'failed', translate("reducers.transactionSaga.Error"));
         isTxMined = true;
       }
     }

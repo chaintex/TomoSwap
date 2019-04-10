@@ -56,8 +56,10 @@ const Notify = (props) => {
         <li key={hash}>
           <a className={classTx} href={hashDetailLink(hash)} target="_blank" rel="noopener noreferrer">
             {createRecap(tx)}
-            <div className="link">{formatAddress(hash, 25, 13)}</div>
-            {<div className={classTx === "failed" ? "reason" : "message"}>{tx.message}</div>}
+            <div className="details">
+              <div className="link">{formatAddress(hash, 20, 13)}</div>
+              <div className={`flag ${classTx}`}>{tx.message}</div>
+            </div>
           </a>
         </li>
     );

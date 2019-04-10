@@ -162,7 +162,9 @@
       "There_is_something_wrong_with_the_transaction": "There is something wrong with the transaction!",
       "Too_many_fraction_digits": "Your source amount's decimals should be no longer than {0} characters",
       "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance",
-      "Success": "Success"
+      "Success": "Success",
+      "Pending": "Pending",
+      "Error": "Error"
     },
     "transferSaga": {
       "Too_many_fraction_digits": "Your source amount's decimals should be no longer than {0} characters",
