@@ -46,7 +46,9 @@
         "Search": "Search"
       },
       "NotifyView": {
-        "Your_transactions": "Your transactions"
+        "Your_transactions": "Your transactions",
+        "transaction_for": "=>",
+        "transaction_to": "=>"
       }
     },
     "layouts": {

@@ -17,20 +17,24 @@ const initialState = {
 
 export default function transactionReducer(state = initialState, action) {
   switch (action.type) {
-    case txActionTypes.SET_TX_HASH_TO_QUESE: {
+    case txActionTypes.SET_TX_HASH_TO_QUEUE: {
       let txs = state.txs;
+      let tx = action.payload;
       var index = txs.findIndex(x => x.hash === action.payload.hash);
       if (index !== -1)
       {
+        tx.type = txs[index].type;
+        tx.data = txs[index].data;
         txs.splice(index, 1);
       }
-
+      
+      txs.splice(0, 0, tx);
       return {
         ...state,
-        txs: state.txs.concat([action.payload]),
+        txs: txs,
       }
     }
-    case txActionTypes.REMOVE_TX_HASH_FROM_QUESE: {
+    case txActionTypes.REMOVE_TX_HASH_FROM_QUEUE: {
       let txs = state.txs;
       var index2 = txs.findIndex(x => x.hash === action.payload.hash);
       if (index2 !== -1)

@@ -46,7 +46,9 @@
         "Search": "Tìm kiếm"
       },
       "NotifyView": {
-        "Your_transactions": "Giao dịch của bạn"
+        "Your_transactions": "Giao dịch của bạn",
+        "transaction_for": "=>",
+        "transaction_to": "=>"
       }
     },
     "layouts": {
