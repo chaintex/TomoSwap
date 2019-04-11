@@ -1,4 +1,5 @@
 import { txActionTypes } from '../actions/transactionAction';
+import { stat } from 'fs';
 
 const initialState = {
   txHash: null,
@@ -23,12 +24,24 @@ export default function transactionReducer(state = initialState, action) {
       var index = txs.findIndex(x => x.hash === action.payload.hash);
       if (index !== -1)
       {
-        tx.type = txs[index].type;
-        tx.data = txs[index].data;
+        let {type, data} = txs[index];
+
+        // update real destAmound when transaction confirmed
+        if (tx.status === 'success') {
+          data.destAmount = state.txDestAmount;
+        }
+
+        // reattach type and data to new object
+        tx.type = type;
+        tx.data = data;
+
+        // remove old trans in queue
         txs.splice(index, 1);
       }
       
+      // add to 1st of queue
       txs.splice(0, 0, tx);
+
       return {
         ...state,
         txs: txs,
