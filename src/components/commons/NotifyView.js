@@ -11,17 +11,21 @@ const Notify = (props) => {
     if (type === "swap") {
       return (
         <div className="title">
-          <span className="amount">{data.sourceAmount.slice(0, 8)} {data.sourceToken.symbol}&nbsp;</span>
-          {props.translate("components.commons.NotifyView.transaction_for") || "for"}
-          <span className="amount">&nbsp;{formatAmount(data.destAmount)} {data.destToken.symbol}</span>
+          <div className="type">{props.translate("components.commons.NotifyView.Swap")}</div>
+          <div className="data">
+            <span className="amount">{data.sourceAmount.slice(0, 8)} {data.sourceToken.symbol}&nbsp;</span>
+            {props.translate("components.commons.NotifyView.transaction_for") || "for"}
+            <span className="amount">&nbsp;{formatAmount(data.destAmount)} {data.destToken.symbol}</span>
+          </div>
         </div>
       )
     } else if (type === "transfer") {
       return (
         <div className="title">
-          <span className="amount">{data.sourceAmount.slice(0, 8)} {data.sourceToken.symbol}&nbsp;</span>
-          {props.translate("components.commons.NotifyView.transaction_to") || "to"}
-          <span className="amount">&nbsp;{formatAddress(data.destAddress, 13, 6)}</span>
+        <div className="type">{props.translate("components.commons.NotifyView.Transfer")}</div>
+          <div className="data">
+            <span className="amount">{data.sourceAmount.slice(0, 8)} {data.sourceToken.symbol}&nbsp;</span>
+          </div>
         </div>
       )
     } else {
@@ -53,11 +57,11 @@ const Notify = (props) => {
     const hash = tx.hash;
 
     return (
-        <li key={hash}>
-          <a className={classTx} href={hashDetailLink(hash)} target="_blank" rel="noopener noreferrer">
+        <li className={classTx} key={hash}>
+          <a href={hashDetailLink(hash)} target="_blank" rel="noopener noreferrer">
             {createRecap(tx)}
             <div className="details">
-              <div className="link">{formatAddress(hash, 20, 13)}</div>
+              <div className="link">{formatAddress(hash, 25, 16)}</div>
               <div className={`flag ${classTx}`}>{tx.message}</div>
             </div>
           </a>

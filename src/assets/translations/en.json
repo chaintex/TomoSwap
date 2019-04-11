@@ -48,7 +48,9 @@
       "NotifyView": {
         "Your_transactions": "Your transactions",
         "transaction_for": "=>",
-        "transaction_to": "=>"
+        "transaction_to": "=>",
+        "Swap": "Swap",
+        "Transfer": "Transfer"
       }
     },
     "layouts": {

@@ -48,7 +48,9 @@
       "NotifyView": {
         "Your_transactions": "Giao dịch của bạn",
         "transaction_for": "=>",
-        "transaction_to": "=>"
+        "transaction_to": "=>",
+        "Swap": "Trao đổi",
+        "Transfer": "Chuyển đi"
       }
     },
     "layouts": {

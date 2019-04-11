@@ -84,8 +84,8 @@
       }
 
       .notifycations {
-        width: 250px;
-        padding: 20px 10px 20px 10px;
+        width: 300px;
+        padding: 20px 0px;
         position: absolute;
         top: 33px;
         right: 0;
@@ -111,9 +111,8 @@
         }
 
         .items {
-          max-height: calc(50vh);
+          max-height: calc(70vh);
           overflow-y: auto;
-          font-size: 90%;
 
           li:first-child {
             padding-top: 5px !important ;
@@ -122,50 +121,77 @@
           li {
             display: inline-block;
             border-bottom: 1px dotted #e8e8e8;
-            padding: 10px 0 5px 0;
+            padding: 10px 0px 5px 10px;
             width: 100%;
 
             a {
               padding: 5px 10px 5px 5px;
 
               .title {
-                .amount {
-                  font-weight: bold;
+                display: inline-flex;
+                align-items: center;
+                justify-content: space-between;
+                line-height: 20px;
+                width: 100%;
+
+                .type {
+                  display: block;
+                  font-size: 12px;
+                }
+                .data {
+                  display: block;
+                  font-size: 12px;
+
+                  .amount {
+                    font-weight: bold;
+                  }
                 }
               }
               .details  {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                font-size: 90%;
+                line-height: 20px;
 
                 .link {
-                  font-style: italic;
-                  opacity: 0.6;
+                  color: #9a9dac;
+                  font-size: 12px;
                 }
   
                 .flag {
-                  font-style: normal;
-                  padding: 2px;
-                  border-radius: 5px;
+                  padding: 2px 7px;
+                  border-radius: 9px;
+                  font-size: 10px;
                 }
 
                 .success {
-                  color: #0bb10b;
-                  background-color: #e3f5e3;
+                  color: #00c86d;
+                  background-color: #d0fac5;
                 }
 
                 .error {
-                  color: $red;
-                  background-color: #f5e5e7;
+                  color: #f9566d;
+                  background-color: #ffd5d5;
                 }
 
                 .pending {
-                  color: $grey;
-                  background-color: #e3e5f5;
+                  color: #d4a600;
+                  background-color: #fff2b3;
                 }
               }
             }
+          }
+
+          li.success {
+            background-color: #ffffff;
+          }
+
+          li.error {
+            background-color: #fff1f3;
+          }
+
+          li.pending {
+            background-color: #f5f5f5;
           }
         }
         &::before {
@@ -434,10 +460,10 @@
 
         .notifycations {
           border-radius: 3px;
-          right: -103px;
+          right: -160px;
 
           &::before {
-            right: 125px;
+            right: 185px;
           }
         }
       }
