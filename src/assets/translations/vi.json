@@ -44,6 +44,13 @@
       },
       "TokenSelector": {
         "Search": "Tìm kiếm"
+      },
+      "NotifyView": {
+        "Your_transactions": "Giao dịch của bạn",
+        "transaction_for": "=>",
+        "transaction_to": "=>",
+        "Swap": "Trao đổi",
+        "Transfer": "Chuyển đi"
       }
     },
     "layouts": {
@@ -156,7 +163,10 @@
     "transactionSaga": {
       "There_is_something_wrong_with_the_transaction": "Đã có vấn đề xảy ra với giao dịch!",
       "Too_many_fraction_digits": "Số lượng giao dịch không nên có nhiều hơn {0} chữ số thập phân",
-      "Your_source_amount_is_bigger_than_your_real_balance": "Số lượng giao dịch lớn hơn số dư của bạn"
+      "Your_source_amount_is_bigger_than_your_real_balance": "Số lượng giao dịch lớn hơn số dư của bạn",
+      "Success": "Thành công",
+      "Pending": "Chờ xác nhận",
+      "Error": "Lỗi"
     },
     "transferSaga": {
       "Too_many_fraction_digits": "Số lượng giao dịch không nên có nhiều hơn {0} chữ số thập phân",

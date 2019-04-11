@@ -12,10 +12,53 @@ const initialState = {
   txDestAmount: 0,
   txTokenPairRate: 0,
   isConfirmLocking: false,
+  txs: [],
 };
 
 export default function transactionReducer(state = initialState, action) {
   switch (action.type) {
+    case txActionTypes.SET_TX_HASH_TO_QUEUE: {
+      let txs = state.txs;
+      let tx = action.payload;
+      var index = txs.findIndex(x => x.hash === action.payload.hash);
+      if (index !== -1)
+      {
+        let {type, data} = txs[index];
+
+        // update real destAmound when transaction confirmed
+        if (tx.status === 'success') {
+          data.destAmount = state.txDestAmount;
+        }
+
+        // reattach type and data to new object
+        tx.type = type;
+        tx.data = data;
+
+        // remove old trans in queue
+        txs.splice(index, 1);
+      }
+      
+      // add to 1st of queue
+      txs.splice(0, 0, tx);
+
+      return {
+        ...state,
+        txs: txs,
+      }
+    }
+    case txActionTypes.REMOVE_TX_HASH_FROM_QUEUE: {
+      let txs = state.txs;
+      var index2 = txs.findIndex(x => x.hash === action.payload.hash);
+      if (index2 !== -1)
+      {
+        txs.splice(index2, 1);
+      }
+
+      return {
+        ...state,
+        txs: txs
+      }
+    }
     case txActionTypes.SET_TX_HASH: {
       return {
         ...state,
