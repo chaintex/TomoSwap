@@ -1,5 +1,4 @@
 import { txActionTypes } from '../actions/transactionAction';
-import { stat } from 'fs';
 
 const initialState = {
   txHash: null,
