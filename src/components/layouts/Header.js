@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
+import { connect } from "react-redux";
 import { Offline } from "react-detect-offline";
 import { withLocalize } from 'react-localize-redux';
 import { avalableLanguages, currentLanguage } from '../../services/language'
+import NotifyView from '../commons/NotifyView'
+
+function mapStateToProps(store) {
+  return {
+    tx: store.tx,
+  };
+}
 
 class Header extends Component {
   constructor(props) {
@@ -26,7 +34,6 @@ class Header extends Component {
   
   render() {
     const { code, name } = currentLanguage();
-
     const getLanguages = avalableLanguages.map((language, index) => 
       <a key={index} className={code === language.code ? "actived" : ""} href={code === language.code ? "#" : `/?lang=${language.code}`}>{language.name}</a>
     );
@@ -58,6 +65,7 @@ class Header extends Component {
                 {getLanguages}
               </div>
             </div>
+            <NotifyView txs={this.props.tx.txs} />
           </div>
         </div>
         <Offline polling={{ interval: 2000 }}>
@@ -72,4 +80,4 @@ class Header extends Component {
   }
 }
 
-export default withLocalize(Header);
+export default connect(mapStateToProps)(withLocalize(Header));

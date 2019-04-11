@@ -55,6 +55,17 @@ function *transfer() {
     yield call(setTxStatusBasedOnWalletType, account.walletType, false);
     yield put(txActions.setTxHash(txHash));
 
+    const tx = {
+      hash: txHash,
+      type: 'transfer',
+      data: {
+        sourceToken: transfer.sourceToken,
+        destAddress: transfer.toAddress,
+        sourceAmount: transfer.sourceAmount,
+      },
+    };
+
+    yield put(txActions.setTxHashToQueue(tx));
     yield call(fetchTransactionReceipt, txHash);
   } catch (error) {
     const errorMsg = translate(error);

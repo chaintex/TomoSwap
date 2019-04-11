@@ -44,6 +44,13 @@
       },
       "TokenSelector": {
         "Search": "Search"
+      },
+      "NotifyView": {
+        "Your_transactions": "Your transactions",
+        "transaction_for": "=>",
+        "transaction_to": "=>",
+        "Swap": "Swap",
+        "Transfer": "Transfer"
       }
     },
     "layouts": {
@@ -156,7 +163,10 @@
     "transactionSaga": {
       "There_is_something_wrong_with_the_transaction": "There is something wrong with the transaction!",
       "Too_many_fraction_digits": "Your source amount's decimals should be no longer than {0} characters",
-      "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance"
+      "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance",
+      "Success": "Success",
+      "Pending": "Pending",
+      "Error": "Error"
     },
     "transferSaga": {
       "Too_many_fraction_digits": "Your source amount's decimals should be no longer than {0} characters",

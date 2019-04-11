@@ -108,6 +108,18 @@ function *swapToken() {
     yield call(setTxStatusBasedOnWalletType, account.walletType, false);
     yield put(txActions.setTxHash(txHash));
 
+    const tx = {
+      hash: txHash,
+      type: 'swap',
+      data: {
+        sourceToken: swap.sourceToken,
+        destToken: swap.destToken,
+        sourceAmount: swap.sourceAmount,
+        destAmount: swap.destAmount,
+      },
+    };
+
+    yield put(txActions.setTxHashToQueue(tx));
     yield call(fetchTransactionReceipt, txHash);
   } catch (error) {
     yield put(txActions.setConfirmingError(translate(error)));

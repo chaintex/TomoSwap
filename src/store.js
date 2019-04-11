@@ -4,10 +4,15 @@ import createSagaMiddleware from 'redux-saga'
 import { logger } from 'redux-logger';
 import reducer from './reducers';
 import rootSaga from './sagas';
+import EnvConfig from './config/env'
 
 const sagaMiddleware = createSagaMiddleware();
 
-var middlewareArray = [sagaMiddleware, logger];
+var middlewareArray = [sagaMiddleware];
+
+if (EnvConfig.IS_TESTNET) {
+  middlewareArray.push(logger);
+}
 
 const middleware = applyMiddleware(
   ...middlewareArray

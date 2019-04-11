@@ -1,5 +1,6 @@
 import { delay } from "redux-saga";
 import {select, call, put} from "redux-saga/es/effects";
+import { getTranslate } from 'react-localize-redux';
 import * as txActions from "../actions/transactionAction";
 import appConfig from "../config/app";
 import envConfig from "../config/env";
@@ -18,11 +19,16 @@ const getExchangeMode = state => state.global.exchangeMode;
 const getSwapState = state => state.swap;
 const getTransferState = state => state.transfer;
 const getTokens = state => state.token.tokens;
+const getLocalizeState = state => state.localize;
 
 export function *fetchTransactionReceipt(txHash) {
   const web3 = yield select(getWeb3Instance);
+  const localizeState = yield select(getLocalizeState);
+  const translate = getTranslate(localizeState);
+
   let isTxMined = false;
   let startTime = Date.now(); // start time
+  yield call(setNotifyForTx, txHash, 'pending', translate("reducers.transactionSaga.Pending"));
 
   while(!isTxMined) {
     const txReceipt = yield call(web3.eth.getTransactionReceipt, txHash);
@@ -37,15 +43,18 @@ export function *fetchTransactionReceipt(txHash) {
           break;
         }
       }
+      yield call(setNotifyForTx, txHash, 'success', translate("reducers.transactionSaga.Success"));
       isTxMined = true;
     } else if (txReceipt && txReceipt.status === '0x0') {
-      yield put(txActions.setTxError("reducers.transactionSaga.There_is_something_wrong_with_the_transaction"));
+      yield put(txActions.setTxError(translate("reducers.transactionSaga.There_is_something_wrong_with_the_transaction")));
+      yield call(setNotifyForTx, txHash, 'failed', translate("reducers.transactionSaga.Error"));
       isTxMined = true;
     } else {
       let currentTime = Date.now(); // current time
       if (Math.abs(currentTime - startTime) >= appConfig.TRANSACTION_TIME_OUT) {
         // transaction could be lost
-        yield put(txActions.setTxError("reducers.transactionSaga.There_is_something_wrong_with_the_transaction"));
+        yield put(txActions.setTxError(translate("reducers.transactionSaga.There_is_something_wrong_with_the_transaction")));
+        yield call(setNotifyForTx, txHash, 'failed', translate("reducers.transactionSaga.Error"));
         isTxMined = true;
       }
     }
@@ -57,6 +66,14 @@ export function *fetchTransactionReceipt(txHash) {
     //load balance
     yield put(accountActions.fetchBalances());
   }
+}
+
+function *setNotifyForTx(txHash, status = 'pending', message) {
+  yield put(txActions.setTxHashToQueue({
+    hash: txHash,
+    status: status,
+    message: message
+  }));
 }
 
 export function *forceLoadTxPairRate() {
