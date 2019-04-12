@@ -8,7 +8,6 @@ import Modal from "../../components/commons/Modal";
 import ConfirmButton from "../../components/commons/ConfirmButton";
 import { TOMO } from "../../config/tokens";
 import appConfig from "../../config/app";
-import EnvConfig from '../../config/env';
 
 class SwapView extends Component {
 
