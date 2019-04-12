@@ -108,7 +108,9 @@
         "GAS_fee": "GAS fee:",
         "Approve_Token": "Approve Token",
         "You_need_to_grant_permission_for_TomoSwap_to_interact_with_with_this_Address": "You need to grant permission for TomoSwap to interact with {0} with this Address:",
-        "You_need_to_reset_allowance_of_TomoSwap_with_this_Address": "You need to reset allowance {0} of TomoSwap with this Address:"
+        "You_need_to_reset_allowance_of_TomoSwap_with_this_Address": "You need to reset allowance {0} of TomoSwap with this Address:",
+        "By_Swapping_you_agree_to_the": "By Swapping, you agree to the",
+        "Terms_and_Conditions": "Terms and Conditions"
       }
     },
     "transaction": {

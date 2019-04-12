@@ -108,7 +108,9 @@
         "GAS_fee": "Phí GAS:",
         "Approve_Token": "Cho phép sử dụng token",
         "You_need_to_grant_permission_for_TomoSwap_to_interact_with_with_this_Address": "Bạn cần cấp quyền cho TomoSwap để tương tác với {0} với địa chỉ này:",
-        "You_need_to_reset_allowance_of_TomoSwap_with_this_Address": "Bạn cần đặt lại quyền cho TomoSwap tương tác với {0} với địa chỉ này:"
+        "You_need_to_reset_allowance_of_TomoSwap_with_this_Address": "Bạn cần đặt lại quyền cho TomoSwap tương tác với {0} với địa chỉ này:",
+        "By_Swapping_you_agree_to_the": "Bằng việc trao đổi token, bạn đồng ý với",
+        "Terms_and_Conditions": "Điều khoản sử dụng"
       }
     },
     "transaction": {

@@ -8,6 +8,7 @@ import Modal from "../../components/commons/Modal";
 import ConfirmButton from "../../components/commons/ConfirmButton";
 import { TOMO } from "../../config/tokens";
 import appConfig from "../../config/app";
+import EnvConfig from '../../config/env';
 
 class SwapView extends Component {
 
@@ -24,6 +25,7 @@ class SwapView extends Component {
     const disabledClass = (!!this.props.error || isLoadingRateShown) ? 'disabled' : '';
     const txSrcAmount = this.props.tx.txSrcAmount > 0 ? this.props.tx.txSrcAmount : this.props.sourceAmount;
     const txDestAmount = this.props.tx.txDestAmount > 0 ? this.props.tx.txDestAmount : this.props.destAmount;
+    const disableTacClass = this.props.accountAddress ? '' : 'exchange-terms_tac-disabled';
 
     return (
       <div className={"exchange"}>
@@ -64,9 +66,13 @@ class SwapView extends Component {
         {this.props.isSwapNowShowing &&
           <div className={"exchange__button-container common__fade-in"}>
             <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openConfirmSwapModal()}>{this.props.translate("components.swap.SwapView.Swap_Now")}</div>
+            <div className={`exchange-terms ${disableTacClass}`}>
+              <span>{this.props.translate("components.swap.SwapView.By_Swapping_you_agree_to_the")}
+              <a class="exchange-terms__link" href={`${EnvConfig.RPC_ENDPOINT}/tac.pdf`} target="_blank"> {this.props.translate("components.swap.SwapView.Terms_and_Conditions")}</a></span>
+            </div>
           </div>
         }
-
+    
         <Modal isActive={this.props.isConfirmModalActive} handleClose={() => this.props.closeConfirmSwapModal()}>
           {!this.props.isApproveNeeded && (
             <div className={"exchange__modal"}>
