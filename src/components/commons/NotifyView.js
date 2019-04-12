@@ -70,7 +70,7 @@ const Notify = (props) => {
   });
 
   return (
-    <div className={"header__content-item header__content-notify"}>
+    <div className={`header__content-item header__content-notify ${props.className ? "header__content-" + props.className : ""}`}>
         <span className={`icon-notify ${hasTxs}`}></span>
         <div className="header__content-lang-langswitch notifycations">
             <div className="sub-title">{props.translate('components.commons.NotifyView.Your_transactions')}</div>
