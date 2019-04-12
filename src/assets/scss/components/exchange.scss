@@ -8,6 +8,21 @@
 
     &-container {
       text-align: center;
+
+      .exchange-terms {
+        margin-top: 17px;
+        font-size: 12px;
+        font-style: italic;
+        color: #aab1d4;
+
+        &_tac-disabled {
+          display: none !important;
+        }
+
+        &__link {
+          color: #f9566d !important;
+        }
+      }
     }
   }
 
