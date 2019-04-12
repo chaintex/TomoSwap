@@ -34,7 +34,7 @@ class TokenSelector extends Component {
   render() {
     const getTokenList = () => {
       return this.props.tokens.map((token, index) => {
-        if (!token.symbol.includes(this.state.searchText)) {
+        if (!token.symbol.toUpperCase().includes(this.state.searchText)) {
           return null
         }
 
