@@ -79,7 +79,7 @@
       &:hover {
         .notifycations {
           opacity: 1;
-          pointer-events: visible
+          pointer-events: visible;
         }
       }
 
@@ -233,6 +233,10 @@
           opacity: 0;
         }
       }
+    }
+
+    &-mobile-notify {
+      display: none !important;
     }
 
     &-lang {
@@ -456,7 +460,7 @@
       }
 
       &-notify {
-        display: inline-flex !important;
+        display: none !important;
 
         .notifycations {
           border-radius: 3px;
@@ -467,7 +471,25 @@
           }
         }
       }
+  
+      &-mobile-notify {
+        display: inline-flex !important;
+        position: absolute;
+        top: 40px;
+        right: 60px;
+        margin: 0 !important;
+        padding: 0 !important;
 
+        .notifycations {
+          border-radius: 3px;
+          right: -50px;
+
+          &::before {
+            right: 50px;
+          }
+        }
+      }
+  
       &-item {
         padding: 0 30px;
         display: block;

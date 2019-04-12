@@ -44,6 +44,7 @@ class Header extends Component {
           <div className={"header__logo"}>
             <a href="/#exchange">&nbsp;</a>
           </div>
+          <NotifyView className="mobile-notify" txs={this.props.tx.txs} />
           <div className={"header__mobile-opener"} onClick={() => this.handleToggleMobileMenu()}>
             <div className={"header__mobile-opener-bar"}/>
             <div className={"header__mobile-opener-bar"}/>
