@@ -68,7 +68,7 @@ class SwapView extends Component {
             <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openConfirmSwapModal()}>{this.props.translate("components.swap.SwapView.Swap_Now")}</div>
             <div className={`exchange-terms ${disableTacClass}`}>
               <span>{this.props.translate("components.swap.SwapView.By_Swapping_you_agree_to_the")}
-              <a class="exchange-terms__link" href={`${EnvConfig.RPC_ENDPOINT}/tac.pdf`} target="_blank"> {this.props.translate("components.swap.SwapView.Terms_and_Conditions")}</a></span>
+              <a class="exchange-terms__link" href={`https://tomoswap.com/tac.pdf`} target="_blank" rel="noopener noreferrer"> {this.props.translate("components.swap.SwapView.Terms_and_Conditions")}</a></span>
             </div>
           </div>
         }
