@@ -1,7 +1,7 @@
 import { delay } from 'redux-saga';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { getAllRates } from "../services/networkService";
-import { getUSDRateById } from "../services/coinGeckoService";
+import { getUSDRateById } from "../services/apiServices";
 import * as marketActions from "../actions/marketAction";
 import * as tokenActions from "../actions/tokenAction";
 import AppConfig from "../config/app";
@@ -38,8 +38,7 @@ function *fetchMarketRates(isBackgroundLoading = false) {
 function *getUSDBasedRates(tokens) {
   let tokensWithRate = yield call(getTokenBasedRates, tokens);
   const response = yield call(getUSDRateById, TOMO.id);
-  const tomoUSDRate = response[0].current_price;
-
+  const tomoUSDRate = response.data;
   return tokensWithRate.map((token) => {
     token.usdSellRate = tomoUSDRate * token.sellRate;
     token.usdBuyRate = tomoUSDRate * token.buyRate;
