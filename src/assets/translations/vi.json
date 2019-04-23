@@ -56,7 +56,42 @@
     "layouts": {
       "AboutUs": {
         "Our_Team": "Về chúng tôi",
-        "Our_Advisors": "Cố vấn"
+        "Our_Advisors": "Cố vấn",
+        "Mike_Le": {
+          "Title": "Mike Le",
+          "Sub_Title": "CEO & Co-Founder",
+          "Bio": "Mike Le is an experienced developer with strong knowledge in competitive programming, data structures and CS fundamentals. He achieved Bronze Medal in the International Olympics of Information (IOI) in 2013 and was offered the ASEAN scholarship by National University of Singapore (NUS). He represented NUS to compete at the ACM/ICPC World Final in Beijing 2018, which is one of the biggest annual competition for programming students all over the world. In 2017, Mike co-founded (& CTO) Spence Pay which was a mobile payment service and successfully launched in NUS. Mike graduated from NUS with Honors in 2018 and since then, he has been working with blockchain technology, especially Ethereum."
+        },
+        "Nga": {
+          "Title": "Nga Luu",
+          "Sub_Title": "COO & Co-Founder",
+          "Bio": "Nga is an experienced consultant in the field of Intellectual Property Law. She has almost 5 years working in the most famous IP Law firms in Vietnam before working as Operating officer in the IT industry. She has experiences in managing legal, finances, the daily operation of a company. She ensures the company has effective operational and financial procedures in place. She holds Masters in Management degrees and IP Law certifications with the practical experiences in legal and administration."
+        },
+        "Mark_Nguyen": {
+          "Title": "Mark Nguyen",
+          "Sub_Title": "Full Stack Engineer",
+          "Bio": "Mark Nguyen is a well-known programmer with dozens of years of experience working in large corporations such as CMC, FPT. At Co-Well Co., LTD, as a Project Manager for Finance and Banking solutions for the Japanese market, he has successfully deployed hundreds of projects."
+        },
+        "Loi_Luu": {
+          "Title": "Loi Luu",
+          "Sub_Title": "CEO & Co-Founder of Kyber Network",
+          "Bio": "Loi Luu is a researcher working on cryptocurrencies, smart contract security and distributed consensus algorithms. He is also a regular invited speaker at Bitcoin and Ethereum workshops such as DevCon2, EDCON. Loi believes in the force of the Ethereum and Blockchain technology. Much of his work revolves around this community. He developed Oyente, the first open-source security analyzer for Ethereum smart contracts. Loi also cofounded SmartPool, another open source project which embraces decentralization of mining pools in existing cryptocurrency. He continues to champion decentralisation and trustless properties of the Blockchain with KyberNetwork, taking inspiration and developing value for the community."
+        },
+        "Victor_Tran": {
+          "Title": "Victor Tran",
+          "Sub_Title": "Head of Development & Co-Founder of Kyber Network",
+          "Bio": "Victor Tran is a senior backend engineer and Linux system administrator. He is experienced in building high performance multi-platform applications. Victor has been involved in blockchain and cryptocurrency development since early 2016 and is a lead engineer at the SmartPool project."
+        },
+        "Long_Vuong": {
+          "Title": "Long Vuong",
+          "Sub_Title": "CEO, Co-Founder of TomoChain",
+          "Bio": "CEO of TomoChain and TomoChain Project Lead, co-founder and the former project lead of very successful NEM blockchain (New Economy Movement). PhD candidate in economics, Massachusetts, U.S"
+        },
+        "Tu_Nguyen": {
+          "Title": "Tu Nguyen",
+          "Sub_Title": "Lead of blockchain engineer TomoChain",
+          "Bio": "Seasoned engineer working in Blockchain and Cloud Computing. Authorized Developer of Apache Software Foundation, Cloud Native Computing Foundation. Lead engineer of multiple cloud computing open-source softwares (kubeless, kubeapps, kompose, kubewatch). Master degree in Distributed Systems, Switzerland."
+        }
       },
       "Body": {
         "TomoSwap_The_first_decentralized_exchange_platform_on_TomoChain": "TomoSwap - Nền tảng giao dịch phi tập trung đầu tiên trên TomoChain",
