@@ -46,7 +46,7 @@
     width: 22%;
     display: inline-block;
     vertical-align: top;
-    margin: 0 4% 50px 0;
+    margin: 0 1.5% 50px 1.5%;
     opacity: 0;
     transform: translateY(20px);
     animation: fade-in 0.5s forwards;
@@ -113,10 +113,6 @@
     }
   }
 
-  &__team-member:nth-child(4n+1) {
-    margin-right: 0;
-  }
-
   &-modal {
     max-width: 50% !important;
 
@@ -174,7 +170,7 @@
 
   @media (max-width: $medium-breakpoint) {
     &__team-member {
-      width: 28%;
+      width: 29%;
     }
 
     &-modal {
@@ -184,7 +180,7 @@
 
   @media (max-width: $small-breakpoint) {
     &__team-member {
-      width: 45%;
+      width: 46%;
     }
 
     &-modal {
