@@ -37,18 +37,12 @@ function mapDispatchToProps(dispatch) {
 }
 
 class Body extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isTomoWallet: false
-    }
-  }
   componentDidMount = () => {
 
     const web3 = getWeb3Instance();
     this.props.setWeb3Service(web3);
 
-    if (window.web3 && window.web3.currentProvider && window.web3.currentProvider.isTomoWallet) {
+    if (this.props.isTomoWallet) {
       let dApp = new DappService();
       dApp.getNetworkId((networkId) => {
         if (networkId !== EnvConfig.NETWORK_ID) {
@@ -62,14 +56,13 @@ class Body extends Component {
         });
       });
       
-      this.setState({isTomoWallet: true});
       this.props.setIsTomoWalletBrowser(true);
     }
   };
 
   render() {
     const isSwapMode = this.props.exchangeMode === AppConfig.EXCHANGE_SWAP_MODE;
-    const {isTomoWallet} = this.state;
+    const isTomoWallet = this.props.isTomoWallet;
     return (
       <div className={"body"}>
         <div className={"container"}>
@@ -105,7 +98,10 @@ class Body extends Component {
           </div>
           <Market/>
         </div>
-        <AboutUs/>
+
+        {!isTomoWallet && (
+          <AboutUs/>
+        )}
         <Modal isActive={!!this.props.globalError} handleClose={() => this.props.resetGlobalError()}>
           <div className={"modal__header modal__header--error"}>{this.props.translate("components.layouts.Body.Error")}</div>
           <div className={"modal__body"}>
