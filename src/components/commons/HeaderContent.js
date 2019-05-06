@@ -11,11 +11,11 @@ class HeaderContent extends Component {
     }
 
     componentDidMount() {
-        document.addEventListener('mousedown', this.handleClickOutside);
+        document.addEventListener('click', this.handleClickOutside, false);
     }
 
     componentWillUnmount() {
-        document.removeEventListener('mousedown', this.handleClickOutside);
+        document.removeEventListener('click', this.handleClickOutside, false);
     }
 
     setWrapperRef(node) {
@@ -54,9 +54,9 @@ class HeaderContent extends Component {
                     <div className={"header__mobile-opener-bar"}/>
                 </div>
                 <div ref={this.setWrapperRef} className={"header__content"}>
-                    <a href="/" className={"header__content-item active"}>{props.translate(`components.layouts.Header.Swap`)}</a>
+                    <a href="#exchange" onClick={() => this.handleClickXClose()} className={"header__content-item active"}>{props.translate(`components.layouts.Header.Swap`)}</a>
                     {!props.isTomoWallet && (
-                        <a href="#aboutus" className={"header__content-item"}>{props.translate(`components.layouts.Header.About_Us`)}</a>
+                        <a href="#aboutus" onClick={() => this.handleClickXClose()} className={"header__content-item"}>{props.translate(`components.layouts.Header.About_Us`)}</a>
                     )}
                     <a href="/" className={"header__content-item"}>{props.translate(`components.layouts.Header.FAQ`)}</a>
                     <a href="https://goo.gl/forms/PPgKR2d6A5KtV7tH2" target="_blank" rel="noopener noreferrer" className={"header__content-item"}>
