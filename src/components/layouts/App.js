@@ -21,7 +21,8 @@ class App extends Component {
         onMissingTranslation: this.onMissingTranslation
       }
     });
-
+    
+    this.handleOnClick = this.handleOnClick.bind(this);
   }
 
   onMissingTranslation = ({ translationId, languageCode }) => {
@@ -29,10 +30,15 @@ class App extends Component {
     return translationId;
   };
 
+  handleOnClick = (e) => {
+    //on iOS need to register onlick event for dismiss sidebar menu
+    //alert(e.target);
+  }
+
   render() {
     const isTomoWallet = (window.web3 && window.web3.currentProvider && window.web3.currentProvider.isTomoWallet);
     return (
-      <div className={"app-container"}>
+      <div className={"app-container"} onClick={this.handleOnClick}>
         <Header isTomoWallet={isTomoWallet} />
         <Body isTomoWallet={isTomoWallet} />
         <Footer isTomoWallet={isTomoWallet} />
