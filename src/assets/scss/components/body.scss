@@ -163,3 +163,15 @@
     }
   }
 }
+
+@media (max-width: $medium-breakpoint) {
+  .body {
+    margin-top: 85px;
+  }
+}
+
+@media (max-width: $small-breakpoint) {
+  .body {
+    margin-top: 50px;
+  }
+}
