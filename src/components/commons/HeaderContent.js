@@ -48,7 +48,7 @@ class HeaderContent extends Component {
         const props = this.props;
         return (
             <Fragment>
-                <NotifyView className={`mobile-notify ${props.isTomoWallet ? "tomowallet__mobile-notify" : ""}`} txs={props.txs} />
+                <NotifyView className={`mobile-notify`} txs={props.txs} />
                 <div ref={this.setWrapperRef} className={"header__mobile-opener"} onClick={() => this.handleClickXClose()}>
                     <div className={"header__mobile-opener-bar"}/>
                     <div className={"header__mobile-opener-bar"}/>
