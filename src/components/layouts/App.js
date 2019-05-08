@@ -38,7 +38,7 @@ class App extends Component {
   render() {
     const isTomoWallet = (window.web3 && window.web3.currentProvider && window.web3.currentProvider.isTomoWallet);
     return (
-      <div className={"app-container"} onClick={this.handleOnClick}>
+      <div className={`app-container ${isTomoWallet ? "tomowallet" : ""}`} onClick={this.handleOnClick}>
         <Header isTomoWallet={isTomoWallet} />
         <Body isTomoWallet={isTomoWallet} />
         <Footer isTomoWallet={isTomoWallet} />
