@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Offline } from "react-detect-offline";
 import { withLocalize } from 'react-localize-redux';
 import { avalableLanguages, currentLanguage } from '../../services/language'
-import NotifyView from '../commons/NotifyView'
+import HeaderContent from '../commons/HeaderContent';
 
 function mapStateToProps(store) {
   return {
@@ -39,35 +39,18 @@ class Header extends Component {
     );
 
     return (
-      <div className={"header"}>
+      <div className={`header`}>
         <div className={`header__container container ${this.state.isMobileMenuActive ? 'active' : ''}`}>
-          <div className={"header__logo"}>
+          <div className={`header__logo`}>
             <a href="/#exchange">&nbsp;</a>
           </div>
-          <NotifyView className="mobile-notify" txs={this.props.tx.txs} />
-          <div className={"header__mobile-opener"} onClick={() => this.handleToggleMobileMenu()}>
-            <div className={"header__mobile-opener-bar"}/>
-            <div className={"header__mobile-opener-bar"}/>
-          </div>
-          <div className={"header__content"}>
-            <a href="/" className={"header__content-item active"}>{this.props.translate(`components.layouts.Header.Swap`)}</a>
-            <a href="#aboutus" className={"header__content-item"}>{this.props.translate(`components.layouts.Header.About_Us`)}</a>
-            <a href="/" className={"header__content-item"}>{this.props.translate(`components.layouts.Header.FAQ`)}</a>
-            <a href="https://goo.gl/forms/PPgKR2d6A5KtV7tH2" target="_blank" rel="noopener noreferrer" className={"header__content-item"}>
-            {this.props.translate(`components.layouts.Header.Contact_Us`)}
-            </a>
-            <a href="https://medium.com/@tomoswap" target="_blank" rel="noopener noreferrer" className={"header__content-item"}>
-            {this.props.translate(`components.layouts.Header.Blog`)}
-            </a>
-            <div className={"header__content-item header__content-lang"}>
-              <span>{name}</span>
-              <div className="common__arrow-drop-down down language_arrow"></div>
-              <div className="header__content-lang-langswitch langswitch">
-                {getLanguages}
-              </div>
-            </div>
-            <NotifyView txs={this.props.tx.txs} />
-          </div>
+          <HeaderContent 
+            isShowing={this.state.isMobileMenuActive}
+            isTomoWallet={this.props.isTomoWallet}
+            name={name}
+            getLanguages={getLanguages}
+            handleToggleMobileMenu={this.handleToggleMobileMenu} 
+            txs={this.props.tx.txs}/>
         </div>
         <Offline polling={{ interval: 2000 }}>
           <div className="header__offline_alert">
