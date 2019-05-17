@@ -40,6 +40,6 @@ export const TOKENS = [
     "name": "Kyber Network Crystal",
     "address": "0x26d22feb6419d08cc38a10812a231926fe427491",
     "decimals": 16,
-    "logo": "knc.svg",
+    "logo": "knc.svg"
   },
 ];
