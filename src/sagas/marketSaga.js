@@ -1,12 +1,12 @@
 import { delay } from 'redux-saga';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { getAllRates } from "../services/networkService";
-import { getUSDRateById } from "../services/apiServices";
+import { getUSDRateById, getUSD24H } from "../services/apiServices";
 import * as marketActions from "../actions/marketAction";
 import * as tokenActions from "../actions/tokenAction";
 import AppConfig from "../config/app";
 import { TOMO } from "../config/tokens";
-import { formatBigNumber } from "../utils/helpers";
+import { formatBigNumber, formatAmount } from "../utils/helpers";
 
 const getTokens = state => state.token.tokens;
 
@@ -24,6 +24,14 @@ function *fetchMarketRates(isBackgroundLoading = false) {
   try {
     let tokens = yield select(getTokens);
     const tokensWithRate = yield call(getUSDBasedRates, tokens);
+    const last24H = yield call(getUSDLast24H, tokens);
+    for (let index = 0; index < tokensWithRate.length; index++) {
+      const token = tokensWithRate[index];
+      const item =  last24H.find(x => x.symbol === token.symbol);
+      if (item) {
+        token["last24H"] = item.last24H;
+      }
+    }
 
     yield put(tokenActions.setTokens(tokensWithRate));
   } catch (e) {
@@ -33,6 +41,22 @@ function *fetchMarketRates(isBackgroundLoading = false) {
   yield call(setLoading, false, isBackgroundLoading);
 
   yield call(delay, AppConfig.MARKET_RATE_FETCHING_INTERVAL);
+}
+
+function *getUSDLast24H(tokens) {
+  const listSymbols = tokens.map(item => { return item.symbol; });
+  const response = yield call(getUSD24H, listSymbols);
+  const dataResponse = response.data;
+
+  const dataTokens = tokens.map(token => {
+    const price = dataResponse[token.symbol];
+    return {
+      symbol: token.symbol,
+      last24H: formatAmount(price)
+    };
+  });
+
+  return dataTokens;
 }
 
 function *getUSDBasedRates(tokens) {

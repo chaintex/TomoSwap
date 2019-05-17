@@ -22,14 +22,14 @@ export const TOKENS = [
     "logo": "tiim.png"
   },
   {
-    "symbol": "TestCTT",
+    "symbol": "CTT",
     "name": "ChainTEX Token",
     "address": "0x06cca536f531ac3426077ca39b629d901c5cf272",
     "decimals": 18,
     "logo": "ctc.png"
   },
   {
-    "symbol": "TestKNC",
+    "symbol": "KNC",
     "name": "Kyber Network Crystal",
     "address": "0x26d22feb6419d08cc38a10812a231926fe427491",
     "decimals": 16,

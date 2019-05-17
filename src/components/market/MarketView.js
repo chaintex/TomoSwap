@@ -27,7 +27,13 @@ class MarketView extends Component {
         const isUSDMarket = this.props.indexToken.symbol === USD.symbol;
         const sellRate = isUSDMarket ? `${formatAmount(token.usdSellRate)} ${USD.symbol}` : `${formatAmount(token.sellRate)} ${TOMO.symbol}`;
         const buyRate = isUSDMarket ? `${formatAmount(token.usdBuyRate)} ${USD.symbol}` : `${formatAmount(token.buyRate)} ${TOMO.symbol}`;
-        
+        var last24H = "---";
+        var last24HClass = "--none";
+        if (token.last24H) {
+          last24HClass = "";
+          last24H = token.last24H;
+        }
+
         return (
           <tr key={index} className={"common__fade-in"}>
             <td className={"common__flexbox common__flexbox--left"}>
@@ -37,7 +43,7 @@ class MarketView extends Component {
             <td className={"market__table-text"}>{sellRate}</td>
             <td className={"market__table-text"}>{buyRate}</td>
             <td>
-              <span className={"market__table-change market__table-change--none"}>---</span>
+              <span className={`market__table-change market__table-change${last24HClass}`}>{last24H}</span>
             </td>
           </tr>
         )
