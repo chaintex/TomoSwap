@@ -16,7 +16,7 @@ export const TOKENS = [
   TOMO,
   {
     "symbol": "CONST",
-    "name": "Constant Stable",
+    "name": "Constant Stablecoin",
     "address": "0x63860d4ece7b0bd86f95694fc15309961a0a317e",
     "decimals": 2,
     "logo": "const.jpeg"
