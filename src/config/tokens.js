@@ -15,6 +15,13 @@ export const USD = {
 export const TOKENS = [
   TOMO,
   {
+    "symbol": "CONST",
+    "name": "Constant Stable",
+    "address": "0x63860d4ece7b0bd86f95694fc15309961a0a317e",
+    "decimals": 2,
+    "logo": "const.jpeg"
+  },
+  {
     "symbol": "TIIM",
     "name": "TriipMiles",
     "decimals": 18,
@@ -33,6 +40,6 @@ export const TOKENS = [
     "name": "Kyber Network Crystal",
     "address": "0x26d22feb6419d08cc38a10812a231926fe427491",
     "decimals": 16,
-    "logo": "knc.svg"
+    "logo": "knc.svg",
   },
 ];
