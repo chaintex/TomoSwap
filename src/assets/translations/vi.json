@@ -218,7 +218,8 @@
         "Key_derivation_failed_possibly_wrong_password": "Nhập khóa nguồn thất bại - có thể do sai mật khẩu"
       },
       "MetamaskService": {
-        "User_denied_transaction_signature": "Huỷ bỏ xác nhận kí giao dịch."
+        "User_denied_transaction_signature": "Huỷ bỏ xác nhận kí giao dịch.",
+        "Metamask_not_signin": "Hãy đăng nhập vào tài khoản Metamask để tiếp tục"
       },
       "DappService": {
         "Cancelled": "Huỷ bỏ xác nhận kí giao dịch."

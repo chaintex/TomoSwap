@@ -218,7 +218,8 @@
         "Key_derivation_failed_possibly_wrong_password": "Key derivation failed - possibly wrong password"
       },
       "MetamaskService": {
-        "User_denied_transaction_signature": "User denied transaction signature."
+        "User_denied_transaction_signature": "User denied transaction signature.",
+        "Metamask_not_signin": "Please sign into your Metamask account to continue"
       },
       "DappService": {
         "Cancelled": "User denied transaction signature."
