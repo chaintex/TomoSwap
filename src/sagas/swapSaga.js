@@ -122,7 +122,10 @@ function *swapToken() {
     yield put(txActions.setTxHashToQueue(tx));
     yield call(fetchTransactionReceipt, txHash);
   } catch (error) {
-    yield put(txActions.setConfirmingError(translate(error)));
+    // translate to clear message
+    const msg = translate(error.toString());
+    
+    yield put(txActions.setConfirmingError(msg));
     yield call(setTxStatusBasedOnWalletType, account.walletType, false);
   }
 }
@@ -130,6 +133,8 @@ function *swapToken() {
 function *approve(action, isBackgroundCall = false, value = getBiggestNumber(), nonce = 0) {
   const swap = yield select(getSwapState);
   const account = yield select(getAccountState);
+  const localizeState = yield select(getLocalizeState);
+  const translate = getTranslate(localizeState);
 
   if (!isBackgroundCall) {
     if (swap.srcTokenAllowance > 0) { value = 0; } // need to reset to zero first
@@ -155,12 +160,14 @@ function *approve(action, isBackgroundCall = false, value = getBiggestNumber(), 
 
     yield put(swapActions.setSrcTokenAllowance(formatBigNumber(value, swap.sourceToken.decimals)));
   } catch (e) {
+    // translate to clear message
+    const msg = translate(e.toString());
     if (!isBackgroundCall) {
-      yield put(txActions.setConfirmingError(e));
+      yield put(txActions.setConfirmingError(msg));
       yield call(setTxStatusBasedOnWalletType, account.walletType, false);
+    } else {
+      throw msg;
     }
-
-    if (isBackgroundCall) { throw e; }
   }
 }
 

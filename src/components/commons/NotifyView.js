@@ -13,7 +13,7 @@ const Notify = (props) => {
         <div className="title">
           <div className="type">{props.translate("components.commons.NotifyView.Swap")}</div>
           <div className="data">
-            <span className="amount">{data.sourceAmount.slice(0, 8)} {data.sourceToken.symbol}&nbsp;</span>
+            <span className="amount">{data.sourceAmount.toString().slice(0, 8)} {data.sourceToken.symbol}&nbsp;</span>
             {props.translate("components.commons.NotifyView.transaction_for") || "for"}
             <span className="amount">&nbsp;{formatAmount(data.destAmount)} {data.destToken.symbol}</span>
           </div>
@@ -24,7 +24,7 @@ const Notify = (props) => {
         <div className="title">
         <div className="type">{props.translate("components.commons.NotifyView.Transfer")}</div>
           <div className="data">
-            <span className="amount">{data.sourceAmount.slice(0, 8)} {data.sourceToken.symbol}&nbsp;</span>
+            <span className="amount">{data.sourceAmount.toString().slice(0, 8)} {data.sourceToken.symbol}&nbsp;</span>
           </div>
         </div>
       )
