@@ -37,6 +37,7 @@ class TransferView extends Component {
             txFeeInTOMO={this.props.txFeeInTOMO}
             isBalanceLoading={this.props.isBalanceLoading}
             error={this.props.error}
+            isShowSelector={true}
           />
 
           <div className={"input-group"}>

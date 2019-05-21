@@ -60,11 +60,11 @@ class TokenSelector extends Component {
             </div>
           </DropdownTrigger>
           <DropdownContent className={"common__fade-in"}>
-            <div className={"token-selector__container"}>
-              <div className={"token-selector__input-container"}>
+            <div className={"token-selector__container token-selector__container_2"}>
+              {/* <div className={"token-selector__input-container"}>
                 <input className={"token-selector__input"} placeholder={this.props.translate("components.commons.TokenSelector.Search")} type="text" value={this.state.searchText} onChange={(e) => this.handleOnTypingSearch(e)}/>
-              </div>
-              <div className={"token-selector__item-container"}>
+              </div> */}
+              <div className={"token-selector__item-container "}>
                 {getTokenList()}
               </div>
             </div>
