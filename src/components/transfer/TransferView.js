@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withLocalize } from 'react-localize-redux';
-import InputGroup from '../commons/InputGroup';
+import InputGroup from '../commons/InputGroupV2';
 import PasswordInput from '../commons/PasswordInput';
 import { formatAmount, formatAddress  } from "../../utils/helpers";
 import { TOMO } from "../../config/tokens";
@@ -37,6 +37,7 @@ class TransferView extends Component {
             txFeeInTOMO={this.props.txFeeInTOMO}
             isBalanceLoading={this.props.isBalanceLoading}
             error={this.props.error}
+            isShowSelector={true}
           />
 
           <div className={"input-group"}>

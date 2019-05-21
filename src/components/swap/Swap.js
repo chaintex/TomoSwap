@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SwapView from './SwapView';
+import SwapView from './SwapViewV2';
 import { connect } from 'react-redux';
 import { withLocalize } from 'react-localize-redux';
 import { setWalletPassword } from "../../actions/accountAction";
@@ -58,6 +58,8 @@ function mapDispatchToProps(dispatch) {
     setTxHashApprove: (hash) => {dispatch(setTxHashApprove(hash))},
     getTxSwapInfor: () => {dispatch(getTxSwapInfor())},
     setConfirmLocking: (isLocking) => {dispatch(setConfirmLocking(isLocking))},
+    srcDestSwitcher: (src, dest) => {dispatch(swapActions.switchSrcDestToken(src, dest))}
+
   }
 }
 
@@ -80,6 +82,11 @@ class Swap extends Component {
     if (this.props.isAccountImported !== preProps.isAccountImported) {
       this.setState({isSwapNowShowing: true});
     }
+  }
+
+  swapSrcDestSwitcher = (e) => {
+    this.props.srcDestSwitcher(this.props.destToken, this.props.sourceToken);
+    this.props.fetchTokenPairRate();
   }
 
   openConfirmSwapModal = () => {
@@ -183,6 +190,7 @@ class Swap extends Component {
         closeConfirmSwapModal={this.closeConfirmSwapModal}
         closeApproveModal={this.closeApproveModal}
         onRef={ref => (this.swapView = ref)}
+        swapSrcDestSwitcher={this.swapSrcDestSwitcher}
       />
     )
   }
