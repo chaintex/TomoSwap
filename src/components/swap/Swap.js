@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SwapView from './SwapViewV2';
+import SwapView from './SwapView';
 import { connect } from 'react-redux';
 import { withLocalize } from 'react-localize-redux';
 import { setWalletPassword } from "../../actions/accountAction";

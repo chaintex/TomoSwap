@@ -42,7 +42,9 @@ class SwapView extends Component {
             txFeeInTOMO={this.props.txFeeInTOMO}
             error={this.props.error}
           />
-
+          <div className="swap_token_func">
+            <div className="swap_token_func_btn" onClick={e => this.props.swapSrcDestSwitcher(e)}></div>
+          </div>
           <div className={"input-group"}>
             <div className={"input-group__title"}>{this.props.translate("components.swap.SwapView.To")}</div>
             <div className={`input-group__wrapper`}>

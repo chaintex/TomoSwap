@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withLocalize } from 'react-localize-redux';
-import InputGroup from '../commons/InputGroupV2';
+import InputGroup from '../commons/InputGroup';
 import PasswordInput from '../commons/PasswordInput';
 import { formatAmount, formatAddress  } from "../../utils/helpers";
 import { TOMO } from "../../config/tokens";
