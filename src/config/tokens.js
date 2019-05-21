@@ -21,13 +21,13 @@ export const TOKENS = [
     "decimals": 2,
     "logo": "const.jpeg"
   },
-  // {
-  //   "symbol": "TIIM",
-  //   "name": "TriipMiles",
-  //   "decimals": 18,
-  //   "address": "0x095d85e62cb6ad354ff900c1d530a7c4b8e247b5",
-  //   "logo": "tiim.png"
-  // },
+  {
+    "symbol": "TIIM",
+    "name": "TriipMiles",
+    "decimals": 18,
+    "address": "0x095d85e62cb6ad354ff900c1d530a7c4b8e247b5",
+    "logo": "tiim.png"
+  },
   // {
   //   "symbol": "TestCTT",
   //   "name": "ChainTEX Token",
