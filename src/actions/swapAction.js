@@ -16,6 +16,7 @@ export const swapActionTypes = {
   SET_ERROR: 'SWAP.SET_ERROR',
   SET_IS_CONFIRM_MODAL_ACTIVE: 'SWAP.SET_IS_CONFIRM_MODAL_ACTIVE',
   SET_IS_UPDATE_DEST_AMOUNT: 'SWAP.SET_IS_UPDATE_DEST_AMOUNT',
+  SET_SOURCE_DEST_TOKEN: 'SWAP.SET_SOURCE_DEST_TOKEN',
 };
 
 export function approve() {
@@ -131,5 +132,12 @@ export function setIsUpdateToAmount(isActive) {
   return {
     type: swapActionTypes.SET_IS_UPDATE_DEST_AMOUNT,
     payload: isActive
+  }
+}
+
+export function switchSrcDestToken(src, dest) {
+  return {
+    type: swapActionTypes.SET_SOURCE_DEST_TOKEN,
+    payload: { src, dest }
   }
 }

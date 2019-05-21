@@ -34,7 +34,7 @@
   }
 
   &__container {
-    height: 750px;
+    height: 790px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -126,6 +126,7 @@
     &__container {
       display: block;
       height: auto;
+      padding-bottom: 15px;
     }
 
     &__content {

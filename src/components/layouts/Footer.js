@@ -12,7 +12,7 @@ class Footer extends Component {
               <div className={"footer__content"}>
                 <a href="/" className={"footer__content-item"}>{this.props.translate("components.layouts.Footer.ChainTEX")}</a>
                 <a href="#aboutus" className={"footer__content-item"}>{this.props.translate("components.layouts.Footer.About_Us")}</a>
-                <a href="/" className={"footer__content-item"}>{this.props.translate("components.layouts.Footer.FAQ")}</a>
+                {/* <a href="/" className={"footer__content-item"}>{this.props.translate("components.layouts.Footer.FAQ")}</a> */}
                 <a href="https://goo.gl/forms/PPgKR2d6A5KtV7tH2" target="_blank" rel="noopener noreferrer" className={"footer__content-item"}>{this.props.translate("components.layouts.Footer.Contact_Us")}</a>
                 <a href="https://medium.com/@tomoswap" target="_blank" rel="noopener noreferrer" className={"footer__content-item"}>{this.props.translate("components.layouts.Footer.Blog")}</a>
               </div>

@@ -1,6 +1,22 @@
 .exchange {
   &__container {
     margin-bottom: 30px;
+
+    .swap_token_func {
+      width: 100%;
+      display: flex;
+      margin-bottom: 10px;
+
+      &_btn {
+        width: 32px;
+        height: 32px;
+        object-fit: cover;
+        background-image: url(/static/media/group.721c3969.svg);
+        background-size: cover;
+        margin: 0 auto;
+        cursor: pointer;
+      }
+    }
   }
 
   &__button {
@@ -20,7 +36,7 @@
         }
 
         &__link {
-          color: #f9566d !important;
+          color: #33c3f8 !important;
         }
       }
     }
