@@ -12,7 +12,7 @@ const EnvConfig = {
   TRADE_TOPIC: "0x314089036943f0e5ddddd6939d359902c01dac1be72c517cc8342fca023ad71e",
   METADATA_TRANSFER_DEFINED: "tomochain:trc20?origin=tomoswap&type=transfer&address={0}&recipient={1}&amount={2}",
   METADATA_SWAP_DEFINED: "tomochain:trc20?origin=tomoswap&type=swap&src={0}&srcAmount={1}&dest={2}&minRate={3}&walletId={4}",
-  METAMASK_INSTRUCTION_LINK: "https://testnet.tomoswap.com/metamask_instruction_testnet.pdf",
+  METAMASK_INSTRUCTION_LINK: "/metamask_instruction_testnet.pdf",
 };
 
 export default EnvConfig;
