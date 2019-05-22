@@ -79,6 +79,20 @@ export function isMobileAndTablet() {
   return check;
 };
 
+export function isMetaMaskAvalable() {
+  var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof window['safari'] !== 'undefined' && window['safari'].pushNotification));
+  // Internet Explorer 6-11
+  var isIE = /*@cc_on!@*/false || !!document.documentMode;
+  // Edge 20+
+  var isEdge = !isIE && !!window.StyleMedia;
+
+  if (isSafari || isIE || isEdge) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
 export function stringFormat(format) {
   var args = Array.prototype.slice.call(arguments, 1);
   return format.replace(/{(\d+)}/g, function(match, number) { 
