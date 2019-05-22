@@ -2,14 +2,15 @@
   "components": {
     "account": {
       "ImportAccount": {
-        "Cannot_connect_to_Metamask_Please_make_sure_you_have_Metamask_installed": "Cannot connect to Metamask. Please make sure you have Metamask installed",
-        "Metamask_should_be_on_network": "Metamask should be on {0} network",
+        "Cannot_connect_to_Metamask_Please_make_sure_you_have_Metamask_installed": "Cannot connect to Metamask. Please make sure you have <a target='_blank' rel='noopener noreferrer' href='https://metamask.io'>Metamask</a> installed",
+        "Metamask_should_be_on_network": "Metamask should be on {0} network, you can read instruction {2}a target='_blank' rel='noopener noreferrer' href='{1}'>here{2}/a>",
         "You_have_chosen_an_invalid_Keystore_file": "You have chosen an invalid Keystore file.",
         "You_have_chosen_a_malformed_Keystore_file": "You have chosen a malformed Keystore file.",
         "There_is_something_wrong_with_the_chosen_file":	"There is something wrong with the chosen file.",
         "Your_private_key_must_have_exactly_64_characters":	"Your private key must have exactly 64 characters",
         "Please_enter_your_private_key_to_continue": "Please enter your private key to continue",
-        "Your_private_key_is_invalid": "Your private key is invalid"
+        "Your_private_key_is_invalid": "Your private key is invalid",
+        "Metamask_not_available": "Metamask does not support on this browser, you should use Chrome, Firefox or Opera."
       },
       "ImportAccountView": {
         "Connect_with": "Connect with",

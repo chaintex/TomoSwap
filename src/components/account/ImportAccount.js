@@ -10,7 +10,7 @@ import MetamaskService from "../../services/accountServices/MetamaskService";
 import KeystoreService from "../../services/accountServices/KeystoreService";
 import PrivateKeyService from "../../services/accountServices/PrivateKeyService";
 import { getWeb3Instance } from "../../services/web3Service";
-import { stringFormat } from "../../utils/helpers"
+import { stringFormat, isMetaMaskAvalable } from "../../utils/helpers"
 
 function mapStateToProps(store) {
   return {
@@ -40,11 +40,16 @@ class ImportAccount extends Component {
   }
 
   connectToMetamask = async () => {
+    if (!isMetaMaskAvalable()) {
+      this.props.setGlobalError(this.props.translate("components.account.ImportAccount.Metamask_not_available"));
+      return;
+    }
     if (!window.ethereum) {
       this.props.setGlobalError(this.props.translate("components.account.ImportAccount.Cannot_connect_to_Metamask_Please_make_sure_you_have_Metamask_installed"));
       return;
     } else if (+window.ethereum.networkVersion !== envConfig.NETWORK_ID) {
-      this.props.setGlobalError(stringFormat(this.props.translate("components.account.ImportAccount.Metamask_should_be_on_network"), envConfig.NETWORK_NAME));
+      let msg = stringFormat(this.props.translate("components.account.ImportAccount.Metamask_should_be_on_network"), envConfig.NETWORK_NAME, envConfig.METAMASK_INSTRUCTION_LINK, "<");
+      this.props.setGlobalError(msg);
       return;
     }
 
