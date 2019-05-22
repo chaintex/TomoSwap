@@ -2,14 +2,15 @@
   "components": {
     "account": {
       "ImportAccount": {
-        "Cannot_connect_to_Metamask_Please_make_sure_you_have_Metamask_installed": "Không thể kết nối đến Metamask. Hãy chắc chắn rằng Metamask của bạn đã được cài",
-        "Metamask_should_be_on_network": "Metamask cần chạy {0}",
+        "Cannot_connect_to_Metamask_Please_make_sure_you_have_Metamask_installed": "Không thể kết nối đến Metamask. Hãy chắc chắn rằng <a target='_blank' rel='noopener noreferrer' href='https://metamask.io'>Metamask</a> của bạn đã được cài",
+        "Metamask_should_be_on_network": "Metamask cần cấu hình trên {0}, xem hướng dẫn cấu hình {2}a target='_blank' rel='noopener noreferrer' href='{1}'>tại đây{2}/a>",
         "You_have_chosen_an_invalid_Keystore_file": "Cập nhật JSON file của bạn không hợp lệ. Vui lòng tải lên đúng keystore JSON.",
         "You_have_chosen_a_malformed_Keystore_file": "Cập nhật JSON file của bạn không hợp lệ. Vui lòng tải lên đúng keystore JSON.",
         "There_is_something_wrong_with_the_chosen_file":	"Có vấn đề xảy ra với file của bạn.",
         "Your_private_key_must_have_exactly_64_characters":	"Private Key nên có đúng 64 kí tự",
         "Please_enter_your_private_key_to_continue": "Vui lòng điền private key để tiếp tục",
-        "Your_private_key_is_invalid": "Private key không đúng định dạng"
+        "Your_private_key_is_invalid": "Private key không đúng định dạng",
+        "Metamask_not_available": "Trình duyệt không hỗ trợ Metamask, bạn nên sử dụng Chrome, Firefox or Opera."
       },
       "ImportAccountView": {
         "Connect_with": "Kết nối với",
