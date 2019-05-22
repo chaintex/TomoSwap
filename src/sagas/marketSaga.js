@@ -28,7 +28,7 @@ function *fetchMarketRates(isBackgroundLoading = false) {
     for (let index = 0; index < tokensWithRate.length; index++) {
       const token = tokensWithRate[index];
       const item =  last24H.find(x => x.symbol === token.symbol);
-      if (item) {
+      if (item) { 
         token["last24H"] = item.last24H;
       }
     }
