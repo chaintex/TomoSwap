@@ -17,7 +17,6 @@ class App extends Component {
       translation: data,
       options: { 
         renderToStaticMarkup,
-        renderInnerHtml: true,
         onMissingTranslation: this.onMissingTranslation
       }
     });
