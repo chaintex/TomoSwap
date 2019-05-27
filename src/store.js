@@ -1,4 +1,4 @@
-import { compose, applyMiddleware, createStore } from "redux"
+ import { compose, applyMiddleware, createStore } from "redux"
 import createSagaMiddleware from 'redux-saga'
 
 import { logger } from 'redux-logger';
@@ -11,7 +11,7 @@ const sagaMiddleware = createSagaMiddleware();
 var middlewareArray = [sagaMiddleware];
 
 if (EnvConfig.IS_TESTNET) {
-  //middlewareArray.push(logger);
+  middlewareArray.push(logger);
 }
 
 const middleware = applyMiddleware(

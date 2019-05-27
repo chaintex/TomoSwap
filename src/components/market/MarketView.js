@@ -29,9 +29,11 @@ class MarketView extends Component {
         const buyRate = isUSDMarket ? `${formatAmount(token.usdBuyRate)} ${USD.symbol}` : `${formatAmount(token.buyRate)} ${TOMO.symbol}`;
         var last24H = "---";
         var last24HClass = "market__table-change--none";
-        if (token.last24H) {
-          last24HClass = (+token.last24H >= 0) ? "" : "down";
-          last24H = token.last24H;
+
+        const change24H = isUSDMarket ? token.usd24H : token.rate24H;
+        if (change24H) {
+          last24HClass = (+change24H >= 0) ? "" : "down";
+          last24H = change24H;
         }
 
         return (

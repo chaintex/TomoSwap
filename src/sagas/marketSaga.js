@@ -1,7 +1,7 @@
 import { delay } from 'redux-saga';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { getAllRates } from "../services/networkService";
-import { getUSDRateById, getUSD24H } from "../services/apiServices";
+import { getUSDRateById, getUSD24H, getRate24H } from "../services/apiServices";
 import * as marketActions from "../actions/marketAction";
 import * as tokenActions from "../actions/tokenAction";
 import AppConfig from "../config/app";
@@ -24,12 +24,19 @@ function *fetchMarketRates(isBackgroundLoading = false) {
   try {
     let tokens = yield select(getTokens);
     const tokensWithRate = yield call(getUSDBasedRates, tokens);
-    const last24H = yield call(getUSDLast24H, tokens);
+    const rate24H = yield call(getRateLast24H, tokens);
+    const usd24H = yield call(getUSDLast24H, tokens);
+
     for (let index = 0; index < tokensWithRate.length; index++) {
       const token = tokensWithRate[index];
-      const item =  last24H.find(x => x.symbol === token.symbol);
+      let item =  usd24H.find(x => x.symbol === token.symbol);
       if (item) { 
-        token["last24H"] = item.last24H;
+        token["usd24H"] = item.last24H;
+      }
+
+      item =  rate24H.find(x => x.symbol === token.symbol);
+      if (item) { 
+        token["rate24H"] = item.last24H; 
       }
     }
 
@@ -46,6 +53,22 @@ function *fetchMarketRates(isBackgroundLoading = false) {
 function *getUSDLast24H(tokens) {
   const listSymbols = tokens.map(item => { return item.symbol; });
   const response = yield call(getUSD24H, listSymbols);
+  const dataResponse = response.data;
+
+  const dataTokens = tokens.map(token => {
+    const price = dataResponse[token.symbol];
+    return {
+      symbol: token.symbol,
+      last24H: formatAmount(price)
+    };
+  });
+
+  return dataTokens;
+}
+
+function *getRateLast24H(tokens) {
+  const listSymbols = tokens.map(item => { return item.symbol; });
+  const response = yield call(getRate24H, listSymbols);
   const dataResponse = response.data;
 
   const dataTokens = tokens.map(token => {
