@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withLocalize } from 'react-localize-redux';
-// import Market from '../market/Market';
+import Market from '../market/Market';
 import Swap from '../swap/Swap';
 import Transfer from '../transfer/Transfer';
 import Transaction from '../transaction/Transaction';
@@ -96,7 +96,7 @@ class Body extends Component {
               </div>
             </div>
           </div>
-          {/* <Market/> */}
+          <Market/>
         </div>
 
         {!isTomoWallet && (
