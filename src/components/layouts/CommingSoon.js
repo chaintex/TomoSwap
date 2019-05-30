@@ -48,18 +48,19 @@ class CommingSoon extends Component {
 
   getCustomDate = (input, zone) => {
     let d = new Date();
+    if (input) {
+      d = new Date(input);
+    }
+
     let utc = d.getTime() + (d.getTimezoneOffset() * 60000);
     let result = new Date(utc + (3600000*(zone)));
-    console.log(result);
     return result;
   }
 
   setCountdown = () => {
-    var countDownDate = new Date("June 4, 2019 17:00:00 GMT+0800").getTime();
-    var x = setInterval(function() {
-      let d = new Date();
-      let utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-      let now = new Date(utc + (3600000*(+8))).getTime();
+    var countDownDate = this.getCustomDate("June 4, 2019 17:00:00", "+8").getTime();
+    var x = setInterval(() => {
+      var now = this.getCustomDate(null, "+8").getTime();
     
       // Find the distance between now and the count down date
       var distance = countDownDate - now;
@@ -70,11 +71,12 @@ class CommingSoon extends Component {
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
-      this.setState({days, hours, minutes, seconds});
-
       // If the count down is finished, write some text 
       if (distance < 0) {
         clearInterval(x);
+        this.setState({days: 0, hours: 0, minutes: 0, seconds: 0});
+      } else {
+        this.setState({days, hours, minutes, seconds});
       }
     }, 1000);
   }
@@ -85,6 +87,9 @@ class CommingSoon extends Component {
       <a key={index} className={code === language.code ? "actived" : ""} href={code === language.code ? "#" : `/?lang=${language.code}`}>{language.name}</a>
     );
 
+    const formatNumber = (number) => {
+      return number > 9 ? number.toString() : "0" + number.toString();
+    }
     return (
       <div className={"app-container"}>
         <div className={"header"}>
@@ -120,7 +125,7 @@ class CommingSoon extends Component {
                     <div className="body__countdown_item">
                       <div className="body__countdown_item_box">
                         <div className="body__countdown_item_box_number">
-                          02
+                          {formatNumber(this.state.days)}
                         </div>
                       </div>
                       <div className="body__countdown_item_unit">
@@ -130,7 +135,7 @@ class CommingSoon extends Component {
                     <div className="body__countdown_item">
                       <div className="body__countdown_item_box">
                         <div className="body__countdown_item_box_number">
-                          02
+                        {formatNumber(this.state.hours)}
                         </div>
                       </div>
                       <div className="body__countdown_item_unit">
@@ -140,7 +145,7 @@ class CommingSoon extends Component {
                     <div className="body__countdown_item">
                       <div className="body__countdown_item_box">
                         <div className="body__countdown_item_box_number">
-                          02
+                        {formatNumber(this.state.minutes)}
                         </div>
                       </div>
                       <div className="body__countdown_item_unit">
@@ -150,7 +155,7 @@ class CommingSoon extends Component {
                     <div className="body__countdown_item">
                       <div className="body__countdown_item_box">
                         <div className="body__countdown_item_box_number">
-                          02
+                        {formatNumber(this.state.seconds)}
                         </div>
                       </div>
                       <div className="body__countdown_item_unit">
