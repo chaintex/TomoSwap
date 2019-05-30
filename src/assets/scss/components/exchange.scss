@@ -11,7 +11,7 @@
         width: 32px;
         height: 32px;
         object-fit: cover;
-        background-image: url(/static/media/group.721c3969.svg);
+        background-image: url($image-path + 'icons/group.svg');
         background-size: cover;
         margin: 0 auto;
         cursor: pointer;
