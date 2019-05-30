@@ -11,8 +11,65 @@
             width: 100%;
             text-align: center;
 
+            .body__title {
+                height: 35px;
+                font-family: Montserrat;
+                font-size: 24px;
+                font-weight: 500;
+                color: #ffffff;
+            }
             .body__title::before {
                 background-color: inherit;
+            }
+
+            .body__countdown_wrap {
+                .body__countdown {
+                    width: 80%;
+                    margin: 30px auto 10px;
+                    text-align: center;
+
+                    &_item {
+                        width: 22%;
+                        display: inline-block;
+                        vertical-align: top;
+                        margin: 15px 1.5% 40px;
+                        opacity: 0;
+                        -webkit-transform: translateY(20px);
+                        transform: translateY(20px);
+                        -webkit-animation: fade-in .5s forwards;
+                        animation: fade-in .5s forwards;
+                        
+                        &_box {
+                            margin: 0 auto;
+                            display: flex;
+                            align-items: center;
+                            width: 160px;
+                            height: 200px;
+                            border-radius: 16px;
+                            box-shadow: 0 14px 48px 0 rgba(1, 1, 1, 0.41);
+                            background-image: linear-gradient(to bottom, #43508e, #313b6e);
+
+                            &_number {
+                                width: 100%;
+                                text-align: center;
+                                font-family: Roboto;
+                                font-size: 64px;
+                                font-weight: 500;
+                                color: #ffffff;
+                            }
+                        }
+
+                        &_unit {
+                            margin-top: 30px;
+                            height: 24px;
+                            font-family: Montserrat;
+                            font-size: 20px;
+                            font-weight: 500;
+                            text-align: center;
+                            color: #ffffff;
+                        }
+                    }
+                }
             }
         }
     }

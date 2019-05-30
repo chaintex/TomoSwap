@@ -59,6 +59,10 @@
         "Error": "Lỗi!",
         "Try_Again": "Thử lại",
         "Comming_Soon": "Sắp ra mắt. . .",
+        "Days": "Ngày",
+        "Hours": "Giờ",
+        "Minutes": "Phút",
+        "Seconds": "Giây",
         "You_can_try_testnet_version_here": "Bạn có thể dùng thử phiên bản testnet tại"
       },
       "Footer": {

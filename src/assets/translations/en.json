@@ -58,7 +58,11 @@
         "Transfer":	"Transfer",
         "Error": "Error!",
         "Try_Again": "Try Again",
-        "Comming_Soon": "Coming soon. . .",
+        "Comming_Soon": "TomoSwap - The first decentralized exchange platform on TomoChain",
+        "Days": "Days",
+        "Hours": "Hours",
+        "Minutes": "Minutes",
+        "Seconds": "Seconds",
         "You_can_try_testnet_version_here": "You can try testnet version"
       },
       "Footer": {
