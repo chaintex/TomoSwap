@@ -25,7 +25,7 @@ class SwapView extends Component {
     const txSrcAmount = this.props.tx.txSrcAmount > 0 ? this.props.tx.txSrcAmount : this.props.sourceAmount;
     const txDestAmount = this.props.tx.txDestAmount > 0 ? this.props.tx.txDestAmount : this.props.destAmount;
     const disableTacClass = this.props.accountAddress ? '' : 'exchange-terms_tac-disabled';
-
+    const destDecimals = (this.props.destToken.decimals && this.props.destToken.decimals < appConfig.MAX_PRECISION) ? this.props.destToken.decimals : appConfig.MAX_PRECISION;
     return (
       <div className={"exchange"}>
         <div className={"exchange__container"}>
@@ -54,7 +54,7 @@ class SwapView extends Component {
                 tokens={this.props.tokens}
               />
               <div className={"input-group__input"}>
-                {this.props.sourceAmount ? isLoadingRateShown ? this.props.translate("components.swap.SwapView.Loading") : formatAmount(this.props.destAmount) : 0}
+                {this.props.sourceAmount ? isLoadingRateShown ? this.props.translate("components.swap.SwapView.Loading") : formatAmount(this.props.destAmount, destDecimals) : 0}
               </div>
             </div>
 
@@ -82,7 +82,7 @@ class SwapView extends Component {
                 <div className={"modal__body-top common__flexbox exchange__modal-number"}>
                   <div className={"exchange__modal-box"}>{formatAmount(txSrcAmount)} {this.props.sourceToken.symbol}</div>
                   <div className={"exchange__modal-icon"}/>
-                  <div className={"exchange__modal-box"}>{formatAmount(txDestAmount)} {this.props.destToken.symbol}</div>
+                  <div className={"exchange__modal-box"}>{formatAmount(txDestAmount, destDecimals)} {this.props.destToken.symbol}</div>
                 </div>
                 <div className={"modal__body-bot"}>
                   <div>
