@@ -58,7 +58,7 @@ class CommingSoon extends Component {
   }
 
   setCountdown = () => {
-    var countDownDate = this.getCustomDate("June 4, 2019 17:00:00", "+8").getTime();
+    var countDownDate = this.getCustomDate("June 4, 2019 18:00:00", "+8").getTime();
     var x = setInterval(() => {
       var now = this.getCustomDate(null, "+8").getTime();
     
