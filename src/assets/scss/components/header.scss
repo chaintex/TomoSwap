@@ -169,7 +169,7 @@
                   background-color: #d0fac5;
                 }
 
-                .error {
+                .error, .failed {
                   color: #f9566d;
                   background-color: #ffd5d5;
                 }
@@ -186,7 +186,7 @@
             background-color: #ffffff;
           }
 
-          li.error {
+          li.error, li.failed {
             background-color: #fff1f3;
           }
 
