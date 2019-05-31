@@ -101,6 +101,7 @@ export default function swapReducer(state = initialState, action) {
     case swapActionTypes.SET_SOURCE_DEST_TOKEN: {
       return {
         ...state,
+        sourceAmount: '',
         destToken: action.payload.dest,
         sourceToken: action.payload.src,
       }
