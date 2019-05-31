@@ -151,6 +151,7 @@
     },
     "transaction": {
       "TransactionView": {
+        "Error": "Error!",
         "Broadcasted": "Broadcasted!",
         "Transaction_Hash": "Transaction Hash",
         "Copied": "Copied",

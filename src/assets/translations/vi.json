@@ -151,6 +151,7 @@
     },
     "transaction": {
       "TransactionView": {
+        "Error": "Lỗi!",
         "Broadcasted": "Đã gửi!",
         "Transaction_Hash": "Mã giao dịch (hash)",
         "Copied": "Sao chép",
