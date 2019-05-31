@@ -37,12 +37,18 @@
     height: 790px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+  }
+
+  &__container_has_imported {
+    height: 690px;
+    transition: 0.5s;
   }
 
   &__content {
     &:first-child {
       width: 41%;
+      margin-top: 180px;
     }
 
     &:last-child {
