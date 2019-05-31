@@ -19,6 +19,7 @@ function mapStateToProps(store) {
   const global = store.global;
 
   return {
+    address: store.account.address,
     exchangeMode: global.exchangeMode,
     globalError: global.error,
   };
@@ -63,10 +64,12 @@ class Body extends Component {
   render() {
     const isSwapMode = this.props.exchangeMode === AppConfig.EXCHANGE_SWAP_MODE;
     const isTomoWallet = this.props.isTomoWallet;
+    const isAccImported = this.props.address;
+
     return (
       <div className={"body"}>
         <div className={"container"}>
-          <div className={"body__container"}>
+          <div className={`body__container ${isAccImported ? " body__container_has_imported" : ""}`}>
             <div className={"body__content"}>
               <h3 className={"body__title"}>{this.props.translate("components.layouts.Body.TomoSwap_The_first_decentralized_exchange_platform_on_TomoChain")}</h3>
               <p className={"body__subtitle"}>{this.props.translate("components.layouts.Body.The_fastest_simplest_and_most_secure_way_to_exchange_tokens")}</p>
