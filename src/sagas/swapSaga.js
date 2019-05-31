@@ -6,7 +6,7 @@ import * as swapActions from "../actions/swapAction";
 import * as accountActions from '../actions/accountAction';
 import * as txActions from "../actions/transactionAction";
 import * as tokenActions from '../actions/tokenAction';
-import { stringFormat } from '../utils/helpers';
+import { stringFormat, formatAmount } from '../utils/helpers';
 import {
   calculateMinConversionRate,
   formatBigNumber,
@@ -303,9 +303,17 @@ function *validateValidInput(swap, account) {
     return false;
   }
 
-  if (sourceAmountString !== '' && sourceAmountInTOMO < 0.01) {
-    yield call(setError, translate('reducers.swapSaga.Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent'));
+  if (sourceAmountString !== '' && sourceAmountInTOMO < appConfig.MIN_TRADE) {
+    yield call(setError, stringFormat(translate('reducers.swapSaga.Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent'), appConfig.MIN_TRADE));
     return false;
+  }
+
+  if (swap.destAmount > 0) {
+    const realDestAmount = formatAmount(swap.destAmount, swap.destToken.decimals);
+    if (realDestAmount <= 0) {
+      yield put(swapActions.setError(translate(`reducers.swapSaga.Your_source_amount_is_too_low`)));
+      return false;
+    }
   }
 
   yield put(swapActions.setError());

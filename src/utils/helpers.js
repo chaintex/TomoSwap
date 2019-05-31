@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js';
 export function formatAmount(number, precision = 6) {
   if (number === undefined) return;
 
-  if (number <= Math.pow(10, -precision)) { return 0; }
+  if (number < Math.pow(10, -precision)) { return 0; }
   const amountString = number.toString();
 
   return parseFloat(amountString.slice(0, (amountString.indexOf('.')) + (precision + 1)));
