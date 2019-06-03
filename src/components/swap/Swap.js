@@ -59,7 +59,6 @@ function mapDispatchToProps(dispatch) {
     getTxSwapInfor: () => {dispatch(getTxSwapInfor())},
     setConfirmLocking: (isLocking) => {dispatch(setConfirmLocking(isLocking))},
     srcDestSwitcher: (src, dest) => {dispatch(swapActions.switchSrcDestToken(src, dest))}
-
   }
 }
 
