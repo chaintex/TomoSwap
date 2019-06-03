@@ -5,7 +5,7 @@ import { withLocalize } from 'react-localize-redux';
 import { setWalletPassword } from "../../actions/accountAction";
 import * as swapActions from "../../actions/swapAction";
 import { setGlobalError } from "../../actions/globalAction";
-import { resetAllTxStatus, setTxHashApprove, getTxSwapInfor, setConfirmLocking, setIsConfirming } from "../../actions/transactionAction";
+import { resetAllTxStatus, setTxHashApprove, getTxSwapInfor, setConfirmLocking } from "../../actions/transactionAction";
 import { TOMO } from "../../config/tokens";
 import appConfig from "../../config/app";
 
@@ -57,10 +57,8 @@ function mapDispatchToProps(dispatch) {
     resetAllTxStatus: () => {dispatch(resetAllTxStatus())},
     setTxHashApprove: (hash) => {dispatch(setTxHashApprove(hash))},
     getTxSwapInfor: () => {dispatch(getTxSwapInfor())},
-    setIsConfirming: (isConfirming) => {dispatch(setIsConfirming(isConfirming))},
     setConfirmLocking: (isLocking) => {dispatch(setConfirmLocking(isLocking))},
     srcDestSwitcher: (src, dest) => {dispatch(swapActions.switchSrcDestToken(src, dest))}
-
   }
 }
 
@@ -192,7 +190,6 @@ class Swap extends Component {
         closeApproveModal={this.closeApproveModal}
         onRef={ref => (this.swapView = ref)}
         swapSrcDestSwitcher={this.swapSrcDestSwitcher}
-        setIsConfirming={this.props.setIsConfirming}
       />
     )
   }
