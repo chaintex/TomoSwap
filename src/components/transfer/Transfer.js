@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { setWalletPassword } from "../../actions/accountAction";
 import * as transferAction from "../../actions/transferAction";
 import { setGlobalError } from "../../actions/globalAction";
-import { resetAllTxStatus } from "../../actions/transactionAction";
+import { resetAllTxStatus, setConfirmLocking } from "../../actions/transactionAction";
 import { TOMO } from "../../config/tokens";
 
 function mapStateToProps(store) {
@@ -45,6 +45,7 @@ function mapDispatchToProps(dispatch) {
     setGlobalError: (error) => {dispatch(setGlobalError(error))},
     setWalletPassword: (password) => {dispatch(setWalletPassword(password))},
     resetAllTxStatus: () => {dispatch(resetAllTxStatus())},
+    setConfirmLocking: (isLocking) => {dispatch(setConfirmLocking(isLocking))},
   }
 }
 
@@ -163,6 +164,7 @@ class Transfer extends Component {
         walletType={this.props.walletType}
         tx={this.props.tx}
         onRef={ref => (this.transferView = ref)}
+        setConfirmLocking={this.props.setConfirmLocking}
       />
     )
   }

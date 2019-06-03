@@ -95,6 +95,7 @@ class TransferView extends Component {
               confirmingError={this.props.tx.confirmingError}
               closeModal={this.props.closeConfirmModal}
               confirm={this.props.transfer}
+              setConfirmLocking={this.props.setConfirmLocking}
             />
           </div>
         </Modal>

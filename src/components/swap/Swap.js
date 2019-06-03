@@ -191,6 +191,7 @@ class Swap extends Component {
         closeApproveModal={this.closeApproveModal}
         onRef={ref => (this.swapView = ref)}
         swapSrcDestSwitcher={this.swapSrcDestSwitcher}
+        setConfirmLocking={this.props.setConfirmLocking}
       />
     )
   }
