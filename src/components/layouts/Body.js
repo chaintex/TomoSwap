@@ -78,10 +78,10 @@ class Body extends Component {
               <div className={`body__exchange ${isTomoWallet ? "body__exchange-tomo" : null}`} id={"exchange"}>
                 <div className={"body__exchange-wrapper"}>
                   <div className={`body__exchange-content body__exchange-content--${isSwapMode ? AppConfig.EXCHANGE_SWAP_MODE : AppConfig.EXCHANGE_TRANSFER_MODE}`}>
-                    <div className={`body__exchange-button ${isSwapMode ? 'body__exchange-button--active' : ''}`} onClick={() => this.props.setExchangeMode(AppConfig.EXCHANGE_SWAP_MODE)}>
+                    <div className={`body__exchange-button body__exchange-button-noselect ${isSwapMode ? 'body__exchange-button--active' : ''}`} onClick={() => this.props.setExchangeMode(AppConfig.EXCHANGE_SWAP_MODE)}>
                       {this.props.translate("components.layouts.Body.Swap")}
                     </div>
-                    <div className={`body__exchange-button ${!isSwapMode ? 'body__exchange-button--active' : ''}`} onClick={() => this.props.setExchangeMode(AppConfig.EXCHANGE_TRANSFER_MODE)}>
+                    <div className={`body__exchange-button body__exchange-button-noselect ${!isSwapMode ? 'body__exchange-button--active' : ''}`} onClick={() => this.props.setExchangeMode(AppConfig.EXCHANGE_TRANSFER_MODE)}>
                       {this.props.translate("components.layouts.Body.Transfer")}
                     </div>
                   </div>
