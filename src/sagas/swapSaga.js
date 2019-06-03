@@ -36,34 +36,30 @@ function *swapToken() {
   const localizeState = yield select(getLocalizeState);
   const translate = getTranslate(localizeState);
 
-  // set confirming flag
-  yield put(txActions.setConfirmLocking(true));
   const isValidInput = yield call(validateValidInput, swap, account);
   if (!isValidInput) {
-    yield put(txActions.setConfirmLocking(false));
+    yield put(txActions.setIsConfirming(false));
     yield put(swapActions.setIsConfirmModalActive(false));
     return;
   }
 
+  yield call(setTxStatusBasedOnWalletType, account.walletType, true);
   //check usercap 
   try {
     const usrCap = yield call(getUserCap, account.address);
     if (swap.sourceAmount > formatBigNumber(usrCap)) {
-      yield put(txActions.setConfirmLocking(false));
+      yield call(setTxStatusBasedOnWalletType, account.walletType, false);
       yield put(txActions.setConfirmingError(translate(`reducers.swapSaga.Your_source_amount_is_bigger_than_your_capacity_limit`)));
       return;
     }
   } catch (e) {
-    yield put(txActions.setConfirmLocking(false));
+    yield call(setTxStatusBasedOnWalletType, account.walletType, false);
     yield put(txActions.setConfirmingError(e));
     return;
   }
 
-  //return flag of confirming
-  yield put(txActions.setConfirmLocking(false));
   //reset error
   yield put(txActions.setConfirmingError());
-  yield call(setTxStatusBasedOnWalletType, account.walletType, true);
 
   var nonce;
   try {
