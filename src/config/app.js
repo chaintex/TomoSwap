@@ -23,6 +23,8 @@ const AppConfig = {
   WALLET_TYPE_METAMASK: 'Metamask',
   WALLET_TYPE_KEYSTORE: 'Keystore',
   WALLET_TYPE_PRIVATE_KEY: 'Private Key',
+  MAX_PRECISION: 6,
+  MIN_TRADE: 0.1
 };
 
 export default AppConfig;
