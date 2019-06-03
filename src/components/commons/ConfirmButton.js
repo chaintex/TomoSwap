@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { withLocalize } from 'react-localize-redux';
 
 class ConfirmButton extends Component {
+
+  handleConfirmClick = () => {
+    this.props.confirm();
+  }
+  
   render() {
     const isConfirmButtonShown = !this.props.isConfirming && !this.props.isBroadcasting;
     const isConfirmLocking = this.props.isConfirmLocking;
@@ -21,8 +26,8 @@ class ConfirmButton extends Component {
 
         {isConfirmButtonShown && (
           <div className={"common__flexbox common__fade-in"}>
-            <div className={"modal__button"} onClick={() => this.props.closeModal()}>{this.props.translate("components.commons.ConfirmButton.Cancel")}</div>
-            <div className={`modal__button modal__button--gradient ${isConfirmLocking ? "modal__button-disable" : ""}`} onClick={() => this.props.confirm()}>{this.props.translate("components.commons.ConfirmButton.Confirm")}</div>
+            <div className={"modal__button modal__button-noselect"} onClick={() => this.props.closeModal()}>{this.props.translate("components.commons.ConfirmButton.Cancel")}</div>
+            <div className={`modal__button modal__button--gradient modal__button-noselect ${isConfirmLocking ? "modal__button-disable" : ""}`} onClick={() => this.handleConfirmClick()}>{this.props.translate("components.commons.ConfirmButton.Confirm")}</div>
           </div>
         )}
       </div>
