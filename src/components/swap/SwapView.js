@@ -104,8 +104,7 @@ class SwapView extends Component {
                 confirmingError={this.props.tx.confirmingError}
                 closeModal={this.props.closeConfirmSwapModal}
                 confirm={this.props.swap}
-                setConfirmLocking={this.props.setConfirmLocking}
-                isConfirmLocking={this.props.tx.isConfirmLocking}
+                setIsConfirming={this.props.setIsConfirming}
               />
             </div>
           )}

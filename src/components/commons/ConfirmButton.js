@@ -4,14 +4,15 @@ import { withLocalize } from 'react-localize-redux';
 class ConfirmButton extends Component {
 
   handleConfirmClick = () => {
-    if (this.props.setConfirmLocking) {
-      this.props.setConfirmLocking(true);
+    if (this.props.setIsConfirming) {
+      this.props.setIsConfirming(true);
     }
     this.props.confirm();
   }
   
   render() {
     const isConfirmButtonShown = !this.props.isConfirming && !this.props.isBroadcasting;
+    console.log(isConfirmButtonShown);
     const isConfirmLocking = this.props.isConfirmLocking;
     return (
       <div className={"modal__footer"}>
