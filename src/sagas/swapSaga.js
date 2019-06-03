@@ -38,7 +38,6 @@ function *swapToken() {
 
   const isValidInput = yield call(validateValidInput, swap, account);
   if (!isValidInput) {
-    yield put(txActions.setIsConfirming(false));
     yield put(swapActions.setIsConfirmModalActive(false));
     return;
   }
