@@ -42,21 +42,23 @@ function *swapToken() {
     return;
   }
 
+  yield call(setTxStatusBasedOnWalletType, account.walletType, true);
   //check usercap 
   try {
     const usrCap = yield call(getUserCap, account.address);
-    
     if (swap.sourceAmount > formatBigNumber(usrCap)) {
+      yield call(setTxStatusBasedOnWalletType, account.walletType, false);
       yield put(txActions.setConfirmingError(translate(`reducers.swapSaga.Your_source_amount_is_bigger_than_your_capacity_limit`)));
       return;
     }
   } catch (e) {
+    yield call(setTxStatusBasedOnWalletType, account.walletType, false);
     yield put(txActions.setConfirmingError(e));
     return;
   }
 
+  //reset error
   yield put(txActions.setConfirmingError());
-  yield call(setTxStatusBasedOnWalletType, account.walletType, true);
 
   var nonce;
   try {

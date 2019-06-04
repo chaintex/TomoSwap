@@ -32,7 +32,7 @@ export function *fetchTransactionReceipt(txHash) {
 
   while(!isTxMined) {
     const txReceipt = yield call(web3.eth.getTransactionReceipt, txHash);
-    console.log(txReceipt);
+    // console.log(txReceipt);
 
     if (txReceipt && txReceipt.status === '0x1') {
       yield put(txActions.setIsTxMined(txReceipt.status));
@@ -140,6 +140,8 @@ export function *extractDataFromLogs(log) {
 
 export function *setTxStatusBasedOnWalletType(walletType, status) {
   if (walletType === appConfig.WALLET_TYPE_METAMASK) {
+    yield put(txActions.setIsConfirming(status));
+  } else if (walletType === appConfig.WALLET_TYPE_PRIVATE_KEY) {
     yield put(txActions.setIsConfirming(status));
   } else if (walletType === appConfig.WALLET_TYPE_KEYSTORE) {
     yield put(txActions.setIsBroadcasting(status));
