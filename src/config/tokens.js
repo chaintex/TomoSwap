@@ -17,17 +17,17 @@ export const TOKENS = [
   {
     "symbol": "CONST",
     "name": "Constant Stablecoin",
-    "address": "0x7b0f797798fe5377ad34b631b1d42c9a3292f7c1",
+    "address": "0x63860d4ece7b0bd86f95694fc15309961a0a317e",
     "decimals": 2,
     "logo": "const.jpeg"
   },
-  // {
-  //   "symbol": "TIIM",
-  //   "name": "TriipMiles",
-  //   "decimals": 18,
-  //   "address": "0x095d85e62cb6ad354ff900c1d530a7c4b8e247b5",
-  //   "logo": "tiim.png"
-  // },
+  {
+    "symbol": "TIIM",
+    "name": "TriipMiles",
+    "decimals": 18,
+    "address": "0x095d85e62cb6ad354ff900c1d530a7c4b8e247b5",
+    "logo": "tiim.png"
+  },
   // {
   //   "symbol": "TestCTT",
   //   "name": "ChainTEX Token",
