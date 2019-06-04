@@ -330,6 +330,7 @@ export function *getSwapTxObject(gasLimit, nonce = -1) {
   const srcAmount = swap.sourceAmount ? numberToHex(swap.sourceAmount, srcToken.decimals) : numberToHex(1, srcToken.decimals);
   const minConversionRate = calculateMinConversionRate(appConfig.DEFAULT_SLIPPAGE_RATE, swap.tokenPairRate);
 
+  const walletId = account.isTomoWalletBrowser === true ? appConfig.TOMO_WALLET_ID : appConfig.DEFAULT_WALLET_ID;
   const swapABI = yield call(getSwapABI, {
     srcAddress: srcToken.address,
     srcAmount: srcAmount,
@@ -337,7 +338,7 @@ export function *getSwapTxObject(gasLimit, nonce = -1) {
     address: account.address ? account.address : "0x0",
     maxDestAmount: getBiggestNumber(),
     minConversionRate: minConversionRate,
-    walletId: appConfig.DEFAULT_WALLET_ID
+    walletId: walletId
   });
 
   const metadata = stringFormat(envConfig.METADATA_SWAP_DEFINED, 
@@ -345,7 +346,7 @@ export function *getSwapTxObject(gasLimit, nonce = -1) {
     srcAmount, 
     swap.destToken.address,
     minConversionRate,
-    appConfig.DEFAULT_WALLET_ID
+    walletId
   );
 
   let txObject = {
