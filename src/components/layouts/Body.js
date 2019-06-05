@@ -87,10 +87,10 @@ class Body extends Component {
                   </div>
                 </div>
                 {isSwapMode && (
-                  <Swap/>
+                  <Swap isTomoWallet={isTomoWallet} />
                 )}
                 {!isSwapMode && (
-                  <Transfer/>
+                  <Transfer isTomoWallet={isTomoWallet} />
                 )}
                 {!isTomoWallet && (
                   <ImportAccount/>
