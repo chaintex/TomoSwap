@@ -163,6 +163,7 @@ class Transfer extends Component {
         walletType={this.props.walletType}
         tx={this.props.tx}
         onRef={ref => (this.transferView = ref)}
+        isTomoWallet={this.props.isTomoWallet} 
       />
     )
   }

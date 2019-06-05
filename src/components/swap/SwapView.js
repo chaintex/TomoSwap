@@ -26,6 +26,8 @@ class SwapView extends Component {
     const txDestAmount = this.props.tx.txDestAmount > 0 ? this.props.tx.txDestAmount : this.props.destAmount;
     const disableTacClass = this.props.accountAddress ? '' : 'exchange-terms_tac-disabled';
     const destDecimals = (this.props.destToken.decimals && this.props.destToken.decimals < appConfig.MAX_PRECISION) ? this.props.destToken.decimals : appConfig.MAX_PRECISION;
+    const aTarget = this.props.isTomoWallet ? "_self" : "_blank";
+
     return (
       <div className={"exchange"}>
         <div className={"exchange__container"}>
@@ -69,7 +71,7 @@ class SwapView extends Component {
             <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openConfirmSwapModal()}>{this.props.translate("components.swap.SwapView.Swap_Now")}</div>
             <div className={`exchange-terms ${disableTacClass}`}>
               <span>{this.props.translate("components.swap.SwapView.By_Swapping_you_agree_to_the")}
-              <a className="exchange-terms__link" href={`https://tomoswap.com/tac.pdf`} target="_blank" rel="noopener noreferrer"> {this.props.translate("components.swap.SwapView.Terms_and_Conditions")}</a></span>
+              <a className="exchange-terms__link" href={`https://tomoswap.com/tac.pdf`} target={aTarget} rel="noopener noreferrer"> {this.props.translate("components.swap.SwapView.Terms_and_Conditions")}</a></span>
             </div>
           </div>
         }
