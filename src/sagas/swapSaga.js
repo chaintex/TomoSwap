@@ -43,7 +43,7 @@ function *swapToken() {
   }
 
   yield call(setTxStatusBasedOnWalletType, account.walletType, true);
-  //check usercap 
+  //check usercap
   try {
     const usrCap = yield call(getUserCap, account.address);
     if (swap.sourceAmount > formatBigNumber(usrCap)) {
@@ -126,7 +126,7 @@ function *swapToken() {
   } catch (error) {
     // translate to clear message
     const msg = translate(error.toString());
-    
+
     yield put(txActions.setConfirmingError(msg));
     yield call(setTxStatusBasedOnWalletType, account.walletType, false);
   }
@@ -194,7 +194,7 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
 
   const srcToken = swap.sourceToken;
   const destToken = swap.destToken;
-  const sourceAmount = swap.sourceAmount ? swap.sourceAmount : 1;
+  const sourceAmount = swap.sourceAmount ? swap.sourceAmount : 0.01;
 
   yield put(swapActions.setTokenPairRateLoading(true));
   yield put(swapActions.setBgTokenPairRateLoading(isBackgroundLoading));
@@ -265,7 +265,7 @@ function *validateValidInput(swap, account) {
   const sourceAmountDecimals = sourceAmountString.split(".")[1];
   const localizeState = yield select(getLocalizeState);
   const translate = getTranslate(localizeState);
-  
+
   let sourceAmountInTOMO;
   if (sourceToken.address === TOMO.address) {
     sourceAmountInTOMO = sourceAmount;
@@ -341,9 +341,9 @@ export function *getSwapTxObject(gasLimit, nonce = -1) {
     walletId: walletId
   });
 
-  const metadata = stringFormat(envConfig.METADATA_SWAP_DEFINED, 
-    srcToken.address, 
-    srcAmount, 
+  const metadata = stringFormat(envConfig.METADATA_SWAP_DEFINED,
+    srcToken.address,
+    srcAmount,
     swap.destToken.address,
     minConversionRate,
     walletId
@@ -360,7 +360,7 @@ export function *getSwapTxObject(gasLimit, nonce = -1) {
   if (account.isTomoWalletBrowser) {
     txObject["metadata"] = metadata;
   }
-  
+
   return yield call(getTxObject, txObject, nonce);
 }
 

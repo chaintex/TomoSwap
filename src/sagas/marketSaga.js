@@ -55,7 +55,7 @@ function *getTokenBasedRates(tokens) {
       srcAddresses.push(token.address);
       srcDecimals.push(token.decimals);
       destAddresses.push(TOMO.address);
-      srcAmounts.push(1);
+      srcAmounts.push(0.01);
     }
   });
 
