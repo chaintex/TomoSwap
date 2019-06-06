@@ -21,6 +21,7 @@ class TransferView extends Component {
   render() {
     const disabledClass = this.props.error ? 'disabled' : '';
     const disableTacClass = this.props.accountAddress ? '' : 'exchange-terms_tac-disabled';
+    const aTarget = this.props.isTomoWallet ? "_self" : "_blank";
 
     return (
       <div className={"exchange"}>

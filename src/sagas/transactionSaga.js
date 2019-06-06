@@ -143,7 +143,7 @@ export function *setTxStatusBasedOnWalletType(walletType, status) {
     yield put(txActions.setIsConfirming(status));
   } else if (walletType === appConfig.WALLET_TYPE_PRIVATE_KEY) {
     yield put(txActions.setIsConfirming(status));
-  }else if (walletType === appConfig.WALLET_TYPE_KEYSTORE) {
+  } else if (walletType === appConfig.WALLET_TYPE_KEYSTORE) {
     yield put(txActions.setIsBroadcasting(status));
   }
 }
