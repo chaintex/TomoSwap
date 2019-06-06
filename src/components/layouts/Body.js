@@ -32,7 +32,7 @@ function mapDispatchToProps(dispatch) {
     resetGlobalError: () => {dispatch(globalActions.setGlobalError())},
     setGlobalError: (error) => {dispatch(globalActions.setGlobalError(error))},
     fetchBalances: () => {dispatch(accountActions.fetchBalances())},
-    setIsTomoWalletBrowser: (flag) => {accountActions.setIsTomoWalletBrowser(flag)},
+    setIsTomoWalletBrowser: (flag) => {dispatch(accountActions.setIsTomoWalletBrowser(flag))},
     setWallet: (address, walletType, walletService) => {dispatch(accountActions.setWallet(address, walletType, walletService))},
   }
 }
@@ -87,10 +87,10 @@ class Body extends Component {
                   </div>
                 </div>
                 {isSwapMode && (
-                  <Swap/>
+                  <Swap isTomoWallet={isTomoWallet} />
                 )}
                 {!isSwapMode && (
-                  <Transfer/>
+                  <Transfer isTomoWallet={isTomoWallet} />
                 )}
                 {!isTomoWallet && (
                   <ImportAccount/>

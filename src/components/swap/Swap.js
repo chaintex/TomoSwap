@@ -189,7 +189,8 @@ class Swap extends Component {
         closeConfirmSwapModal={this.closeConfirmSwapModal}
         closeApproveModal={this.closeApproveModal}
         onRef={ref => (this.swapView = ref)}
-        swapSrcDestSwitcher={this.swapSrcDestSwitcher}
+        swapSrcDestSwitcher={this.swapSrcDestSwitcher} 
+        isTomoWallet={this.props.isTomoWallet} 
       />
     )
   }
