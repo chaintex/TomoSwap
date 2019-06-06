@@ -31,6 +31,7 @@ const AppConfig = {
   FEE_SHARING: '0x006603cd2a066e987ad3c2c59acc9975fb54b39a',
   EXPECTED_RATE: '0xeac4335edb7a39a7730fa501bfde5cabb1563764',
   ADMIN: '0x0e1a930601ccf1688154baacb2af9d6bee2cb727',
+  DEDUCT_AMOUNT_FOR_TX_FEE: 0.1
 };
 
 export default AppConfig;
