@@ -36,10 +36,11 @@ class Faq extends Component {
 
   render() {
     const isTomoWallet = (window.web3 && window.web3.currentProvider && window.web3.currentProvider.isTomoWallet);
+    const languageCode = currentLanguage().code;
     return (
       <div className={`app-container ${isTomoWallet ? "tomowallet" : ""}`} onClick={this.handleOnClick}>
         <Header isTomoWallet={isTomoWallet} />
-        <FaqView isTomoWallet={isTomoWallet} />
+        <FaqView isTomoWallet={isTomoWallet} languageCode={languageCode} />
         <Footer isTomoWallet={isTomoWallet} />
       </div>
     )
