@@ -18,7 +18,7 @@ export const faq = {
         },
         {
             question : "How do I access to TomoSwap?",
-            answer : "<p><b>Mobile version:</b><br /><b>- TomoWallet app:</b> You can use TomoSwap Dapp directly in the app. TomoWallet is now available on both <a href='https://play.google.com/store/apps/details?id=com.tomochain.wallet'>Android</a> and <a href='https://itunes.apple.com/us/app/tomo-wallet/id1436476145?mt=8'>iOS</a>.<b><p/>PC version:</b> Go to <a href='https://tomoswap.com'>tomoswap.com</a> then choose one of the below options to start using our service<br /><b>- JSON Keystore File:</b> Learn more about JSON Files at <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Private Key:</b> Learn more about Private Keys at <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Metamask:</b> Make sure you have <a target='_blank' href='https://metamask.io/'>Metamask Plugin</a> installed<br /><b>- Trezor:</b> Coming soon<br /><b>- Ledger:</b> Coming soon<br /><p>*Kindly note that switching to TomoChain network before using TomoSwap.</p></p>"
+            answer : "<p><b>Mobile version:</b><br /><b>- TomoWallet app:</b> You can use TomoSwap Dapp directly in the app. TomoWallet is now available on both <a target='_blank' href='https://play.google.com/store/apps/details?id=com.tomochain.wallet'>Android</a> and <a target='_blank' href='https://itunes.apple.com/us/app/tomo-wallet/id1436476145?mt=8'>iOS</a>.<b><p/>PC version:</b> Go to <a href='https://tomoswap.com'>tomoswap.com</a> then choose one of the below options to start using our service<br /><b>- JSON Keystore File:</b> Learn more about JSON Files at <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Private Key:</b> Learn more about Private Keys at <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Metamask:</b> Make sure you have <a target='_blank' href='https://metamask.io/'>Metamask Plugin</a> installed<br /><b>- Trezor:</b> Coming soon<br /><b>- Ledger:</b> Coming soon<br /><p>*Kindly note that switching to TomoChain network before using TomoSwap.</p></p>"
         },
         {
             question : "What are the fees on TomoSwap?",
@@ -46,7 +46,7 @@ export const faq = {
         },
         {
             question : "I have an issue, how can i get support?",
-            answer : "<p>Should you have any inquiry, please send an email to <a href='mailto:support@tomoswap.com'>support@tomoswap.com</a><br />Our staff will respond as soon as possible.</p>"
+            answer : "<p>Should you have any inquiry, please send an email to <a target='_blank' href='mailto:support@tomoswap.com'>support@tomoswap.com</a><br />Our staff will respond as soon as possible.</p>"
         }
     ],
     vi : [
@@ -68,7 +68,7 @@ export const faq = {
         },
         {
             question : "Làm thế nào để dùng TomoSwap?",
-            answer : "<p><b>Trên điện thoại:</b><br /><b>- Ứng dụng TomoWallet:</b> Bạn có thể sử dụng TomoSwap Dapp trên ứng dụng. TomoWallet đã có ở <a href='https://play.google.com/store/apps/details?id=com.tomochain.wallet'>Android</a> vả <a href='https://itunes.apple.com/us/app/tomo-wallet/id1436476145?mt=8'>iOS</a>.<b><p/>Trên máy tính/laptop:</b> Truy cập vào <a href='https://tomoswap.com'>tomoswap.com</a> chọn một trong các tuỳ chọn dưới đây<br /><b>- JSON Keystore File:</b> Xem thêm về JSON Files ở <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Private Key:</b> Xem thêm về Private Key ở <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Metamask:</b> Bạn cần phải cài đặt <a target='_blank' href='https://metamask.io/'>Metamask Plugin</a> trước<br /><b>- Trezor:</b> Sắp có<br /><b>- Ledger:</b> Sắp có<br /></p>"
+            answer : "<p><b>Trên điện thoại:</b><br /><b>- Ứng dụng TomoWallet:</b> Bạn có thể sử dụng TomoSwap Dapp trên ứng dụng. TomoWallet đã có ở <a target='_blank' href='https://play.google.com/store/apps/details?id=com.tomochain.wallet'>Android</a> vả <a target='_blank' href='https://itunes.apple.com/us/app/tomo-wallet/id1436476145?mt=8'>iOS</a>.<b><p/>Trên máy tính/laptop:</b> Truy cập vào <a href='https://tomoswap.com'>tomoswap.com</a> chọn một trong các tuỳ chọn dưới đây<br /><b>- JSON Keystore File:</b> Xem thêm về JSON Files ở <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Private Key:</b> Xem thêm về Private Key ở <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Metamask:</b> Bạn cần phải cài đặt <a target='_blank' href='https://metamask.io/'>Metamask Plugin</a> trước<br /><b>- Trezor:</b> Sắp có<br /><b>- Ledger:</b> Sắp có<br /></p>"
         },
         {
             question : "TomoSwap có tính phí không?",
@@ -96,7 +96,7 @@ export const faq = {
         },
         {
             question : "Làm thế nào nếu gặp vấn đề với TomoSwap?",
-            answer : "<p>Bạn có thể gửi email đến <a href='mailto:support@tomoswap.com'>support@tomoswap.com</a> để được hỗ trợ sớm nhất có thể.</p>"
+            answer : "<p>Bạn có thể gửi email đến <a target='_blank' href='mailto:support@tomoswap.com'>support@tomoswap.com</a> để được hỗ trợ sớm nhất có thể.</p>"
         }
     ]
 };
