@@ -1,0 +1,232 @@
+{
+  "components": {
+    "account": {
+      "ImportAccount": {
+        "Cannot_connect_to_Metamask_Please_make_sure_you_have_Metamask_installed": "No se puede establecer conexion a Metamask. Porfavor asegurate de tener <a target='_blank' rel='noopener noreferrer' href='https://metamask.io'>Metamask</a> instalado",
+        "Metamask_should_be_on_network": "Metamask debe estar configurada en {0}, puedes leer las instrucciones <a target='_blank' rel='noopener noreferrer' href='{1}'>aquí</a>",
+        "You_have_chosen_an_invalid_Keystore_file": "Has seleccionado un archivo Keystore invalido.",
+        "You_have_chosen_a_malformed_Keystore_file": "Has seleccionado un archivo Keystore con formato incorrecto.",
+        "There_is_something_wrong_with_the_chosen_file":	"Hay un problema con el archivo que has seleccionado.",
+        "Your_private_key_must_have_exactly_64_characters":	"Tu clave privada debe tener exactamente 64 caracteres.",
+        "Please_enter_your_private_key_to_continue": "Porfavor, ingresa tu clave privada para continuar.",
+        "Your_private_key_is_invalid": "Tu clave privada es invalida.",
+        "Metamask_not_available": "Metamask no es compatible con este navegador, debes usar Chrome, Firexox o Opera."
+      },
+      "ImportAccountView": {
+        "Connect_with": "Conectar con",
+        "Metamask": "Metamask",
+        "Keystore": "Keystore",
+        "Ledger": "Ledger",
+        "Trezor":	"Trezor",
+        "Private_Key": "Clave privada",
+        "Enter_Private_Key": "Ingresar clave privada",
+        "Connect_other_Wallet": "Conectar con otro billetera",
+        "Receive_some_TOMO_testnet": "Consigue testnet TOMO",
+        "here": "aquí"
+      }
+    },
+    "commons" : {
+      "ConfirmButton": {
+        "Waiting_for_confirmation_from_your_wallet": "Esperando confirmacion de su billetera…",
+        "The_transaction_is_broadcasting_to_the_blockchain": "La transacción se está transmitiendo a la blockchain",
+        "Cancel": "Cancelar",
+        "Confirm": "Confirmar"
+      },
+      "InputGroup": {
+        "From":	"Desde:",
+        "To":	"Hacia:",
+        "Swap":	"Intercambiar",
+        "Transfer":	"Transferir"
+      },
+      "PasswordInput": {
+        "Sign_and_broadcast":	"Firmar y transmitir",
+        "Enter_your_password_passphrase":	"Ingresa tu contraseña",
+        "Enter_your_private_key": "Ingresa tu clave privada"
+      },
+      "TokenSelector": {
+        "Search": "Buscar"
+      },
+      "NotifyView": {
+        "Your_transactions": "Tus transacciones",
+        "transaction_for": "=>",
+        "transaction_to": "=>",
+        "Swap": "Intercambiar",
+        "Transfer": "Transferir"
+      }
+    },
+    "layouts": {
+      "AboutUs": {
+        "Our_Team": "Nuestro Equipo",
+        "Our_Advisors": "Nuestros Asesores",
+        "Mike_Le": {
+          "Title": "Mike Le",
+          "Sub_Title": "CEO & Co-Founder",
+          "Bio": "Mike Le es un desarrollador experimentado con un gran conocimiento en programación competitiva, estructuras de datos y fundamentos de CS. Obtuvo la Medalla de Bronce en los Juegos Olímpicos Internacionales de Información (IOI) en 2013 y se le ofreció la beca ASEAN de la Universidad Nacional de Singapur (NUS). Representó a NUS para competir en la final mundial de ACM / ICPC en Beijing 2018, que es una de las mayores competiciones anuales para estudiantes de programación de todo el mundo. En 2017, Mike cofundó como CTO Spence Pay, que era un servicio de pago móvil y se lanzó con éxito en NUS. Mike se graduó de NUS con honores en 2018 y, desde entonces, ha estado trabajando con la tecnología blockchain, especialmente en Ethereum."
+        },
+        "Nga": {
+          "Title": "Nga Luu",
+          "Sub_Title": "COO & Co-Founder",
+          "Bio": "Nga es un consultor experimentado en el campo del derecho de propiedad intelectual. Tiene casi 5 años trabajando en las firmas de abogados de propiedad intelectual más famosas de Vietnam, antes de trabajar como oficial de operaciones en la industria de TI. Tiene experiencia en el manejo legal, financiero, de la operación diaria de una empresa. Ella asegura que la compañía cuenta con procedimientos operativos y financieros efectivos. Cuenta con títulos de maestría en administración y certificaciones de derecho de propiedad intelectual con experiencias prácticas en materia legal y administrativa."
+        },
+        "Mark_Nguyen": {
+          "Title": "Mark Nguyen",
+          "Sub_Title": "Full Stack Engineer",
+          "Bio": "Mark Nguyen es un programador reconocido con docenas de años de experiencia trabajando en grandes corporaciones como CMC, FPT. En Co-Well Co., LTD, como gerente de proyectos para soluciones financieras y bancarias para el mercado japonés, ha implementado con éxito cientos de proyectos."
+        },
+        "Loi_Luu": {
+          "Title": "Loi Luu",
+          "Sub_Title": "CEO & Co-Founder of Kyber Network",
+          "Bio": "Loi Luu es un investigador que trabaja en criptomonedas, seguridad de contrato inteligente y algoritmos de consenso distribuidos. También es un orador invitado habitual en los talleres de Bitcoin y Ethereum, como DevCon2, EDCON. Loi cree en la fuerza de la tecnología Ethereum y Blockchain. Gran parte de su trabajo gira en torno a esta comunidad. Desarrolló Oyente, el primer analizador de seguridad de código abierto para los contratos inteligentes de Ethereum. Loi también cofundó SmartPool, otro proyecto de código abierto que abarca la descentralización de los pools de minería en la criptomoneda existente. El continúa defendiendo la descentralización y las propiedades de confianza de Blockchain con KyberNetwork, inspirándose y desarrollando valor para la comunidad."
+        },
+        "Victor_Tran": {
+          "Title": "Victor Tran",
+          "Sub_Title": "Head of Development & Co-Founder of Kyber Network",
+          "Bio": "Victor Tran es un Ingeniero con Senior en Backend  y administrador de sistemas Linux. Tiene experiencia en la construcción de aplicaciones multiplataforma de alto rendimiento. Victor ha estado involucrado en el desarrollo de blockchain y criptomoneda desde principios de 2016 y es el ingeniero principal del proyecto SmartPool."
+        },
+        "Long_Vuong": {
+          "Title": "Long Vuong",
+          "Sub_Title": "CEO, Co-Founder of TomoChain",
+          "Bio": "CEO de TomoChain y lider del proyecto TomoChain, cofundador y ex líder del proyecto de la exitosa cadena de bloques NEM (New Economy Movement). PhD candidato en economía, Massachusetts, Estados Unidos."
+        },
+        "Tu_Nguyen": {
+          "Title": "Tu Nguyen",
+          "Sub_Title": "Lead of blockchain engineer TomoChain",
+          "Bio": "Ingeniero experimentado trabajando en Blockchain y Cloud Computing. Desarrollador autorizado de Apache Software Foundation, Cloud Native Computing Foundation. Ingeniero jefe de software de código abierto de computación en nube múltiple (kubeless, kubeapps, kompose, kubewatch). Master en Sistemas Distribuidos, Suiza."
+       }
+        },          
+      "Body": {
+        "TomoSwap_The_first_decentralized_exchange_platform_on_TomoChain": "TomoSwap - La primer plataforma de intercambio decentralizado en Tomochain",
+        "The_fastest_simplest_and_most_secure_way_to_exchange_tokens": "La manera mas rapida, simple y segura de intercambiar tokens.",
+        "Swap":	"Intercambiar",
+        "Transfer":	"Transferir",
+        "Error": "Error!",
+        "Try_Again": "Inténtalo de nuevo"
+      },
+      "Footer": {
+        "ChainTEX": "ChainTEX",
+        "About_Us": "Acerca de nosotros",
+        "FAQ": "FAQ",
+        "Contact_Us": "Contactanos",
+        "2019_ChainTEX_All_rights_reserved": "@ 2019 ChainTEX. All rights reserved.",
+        "Blog": "Blog"
+      },
+      "Header": {
+        "Swap":	"Intercambiar",
+        "About_Us": "Acerca de nosotros",
+        "FAQ": "FAQ",
+        "Contact_Us": "Contactanos",
+        "Blog": "Blog",
+        "Your_connection_seems_to_be_offline_Please_check_and_reconnect": "Tu conexión parece estar desconectada. Por favor, compruebe y vuelva a conectar"
+      }
+    },
+    "market": {
+      "MarketView": {
+        "Search": "Buscar",
+        "Market": "Mercado por {0}",
+        "Sell_Price": "Precio de Venta",
+        "Buy_Price": "Precio de Compra",
+        "24hr_Change": "Cambio de 24hr",
+        "Fetching_market_rates...": "Obteniendo tarifas de mercado..."
+      }
+    },
+    "swap": {
+      "Swap": {
+        "Source_amount_is_required_to_make_a_swap": "Por favor, indique la cantidad que desea intercambiar",
+        "Please_wait_for_your_balance_to_be_loaded": "Por favor, espere su actualización de saldo",
+        "Your_source_amount_is_bigger_than_your_real_balance": "El importe del intercambio es mayor que tu saldo real",
+        "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "No tienes suficiente TOMO para pagar la tarifa de transacción"
+      },
+      "SwapView": {
+        "To": "Cambiar a:",
+        "Loading": "Cargando...",
+        "Swap_Now": "Intercambiar ahora",
+        "Confirm_Swap": "Confirmar intercambio",
+        "GAS_fee": "comisión de GAS:",
+        "Approve_Token": "Permitir el uso del token",
+        "You_need_to_grant_permission_for_TomoSwap_to_interact_with_with_this_Address": "Debe otorgar permiso a TomoSwap para interactuar con {0} con esta dirección:",
+        "You_need_to_reset_allowance_of_TomoSwap_with_this_Address": "Debe restablecer TomoSwap a {0} con esta dirección:",
+        "By_Swapping_you_agree_to_the": "Al intercambiar, usted acepta los",
+        "Terms_and_Conditions": "Terminos y Condiciones"
+      }
+    },
+    "transaction": {
+      "TransactionView": {
+        "Error": "Error!",
+        "Try_Again": "Inténtalo de nuevo",
+        "Broadcasted": "Transmitida!",
+        "Transaction_Hash": "Codigo de transacción Hash",
+        "Copied": "Copiado",
+        "Waiting_for_the_transaction_to_be_mined": "Esperando que la transacción sea minada",
+        "Back_to": "Volver a {0}",
+        "Done": "Hecho!",
+        "Successfully": "{0} con exito!",
+        "to": "hacia",
+        "New": "Nueva {0}",
+        "transferred": "transferido",
+        "swapped": "intercambiado",
+        "Swap":	"Intercambio",
+        "Transfer":	"Transferir"
+      }
+    },
+    "transfer": {
+      "Transfer": {
+        "To_Address_is_required_to_make_a_transfer": "Por favor, ingrese la dirección a transferir",
+        "Given_address_is_invalid": "La dirección ingresada es invalida",
+        "Source_amount_is_required_to_make_a_transfer": "Por favor, ingrese el número que desea transferir",
+        "Please_wait_for_your_balance_to_be_loaded": "Por favor, espere su actualización de saldo",
+        "Your_source_amount_is_bigger_than_your_real_balance": "El importe del intercambio es mayor que tu saldo real",
+        "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "No tienes suficiente TOMO para pagar la tarifa de transacción"
+      },
+      "TransferView": {
+        "From": "Desde:",
+        "To_Address": "Hacia:",
+        "Transfer_Now": "Transferir Ahora",
+        "Confirm_Transfer": "Confirmar Transferencia",
+        "Address": "Dirección:",
+        "GAS_fee": "comisión de GAS:"
+      }
+    }
+  },
+  "reducers": {
+    "swapSaga": {
+      "We_cannot_handle_that_amount_at_the_moment":	"No podemos manejar esa cantidad en este momento",
+      "Cannot_exchange_the_same_token": "No se puede intercambiar el mismo token",
+      "Too_many_fraction_digits":	"Los decimales del importe de origen no deben tener más de {0} caracteres",
+      "Your_source_amount_is_invalid": "El importe de la transacción no es válido",
+      "Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent": "El importe de la transacción es demasiado pequeña, la cantidad mínima soportada es {0} equivalente de TOMO",
+      "There_is_something_wrong_with_the_transaction": "¡Hay algo mal con la transacción!",
+      "Password_is_required_to_decrypt": "Se requiere contraseña para descifrar el encriptado",
+      "Your_source_amount_is_bigger_than_your_real_balance": "El importe del intercambio es mayor que tu saldo real",
+      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "No tienes suficiente TOMO para pagar la tarifa de transacción",
+      "Your_source_amount_is_bigger_than_your_capacity_limit": "El importe de la transacción supera el límite de capacidad",
+      "Your_source_amount_is_too_low": "El importe de la transacción es demasiado bajo"
+    },
+    "transactionSaga": {
+      "There_is_something_wrong_with_the_transaction": "¡Hay algo mal con la transacción!",
+      "Too_many_fraction_digits": "Los decimales del importe de origen no deben tener más de {0} caracteres",
+      "Your_source_amount_is_bigger_than_your_real_balance": "El importe del intercambio es mayor que tu saldo real",
+      "Success": "Exitosa!",
+      "Pending": "Pendiente",
+      "Error": "Error"
+    },
+    "transferSaga": {
+      "Too_many_fraction_digits": "Los decimales del importe de origen no deben tener más de {0} caracteres",
+      "Your_source_amount_is_bigger_than_your_real_balance": "El importe del intercambio es mayor que tu saldo real",
+      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "No tienes suficiente TOMO para pagar la tarifa de transacción"
+    }
+  },
+  "services": {
+    "accountServices": {
+      "KeystoreService": {
+        "Password_is_required_to_decrypt": "Se requiere contraseña para descifrar el encriptado",
+        "Key_derivation_failed_possibly_wrong_password": "Error en la obtención de la clave - posiblemente la contraseña ingresada es incorrecta"
+      },
+      "MetamaskService": {
+        "User_denied_transaction_signature": "Firma de transacción denegada por el usuario.",
+        "Metamask_not_signin": "Por favor inicia sesión en tu cuenta de Metamask para continuar"
+      },
+      "DappService": {
+        "Cancelled": "Firma de transacción denegada por el usuario."
+      }
+    }
+  }
