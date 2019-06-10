@@ -27,7 +27,7 @@ class SwapView extends Component {
     const disableTacClass = this.props.accountAddress ? '' : 'exchange-terms_tac-disabled';
     const destDecimals = (this.props.destToken.decimals && this.props.destToken.decimals < appConfig.MAX_PRECISION) ? this.props.destToken.decimals : appConfig.MAX_PRECISION;
     const aTarget = this.props.isTomoWallet ? "_self" : "_blank";
-    const sourceSymbol = (this.props.sourceToken.symbol === "TOMO" || this.props.destToken.symbol === "TOMO") ? "TOMO" : this.props.sourceToken.symbol;
+    const sourceSymbol = this.props.destToken.symbol === "TOMO" ? "TOMO" : this.props.sourceToken.symbol;
     const destSymbol = this.props.destToken.symbol === "TOMO" ? this.props.sourceToken.symbol : this.props.destToken.symbol;
     var exchangeRate = this.props.tokenPairRate;
     if (sourceSymbol === "TOMO" || destSymbol === "TOMO") {
@@ -35,6 +35,7 @@ class SwapView extends Component {
         exchangeRate = 1.0 / exchangeRate;
       }
     }
+
     return (
       <div className={"exchange"}>
         <div className={"exchange__container"}>
