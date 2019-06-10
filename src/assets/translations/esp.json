@@ -21,7 +21,7 @@
         "Private_Key": "Clave privada",
         "Enter_Private_Key": "Ingresar clave privada",
         "Connect_other_Wallet": "Conectar con otro billetera",
-        "Receive_some_TOMO_testnet": "Consigue testnet TOMO",
+        "Receive_some_TOMO_testnet": "Reciba testnet TOMO",
         "here": "aquí"
       }
     },
@@ -137,7 +137,7 @@
         "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "No tienes suficiente TOMO para pagar la tarifa de transacción"
       },
       "SwapView": {
-        "To": "Cambiar a:",
+        "To": "Intercambiar a:",
         "Loading": "Cargando...",
         "Swap_Now": "Intercambiar ahora",
         "Confirm_Swap": "Confirmar intercambio",
