@@ -16,7 +16,8 @@ function getParameterStorage(name) {
 
 const avalableLanguages = [
     { name: 'English', code: 'en' },
-    { name: 'Tiếng Việt', code: 'vi' }
+    { name: 'Tiếng Việt', code: 'vi' },
+    { name: 'Español', code: 'esp' }
 ];
 
 function currentLanguage(){
