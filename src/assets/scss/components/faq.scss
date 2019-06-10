@@ -1,0 +1,63 @@
+.faq {
+    .title {
+        font-family: Montserrat;
+        font-size: 36px;
+        text-align: center;
+        color: #e1e4eb;
+        align-items: center;
+        padding-top: 20px;
+        height: 100px;
+    }
+
+    &-container {
+        background-color: #f7faff;
+        padding-top: 50px;
+        padding-bottom: 100px;
+
+        .content {
+            color: #4a5675;
+            width: 650px;
+            margin: 0 auto;
+            font-size: 14px;
+
+            .item {
+                padding: 15px 0;
+            }
+        }
+    }
+
+    @media (max-width: $medium-breakpoint) {
+        &-container {
+            padding-left: 10px; 
+            padding-right: 12px; 
+
+            .content {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: $medium-breakpoint) {
+    .title {
+        padding-top: 40px !important;
+    }
+
+    .faq {
+        margin-top: 50px;
+        padding: 20px 0;
+    }
+}
+
+@media (max-width: $small-breakpoint) {
+    .title {
+        height: 50px !important;
+        padding-top: 10px !important;
+        font-size: 24px !important;
+    }
+
+    .faq {
+        margin-top: 50px;
+        padding: 20px 0;
+    }
+}
