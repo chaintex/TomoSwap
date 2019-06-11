@@ -22,7 +22,7 @@ class FaqView extends Component {
     };
 
     return (
-      <div className={`faq`}>
+      <div id="faq" className={`faq`}>
         <div className="title">FAQ</div>
         <div className="faq-container">
           <div className="content">
