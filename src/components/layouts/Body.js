@@ -81,7 +81,7 @@ class Body extends Component {
     }
   }
 
-  getTokenFromParam = (params) => {
+  getTokenFromParams = (params) => {
     if (params) {
       const {mode, q} = params;
       //swap or transfer
@@ -118,7 +118,7 @@ class Body extends Component {
     const isSwapMode = this.props.exchangeMode === AppConfig.EXCHANGE_SWAP_MODE;
     const isTomoWallet = this.props.isTomoWallet;
     const isAccImported = this.props.address;
-    const tokenFromParam = this.getTokenFromParam(this.props.params);
+    const tokenFromParam = this.getTokenFromParams(this.props.params);
 
     return (
       <div className={"body"}>
