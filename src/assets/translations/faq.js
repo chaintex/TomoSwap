@@ -2,7 +2,7 @@ export const faq = {
     en : [
         {
             question : "What is TomoSwap?",
-            answer : "<p>TomoSwap is the first decentralised exchange platform on <a target='_blank' href='http://tomochain.com'>TomoChain</a>, that focuses on both user friendliness to end users and providing liquidity for future financial applications. TomoSwap will play as the transactional layer to allow assets on TomoChain to be converted seamlessly between end users and other applications.</p>"
+            answer : "<p>TomoSwap is the first decentralised exchange platform on <a target='_blank' href='https://tomochain.com'>TomoChain</a>, that focuses on both user friendliness to end users and providing liquidity for future financial applications. TomoSwap will play as the transactional layer to allow assets on TomoChain to be converted seamlessly between end users and other applications.</p>"
         },
         {
             question : "How does TomoSwap work?",
@@ -52,7 +52,7 @@ export const faq = {
     vi : [
         {
             question : "TomoSwap là gì?",
-            answer : "<p>TomoSwap là sàn trao đổi phi tập trung đầu tiên trên <a target='_blank' href='http://tomochain.com'>TomoChain</a>, tập trung vào sự thân thiện với người dùng và cung cấp thanh khoản cho các ứng dụng tài chính trong tương lai. TomoSwap cho phép các token trên TomoChain được chuyển đổi liền mạch giữa người dùng và các ứng dụng..</p>"
+            answer : "<p>TomoSwap là sàn trao đổi phi tập trung đầu tiên trên <a target='_blank' href='https://tomochain.com'>TomoChain</a>, tập trung vào sự thân thiện với người dùng và cung cấp thanh khoản cho các ứng dụng tài chính trong tương lai. TomoSwap cho phép các token trên TomoChain được chuyển đổi liền mạch giữa người dùng và các ứng dụng..</p>"
         },
         {
             question : "TomoSwap hoạt động như thế nào?",
@@ -102,7 +102,7 @@ export const faq = {
     esp : [
         {
             question : "Que es TomoSwap?",
-            answer : "<p>TomoSwap es la primer plataforma de intercambio decentralizado en <a target='_blank' href='http://tomochain.com'>TomoChain</a>, que se centra tanto en la facilidad de uso para los usuarios finales como en el suministro de liquidez para futuras aplicaciones financieras. TomoSwap tendra el rol como la capa transaccional para permitir que los activos en TomoChain se conviertan sin problemas entre los usuarios finales y otras aplicaciones.</p>"
+            answer : "<p>TomoSwap es la primer plataforma de intercambio decentralizado en <a target='_blank' href='https://tomochain.com'>TomoChain</a>, que se centra tanto en la facilidad de uso para los usuarios finales como en el suministro de liquidez para futuras aplicaciones financieras. TomoSwap tendra el rol como la capa transaccional para permitir que los activos en TomoChain se conviertan sin problemas entre los usuarios finales y otras aplicaciones.</p>"
         },
         {
             question : "Cómo funciona TomoSwap?",
