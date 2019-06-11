@@ -7,7 +7,7 @@ import HeaderContent from '../commons/HeaderContent';
 
 function mapStateToProps(store) {
   return {
-    tx: store.tx,
+    tx: store.tx
   };
 }
 
@@ -28,16 +28,12 @@ class Header extends Component {
     this.setState({ isMobileMenuActive: false })
   };
 
-  handleSwitchLanguage = (code) => {
-
-  }
-  
   render() {
     const { code, name } = currentLanguage();
     const getLanguages = avalableLanguages.map((language, index) => 
-      <a key={index} className={code === language.code ? "actived" : ""} href={code === language.code ? "#" : `/?lang=${language.code}`}>{language.name}</a>
+      <a key={index} className={code === language.code ? "actived" : ""} href={code === language.code ? "#" : `?lang=${language.code}`}>{language.name}</a>
     );
-
+    
     return (
       <div className={`header`}>
         <div className={`header__container container ${this.state.isMobileMenuActive ? 'active' : ''}`}>

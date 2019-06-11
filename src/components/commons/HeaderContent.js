@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react"
 import { withLocalize } from 'react-localize-redux';
+import { HashLink as Link } from 'react-router-hash-link';
 import NotifyView from './NotifyView'
 
 class HeaderContent extends Component {
@@ -55,11 +56,11 @@ class HeaderContent extends Component {
                     <div className={"header__mobile-opener-bar"}/>
                 </div>
                 <div ref={this.setWrapperRef} className={"header__content"}>
-                    <a href="/#exchange" onClick={() => this.handleClickXClose()} className={`header__content-item`}>{props.translate(`components.layouts.Header.Swap`)}</a>
+                    <Link to="/swap#exchange" onClick={() => this.handleClickXClose()} className={`header__content-item`}>{props.translate(`components.layouts.Header.Swap`)}</Link>
                     {!props.isTomoWallet && (
-                        <a href="/#aboutus" onClick={() => this.handleClickXClose()} className={"header__content-item"}>{props.translate(`components.layouts.Header.About_Us`)}</a>
+                        <Link to="/#aboutus" onClick={() => this.handleClickXClose()} className={"header__content-item"}>{props.translate(`components.layouts.Header.About_Us`)}</Link>
                     )}
-                    <a href="/faq" rel="noopener noreferrer" className={"header__content-item"}>{props.translate(`components.layouts.Header.FAQ`)}</a>
+                    <Link to="/faq#faq" rel="noopener noreferrer" className={"header__content-item"}>{props.translate(`components.layouts.Header.FAQ`)}</Link>
                     <a href="https://goo.gl/forms/PPgKR2d6A5KtV7tH2" target={aTarget} rel="noopener noreferrer" className={"header__content-item"}>
                     {props.translate(`components.layouts.Header.Contact_Us`)}
                     </a>
