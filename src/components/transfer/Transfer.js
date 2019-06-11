@@ -55,7 +55,8 @@ class Transfer extends Component {
   }
 
   componentDidMount = () => {
-    this.props.setSourceToken(this.props.sourceToken);
+    const srcToken = this.props.srcTokenFromParam || this.props.sourceToken;
+    this.props.setSourceToken(srcToken);
   }
 
   componentDidUpdate(preProps) {

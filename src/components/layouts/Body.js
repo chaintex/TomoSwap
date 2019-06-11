@@ -17,11 +17,13 @@ import DappService from "../../services/accountServices/DappService";
 
 function mapStateToProps(store) {
   const global = store.global;
+  const token = store.token;
 
   return {
     address: store.account.address,
     exchangeMode: global.exchangeMode,
     globalError: global.error,
+    tokens: token.tokens,
   };
 }
 
@@ -38,8 +40,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 class Body extends Component {
-  componentDidMount = () => {
-
+  checkingTomoWallet = () => {
     const web3 = getWeb3Instance();
     this.props.setWeb3Service(web3);
 
@@ -59,12 +60,65 @@ class Body extends Component {
       
       this.props.setIsTomoWalletBrowser(true);
     }
+  }
+
+  checkingParams = () => {
+    if (this.props.params) {
+      const { params: {mode} } = this.props;
+      //swap or transfer
+      if (mode) {
+        switch (mode.toLowerCase()) {
+          case AppConfig.EXCHANGE_SWAP_MODE.toLowerCase():
+            this.props.setExchangeMode(AppConfig.EXCHANGE_SWAP_MODE);
+            break;
+          case AppConfig.EXCHANGE_TRANSFER_MODE.toLowerCase():
+            this.props.setExchangeMode(AppConfig.EXCHANGE_TRANSFER_MODE);
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  }
+
+  getTokenFromParams = (params) => {
+    if (params) {
+      const {mode, q} = params;
+      //swap or transfer
+      if (mode) {
+        let srcSymbol = "", destSymbol = "";
+        const input = q ? q.split('-') : [];
+        if (input.length > 0) {
+          srcSymbol = input[0].toUpperCase();
+
+          if (input.length === 2) {
+            destSymbol = input[1].toUpperCase();
+          }
+        }
+        const srcToken = this.props.tokens.find(x => x.symbol === srcSymbol);
+        const destToken = this.props.tokens.find(x => x.symbol === destSymbol);
+
+        return {
+          srcToken,
+          destToken
+        }
+      }
+    }
+
+    return {};
+  }
+
+  componentDidMount = () => {
+    this.checkingTomoWallet();
+    //checking params imput
+    this.checkingParams();
   };
 
   render() {
     const isSwapMode = this.props.exchangeMode === AppConfig.EXCHANGE_SWAP_MODE;
     const isTomoWallet = this.props.isTomoWallet;
     const isAccImported = this.props.address;
+    const tokenFromParam = this.getTokenFromParams(this.props.params);
 
     return (
       <div className={"body"}>
@@ -87,10 +141,13 @@ class Body extends Component {
                   </div>
                 </div>
                 {isSwapMode && (
-                  <Swap isTomoWallet={isTomoWallet} />
+                  <Swap isTomoWallet={isTomoWallet}
+                   srcTokenFromParam={tokenFromParam.srcToken} 
+                   destTokenFromParam={tokenFromParam.destToken} />
                 )}
                 {!isSwapMode && (
-                  <Transfer isTomoWallet={isTomoWallet} />
+                  <Transfer isTomoWallet={isTomoWallet}
+                   srcTokenFromParam={tokenFromParam.srcToken} />
                 )}
                 {!isTomoWallet && (
                   <ImportAccount/>
