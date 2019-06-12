@@ -223,7 +223,8 @@
       },
       "MetamaskService": {
         "User_denied_transaction_signature": "Firma de transacción denegada por el usuario.",
-        "Metamask_not_signin": "Por favor inicia sesión en tu cuenta de Metamask para continuar"
+        "Metamask_not_signin": "Por favor inicia sesión en tu cuenta de Metamask para continuar",
+        "Metamask_gas_too_low": "La ejecución de la transacción probablemente fallará"
       },
       "DappService": {
         "Cancelled": "Firma de transacción denegada por el usuario."
