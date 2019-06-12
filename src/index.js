@@ -13,6 +13,7 @@ render(
     <Provider store={store}>
       <Router>
         <Route exact path="/" component={App} />
+        <Route exact path="/:mode(swap|transfer)/:q?" component={App} />
         <Route exact path="/faq" component={Faq} />
       </Router>
     </Provider>

@@ -8,13 +8,21 @@ class FaqView extends Component {
       return {__html: html};
     }
 
+    const replateTarget = (text, replaceTo = "_self") => {
+      if (text && text.length > 0) {
+        return text.replace(/target=["']_blank["']/g,"target='" + replaceTo + "'");
+      }
+
+      return text;
+    }
+
     const getListFaq = () => {
       return faq[this.props.languageCode].map((item, index) => {
         return (
           <div className="item" key={index}>
             <h3 className="question">{index + 1}{". "}{item.question}</h3>
             <div className="answer">
-              <div dangerouslySetInnerHTML={createMarkup(item.answer)} />
+              <div dangerouslySetInnerHTML={createMarkup(this.props.isTomoWallet ? replateTarget(item.answer) : item.answer)} />
             </div>
           </div>
         )
@@ -22,7 +30,7 @@ class FaqView extends Component {
     };
 
     return (
-      <div className={`faq`}>
+      <div id="faq" className={`faq`}>
         <div className="title">FAQ</div>
         <div className="faq-container">
           <div className="content">
