@@ -42,7 +42,7 @@ class Header extends Component {
       <div className={`header`}>
         <div className={`header__container container ${this.state.isMobileMenuActive ? 'active' : ''}`}>
           <div className={`header__logo`}>
-            <a href="/#exchange">&nbsp;</a>
+            <a href="/">&nbsp;</a>
           </div>
           <HeaderContent 
             isShowing={this.state.isMobileMenuActive}
