@@ -86,6 +86,8 @@ class Swap extends Component {
   }
 
   swapSrcDestSwitcher = (e) => {
+    const url = `/${appConfig.EXCHANGE_SWAP_MODE}/${this.props.destToken.symbol}-${this.props.sourceToken.symbol}`;
+    this.props.setUrl(url.toLowerCase());
     this.props.srcDestSwitcher(this.props.destToken, this.props.sourceToken);
     this.props.fetchTokenPairRate();
   }
@@ -192,7 +194,7 @@ class Swap extends Component {
         closeApproveModal={this.closeApproveModal}
         onRef={ref => (this.swapView = ref)}
         swapSrcDestSwitcher={this.swapSrcDestSwitcher} 
-        isTomoWallet={this.props.isTomoWallet} 
+        isTomoWallet={this.props.isTomoWallet}
       />
     )
   }
