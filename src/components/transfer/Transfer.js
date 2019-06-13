@@ -4,9 +4,11 @@ import TransferView from './TransferView';
 import { connect } from 'react-redux';
 import { setWalletPassword } from "../../actions/accountAction";
 import * as transferAction from "../../actions/transferAction";
+import * as swapAction from "../../actions/swapAction";
 import { setGlobalError } from "../../actions/globalAction";
 import { resetAllTxStatus } from "../../actions/transactionAction";
 import { TOMO } from "../../config/tokens";
+import appConfig from "../../config/app";
 
 function mapStateToProps(store) {
   const tokens = store.token.tokens;
@@ -37,6 +39,7 @@ function mapDispatchToProps(dispatch) {
   return {
     transfer: () => {dispatch(transferAction.transfer())},
     setSourceToken: (token) => {dispatch(transferAction.setSourceToken(token))},
+    setSwapSourceToken: (token) => {dispatch(swapAction.setSourceToken(token))},
     setSourceAmount: (amount) => {dispatch(transferAction.setSourceAmount(amount))},
     setToAddress: (address) => {dispatch(transferAction.setToAddress(address))},
     setError: (error) => {dispatch(transferAction.setError(error))},
@@ -139,6 +142,18 @@ class Transfer extends Component {
     this.props.setIsConfirmModalActive(false);
   };
 
+  changeUrl = (src) => {
+    src = src || this.props.sourceToken.symbol
+    const url = `/${appConfig.EXCHANGE_TRANSFER_MODE}/${src}`;
+    this.props.setUrl(url.toLowerCase());
+  }
+
+  setSourceToken = (token) => {
+    this.changeUrl(token.symbol);
+    this.props.setSourceToken(token);
+    this.props.setSwapSourceToken(token);
+  }
+
   render() {
     return (
       <TransferView
@@ -146,7 +161,7 @@ class Transfer extends Component {
         toAddress={this.props.toAddress}
         sourceToken={this.props.sourceToken}
         sourceAmount={this.props.sourceAmount}
-        setSourceToken={this.props.setSourceToken}
+        setSourceToken={this.setSourceToken}
         setSourceAmount={this.props.setSourceAmount}
         handleSetToAddress={this.handleSetToAddress}
         accountAddress={this.props.accountAddress}

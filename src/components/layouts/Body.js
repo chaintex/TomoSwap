@@ -169,6 +169,7 @@ class Body extends Component {
                 )}
                 {!isSwapMode && (
                   <Transfer isTomoWallet={isTomoWallet}
+                    setUrl={this.props.setUrl}
                     srcTokenFromParam={tokenFromParam.srcToken} />
                 )}
                 {!isTomoWallet && (
