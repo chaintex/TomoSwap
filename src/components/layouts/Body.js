@@ -86,16 +86,15 @@ class Body extends Component {
 
   getTokenFromParams = (params) => {
     if (params) {
-      const {mode, q} = params;
+      const {mode, src, dest} = params;
       //swap or transfer
       if (mode) {
         let srcSymbol = PAIR_DEFAULT.src, destSymbol = PAIR_DEFAULT.dest;
-        const input = q ? q.split('-') : [];
-        if (input.length > 0) {
-          srcSymbol = input[0].toUpperCase();
+        if (src) {
+          srcSymbol = src.toUpperCase();
 
-          if (input.length === 2) {
-            destSymbol = input[1].toUpperCase();
+          if (dest) {
+            destSymbol = dest.toUpperCase();
           }
         }
         const srcToken = this.props.tokens.find(x => x.symbol === srcSymbol);
