@@ -34,6 +34,10 @@ class App extends Component {
     //alert(e.target);
   }
 
+  setUrl = (uri) => {
+    this.props.history.push(uri);
+  }
+
   render() {
     const isTomoWallet = (window.web3 && window.web3.currentProvider && window.web3.currentProvider.isTomoWallet);
     const params = this.props.match ? this.props.match.params : {};
@@ -42,7 +46,7 @@ class App extends Component {
     return (
       <div className={`app-container ${isTomoWallet ? "tomowallet" : ""}`} onClick={this.handleOnClick}>
         <Header isTomoWallet={isTomoWallet} params={params} url={url} />
-        <Body isTomoWallet={isTomoWallet} params={params} />
+        <Body isTomoWallet={isTomoWallet} params={params} setUrl={this.setUrl} />
         <Footer isTomoWallet={isTomoWallet} params={params} />
       </div>
     )

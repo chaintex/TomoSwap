@@ -21,7 +21,7 @@
         "Private_Key": "Clave privada",
         "Enter_Private_Key": "Ingresar clave privada",
         "Connect_other_Wallet": "Conectar con otro billetera",
-        "Receive_some_TOMO_testnet": "Consigue testnet TOMO",
+        "Receive_some_TOMO_testnet": "Reciba testnet TOMO",
         "here": "aquí"
       }
     },
@@ -137,11 +137,11 @@
         "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "No tienes suficiente TOMO para pagar la tarifa de transacción"
       },
       "SwapView": {
-        "To": "Cambiar a:",
+        "To": "Intercambiar a:",
         "Loading": "Cargando...",
         "Swap_Now": "Intercambiar ahora",
         "Confirm_Swap": "Confirmar intercambio",
-        "GAS_fee": "comisión de GAS:",
+        "GAS_fee": "comisión de la blockchain:",
         "Approve_Token": "Permitir el uso del token",
         "You_need_to_grant_permission_for_TomoSwap_to_interact_with_with_this_Address": "Debe otorgar permiso a TomoSwap para interactuar con {0} con esta dirección:",
         "You_need_to_reset_allowance_of_TomoSwap_with_this_Address": "Debe restablecer TomoSwap a {0} con esta dirección:",
@@ -183,7 +183,7 @@
         "Transfer_Now": "Transferir Ahora",
         "Confirm_Transfer": "Confirmar Transferencia",
         "Address": "Dirección:",
-        "GAS_fee": "comisión de GAS:"
+        "GAS_fee": "comisión de la blockchain:"
       }
     }
   },
