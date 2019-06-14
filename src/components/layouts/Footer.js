@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { HashLink as Link } from 'react-router-hash-link';
 import { withLocalize } from 'react-localize-redux';
 
 class Footer extends Component {
@@ -11,9 +12,9 @@ class Footer extends Component {
           <div className={"footer__container"}>
             <div className={"container common__flexbox"}>
               <div className={"footer__content"}>
-                <a href="/" className={"footer__content-item"}>{this.props.translate("components.layouts.Footer.ChainTEX")}</a>
-                <a href="#aboutus" className={"footer__content-item"}>{this.props.translate("components.layouts.Footer.About_Us")}</a>
-                <a href="/faq" rel="noopener noreferrer" className={"footer__content-item"}>{this.props.translate("components.layouts.Footer.FAQ")}</a>
+                <a href="/" rel="noopener noreferrer" className={"footer__content-item"}>{this.props.translate("components.layouts.Footer.ChainTEX")}</a>
+                <Link to="/#aboutus" rel="noopener noreferrer" className={"footer__content-item"}>{this.props.translate("components.layouts.Footer.About_Us")}</Link>
+                <Link to="/faq#faq" rel="noopener noreferrer" className={"footer__content-item"}>{this.props.translate("components.layouts.Footer.FAQ")}</Link>
                 <a href="https://goo.gl/forms/PPgKR2d6A5KtV7tH2" target={aTarget} rel="noopener noreferrer" className={"footer__content-item"}>{this.props.translate("components.layouts.Footer.Contact_Us")}</a>
                 <a href="https://medium.com/@tomoswap" target={aTarget} rel="noopener noreferrer" className={"footer__content-item"}>{this.props.translate("components.layouts.Footer.Blog")}</a>
               </div>

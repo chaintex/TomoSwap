@@ -2,7 +2,7 @@ export const faq = {
     en : [
         {
             question : "What is TomoSwap?",
-            answer : "<p>TomoSwap is the first decentralised exchange platform on <a target='_blank' href='http://tomochain.com'>TomoChain</a>, that focuses on both user friendliness to end users and providing liquidity for future financial applications. TomoSwap will play as the transactional layer to allow assets on TomoChain to be converted seamlessly between end users and other applications.</p>"
+            answer : "<p>TomoSwap is the first decentralised exchange platform on <a target='_blank' href='https://tomochain.com'>TomoChain</a>, that focuses on both user friendliness to end users and providing liquidity for future financial applications. TomoSwap will play as the transactional layer to allow assets on TomoChain to be converted seamlessly between end users and other applications.</p>"
         },
         {
             question : "How does TomoSwap work?",
@@ -18,7 +18,7 @@ export const faq = {
         },
         {
             question : "How do I access to TomoSwap?",
-            answer : "<p><b>Mobile version:</b><br /><b>- TomoWallet app:</b> You can use TomoSwap Dapp directly in the app. TomoWallet is now available on both <a target='_blank' href='https://play.google.com/store/apps/details?id=com.tomochain.wallet'>Android</a> and <a target='_blank' href='https://itunes.apple.com/us/app/tomo-wallet/id1436476145?mt=8'>iOS</a>.<b><p/>PC version:</b> Go to <a href='https://tomoswap.com'>tomoswap.com</a> then choose one of the below options to start using our service<br /><b>- JSON Keystore File:</b> Learn more about JSON Files at <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Private Key:</b> Learn more about Private Keys at <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Metamask:</b> Make sure you have <a target='_blank' href='https://metamask.io/'>Metamask Plugin</a> installed<br /><b>- Trezor:</b> Coming soon<br /><b>- Ledger:</b> Coming soon<br /><p>*Kindly note that switching to TomoChain network before using TomoSwap.</p></p>"
+            answer : "<p><b>Mobile version:</b><br /><b>- TomoWallet app:</b> You can use TomoSwap Dapp directly in the app. TomoWallet is now available on both <a target='_blank' href='https://play.google.com/store/apps/details?id=com.tomochain.wallet'>Android</a> and <a target='_blank' href='https://itunes.apple.com/us/app/tomo-wallet/id1436476145?mt=8'>iOS</a>.<p/><b>PC version:</b> Go to <a href='https://tomoswap.com'>tomoswap.com</a> then choose one of the below options to start using our service<br /><b>- JSON Keystore File:</b> Learn more about JSON Files at <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Private Key:</b> Learn more about Private Keys at <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Metamask:</b> Make sure you have <a target='_blank' href='https://metamask.io/'>Metamask Plugin</a> installed<br /><b>- Trezor:</b> Coming soon<br /><b>- Ledger:</b> Coming soon<br /><p>*Kindly note that switching to TomoChain network before using TomoSwap.</p></p>"
         },
         {
             question : "What are the fees on TomoSwap?",
@@ -52,7 +52,7 @@ export const faq = {
     vi : [
         {
             question : "TomoSwap là gì?",
-            answer : "<p>TomoSwap là sàn trao đổi phi tập trung đầu tiên trên <a target='_blank' href='http://tomochain.com'>TomoChain</a>, tập trung vào sự thân thiện với người dùng và cung cấp thanh khoản cho các ứng dụng tài chính trong tương lai. TomoSwap cho phép các token trên TomoChain được chuyển đổi liền mạch giữa người dùng và các ứng dụng..</p>"
+            answer : "<p>TomoSwap là sàn trao đổi phi tập trung đầu tiên trên <a target='_blank' href='https://tomochain.com'>TomoChain</a>, tập trung vào sự thân thiện với người dùng và cung cấp thanh khoản cho các ứng dụng tài chính trong tương lai. TomoSwap cho phép các token trên TomoChain được chuyển đổi liền mạch giữa người dùng và các ứng dụng..</p>"
         },
         {
             question : "TomoSwap hoạt động như thế nào?",
@@ -68,7 +68,7 @@ export const faq = {
         },
         {
             question : "Làm thế nào để dùng TomoSwap?",
-            answer : "<p><b>Trên điện thoại:</b><br /><b>- Ứng dụng TomoWallet:</b> Bạn có thể sử dụng TomoSwap Dapp trên ứng dụng. TomoWallet đã có ở <a target='_blank' href='https://play.google.com/store/apps/details?id=com.tomochain.wallet'>Android</a> vả <a target='_blank' href='https://itunes.apple.com/us/app/tomo-wallet/id1436476145?mt=8'>iOS</a>.<b><p/>Trên máy tính/laptop:</b> Truy cập vào <a href='https://tomoswap.com'>tomoswap.com</a> chọn một trong các tuỳ chọn dưới đây<br /><b>- JSON Keystore File:</b> Xem thêm về JSON Files ở <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Private Key:</b> Xem thêm về Private Key ở <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Metamask:</b> Bạn cần phải cài đặt <a target='_blank' href='https://metamask.io/'>Metamask Plugin</a> trước<br /><b>- Trezor:</b> Sắp có<br /><b>- Ledger:</b> Sắp có<br /></p>"
+            answer : "<p><b>Trên điện thoại:</b><br /><b>- Ứng dụng TomoWallet:</b> Bạn có thể sử dụng TomoSwap Dapp trên ứng dụng. TomoWallet đã có ở <a target='_blank' href='https://play.google.com/store/apps/details?id=com.tomochain.wallet'>Android</a> vả <a target='_blank' href='https://itunes.apple.com/us/app/tomo-wallet/id1436476145?mt=8'>iOS</a>.<p/><b>Trên máy tính/laptop:</b> Truy cập vào <a href='https://tomoswap.com'>tomoswap.com</a> chọn một trong các tuỳ chọn dưới đây<br /><b>- JSON Keystore File:</b> Xem thêm về JSON Files ở <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Private Key:</b> Xem thêm về Private Key ở <a target='_blank' href='https://www.myetherwallet.com/'>MyEtherWallet (MEW)</a><br /><b>- Metamask:</b> Bạn cần phải cài đặt <a target='_blank' href='https://metamask.io/'>Metamask Plugin</a> trước<br /><b>- Trezor:</b> Sắp có<br /><b>- Ledger:</b> Sắp có<br /></p>"
         },
         {
             question : "TomoSwap có tính phí không?",
@@ -97,6 +97,56 @@ export const faq = {
         {
             question : "Làm thế nào nếu gặp vấn đề với TomoSwap?",
             answer : "<p>Bạn có thể gửi email đến <a target='_blank' href='mailto:support@tomoswap.com'>support@tomoswap.com</a> để được hỗ trợ sớm nhất có thể.</p>"
+        }
+    ],
+    esp : [
+        {
+            question : "Que es TomoSwap?",
+            answer : "<p>TomoSwap es la primer plataforma de intercambio decentralizado en <a target='_blank' href='https://tomochain.com'>TomoChain</a>, que se centra tanto en la facilidad de uso para los usuarios finales como en el suministro de liquidez para futuras aplicaciones financieras. TomoSwap tendra el rol como la capa transaccional para permitir que los activos en TomoChain se conviertan sin problemas entre los usuarios finales y otras aplicaciones.</p>"
+        },
+        {
+            question : "Cómo funciona TomoSwap?",
+            answer : "<p>TomoSwap esta motivado por el protocolo de Kyber Network — un reconocido protocolo de liquidez on-chain basado en Ethereum que “permite intercambio instantaneo y conversion de activos digitales y criptomonedas con alta liquidez”. Las modificaciones adecuadas se han agregado a TomoSwap para que sean compatibles con la plataforma TomoChain, así como para maximizar sus fortalezas.</p><p>Utilizando la competencia de la red de TomoChain, TomoSwap promete una forma rápida y segura de intercambiar tokens con tarifas de transacción cercanas a cero.</p>"
+        },
+        {
+            question : "Es TomoSwap seguro?",
+            answer : "<p>Al utilizar el protocolo de Kyber Network, TomoSwap proporciona la forma más sencilla, fácil y segura de comprar y vender tokens, no se necesitan depósitos ni pedidos. Todas las operaciones se ejecutan totalmente en la blockchain y TomoSwap nunca tiene el control de tus fondos o informacion.</p>"
+        },
+        {
+            question : "Necesito realizar un deposito en TomoSwap?",
+            answer : "<p>TomoSwap no requiere ningún depósito en la plataforma, los usuarios pueden realizar intercambios directamente desde sus billeteras.</p>"
+        },
+        {
+            question : "Cómo accedo a TomoSwap?",
+            answer : "<p><b>Version móvil:</b><br /><b>- TomoWallet app:</b> Puedes usar TomoSwap Dapp directamente en la aplicación móvil. TomoWallet ahora está disponible en <a target='_blank' href='https://play.google.com/store/apps/details?id=com.tomochain.wallet'> Android </a> y <a target = '_ blank' href = 'https: //itunes.apple.com/us/app/tomo-wallet/id1436476145? mt = 8'> iOS </a>.<p /><b>Versión de PC: </b> Diríjase a <a href='https://tomoswap.com'> tomoswap.com </a> y luego elija una de las siguientes opciones para comenzar a utilizar nuestro servicio <br /> <b> - Archivo de almacén de claves JSON: </b> Obtenga más información sobre los archivos JSON en <a target='_blank' href='https://www.myetherwallet.com/'> MyEtherWallet (MEW) </a> <br /> <b> - Clave privada: </b> Obtenga más información sobre las claves privadas en <a target='_blank' href='https://www.myetherwallet.com/'> MyEtherWallet (MEW) </a> <br /> <b> - Metamask: </b> Asegúrese de tener <a target='_blank' href='https://metamask.io/'> Metamask Plugin </a> instalado <br /> <b> - Trezor: </b> Próximamente <br /> <b> - Ledger: </b> Próximamente <br /> <p> * Tenga en cuenta que debe cambiar a la red TomoChain antes de usar TomoSwap.</p></p>"
+        },
+        {
+            question : "Cuales son las comisiones en TomoSwap?",
+            answer : "<p>TomoSwap no tiene tarifas de plataforma, solo necesita pagar la tarifa de gas para la blockchain de la red de Tomochain.</p>"
+        },
+        {
+            question : "Puedo transferir mi tokens utilizando TomoSwap?",
+            answer : "<p>Si, usted puede. Al elegir la opción <b> Transferir </b>, puede enviar TOMO y otros tokens compatibles a otras direcciones de Tomo.</p>"
+        },
+        {
+            question : "Soporta el intercambio con dinero fiat?",
+            answer : "<p>Por el momento, el par de comercio fiat no es compatible. Sin embargo, admitimos monedas estables (stablecoins) como <a target = '_ blank' href = 'https: //medium.com/tomochain/tomochain-teams-up-with-constant-to-bring-first-ever-stablecoin-to -its-platform-42df43894464 '> Constante </a> (CONST)</p>"
+        },
+        {
+            question : "Donde puedo chequear mi historial de intercambios?",
+            answer : "<p>Dado que todas las transacciones se han registrado en la blockchain de Tomochain, puede consultar su historial de operaciones con <a target='_blank' href='https://scan.tomochain.com/'> Tomo Scan </a>.</p>"
+        },
+        {
+            question : "Hay algun limite de intercambio?",
+            answer : "<p>No hay límite comercial por día. Aunque el monto máximo de negociación por transacción es de 1000 TOMO o X CONST (valor equivalente a 1000 TOMO), puede realizar múltiples transacciones para completar su bolsa como desee. </p>"
+        },
+        {
+            question : "Es necesario registrarse con una cuenta en TomoSwap?",
+            answer : "<p>No, el uso de TomoSwap no requiere ningún tipo de registro.</p>"
+        },
+        {
+            question : "Tengo un problema, ¿cómo puedo obtener asistencia?",
+            answer : "<p>Si tiene alguna consulta, envíe un correo electrónico a <a target='_blank' href='mailto:support@tomoswap.com'> support@tomoswap.com </a> <br /> Nuestro personal le responderá tan pronto como sea posible.</p>"
         }
     ]
 };

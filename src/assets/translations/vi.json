@@ -223,7 +223,8 @@
       },
       "MetamaskService": {
         "User_denied_transaction_signature": "Huỷ bỏ xác nhận kí giao dịch.",
-        "Metamask_not_signin": "Hãy đăng nhập vào tài khoản Metamask để tiếp tục"
+        "Metamask_not_signin": "Hãy đăng nhập vào tài khoản Metamask để tiếp tục",
+        "Metamask_gas_too_low": "Giao dịch của bạn có khả năng thất bại"
       },
       "DappService": {
         "Cancelled": "Huỷ bỏ xác nhận kí giao dịch."
