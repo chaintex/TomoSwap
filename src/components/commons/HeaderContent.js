@@ -56,7 +56,7 @@ class HeaderContent extends Component {
                     <div className={"header__mobile-opener-bar"}/>
                 </div>
                 <div ref={this.setWrapperRef} className={"header__content"}>
-                    <Link to="/swap#exchange" onClick={() => this.handleClickXClose()} className={`header__content-item`}>{props.translate(`components.layouts.Header.Swap`)}</Link>
+                    <Link to="/#exchange" onClick={() => this.handleClickXClose()} className={`header__content-item`}>{props.translate(`components.layouts.Header.Swap`)}</Link>
                     {!props.isTomoWallet && (
                         <Link to="/#aboutus" onClick={() => this.handleClickXClose()} className={"header__content-item"}>{props.translate(`components.layouts.Header.About_Us`)}</Link>
                     )}

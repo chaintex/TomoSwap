@@ -14,16 +14,20 @@ import Modal from "../../components/commons/Modal";
 import { getWeb3Instance } from "../../services/web3Service";
 import AboutUs from './AboutUs';
 import DappService from "../../services/accountServices/DappService";
+import { PAIR_DEFAULT } from '../../config/tokens';
 
 function mapStateToProps(store) {
   const global = store.global;
   const token = store.token;
+  const swap = store.swap;
 
   return {
     address: store.account.address,
     exchangeMode: global.exchangeMode,
     globalError: global.error,
     tokens: token.tokens,
+    sourceToken: swap.sourceToken,
+    destToken: swap.destToken
   };
 }
 
@@ -69,12 +73,11 @@ class Body extends Component {
       if (mode) {
         switch (mode.toLowerCase()) {
           case AppConfig.EXCHANGE_SWAP_MODE.toLowerCase():
+          default:
             this.props.setExchangeMode(AppConfig.EXCHANGE_SWAP_MODE);
             break;
           case AppConfig.EXCHANGE_TRANSFER_MODE.toLowerCase():
             this.props.setExchangeMode(AppConfig.EXCHANGE_TRANSFER_MODE);
-            break;
-          default:
             break;
         }
       }
@@ -83,16 +86,15 @@ class Body extends Component {
 
   getTokenFromParams = (params) => {
     if (params) {
-      const {mode, q} = params;
+      const {mode, src, dest} = params;
       //swap or transfer
       if (mode) {
-        let srcSymbol = "", destSymbol = "";
-        const input = q ? q.split('-') : [];
-        if (input.length > 0) {
-          srcSymbol = input[0].toUpperCase();
+        let srcSymbol = PAIR_DEFAULT.src, destSymbol = PAIR_DEFAULT.dest;
+        if (src) {
+          srcSymbol = src.toUpperCase();
 
-          if (input.length === 2) {
-            destSymbol = input[1].toUpperCase();
+          if (dest) {
+            destSymbol = dest.toUpperCase();
           }
         }
         const srcToken = this.props.tokens.find(x => x.symbol === srcSymbol);
@@ -106,6 +108,24 @@ class Body extends Component {
     }
 
     return {};
+  }
+
+  changeMode = (mode) => {
+    let param = "",
+      src = this.props.sourceToken ? this.props.sourceToken.symbol : PAIR_DEFAULT.src, 
+      dest = this.props.destToken ? this.props.destToken.symbol : PAIR_DEFAULT.dest;
+    switch (mode) {
+      case AppConfig.EXCHANGE_SWAP_MODE:
+      default:
+        param = `${src}-${dest}`;
+        break;
+      case AppConfig.EXCHANGE_TRANSFER_MODE:
+          param = `${src}`;
+        break;
+    }
+    
+    this.props.setUrl(`/${mode}/${param}`.toLowerCase());
+    this.props.setExchangeMode(mode);
   }
 
   componentDidMount = () => {
@@ -132,22 +152,24 @@ class Body extends Component {
               <div className={`body__exchange ${isTomoWallet ? "body__exchange-tomo" : null}`} id={"exchange"}>
                 <div className={"body__exchange-wrapper"}>
                   <div className={`body__exchange-content body__exchange-content--${isSwapMode ? AppConfig.EXCHANGE_SWAP_MODE : AppConfig.EXCHANGE_TRANSFER_MODE}`}>
-                    <div className={`body__exchange-button body__exchange-button-noselect ${isSwapMode ? 'body__exchange-button--active' : ''}`} onClick={() => this.props.setExchangeMode(AppConfig.EXCHANGE_SWAP_MODE)}>
+                    <div className={`body__exchange-button body__exchange-button-noselect ${isSwapMode ? 'body__exchange-button--active' : ''}`} onClick={() => this.changeMode(AppConfig.EXCHANGE_SWAP_MODE)}>
                       {this.props.translate("components.layouts.Body.Swap")}
                     </div>
-                    <div className={`body__exchange-button body__exchange-button-noselect ${!isSwapMode ? 'body__exchange-button--active' : ''}`} onClick={() => this.props.setExchangeMode(AppConfig.EXCHANGE_TRANSFER_MODE)}>
+                    <div className={`body__exchange-button body__exchange-button-noselect ${!isSwapMode ? 'body__exchange-button--active' : ''}`} onClick={() => this.changeMode(AppConfig.EXCHANGE_TRANSFER_MODE)}>
                       {this.props.translate("components.layouts.Body.Transfer")}
                     </div>
                   </div>
                 </div>
                 {isSwapMode && (
                   <Swap isTomoWallet={isTomoWallet}
-                   srcTokenFromParam={tokenFromParam.srcToken} 
-                   destTokenFromParam={tokenFromParam.destToken} />
+                    setUrl={this.props.setUrl}
+                    srcTokenFromParam={tokenFromParam.srcToken} 
+                    destTokenFromParam={tokenFromParam.destToken} />
                 )}
                 {!isSwapMode && (
                   <Transfer isTomoWallet={isTomoWallet}
-                   srcTokenFromParam={tokenFromParam.srcToken} />
+                    setUrl={this.props.setUrl}
+                    srcTokenFromParam={tokenFromParam.srcToken} />
                 )}
                 {!isTomoWallet && (
                   <ImportAccount/>
