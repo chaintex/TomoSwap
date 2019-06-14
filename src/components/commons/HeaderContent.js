@@ -55,11 +55,11 @@ class HeaderContent extends Component {
                     <div className={"header__mobile-opener-bar"}/>
                 </div>
                 <div ref={this.setWrapperRef} className={"header__content"}>
-                    <a href="#exchange" onClick={() => this.handleClickXClose()} className={"header__content-item active"}>{props.translate(`components.layouts.Header.Swap`)}</a>
+                    <a href="/#exchange" onClick={() => this.handleClickXClose()} className={`header__content-item`}>{props.translate(`components.layouts.Header.Swap`)}</a>
                     {!props.isTomoWallet && (
-                        <a href="#aboutus" onClick={() => this.handleClickXClose()} className={"header__content-item"}>{props.translate(`components.layouts.Header.About_Us`)}</a>
+                        <a href="/#aboutus" onClick={() => this.handleClickXClose()} className={"header__content-item"}>{props.translate(`components.layouts.Header.About_Us`)}</a>
                     )}
-                    {/* <a href="http://bit.ly/316hlfq" target={aTarget} rel="noopener noreferrer" className={"header__content-item"}>{props.translate(`components.layouts.Header.FAQ`)}</a> */}
+                    <a href="/faq" rel="noopener noreferrer" className={"header__content-item"}>{props.translate(`components.layouts.Header.FAQ`)}</a>
                     <a href="https://goo.gl/forms/PPgKR2d6A5KtV7tH2" target={aTarget} rel="noopener noreferrer" className={"header__content-item"}>
                     {props.translate(`components.layouts.Header.Contact_Us`)}
                     </a>
