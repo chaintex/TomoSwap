@@ -7,6 +7,11 @@ export const TOMO = {
   "logo": "tomo.png",
 };
 
+export const PAIR_DEFAULT = {
+  src: 'tomo',
+  dest: 'const'
+}
+
 export const USD = {
   "symbol": "USD",
   "name": "USD",

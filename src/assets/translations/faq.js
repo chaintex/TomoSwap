@@ -118,27 +118,27 @@ export const faq = {
         },
         {
             question : "Cómo accedo a TomoSwap?",
-            answer : "<p><b>Version móvil:</b><br /><b>- TomoWallet app:</b> Puedes usar TomoSwap Dapp directamente en la aplicación móvil. TomoWallet ahora está disponible en <a target='_blank' href='https://play.google.com/store/apps/details?id=com.tomochain.wallet'> Android </a> y <a target = '_ blank' href = 'https: //itunes.apple.com/us/app/tomo-wallet/id1436476145? mt = 8'> iOS </a>.<p /><b>Versión de PC: </b> Diríjase a <a href='https://tomoswap.com'> tomoswap.com </a> y luego elija una de las siguientes opciones para comenzar a utilizar nuestro servicio <br /> <b> - Archivo de almacén de claves JSON: </b> Obtenga más información sobre los archivos JSON en <a target='_blank' href='https://www.myetherwallet.com/'> MyEtherWallet (MEW) </a> <br /> <b> - Clave privada: </b> Obtenga más información sobre las claves privadas en <a target='_blank' href='https://www.myetherwallet.com/'> MyEtherWallet (MEW) </a> <br /> <b> - Metamask: </b> Asegúrese de tener <a target='_blank' href='https://metamask.io/'> Metamask Plugin </a> instalado <br /> <b> - Trezor: </b> Próximamente <br /> <b> - Ledger: </b> Próximamente <br /> <p> * Tenga en cuenta que debe cambiar a la red TomoChain antes de usar TomoSwap.</p></p>"
+            answer : "<p><b>Version móvil:</b><br /><b>- TomoWallet app:</b> Puedes usar TomoSwap Dapp directamente en la aplicación móvil. TomoWallet ahora está disponible en <a target='_blank' href='https://play.google.com/store/apps/details?id=com.tomochain.wallet'> Android </a> y <a target = '_ blank' href = 'https: //itunes.apple.com/us/app/tomo-wallet/id1436476145? mt = 8'> iOS </a>.<p /><b>Versión de PC: </b> Diríjase a <a href='https://tomoswap.com'> tomoswap.com </a> y luego elija una de las siguientes opciones para comenzar a utilizar nuestro servicio <br /> <b> - Archivo de almacén de claves JSON:</b> Obtenga más información sobre los archivos JSON en <a target='_blank' href='https://www.myetherwallet.com/'> MyEtherWallet (MEW) </a> <br /> <b> - Clave privada: </b> Obtenga más información sobre las claves privadas en <a target='_blank' href='https://www.myetherwallet.com/'> MyEtherWallet (MEW) </a> <br /> <b> - Metamask: </b> Asegúrese de tener <a target='_blank' href='https://metamask.io/'> Metamask Plugin </a> instalado <br /> <b> - Trezor: </b> Próximamente <br /> <b> - Ledger: </b> Próximamente <br /> <p> * Tenga en cuenta que debe cambiar a la red TomoChain antes de usar TomoSwap.</p></p>"
         },
         {
             question : "Cuales son las comisiones en TomoSwap?",
             answer : "<p>TomoSwap no tiene tarifas de plataforma, solo necesita pagar la tarifa de gas para la blockchain de la red de Tomochain.</p>"
         },
         {
-            question : "Puedo transferir mi tokens utilizando TomoSwap?",
+            question : "Puedo transferir mis tokens utilizando TomoSwap?",
             answer : "<p>Si, usted puede. Al elegir la opción <b> Transferir </b>, puede enviar TOMO y otros tokens compatibles a otras direcciones de Tomo.</p>"
         },
         {
             question : "Soporta el intercambio con dinero fiat?",
-            answer : "<p>Por el momento, el par de comercio fiat no es compatible. Sin embargo, admitimos monedas estables (stablecoins) como <a target = '_ blank' href = 'https: //medium.com/tomochain/tomochain-teams-up-with-constant-to-bring-first-ever-stablecoin-to -its-platform-42df43894464 '> Constante </a> (CONST)</p>"
+            answer : "<p>Por el momento, el par de comercio fiat no es compatible. Sin embargo, admitimos monedas estables (stablecoins) como <a target = '_ blank' href = 'https: //medium.com/tomochain/tomochain-teams-up-with-constant-to-bring-first-ever-stablecoin-to -its-platform-42df43894464 '> Constant </a> (CONST)</p>"
         },
         {
             question : "Donde puedo chequear mi historial de intercambios?",
             answer : "<p>Dado que todas las transacciones se han registrado en la blockchain de Tomochain, puede consultar su historial de operaciones con <a target='_blank' href='https://scan.tomochain.com/'> Tomo Scan </a>.</p>"
         },
         {
-            question : "Hay algun limite de intercambio?",
-            answer : "<p>No hay límite comercial por día. Aunque el monto máximo de negociación por transacción es de 1000 TOMO o X CONST (valor equivalente a 1000 TOMO), puede realizar múltiples transacciones para completar su bolsa como desee. </p>"
+            question : "Hay algún limite de intercambio?",
+            answer : "<p>No hay límite de intercambios por día. Aunque el monto máximo de intercambio por transacción es de 1000 TOMO o X CONST (valor equivalente a 1000 TOMO), puede realizar múltiples transacciones para completar su bolsa como desee. </p>"
         },
         {
             question : "Es necesario registrarse con una cuenta en TomoSwap?",

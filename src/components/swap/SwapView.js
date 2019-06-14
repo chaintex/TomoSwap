@@ -27,7 +27,16 @@ class SwapView extends Component {
     const disableTacClass = this.props.accountAddress ? '' : 'exchange-terms_tac-disabled';
     const destDecimals = (this.props.destToken.decimals && this.props.destToken.decimals < appConfig.MAX_PRECISION) ? this.props.destToken.decimals : appConfig.MAX_PRECISION;
     const aTarget = this.props.isTomoWallet ? "_self" : "_blank";
-    
+
+    const sourceSymbol = this.props.destToken.symbol === "TOMO" ? "TOMO" : this.props.sourceToken.symbol;
+    const destSymbol = this.props.destToken.symbol === "TOMO" ? this.props.sourceToken.symbol : this.props.destToken.symbol;
+    var exchangeRate = this.props.tokenPairRate;
+    if (sourceSymbol === "TOMO" || destSymbol === "TOMO") {
+      if (this.props.destToken.symbol === "TOMO" && exchangeRate !== 0) {
+        exchangeRate = 1.0 / exchangeRate;
+      }
+    }
+
     return (
       <div className={"exchange"}>
         <div className={"exchange__container"}>
@@ -61,7 +70,7 @@ class SwapView extends Component {
             </div>
 
             <div className={"input-group__info  input-group__rate_color"}>
-              1 {this.props.sourceToken.symbol} = {isLoadingRateShown ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.tokenPairRate)} {this.props.destToken.symbol}
+              1 {sourceSymbol} = {isLoadingRateShown ? <div className={"input-group__loading common__loading"}/> : formatAmount(exchangeRate)} {destSymbol}
             </div>
           </div>
         </div>
@@ -75,7 +84,7 @@ class SwapView extends Component {
             </div>
           </div>
         }
-    
+
         <Modal isActive={this.props.isConfirmModalActive} handleClose={() => this.props.closeConfirmSwapModal()}>
           {!this.props.isApproveNeeded && (
             <div className={"exchange__modal"}>
@@ -88,7 +97,7 @@ class SwapView extends Component {
                 </div>
                 <div className={"modal__body-bot"}>
                   <div>
-                    <div className={"exchange__modal-text"}>1 {this.props.sourceToken.symbol} = {this.props.tx.isConfirmLocking ? <div className={"input-group__loading common__loading"}/> : formatAmount(this.props.tx.txTokenPairRate)} {this.props.destToken.symbol}</div>
+                    <div className={"exchange__modal-text"}>1 {sourceSymbol} = {this.props.tx.isConfirmLocking ? <div className={"input-group__loading common__loading"}/> : formatAmount(exchangeRate)} {destSymbol}</div>
                     <div className={"exchange__modal-text-light"}>{this.props.translate("components.swap.SwapView.GAS_fee")} {formatAmount(this.props.txFeeInTOMO, 9)} {TOMO.symbol}</div>
                   </div>
 
