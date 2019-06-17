@@ -3,7 +3,7 @@ import { withLocalize } from 'react-localize-redux';
 import { renderToStaticMarkup } from 'react-dom/server';
 import './../../assets/scss/index.scss';
 import Header from './Header';
-import Body from './Body';
+import CommingSoon from './CommingSoon';
 import Footer from './Footer';
 import { currentLanguage, avalableLanguages } from '../../services/language'
 
@@ -46,7 +46,7 @@ class App extends Component {
     return (
       <div className={`app-container ${isTomoWallet ? "tomowallet" : ""}`} onClick={this.handleOnClick}>
         <Header isTomoWallet={isTomoWallet} params={params} url={url} />
-        <Body isTomoWallet={isTomoWallet} params={params} setUrl={this.setUrl} />
+        <CommingSoon isTomoWallet={isTomoWallet} params={params} setUrl={this.setUrl} />
         <Footer isTomoWallet={isTomoWallet} params={params} />
       </div>
     )
