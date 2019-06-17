@@ -140,7 +140,8 @@ class CommingSoon extends Component {
           <div className={`body__container ${isAccImported ? " body__container_has_imported" : ""}`}>
             <div className={"body__content"}>
               <h3 className={"body__title"}>Service Maintenance</h3>
-              <a rel="noopener noreferrer" href="https://medium.com/@constantp2p/to-all-trc20-constant-holders-were-moving-e3a5ff511ea0" target="_blank">you can refer here</a>
+              <div className="body__title-sub">As CONST is upgrading its TRC20 contract, we temporary disable TomoSwap service between TOMO and CONST and re-enable when the migration is done. <p /> Please read [here] for more details (link: <a rel="noopener noreferrer" href="https://medium.com/@constantp2p/to-all-trc20-constant-holders-were-moving-e3a5ff511ea0" target="_blank">https://medium.com/@constantp2p/to-all-trc20-constant-holders-were-mov</a>)</div>
+              
             </div>
           </div>
           {/* <Market/> */}
