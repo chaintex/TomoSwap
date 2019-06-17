@@ -13,6 +13,10 @@ export default class MetamaskService {
         if (response.error) {
           if (response.error.message.includes("User denied transaction signature.")) {
             reject("services.accountServices.MetamaskService.User_denied_transaction_signature");
+          } else if (response.error.message.includes(`WalletMiddleware - Invalid "from" address`)) {
+            reject("services.accountServices.MetamaskService.Metamask_not_signin");
+          } else if (response.error.message.includes(`intrinsic gas too low`)) {
+            reject("services.accountServices.MetamaskService.Metamask_gas_too_low");
           } else {
             reject(response.error.message);
           }

@@ -42,8 +42,9 @@ class InputGroup extends Component {
     const sourceAmountByPercentage = srcTokenBalance * (balancePercentage / 100);
     var deductAmountForTxFee = 0;
     if (this.props.sourceToken.address === TOMO.address) {
-      const defaultGasLimit = this.props.isSwap ? appConfig.DEFAULT_SWAP_TOMO_GAS_LIMIT : appConfig.DEFAULT_TRANSFER_TOMO_GAS_LIMIT;
-      deductAmountForTxFee = defaultGasLimit * appConfig.DEFAULT_GAS_PRICE / Math.pow(10.0, TOMO.decimals);
+      // const defaultGasLimit = this.props.isSwap ? appConfig.DEFAULT_SWAP_TOMO_GAS_LIMIT : appConfig.DEFAULT_TRANSFER_TOMO_GAS_LIMIT;
+      // deductAmountForTxFee = defaultGasLimit * appConfig.DEFAULT_GAS_PRICE / Math.pow(10.0, TOMO.decimals);
+      deductAmountForTxFee = appConfig.DEDUCT_AMOUNT_FOR_TX_FEE;
     }
     var srcAmount = Math.min(sourceAmountByPercentage, srcTokenBalance - deductAmountForTxFee);
     srcAmount -= 1e-12; // prevent it is slightly bigger than balance and failed the tx

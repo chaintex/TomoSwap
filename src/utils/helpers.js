@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js';
 export function formatAmount(number, precision = 6) {
   if (number === undefined) return;
 
-  if (number <= Math.pow(10, -precision)) { return 0; }
+  if (number < Math.pow(10, -precision)) { return 0; }
   const amountString = number.toString();
 
   return parseFloat(amountString.slice(0, (amountString.indexOf('.')) + (precision + 1)));
@@ -79,12 +79,30 @@ export function isMobileAndTablet() {
   return check;
 };
 
+export function isMetaMaskAvalable() {
+  var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof window['safari'] !== 'undefined' && window['safari'].pushNotification));
+  // Internet Explorer 6-11
+  var isIE = /*@cc_on!@*/false || !!document.documentMode;
+  // Edge 20+
+  var isEdge = !isIE && !!window.StyleMedia;
+
+  if (isSafari || isIE || isEdge) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
 export function stringFormat(format) {
-  var args = Array.prototype.slice.call(arguments, 1);
-  return format.replace(/{(\d+)}/g, function(match, number) { 
-    return typeof args[number] != 'undefined'
-      ? args[number] 
-      : match
-    ;
-  });
+  try {
+    var args = Array.prototype.slice.call(arguments, 1);
+    return format.replace(/{(\d+)}/g, function(match, number) { 
+      return typeof args[number] != 'undefined'
+        ? args[number] 
+        : match
+      ;
+    });
+  } catch (error) {
+    return format;
+  }
 };

@@ -20,6 +20,8 @@ class TransferView extends Component {
 
   render() {
     const disabledClass = this.props.error ? 'disabled' : '';
+    const disableTacClass = this.props.accountAddress ? '' : 'exchange-terms_tac-disabled';
+    const aTarget = this.props.isTomoWallet ? "_self" : "_blank";
 
     return (
       <div className={"exchange"}>
@@ -36,6 +38,7 @@ class TransferView extends Component {
             txFeeInTOMO={this.props.txFeeInTOMO}
             isBalanceLoading={this.props.isBalanceLoading}
             error={this.props.error}
+            isShowSelector={true}
           />
 
           <div className={"input-group"}>
@@ -55,6 +58,10 @@ class TransferView extends Component {
         {this.props.isTransferNowShowing &&
           <div className={"exchange__button-container common__fade-in"}>
             <div className={`exchange__button common__button-gradient ${disabledClass}`} onClick={() => this.props.openConfirmModal()}>{this.props.translate("components.transfer.TransferView.Transfer_Now")}</div>
+            <div className={`exchange-terms ${disableTacClass}`}>
+              <span>{this.props.translate("components.swap.SwapView.By_Swapping_you_agree_to_the")}
+              <a className="exchange-terms__link" href={`/tac${this.props.isTomoWallet ? ".html" : ".pdf"}`} target={aTarget} rel="noopener noreferrer"> {this.props.translate("components.swap.SwapView.Terms_and_Conditions")}</a></span>
+            </div>
           </div>
         }
 

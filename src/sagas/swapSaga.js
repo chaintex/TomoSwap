@@ -1,12 +1,12 @@
 import { delay } from 'redux-saga';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { getTranslate } from 'react-localize-redux';
-import { getSwapABI, getRate, getAllowance, getApproveABI } from "../services/networkService";
+import { getSwapABI, getRate, getAllowance, getApproveABI, getUserCap } from "../services/networkService";
 import * as swapActions from "../actions/swapAction";
 import * as accountActions from '../actions/accountAction';
 import * as txActions from "../actions/transactionAction";
 import * as tokenActions from '../actions/tokenAction';
-import { stringFormat } from '../utils/helpers';
+import { stringFormat, formatAmount } from '../utils/helpers';
 import {
   calculateMinConversionRate,
   formatBigNumber,
@@ -42,8 +42,23 @@ function *swapToken() {
     return;
   }
 
-  yield put(txActions.setConfirmingError());
   yield call(setTxStatusBasedOnWalletType, account.walletType, true);
+  //check usercap
+  try {
+    const usrCap = yield call(getUserCap, account.address);
+    if (swap.sourceAmount > formatBigNumber(usrCap)) {
+      yield call(setTxStatusBasedOnWalletType, account.walletType, false);
+      yield put(txActions.setConfirmingError(translate(`reducers.swapSaga.Your_source_amount_is_bigger_than_your_capacity_limit`)));
+      return;
+    }
+  } catch (e) {
+    yield call(setTxStatusBasedOnWalletType, account.walletType, false);
+    yield put(txActions.setConfirmingError(e));
+    return;
+  }
+
+  //reset error
+  yield put(txActions.setConfirmingError());
 
   var nonce;
   try {
@@ -95,9 +110,24 @@ function *swapToken() {
     yield call(setTxStatusBasedOnWalletType, account.walletType, false);
     yield put(txActions.setTxHash(txHash));
 
+    const tx = {
+      hash: txHash,
+      type: 'swap',
+      data: {
+        sourceToken: swap.sourceToken,
+        destToken: swap.destToken,
+        sourceAmount: swap.sourceAmount,
+        destAmount: swap.destAmount,
+      },
+    };
+
+    yield put(txActions.setTxHashToQueue(tx));
     yield call(fetchTransactionReceipt, txHash);
   } catch (error) {
-    yield put(txActions.setConfirmingError(translate(error)));
+    // translate to clear message
+    const msg = translate(error.toString());
+
+    yield put(txActions.setConfirmingError(msg));
     yield call(setTxStatusBasedOnWalletType, account.walletType, false);
   }
 }
@@ -105,6 +135,8 @@ function *swapToken() {
 function *approve(action, isBackgroundCall = false, value = getBiggestNumber(), nonce = 0) {
   const swap = yield select(getSwapState);
   const account = yield select(getAccountState);
+  const localizeState = yield select(getLocalizeState);
+  const translate = getTranslate(localizeState);
 
   if (!isBackgroundCall) {
     if (swap.srcTokenAllowance > 0) { value = 0; } // need to reset to zero first
@@ -130,12 +162,14 @@ function *approve(action, isBackgroundCall = false, value = getBiggestNumber(), 
 
     yield put(swapActions.setSrcTokenAllowance(formatBigNumber(value, swap.sourceToken.decimals)));
   } catch (e) {
+    // translate to clear message
+    const msg = translate(e.toString());
     if (!isBackgroundCall) {
-      yield put(txActions.setConfirmingError(e));
+      yield put(txActions.setConfirmingError(msg));
       yield call(setTxStatusBasedOnWalletType, account.walletType, false);
+    } else {
+      throw msg;
     }
-
-    if (isBackgroundCall) { throw e; }
   }
 }
 
@@ -160,7 +194,7 @@ function *fetchTokenPairRate(isBackgroundLoading = false) {
 
   const srcToken = swap.sourceToken;
   const destToken = swap.destToken;
-  const sourceAmount = swap.sourceAmount ? swap.sourceAmount : 1;
+  const sourceAmount = swap.sourceAmount ? swap.sourceAmount : 0.01;
 
   yield put(swapActions.setTokenPairRateLoading(true));
   yield put(swapActions.setBgTokenPairRateLoading(isBackgroundLoading));
@@ -231,7 +265,6 @@ function *validateValidInput(swap, account) {
   const sourceAmountDecimals = sourceAmountString.split(".")[1];
   const localizeState = yield select(getLocalizeState);
   const translate = getTranslate(localizeState);
-  
   let sourceAmountInTOMO;
   if (sourceToken.address === TOMO.address) {
     sourceAmountInTOMO = sourceAmount;
@@ -271,9 +304,17 @@ function *validateValidInput(swap, account) {
     return false;
   }
 
-  if (sourceAmountString !== '' && sourceAmountInTOMO < 0.01) {
-    yield call(setError, translate('reducers.swapSaga.Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent'));
+  if (sourceAmountString !== '' && sourceAmountInTOMO < appConfig.MIN_TRADE) {
+    yield call(setError, stringFormat(translate('reducers.swapSaga.Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent'), appConfig.MIN_TRADE));
     return false;
+  }
+
+  if (swap.destAmount > 0) {
+    const realDestAmount = formatAmount(swap.destAmount, swap.destToken.decimals);
+    if (realDestAmount <= 0) {
+      yield put(swapActions.setError(translate(`reducers.swapSaga.Your_source_amount_is_too_low`)));
+      return false;
+    }
   }
 
   yield put(swapActions.setError());
@@ -288,6 +329,7 @@ export function *getSwapTxObject(gasLimit, nonce = -1) {
   const srcAmount = swap.sourceAmount ? numberToHex(swap.sourceAmount, srcToken.decimals) : numberToHex(1, srcToken.decimals);
   const minConversionRate = calculateMinConversionRate(appConfig.DEFAULT_SLIPPAGE_RATE, swap.tokenPairRate);
 
+  const walletId = account.isTomoWalletBrowser === true ? appConfig.TOMO_WALLET_ID : appConfig.DEFAULT_WALLET_ID;
   const swapABI = yield call(getSwapABI, {
     srcAddress: srcToken.address,
     srcAmount: srcAmount,
@@ -295,15 +337,15 @@ export function *getSwapTxObject(gasLimit, nonce = -1) {
     address: account.address ? account.address : "0x0",
     maxDestAmount: getBiggestNumber(),
     minConversionRate: minConversionRate,
-    walletId: appConfig.DEFAULT_WALLET_ID
+    walletId: walletId
   });
 
-  const metadata = stringFormat(envConfig.METADATA_SWAP_DEFINED, 
-    srcToken.address, 
-    srcAmount, 
+  const metadata = stringFormat(envConfig.METADATA_SWAP_DEFINED,
+    srcToken.address,
+    srcAmount,
     swap.destToken.address,
     minConversionRate,
-    appConfig.DEFAULT_WALLET_ID
+    walletId
   );
 
   let txObject = {
@@ -317,7 +359,6 @@ export function *getSwapTxObject(gasLimit, nonce = -1) {
   if (account.isTomoWalletBrowser) {
     txObject["metadata"] = metadata;
   }
-  
   return yield call(getTxObject, txObject, nonce);
 }
 

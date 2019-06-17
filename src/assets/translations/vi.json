@@ -2,14 +2,15 @@
   "components": {
     "account": {
       "ImportAccount": {
-        "Cannot_connect_to_Metamask_Please_make_sure_you_have_Metamask_installed": "Không thể kết nối đến Metamask. Hãy chắc chắn rằng Metamask của bạn đã được cài",
-        "Metamask_should_be_on_network": "Metamask cần chạy {0}",
+        "Cannot_connect_to_Metamask_Please_make_sure_you_have_Metamask_installed": "Không thể kết nối đến Metamask. Hãy chắc chắn rằng <a target='_blank' rel='noopener noreferrer' href='https://metamask.io'>Metamask</a> của bạn đã được cài",
+        "Metamask_should_be_on_network": "Metamask cần cấu hình trên {0}, xem hướng dẫn cấu hình <a target='_blank' rel='noopener noreferrer' href='{1}'>tại đây</a>",
         "You_have_chosen_an_invalid_Keystore_file": "Cập nhật JSON file của bạn không hợp lệ. Vui lòng tải lên đúng keystore JSON.",
         "You_have_chosen_a_malformed_Keystore_file": "Cập nhật JSON file của bạn không hợp lệ. Vui lòng tải lên đúng keystore JSON.",
         "There_is_something_wrong_with_the_chosen_file":	"Có vấn đề xảy ra với file của bạn.",
         "Your_private_key_must_have_exactly_64_characters":	"Private Key nên có đúng 64 kí tự",
         "Please_enter_your_private_key_to_continue": "Vui lòng điền private key để tiếp tục",
-        "Your_private_key_is_invalid": "Private key không đúng định dạng"
+        "Your_private_key_is_invalid": "Private key không đúng định dạng",
+        "Metamask_not_available": "Trình duyệt không hỗ trợ Metamask, bạn nên sử dụng Chrome, Firefox or Opera."
       },
       "ImportAccountView": {
         "Connect_with": "Kết nối với",
@@ -44,12 +45,54 @@
       },
       "TokenSelector": {
         "Search": "Tìm kiếm"
+      },
+      "NotifyView": {
+        "Your_transactions": "Giao dịch của bạn",
+        "transaction_for": "=>",
+        "transaction_to": "=>",
+        "Swap": "Trao đổi",
+        "Transfer": "Chuyển đi"
       }
     },
     "layouts": {
       "AboutUs": {
         "Our_Team": "Về chúng tôi",
-        "Our_Advisors": "Cố vấn"
+        "Our_Advisors": "Cố vấn",
+        "Mike_Le": {
+          "Title": "Mike Le",
+          "Sub_Title": "CEO & Co-Founder",
+          "Bio": "Mike Le is an experienced developer with strong knowledge in competitive programming, data structures and CS fundamentals. He achieved Bronze Medal in the International Olympics of Information (IOI) in 2013 and was offered the ASEAN scholarship by National University of Singapore (NUS). He represented NUS to compete at the ACM/ICPC World Final in Beijing 2018, which is one of the biggest annual competition for programming students all over the world. In 2017, Mike co-founded (& CTO) Spence Pay which was a mobile payment service and successfully launched in NUS. Mike graduated from NUS with Honors in 2018 and since then, he has been working with blockchain technology, especially Ethereum."
+        },
+        "Nga": {
+          "Title": "Nga Luu",
+          "Sub_Title": "COO & Co-Founder",
+          "Bio": "Nga is an experienced consultant in the field of Intellectual Property Law. She has almost 5 years working in the most famous IP Law firms in Vietnam before working as Operating officer in the IT industry. She has experiences in managing legal, finances, the daily operation of a company. She ensures the company has effective operational and financial procedures in place. She holds Masters in Management degrees and IP Law certifications with the practical experiences in legal and administration."
+        },
+        "Mark_Nguyen": {
+          "Title": "Mark Nguyen",
+          "Sub_Title": "Full Stack Engineer",
+          "Bio": "Mark Nguyen is a well-known programmer with dozens of years of experience working in large corporations such as CMC, FPT. At Co-Well Co., LTD, as a Project Manager for Finance and Banking solutions for the Japanese market, he has successfully deployed hundreds of projects."
+        },
+        "Loi_Luu": {
+          "Title": "Loi Luu",
+          "Sub_Title": "CEO & Co-Founder of Kyber Network",
+          "Bio": "Loi Luu is a researcher working on cryptocurrencies, smart contract security and distributed consensus algorithms. He is also a regular invited speaker at Bitcoin and Ethereum workshops such as DevCon2, EDCON. Loi believes in the force of the Ethereum and Blockchain technology. Much of his work revolves around this community. He developed Oyente, the first open-source security analyzer for Ethereum smart contracts. Loi also cofounded SmartPool, another open source project which embraces decentralization of mining pools in existing cryptocurrency. He continues to champion decentralisation and trustless properties of the Blockchain with KyberNetwork, taking inspiration and developing value for the community."
+        },
+        "Victor_Tran": {
+          "Title": "Victor Tran",
+          "Sub_Title": "Head of Development & Co-Founder of Kyber Network",
+          "Bio": "Victor Tran is a senior backend engineer and Linux system administrator. He is experienced in building high performance multi-platform applications. Victor has been involved in blockchain and cryptocurrency development since early 2016 and is a lead engineer at the SmartPool project."
+        },
+        "Long_Vuong": {
+          "Title": "Long Vuong",
+          "Sub_Title": "CEO, Co-Founder of TomoChain",
+          "Bio": "CEO of TomoChain and TomoChain Project Lead, co-founder and the former project lead of very successful NEM blockchain (New Economy Movement). PhD candidate in economics, Massachusetts, U.S"
+        },
+        "Tu_Nguyen": {
+          "Title": "Tu Nguyen",
+          "Sub_Title": "Lead of blockchain engineer TomoChain",
+          "Bio": "Seasoned engineer working in Blockchain and Cloud Computing. Authorized Developer of Apache Software Foundation, Cloud Native Computing Foundation. Lead engineer of multiple cloud computing open-source softwares (kubeless, kubeapps, kompose, kubewatch). Master degree in Distributed Systems, Switzerland."
+        }
       },
       "Body": {
         "TomoSwap_The_first_decentralized_exchange_platform_on_TomoChain": "TomoSwap - Nền tảng giao dịch phi tập trung đầu tiên trên TomoChain",
@@ -57,13 +100,7 @@
         "Swap":	"Trao đổi",
         "Transfer":	"Chuyển đi",
         "Error": "Lỗi!",
-        "Try_Again": "Thử lại",
-        "Comming_Soon": "TomoSwap sẽ chạy sau",
-        "Days": "Ngày",
-        "Hours": "Giờ",
-        "Minutes": "Phút",
-        "Seconds": "Giây",
-        "You_can_try_testnet_version_here": "Bạn có thể dùng thử phiên bản testnet tại"
+        "Try_Again": "Thử lại"
       },
       "Footer": {
         "ChainTEX": "ChainTEX",
@@ -107,11 +144,15 @@
         "GAS_fee": "Phí GAS:",
         "Approve_Token": "Cho phép sử dụng token",
         "You_need_to_grant_permission_for_TomoSwap_to_interact_with_with_this_Address": "Bạn cần cấp quyền cho TomoSwap để tương tác với {0} với địa chỉ này:",
-        "You_need_to_reset_allowance_of_TomoSwap_with_this_Address": "Bạn cần đặt lại quyền cho TomoSwap tương tác với {0} với địa chỉ này:"
+        "You_need_to_reset_allowance_of_TomoSwap_with_this_Address": "Bạn cần đặt lại quyền cho TomoSwap tương tác với {0} với địa chỉ này:",
+        "By_Swapping_you_agree_to_the": "Bằng việc trao đổi token, bạn đồng ý với",
+        "Terms_and_Conditions": "Điều khoản sử dụng"
       }
     },
     "transaction": {
       "TransactionView": {
+        "Error": "Lỗi!",
+        "Try_Again": "Thử lại",
         "Broadcasted": "Đã gửi!",
         "Transaction_Hash": "Mã giao dịch (hash)",
         "Copied": "Sao chép",
@@ -152,16 +193,21 @@
       "Cannot_exchange_the_same_token": "Không thể trao đổi cùng token",
       "Too_many_fraction_digits":	"Số lượng giao dịch không nên có nhiều hơn {0} chữ số thập phân",
       "Your_source_amount_is_invalid": "Số lượng giao dịch không hợp lệ",
-      "Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent": "Số lương giao dịch quá nhỏ, tối thiểu tương đương 0.01 TOMO",
+      "Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent": "Số lương giao dịch quá nhỏ, tối thiểu tương đương {0} TOMO",
       "There_is_something_wrong_with_the_transaction": "Đã có vấn đề xảy ra với giao dịch!",
       "Password_is_required_to_decrypt": "Vui lòng nhập mật khẩu",
       "Your_source_amount_is_bigger_than_your_real_balance": "Số lượng giao dịch lớn hơn số dư của bạn",
-      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "Bạn không có đủ TOMO để trả phí giao dịch"
+      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "Bạn không có đủ TOMO để trả phí giao dịch",
+      "Your_source_amount_is_bigger_than_your_capacity_limit": "Số lượng giao dịch vượt quá giới hạn cho phép",
+      "Your_source_amount_is_too_low": "Số lượng giao dịch quá nhỏ"
     },
     "transactionSaga": {
       "There_is_something_wrong_with_the_transaction": "Đã có vấn đề xảy ra với giao dịch!",
       "Too_many_fraction_digits": "Số lượng giao dịch không nên có nhiều hơn {0} chữ số thập phân",
-      "Your_source_amount_is_bigger_than_your_real_balance": "Số lượng giao dịch lớn hơn số dư của bạn"
+      "Your_source_amount_is_bigger_than_your_real_balance": "Số lượng giao dịch lớn hơn số dư của bạn",
+      "Success": "Thành công",
+      "Pending": "Chờ xác nhận",
+      "Error": "Lỗi"
     },
     "transferSaga": {
       "Too_many_fraction_digits": "Số lượng giao dịch không nên có nhiều hơn {0} chữ số thập phân",
@@ -176,7 +222,9 @@
         "Key_derivation_failed_possibly_wrong_password": "Nhập khóa nguồn thất bại - có thể do sai mật khẩu"
       },
       "MetamaskService": {
-        "User_denied_transaction_signature": "Huỷ bỏ xác nhận kí giao dịch."
+        "User_denied_transaction_signature": "Huỷ bỏ xác nhận kí giao dịch.",
+        "Metamask_not_signin": "Hãy đăng nhập vào tài khoản Metamask để tiếp tục",
+        "Metamask_gas_too_low": "Giao dịch của bạn có khả năng thất bại"
       },
       "DappService": {
         "Cancelled": "Huỷ bỏ xác nhận kí giao dịch."

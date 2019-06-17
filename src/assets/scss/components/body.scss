@@ -12,7 +12,6 @@
       position: absolute;
       top: -35px;
       left: 0;
-      background-color: $blue-light;
       width: 70px;
       height: 3px;
       border-radius: 5px;
@@ -28,21 +27,28 @@
   &__faucet {
     text-align: center;
     position: relative;
-    top: 20px;
+    top: 10px;
     font-size: 12px;
     font-weight: 500;
     color: $purple-soft;
   }
 
   &__container {
+    height: 790px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+  }
+
+  &__container_has_imported {
+    height: 690px;
+    transition: 0.5s;
   }
 
   &__content {
     &:first-child {
       width: 41%;
+      margin-top: 180px;
     }
 
     &:last-child {
@@ -113,6 +119,16 @@
       cursor: pointer;
       transition: color .3s ease-out;
 
+      &-noselect {
+        -webkit-touch-callout: none; /* iOS Safari */
+          -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+              -moz-user-select: none; /* Firefox */
+              -ms-user-select: none; /* Internet Explorer/Edge */
+                  user-select: none; /* Non-prefixed version, currently
+                                        supported by Chrome and Opera */
+      }
+      
       &--active {
         color: $blue-semi-bold;
         cursor: initial;
@@ -125,6 +141,8 @@
   @media (max-width: $large-breakpoint) {
     &__container {
       display: block;
+      height: auto;
+      padding-bottom: 15px;
     }
 
     &__content {
@@ -159,5 +177,17 @@
         padding: 30px 15px;
       }
     }
+  }
+}
+
+@media (max-width: $medium-breakpoint) {
+  .body {
+    margin-top: 85px;
+  }
+}
+
+@media (max-width: $small-breakpoint) {
+  .body {
+    margin-top: 50px;
   }
 }

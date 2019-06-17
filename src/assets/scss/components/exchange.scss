@@ -1,6 +1,22 @@
 .exchange {
   &__container {
     margin-bottom: 30px;
+
+    .swap_token_func {
+      width: 100%;
+      display: flex;
+      margin-bottom: 10px;
+
+      &_btn {
+        width: 32px;
+        height: 32px;
+        object-fit: cover;
+        background-image: url($image-path + 'icons/group.svg');
+        background-size: cover;
+        margin: 0 auto;
+        cursor: pointer;
+      }
+    }
   }
 
   &__button {
@@ -8,6 +24,21 @@
 
     &-container {
       text-align: center;
+
+      .exchange-terms {
+        margin-top: 17px;
+        font-size: 12px;
+        font-style: italic;
+        color: #aab1d4;
+
+        &_tac-disabled {
+          display: none !important;
+        }
+
+        &__link {
+          color: #33c3f8 !important;
+        }
+      }
     }
   }
 

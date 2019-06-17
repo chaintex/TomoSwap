@@ -7,6 +7,11 @@ export const TOMO = {
   "logo": "tomo.png",
 };
 
+export const PAIR_DEFAULT = {
+  src: 'tomo',
+  dest: 'const'
+}
+
 export const USD = {
   "symbol": "USD",
   "name": "USD",
@@ -15,24 +20,31 @@ export const USD = {
 export const TOKENS = [
   TOMO,
   {
-    "symbol": "TIIM",
-    "name": "TriipMiles",
-    "decimals": 18,
-    "address": "0x095d85e62cb6ad354ff900c1d530a7c4b8e247b5",
-    "logo": "tiim.png"
+    "symbol": "CONST",
+    "name": "Constant Stablecoin",
+    "address": "0x7b0f797798fe5377ad34b631b1d42c9a3292f7c1",
+    "decimals": 2,
+    "logo": "const.jpeg"
   },
-  {
-    "symbol": "TestCTT",
-    "name": "ChainTEX Token",
-    "address": "0x06cca536f531ac3426077ca39b629d901c5cf272",
-    "decimals": 18,
-    "logo": "ctc.png"
-  },
-  {
-    "symbol": "TestKNC",
-    "name": "Kyber Network Crystal",
-    "address": "0x26d22feb6419d08cc38a10812a231926fe427491",
-    "decimals": 16,
-    "logo": "knc.svg"
-  },
+  // {
+  //   "symbol": "TIIM",
+  //   "name": "TriipMiles",
+  //   "decimals": 18,
+  //   "address": "0x095d85e62cb6ad354ff900c1d530a7c4b8e247b5",
+  //   "logo": "tiim.png"
+  // },
+  // {
+  //   "symbol": "TestCTT",
+  //   "name": "ChainTEX Token",
+  //   "address": "0x06cca536f531ac3426077ca39b629d901c5cf272",
+  //   "decimals": 18,
+  //   "logo": "ctc.png"
+  // },
+  // {
+  //   "symbol": "TestKNC",
+  //   "name": "Kyber Network Crystal",
+  //   "address": "0x26d22feb6419d08cc38a10812a231926fe427491",
+  //   "decimals": 16,
+  //   "logo": "knc.svg"
+  // },
 ];

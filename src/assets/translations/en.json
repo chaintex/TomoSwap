@@ -2,14 +2,15 @@
   "components": {
     "account": {
       "ImportAccount": {
-        "Cannot_connect_to_Metamask_Please_make_sure_you_have_Metamask_installed": "Cannot connect to Metamask. Please make sure you have Metamask installed",
-        "Metamask_should_be_on_network": "Metamask should be on {0} network",
+        "Cannot_connect_to_Metamask_Please_make_sure_you_have_Metamask_installed": "Cannot connect to Metamask. Please make sure you have <a target='_blank' rel='noopener noreferrer' href='https://metamask.io'>Metamask</a> installed",
+        "Metamask_should_be_on_network": "Metamask should be on {0} network, you can read instruction <a target='_blank' rel='noopener noreferrer' href='{1}'>here</a>",
         "You_have_chosen_an_invalid_Keystore_file": "You have chosen an invalid Keystore file.",
         "You_have_chosen_a_malformed_Keystore_file": "You have chosen a malformed Keystore file.",
         "There_is_something_wrong_with_the_chosen_file":	"There is something wrong with the chosen file.",
         "Your_private_key_must_have_exactly_64_characters":	"Your private key must have exactly 64 characters",
         "Please_enter_your_private_key_to_continue": "Please enter your private key to continue",
-        "Your_private_key_is_invalid": "Your private key is invalid"
+        "Your_private_key_is_invalid": "Your private key is invalid",
+        "Metamask_not_available": "Metamask does not support on this browser, you should use Chrome, Firefox or Opera."
       },
       "ImportAccountView": {
         "Connect_with": "Connect with",
@@ -44,12 +45,54 @@
       },
       "TokenSelector": {
         "Search": "Search"
+      },
+      "NotifyView": {
+        "Your_transactions": "Your transactions",
+        "transaction_for": "=>",
+        "transaction_to": "=>",
+        "Swap": "Swap",
+        "Transfer": "Transfer"
       }
     },
     "layouts": {
       "AboutUs": {
         "Our_Team": "Our Team",
-        "Our_Advisors": "Our Advisors"
+        "Our_Advisors": "Our Advisors",
+        "Mike_Le": {
+          "Title": "Mike Le",
+          "Sub_Title": "CEO & Co-Founder",
+          "Bio": "Mike Le is an experienced developer with strong knowledge in competitive programming, data structures and CS fundamentals. He achieved Bronze Medal in the International Olympics of Information (IOI) in 2013 and was offered the ASEAN scholarship by National University of Singapore (NUS). He represented NUS to compete at the ACM/ICPC World Final in Beijing 2018, which is one of the biggest annual competition for programming students all over the world. In 2017, Mike co-founded (& CTO) Spence Pay which was a mobile payment service and successfully launched in NUS. Mike graduated from NUS with Honors in 2018 and since then, he has been working with blockchain technology, especially Ethereum."
+        },
+        "Nga": {
+          "Title": "Nga Luu",
+          "Sub_Title": "COO & Co-Founder",
+          "Bio": "Nga is an experienced consultant in the field of Intellectual Property Law. She has almost 5 years working in the most famous IP Law firms in Vietnam before working as Operating officer in the IT industry. She has experiences in managing legal, finances, the daily operation of a company. She ensures the company has effective operational and financial procedures in place. She holds Masters in Management degrees and IP Law certifications with the practical experiences in legal and administration."
+        },
+        "Mark_Nguyen": {
+          "Title": "Mark Nguyen",
+          "Sub_Title": "Full Stack Engineer",
+          "Bio": "Mark Nguyen is a well-known programmer with dozens of years of experience working in large corporations such as CMC, FPT. At Co-Well Co., LTD, as a Project Manager for Finance and Banking solutions for the Japanese market, he has successfully deployed hundreds of projects."
+        },
+        "Loi_Luu": {
+          "Title": "Loi Luu",
+          "Sub_Title": "CEO & Co-Founder of Kyber Network",
+          "Bio": "Loi Luu is a researcher working on cryptocurrencies, smart contract security and distributed consensus algorithms. He is also a regular invited speaker at Bitcoin and Ethereum workshops such as DevCon2, EDCON. Loi believes in the force of the Ethereum and Blockchain technology. Much of his work revolves around this community. He developed Oyente, the first open-source security analyzer for Ethereum smart contracts. Loi also cofounded SmartPool, another open source project which embraces decentralization of mining pools in existing cryptocurrency. He continues to champion decentralisation and trustless properties of the Blockchain with KyberNetwork, taking inspiration and developing value for the community."
+        },
+        "Victor_Tran": {
+          "Title": "Victor Tran",
+          "Sub_Title": "Head of Development & Co-Founder of Kyber Network",
+          "Bio": "Victor Tran is a senior backend engineer and Linux system administrator. He is experienced in building high performance multi-platform applications. Victor has been involved in blockchain and cryptocurrency development since early 2016 and is a lead engineer at the SmartPool project."
+        },
+        "Long_Vuong": {
+          "Title": "Long Vuong",
+          "Sub_Title": "CEO, Co-Founder of TomoChain",
+          "Bio": "CEO of TomoChain and TomoChain Project Lead, co-founder and the former project lead of very successful NEM blockchain (New Economy Movement). PhD candidate in economics, Massachusetts, U.S"
+        },
+        "Tu_Nguyen": {
+          "Title": "Tu Nguyen",
+          "Sub_Title": "Lead of blockchain engineer TomoChain",
+          "Bio": "Seasoned engineer working in Blockchain and Cloud Computing. Authorized Developer of Apache Software Foundation, Cloud Native Computing Foundation. Lead engineer of multiple cloud computing open-source softwares (kubeless, kubeapps, kompose, kubewatch). Master degree in Distributed Systems, Switzerland."
+        }
       },
       "Body": {
         "TomoSwap_The_first_decentralized_exchange_platform_on_TomoChain": "TomoSwap - The first decentralized exchange platform on TomoChain",
@@ -57,13 +100,7 @@
         "Swap":	"Swap",
         "Transfer":	"Transfer",
         "Error": "Error!",
-        "Try_Again": "Try Again",
-        "Comming_Soon": "TomoSwap will be live in",
-        "Days": "Days",
-        "Hours": "Hours",
-        "Minutes": "Minutes",
-        "Seconds": "Seconds",
-        "You_can_try_testnet_version_here": "You can try testnet version"
+        "Try_Again": "Try Again"
       },
       "Footer": {
         "ChainTEX": "ChainTEX",
@@ -107,11 +144,15 @@
         "GAS_fee": "GAS fee:",
         "Approve_Token": "Approve Token",
         "You_need_to_grant_permission_for_TomoSwap_to_interact_with_with_this_Address": "You need to grant permission for TomoSwap to interact with {0} with this Address:",
-        "You_need_to_reset_allowance_of_TomoSwap_with_this_Address": "You need to reset allowance {0} of TomoSwap with this Address:"
+        "You_need_to_reset_allowance_of_TomoSwap_with_this_Address": "You need to reset allowance {0} of TomoSwap with this Address:",
+        "By_Swapping_you_agree_to_the": "By Swapping, you agree to the",
+        "Terms_and_Conditions": "Terms and Conditions"
       }
     },
     "transaction": {
       "TransactionView": {
+        "Error": "Error!",
+        "Try_Again": "Try again",
         "Broadcasted": "Broadcasted!",
         "Transaction_Hash": "Transaction Hash",
         "Copied": "Copied",
@@ -152,16 +193,21 @@
       "Cannot_exchange_the_same_token": "Cannot exchange the same token",
       "Too_many_fraction_digits":	"Your source amount's decimals should be no longer than {0} characters",
       "Your_source_amount_is_invalid": "Your source amount is invalid",
-      "Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent": "Your source amount is too small, minimum supported amount is 0.01 TOMO equivalent",
+      "Your_source_amount_is_too_small_minimum_supported_amount_is_001_TOMO_equivalent": "Your source amount is too small, minimum supported amount is {0} TOMO equivalent",
       "There_is_something_wrong_with_the_transaction": "There is something wrong with the transaction!",
       "Password_is_required_to_decrypt": "Password is required to decrypt",
       "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance",
-      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "You don't have enough TOMO balance to pay for transaction fee"
+      "You_dont_have_enough_TOMO_balance_to_pay_for_transaction_fee": "You don't have enough TOMO balance to pay for transaction fee",
+      "Your_source_amount_is_bigger_than_your_capacity_limit": "Your source amount exceeds your capacity limit",
+      "Your_source_amount_is_too_low": "Your source amount is too low"
     },
     "transactionSaga": {
       "There_is_something_wrong_with_the_transaction": "There is something wrong with the transaction!",
       "Too_many_fraction_digits": "Your source amount's decimals should be no longer than {0} characters",
-      "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance"
+      "Your_source_amount_is_bigger_than_your_real_balance": "Your source amount is bigger than your real balance",
+      "Success": "Success",
+      "Pending": "Pending",
+      "Error": "Error"
     },
     "transferSaga": {
       "Too_many_fraction_digits": "Your source amount's decimals should be no longer than {0} characters",
@@ -176,7 +222,9 @@
         "Key_derivation_failed_possibly_wrong_password": "Key derivation failed - possibly wrong password"
       },
       "MetamaskService": {
-        "User_denied_transaction_signature": "User denied transaction signature."
+        "User_denied_transaction_signature": "User denied transaction signature.",
+        "Metamask_not_signin": "Please sign into your Metamask account to continue",
+        "Metamask_gas_too_low": "The transaction execution will likely fail"
       },
       "DappService": {
         "Cancelled": "User denied transaction signature."

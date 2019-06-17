@@ -10,6 +10,7 @@
       width: 28px;
       height: 28px;
       object-fit: contain;
+      border-radius: 50%;
     }
 
     &-symbol {
@@ -22,6 +23,12 @@
   &__container {
     max-width: 200px;
     padding-bottom: 20px;
+  }
+
+  &__container_2 {
+    max-width: 200px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   &__input {
