@@ -72,8 +72,10 @@ class Swap extends Component {
   }
 
   componentDidMount = () => {
-    this.props.setSourceToken(this.props.sourceToken);
-    this.props.setDestToken(this.props.destToken);
+    const srcToken = this.props.srcTokenFromParam || this.props.sourceToken;
+    const destToken = this.props.destTokenFromParam || this.props.destToken;
+    this.props.setSourceToken(srcToken);
+    this.props.setDestToken(destToken);
     this.props.fetchTokenPairRate();
   };
 
@@ -84,6 +86,7 @@ class Swap extends Component {
   }
 
   swapSrcDestSwitcher = (e) => {
+    this.changeUrl(this.props.destToken.symbol, this.props.sourceToken.symbol);
     this.props.srcDestSwitcher(this.props.destToken, this.props.sourceToken);
     this.props.fetchTokenPairRate();
   }
@@ -157,6 +160,23 @@ class Swap extends Component {
     this.props.resetAllTxStatus();
   }
 
+  changeUrl = (src, dest) => {
+    src = src || this.props.sourceToken.symbol
+    dest = dest || this.props.destToken.symbol
+    const url = `/${appConfig.EXCHANGE_SWAP_MODE}/${src}-${dest}`;
+    this.props.setUrl(url.toLowerCase());
+  }
+
+  setSourceToken = (token) => {
+    this.changeUrl(token.symbol);
+    this.props.setSourceToken(token);
+  }
+
+  setDestToken = (token) => {
+    this.changeUrl(null, token.symbol);
+    this.props.setDestToken(token);
+  }
+  
   render() {
     return (
       <SwapView
@@ -182,14 +202,15 @@ class Swap extends Component {
         tx={this.props.tx}
         approve={this.props.approve}
         swap={this.props.swapToken}
-        setSourceToken={this.props.setSourceToken}
+        setSourceToken={this.setSourceToken}
         setSourceAmount={this.props.setSourceAmount}
-        setDestToken={this.props.setDestToken}
+        setDestToken={this.setDestToken}
         openConfirmSwapModal={this.openConfirmSwapModal}
         closeConfirmSwapModal={this.closeConfirmSwapModal}
         closeApproveModal={this.closeApproveModal}
         onRef={ref => (this.swapView = ref)}
-        swapSrcDestSwitcher={this.swapSrcDestSwitcher}
+        swapSrcDestSwitcher={this.swapSrcDestSwitcher} 
+        isTomoWallet={this.props.isTomoWallet}
       />
     )
   }
