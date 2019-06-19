@@ -17,7 +17,7 @@ export const TOKENS = [
   {
     "symbol": "CONST",
     "name": "Constant Stablecoin",
-    "address": "0x7b0f797798fe5377ad34b631b1d42c9a3292f7c1",
+    "address": "0xea8d13af16a33fc5de19c0b1edcf4cd053bd2fa9",
     "decimals": 2,
     "logo": "const.jpeg"
   },
