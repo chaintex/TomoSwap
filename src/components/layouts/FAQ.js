@@ -3,11 +3,11 @@ import { withLocalize } from 'react-localize-redux';
 import { renderToStaticMarkup } from 'react-dom/server';
 import './../../assets/scss/index.scss';
 import Header from './Header';
-import Body from './Body';
+import FaqView from '../faq/FaqView';
 import Footer from './Footer';
 import { currentLanguage, avalableLanguages } from '../../services/language'
 
-class App extends Component {
+class Faq extends Component {
   constructor(props) {
     super(props);
 
@@ -34,23 +34,17 @@ class App extends Component {
     //alert(e.target);
   }
 
-  setUrl = (uri) => {
-    this.props.history.push(uri);
-  }
-
   render() {
     const isTomoWallet = (window.web3 && window.web3.currentProvider && window.web3.currentProvider.isTomoWallet);
-    const params = this.props.match ? this.props.match.params : {};
-    const url = this.props.match ? this.props.match.url : "";
-
+    const languageCode = currentLanguage().code;
     return (
       <div className={`app-container ${isTomoWallet ? "tomowallet" : ""}`} onClick={this.handleOnClick}>
-        <Header isTomoWallet={isTomoWallet} params={params} url={url} />
-        <Body isTomoWallet={isTomoWallet} params={params} setUrl={this.setUrl} />
-        <Footer isTomoWallet={isTomoWallet} params={params} />
+        <Header isTomoWallet={isTomoWallet} />
+        <FaqView isTomoWallet={isTomoWallet} languageCode={languageCode} />
+        <Footer isTomoWallet={isTomoWallet} />
       </div>
     )
   }
 }
 
-export default withLocalize(App);
+export default withLocalize(Faq);
