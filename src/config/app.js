@@ -26,7 +26,8 @@ const AppConfig = {
   WALLET_TYPE_PRIVATE_KEY: 'Private Key',
   MAX_PRECISION: 6,
   MIN_TRADE: 0.1,
-  DEDUCT_AMOUNT_FOR_TX_FEE: 0.1
+  DEDUCT_AMOUNT_FOR_TX_FEE: 0.1,
+  CAMPAIGN_VIEWS: ['volume', 'transaction'],
 };
 
 export default AppConfig;

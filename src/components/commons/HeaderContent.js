@@ -67,6 +67,7 @@ class HeaderContent extends Component {
                     <a href="https://medium.com/@tomoswap" target={aTarget} rel="noopener noreferrer" className={"header__content-item"}>
                     {props.translate(`components.layouts.Header.Blog`)}
                     </a>
+                    <Link to="/campaign" onClick={() => this.handleClickXClose()} className={`header__content-item`}>{props.translate(`components.layouts.Header.Campaign`)}</Link>
                     <div className={"header__content-item header__content-lang"}>
                         <span>{props.name}</span>
                         <div className="common__arrow-drop-down down language_arrow"></div>

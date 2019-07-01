@@ -1,0 +1,245 @@
+.campaign {
+    .title {
+        font-family: Montserrat;
+        font-size: 36px;
+        text-align: center;
+        color: #e1e4eb;
+        align-items: center;
+        padding-top: 20px;
+        height: 100px;
+    }
+
+    &-container {
+        padding-bottom: 100px;
+
+        .content {
+            width: 700px;
+            margin: 0 auto;
+            font-size: 14px;
+
+            .item {
+                padding: 15px 0;
+            }
+
+            &-tabs {
+                text-align: left;
+                padding-bottom: 30px;
+
+                &-element {
+                    display: inline-block;
+                    text-transform: uppercase;
+                    padding: 10px;
+                    color: #464b69;
+                    cursor: pointer;
+
+                    &-active {
+                        color: #caccd9;
+                        pointer-events: none;
+
+                        &::after {
+                            content: '';
+                            display: block;
+                            width: 100%;
+                            height: 2px;
+                            background-color: $blue;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-header {
+        width: 100%;
+        font-family: Montserrat;
+
+        &-item {
+            display: inline-block;
+            width: 100px;
+            text-align: left;
+            color: #1db1ff !important;
+            font-size: 12px;
+            text-transform: uppercase;
+
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px;
+            margin-top: 10px;
+            background-color: #6d7186;
+        }
+    }
+
+    &-item {
+        display: inline-block;
+        width: 100px;
+        text-align: left;
+        color: #1db1ff;
+        font-size: 14px;
+        font-family: Montserrat;
+
+        &-order {
+            text-align: center;
+            width: 100px;
+
+            div {
+                width: 32px;  
+                height: 32px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                background-color: #1db1ff;
+                border-radius: 50%;
+
+                span {
+                    width: 100%;
+                    color: #252e45;
+                    font-weight: 600;
+                    text-align: center;  
+                }
+            }
+        }
+
+        &-address {
+            text-align: left;
+            width: calc(100% - 370px);
+            color: #8690ad;
+        }
+
+        &-volume {
+            text-align: center;
+            width: 100px;
+        }
+
+        &-prize {
+            text-align: center;
+            width: 100px;
+        }
+
+        &-rank {
+            text-align: center;
+            width: 70px;
+
+            div {
+                width: 20px;  
+                height: 24px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                background-image: url($image-path + 'icons/campaign-icon.svg');
+                background-size: contain;
+
+                &-first {
+                    background-image: url($image-path + 'icons/campaign-trophy.svg');
+                }
+            }
+        }
+    }
+    
+    &-row {
+        padding: 15px 0;
+
+
+    }
+  
+    &-row:nth-child(2n) {
+        background-color: #151c46;
+        border-radius: 3px;
+    }
+
+    &__loading {
+        font-weight: 500;
+        color: #8690ad;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @media (max-width: $medium-breakpoint) {
+        &-container {
+            padding-left: 10px; 
+            padding-right: 12px; 
+
+            .content {
+                width: 100%;
+            }
+        }
+
+        padding: 0;
+
+        &__header {
+            padding: 0 20px;
+        }
+
+        &__table {
+            &-container {
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+
+            &-select {
+                padding-left: 20px;
+            }
+
+            &-bg-loading {
+                left: 10px;
+            }
+
+            &-option {
+                padding: 0 15px;
+            }
+
+            td:first-child {
+                padding-left: 20px;
+            }
+        }
+    }
+
+    @media (max-width: $smaller-breakpoint) {
+        &__header {
+        display: block;
+
+        &-title {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        &-input {
+            padding: 0 20px;
+            max-width: 100%;
+
+            &::after {
+            right: 40px;
+            }
+        }
+        }
+    }
+}
+
+@media (max-width: $medium-breakpoint) {
+    .title {
+        padding-top: 40px !important;
+    }
+
+    .campaign {
+        margin-top: 50px;
+        padding: 20px 0;
+    }
+}
+
+@media (max-width: $small-breakpoint) {
+    .title {
+        height: 50px !important;
+        padding-top: 10px !important;
+        font-size: 24px !important;
+    }
+
+    .campaign {
+        margin-top: 50px;
+        padding: 20px 0;
+    }
+}
