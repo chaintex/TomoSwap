@@ -33,6 +33,7 @@
         "Order": "",
         "Address": "Address",
         "Volume": "Volume",
+        "Txs": "Txs",
         "Prize": "Prize",
         "Rank": ""
       }

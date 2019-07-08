@@ -91,14 +91,21 @@
                 margin: 0 auto;
                 display: flex;
                 align-items: center;
-                background-color: #1db1ff;
                 border-radius: 50%;
 
                 span {
                     width: 100%;
-                    color: #252e45;
                     font-weight: 600;
                     text-align: center;  
+                    color: #e4e7fd;
+                }
+            }
+
+            div.first, div.second, div.three {
+                background-color: #1db1ff;
+
+                span {
+                    color: #252e45;
                 }
             }
         }
@@ -109,7 +116,7 @@
             color: #8690ad;
         }
 
-        &-volume {
+        &-volume, &-transaction {
             text-align: center;
             width: 100px;
         }
@@ -129,12 +136,17 @@
                 margin: 0 auto;
                 display: flex;
                 align-items: center;
-                background-image: url($image-path + 'icons/campaign-icon.svg');
                 background-size: contain;
+            }
 
-                &-first {
-                    background-image: url($image-path + 'icons/campaign-trophy.svg');
-                }
+            div.first {
+                background-image: url($image-path + 'icons/campaign-trophy.svg');
+            }
+            div.second {
+                background-image: url($image-path + 'icons/campaign-icon.svg');
+            }
+            div.three {
+                background-image: url($image-path + 'icons/campaign-icon.svg');
             }
         }
     }

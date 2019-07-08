@@ -18,6 +18,15 @@ export function formatBigNumber(number, decimals = 18) {
   return result.toNumber();
 }
 
+export function getBigNumber(number, decimals = 18) {
+  if (number === undefined) return;
+  let result = new BigNumber(number.toString());
+
+  result = number * Math.pow(10, decimals);
+
+  return result;
+}
+
 export function numberToHex(number, decimals = 18) {
   var bigNumber = new BigNumber(number).times(Math.pow(10, decimals));
   bigNumber = new BigNumber(bigNumber.toFixed(0));

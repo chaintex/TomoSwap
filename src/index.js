@@ -12,10 +12,10 @@ import { store } from "./store";
 import AppConfig from "./config/app"
 
 const listTokenSupport = TOKENS.map((item) => { return item.symbol.toLowerCase(); }).join("|");
-const listCampaignViews = AppConfig.CAMPAIGN_VIEWS.map((item) => { return item; }).join("|");
+const listCampaignViews = [AppConfig.CAMPAIGN_VOLUME_VIEWS, AppConfig.CAMPAIGN_TRANSACTION_VIEWS, AppConfig.CAMPAIGN_CONST_VIEWS].join("|");
 const defaultView = `/swap/${PAIR_DEFAULT.src}-${PAIR_DEFAULT.dest}`;
 const defaultTransferView = `/transfer/${PAIR_DEFAULT.src}`;
-const defaultCampaignView = `/campaign/${AppConfig.CAMPAIGN_VIEWS[0]}`;
+const defaultCampaignView = `/campaign/${AppConfig.CAMPAIGN_VOLUME_VIEWS}`;
 
 render(
   <LocalizeProvider store={store}>

@@ -27,7 +27,13 @@ const AppConfig = {
   MAX_PRECISION: 6,
   MIN_TRADE: 0.1,
   DEDUCT_AMOUNT_FOR_TX_FEE: 0.1,
-  CAMPAIGN_VIEWS: ['volume', 'transaction'],
+  CAMPAIGN_FETCHING_INTERVAL: 10000,
+  CAMPAIGN_VOLUME_VIEWS: 'volume',
+  CAMPAIGN_TRANSACTION_VIEWS: 'transaction',
+  CAMPAIGN_CONST_VIEWS: 'constant',
+  CAMPAIGN_START: '2019-02-01',
+  CAMPAIGN_END: '2019-08-01',
+  CAMPAIGN_VOLUME_MIN: 1,
 };
 
 export default AppConfig;
