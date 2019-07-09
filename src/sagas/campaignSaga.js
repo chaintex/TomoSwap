@@ -27,7 +27,7 @@ function *fetchCampaign(isBackgroundLoading = false) {
       startDate: campaign.startDate, 
       endDate: campaign.endDate, 
       sort: 'volume',
-      minValue: helpers.getBigNumber(EnvConfig.CAMPAIGN_VOLUME_MIN),
+      minValue: EnvConfig.CAMPAIGN_VOLUME_MIN,
     }
     
     switch (campaign.viewActive) {
