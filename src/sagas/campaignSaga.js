@@ -2,6 +2,7 @@ import { delay } from 'redux-saga';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import * as campaignActions from "../actions/campaignAction";
 import AppConfig from "../config/app";
+import EnvConfig from "../config/env";
 import * as campaignServices from "../services/campaignService"
 import * as helpers from "../utils/helpers";
 
@@ -26,7 +27,7 @@ function *fetchCampaign(isBackgroundLoading = false) {
       startDate: campaign.startDate, 
       endDate: campaign.endDate, 
       sort: 'volume',
-      minValue: helpers.getBigNumber(AppConfig.CAMPAIGN_VOLUME_MIN),
+      minValue: helpers.getBigNumber(EnvConfig.CAMPAIGN_VOLUME_MIN),
     }
     
     switch (campaign.viewActive) {
@@ -41,9 +42,7 @@ function *fetchCampaign(isBackgroundLoading = false) {
 
     let responseData = {};
     if (campaign.viewActive === AppConfig.CAMPAIGN_CONST_VIEWS) {
-      let response = yield call(campaignServices.fetchCampaignFromConst, filter);
-      console.log(response)
-      responseData = mapDataFromConst(response)
+      responseData = yield call(campaignServices.fetchCampaignFromConst, filter);
     } else {
       responseData = yield call(campaignServices.fetchCampaign, filter);
     }
@@ -56,30 +55,6 @@ function *fetchCampaign(isBackgroundLoading = false) {
   yield call(setLoading, false, isBackgroundLoading);
 
   yield call(delay, AppConfig.CAMPAIGN_FETCHING_INTERVAL);
-}
-
-function mapDataFromConst(response) {
-  let data = {
-    total: 0,
-    perPage: 0,
-    currentPage: 1,
-    pages: 0,
-    items: []
-  };
-
-  if (!response || !response.Result) {
-    return data;
-  }
-
-  data.items = response.Result.map((item) => {
-    return {
-      from: item.ReferralCode,
-      volume: item.Amount
-    }
-  });
-
-  data.total = response.Result.length;
-  data.perPage = data.total;
 }
 
 function *setLoading(isLoading, isBackgroundLoading = false) {

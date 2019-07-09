@@ -10,8 +10,9 @@ export function fetchCampaign(filter) {
 }
 
 export function fetchCampaignFromConst(filter) {
-  const params = `?clientKey=${envConfig.CONST_API_CLIENT_KEY}&fromDate=${filter.startDate}&toDate=${filter.endDate}`;
-  const fetchVolumeUrl = envConfig.CONST_API_URL + params;
+  const params = `limit=${filter.limit}&page=${filter.page}`;
+  const fetchVolumeUrl = envConfig.CHAINTEX_API_URL + `chaintex/conststats?${params}`;
+
   return fetch(fetchVolumeUrl).then(function (response) {
     return response.json();
   });

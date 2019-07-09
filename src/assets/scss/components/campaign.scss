@@ -1,12 +1,71 @@
 .campaign {
+    font-family: Montserrat;
+    min-height: 775px;
+
+    &-alert {
+        display: flex;
+        position: fixed;
+        width: 100%;
+        top: 0px;
+        z-index: 998;
+
+        &-header {
+            display: inline-block;
+            margin: 0 auto;
+            height: 35px;
+            opacity: 0.8;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+            background-color: #29a4f5;
+            align-items: center;
+            padding-top: 2px;
+
+            &-content {
+                position: relative;
+                color: #eff2ff;
+                padding: 0 10px;
+                font-size: 14px;
+                width: 300px;
+                display: flex;
+                align-items: center;
+
+                .link {
+                    width: 115px;
+                    border-radius: 18px;
+                    border: solid 1px #3f9bda;
+                    background-color: #1979bb;
+                    color: #FFF;
+                    padding: 5px 15px;
+                    margin-left: 15px;
+                    text-align: center;
+
+                    &:hover {
+                        background-color: #3f9bda;
+                    }
+                }
+                .btn-clone {
+                    width: 12px;
+                    height: 12px;
+                    display: block;
+                    background-image: url($image-path + 'icons/ic-close.svg');
+                    background-size: cover;
+                    position: absolute;
+                    right: 12px;
+                    cursor: pointer;
+
+                    &:hover {
+                        border: #3f9bda 1px solid;
+                    }
+                }
+            }
+        }
+    }
     .title {
-        font-family: Montserrat;
-        font-size: 36px;
+        font-size: 24px;
         text-align: center;
         color: #e1e4eb;
         align-items: center;
-        padding-top: 20px;
-        height: 100px;
+        height: 50px;
     }
 
     &-container {
@@ -16,6 +75,30 @@
             width: 700px;
             margin: 0 auto;
             font-size: 14px;
+
+            &-desc {
+                background-color: #151c46;
+                padding: 15px 30px;
+                border-radius:10px; 
+                margin-bottom: 15px;
+
+                p.head {
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: #caccd9;
+                }
+
+                p.day {
+                    font-size: 14px;
+                    line-height: 1.29;
+                    color: #7a82a9;
+                }
+
+                p.full-desc {
+                    font-size: 14px;
+                    color: #caccd9;
+                }
+            }
 
             .item {
                 padding: 15px 0;
@@ -114,9 +197,13 @@
             text-align: left;
             width: calc(100% - 370px);
             color: #8690ad;
+
+            &-content {
+                vertical-align: middle;
+            }
         }
 
-        &-volume, &-transaction {
+        &-volume, &-transaction, &-constant {
             text-align: center;
             width: 100px;
         }
@@ -137,6 +224,10 @@
                 display: flex;
                 align-items: center;
                 background-size: contain;
+
+                span {
+                    margin-top: 10px;
+                }
             }
 
             div.first {
@@ -240,6 +331,18 @@
     .campaign {
         margin-top: 50px;
         padding: 20px 0;
+
+        &-container {
+            padding: 3px;
+        }
+        &-item {
+            font-size: 13px;
+
+            &-address {
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
     }
 }
 
@@ -253,5 +356,49 @@
     .campaign {
         margin-top: 50px;
         padding: 20px 0;
+
+        .alert {
+            &-header {
+                position: fixed;
+                display: flex;
+                top: 0;
+                left: 30px;
+                height: 35px;
+            }
+        }
+        &-container {
+            padding: 3px;
+        }
+        &-item {
+            font-size: 13px;
+
+            &-order {
+                width: 40px;
+
+                div {
+                    width: 24px;  
+                    height: 24px;
+                }
+    
+            }
+
+            &-address {
+                width: calc(100% - 212px);
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+
+            &-volume, &-transaction, &-constant {
+                width: 60px;
+            }
+
+            &-prize {
+                width: 60px;
+            }
+
+            &-rank {
+                width: 40px;
+            }
+        }
     }
 }

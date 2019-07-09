@@ -11,7 +11,7 @@ const sagaMiddleware = createSagaMiddleware();
 var middlewareArray = [sagaMiddleware];
 
 if (EnvConfig.IS_TESTNET) {
-  // middlewareArray.push(logger);
+  middlewareArray.push(logger);
 }
 
 const middleware = applyMiddleware(

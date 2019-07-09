@@ -31,9 +31,6 @@ const AppConfig = {
   CAMPAIGN_VOLUME_VIEWS: 'volume',
   CAMPAIGN_TRANSACTION_VIEWS: 'transaction',
   CAMPAIGN_CONST_VIEWS: 'constant',
-  CAMPAIGN_START: '2019-02-01',
-  CAMPAIGN_END: '2019-08-01',
-  CAMPAIGN_VOLUME_MIN: 1,
 };
 
 export default AppConfig;

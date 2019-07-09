@@ -9,7 +9,8 @@ class TradeCompetitionView extends Component {
   render() {
     const getTokenList = () => {
       return this.props.items.map((item, index) => {
-        let amount = helpers.formatBigNumber(item.volume).toFixed(2);
+        const decimals = this.props.viewActive === AppConfig.CAMPAIGN_CONST_VIEWS ? 6 : 18;
+        let amount = helpers.formatBigNumber(item.volume, decimals).toFixed(2);
         const getClass = (index) => {
           switch (index) {
             case 0:
@@ -46,7 +47,7 @@ class TradeCompetitionView extends Component {
                 <span>{index + 1}</span>
               </div>
             </div>
-              <div className={`campaign-item campaign-item-address`} title={item.from}>{helpers.formatAddress(item.from, 40, 32)}</div>
+              <div className={`campaign-item campaign-item-address campaign-item-address-content`} title={item.from}>{helpers.formatAddress(item.from, 40, 32)}</div>
               
               <div className={`campaign-item campaign-item-${this.props.viewActive}`}>
                 {this.props.viewActive === AppConfig.CAMPAIGN_TRANSACTION_VIEWS ? item.txs : amount}
@@ -63,31 +64,29 @@ class TradeCompetitionView extends Component {
     };
 
     return (
-      <div className={"campaign"}>
-        <div className={"campaign-container"}>
-            <div className={`campaign-header`}>
-                <div className={`campaign-header-item campaign-item-order`}>&nbsp;</div>
-                <div className={`campaign-header-item campaign-item-address`}>{this.props.translate("components.campaigns.VolumeView.Address")}</div>
-                <div className={`campaign-header-item campaign-item-${this.props.viewActive}`}>
-                {this.props.viewActive === AppConfig.CAMPAIGN_TRANSACTION_VIEWS 
-                  ? this.props.translate("components.campaigns.VolumeView.Txs") 
-                  : this.props.translate("components.campaigns.VolumeView.Volume")}
-                </div>
-                <div className={`campaign-header-item campaign-item-prize`}>{this.props.translate("components.campaigns.VolumeView.Prize")}</div>
-                <div className={`campaign-header-item campaign-item-rank`}>{this.props.translate("components.campaigns.VolumeView.Rank")}</div>
-            </div>
-            <div>
-            {getTokenList()}
-            </div>
-            <Pagination
-              activePage={this.props.page}
-              pageLimit={this.props.perPage}
-              totalRecords={this.props.totalRecords}
-              pageNeighbours={5}
-              onPageChanged={this.props.handlePageChange}
-              wrapClass={"pager"}
-            />
-        </div>
+      <div className={"campaign-view"}>
+          <div className={`campaign-header`}>
+              <div className={`campaign-header-item campaign-item-order`}>&nbsp;</div>
+              <div className={`campaign-header-item campaign-item-address`}>{this.props.translate("components.campaigns.VolumeView.Address")}</div>
+              <div className={`campaign-header-item campaign-item-${this.props.viewActive}`}>
+              {this.props.viewActive === AppConfig.CAMPAIGN_TRANSACTION_VIEWS 
+                ? this.props.translate("components.campaigns.VolumeView.Txs") 
+                : this.props.translate("components.campaigns.VolumeView.Volume")}
+              </div>
+              <div className={`campaign-header-item campaign-item-prize`}>{this.props.translate("components.campaigns.VolumeView.Prize")}</div>
+              <div className={`campaign-header-item campaign-item-rank`}>{this.props.translate("components.campaigns.VolumeView.Rank")}</div>
+          </div>
+          <div>
+          {getTokenList()}
+          </div>
+          <Pagination
+            activePage={this.props.page}
+            pageLimit={this.props.perPage}
+            totalRecords={this.props.totalRecords}
+            pageNeighbours={5}
+            onPageChanged={this.props.handlePageChange}
+            wrapClass={"pager"}
+          />
       </div>
     )
   }

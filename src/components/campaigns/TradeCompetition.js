@@ -79,6 +79,12 @@ class TradeCompetition extends Component {
         <div className="title">{this.props.translate(`components.campaigns.CampaignView.Trade_Competition`)}</div>
         <div className="campaign-container">
           <div className="content">
+            <div className="content-desc">
+              <p className="head">TomoChain (TOMO) Trading Competition — 13,000 TOMO + 3,000 NUSD to Give Away!</p>
+              <p className="day">Start:  15 January 2019 - End:  15 April 2019</p>
+              <p className="head">Reward currency: 13,000 TOMO + 3,000 NUSD</p>
+              <p className="full-desc">Lorem ipsum dolor sit amet, consectetur adipiscig elit. Cras ornare porttitor tellus in pretium.</p>
+            </div>
             <div className="content-tabs">
               {listTabs()}
             </div>

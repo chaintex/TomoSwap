@@ -27,7 +27,8 @@
     },
     "campaigns": {
       "CampaignView": {
-        "Trade_Competition": "Trade Competition"
+        "Trade_Competition": "Trade Competition",
+        "Trade_Competition_Link": "View more"
       },
       "VolumeView": {
         "Order": "",

@@ -1,14 +1,15 @@
 import { campaignActionTypes } from '../actions/campaignAction';
 import AppConfig from '../config/app'
+import EnvConfig from '../config/env'
 
 const initialState = {
   isLoading: true,
   isBackgroundLoading: false,
   viewActive: AppConfig.CAMPAIGN_VOLUME_VIEWS,
-  startDate: AppConfig.CAMPAIGN_START,
-  endDate: AppConfig.CAMPAIGN_END,
+  startDate: EnvConfig.CAMPAIGN_START,
+  endDate: EnvConfig.CAMPAIGN_END,
   page: 1,
-  perPage: 30,
+  perPage: 20,
   totalRecords: 0,
   pages: 0,
   items: []

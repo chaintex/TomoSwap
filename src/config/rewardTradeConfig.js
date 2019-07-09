@@ -48,6 +48,26 @@ const RewardConfig = {
             }
         ],
         unit: '$'
+    },
+    constant: {
+        rules: [
+            {
+                min: 1,
+                max: 1,
+                value: 500,
+            },
+            {
+                min: 2,
+                max: 2,
+                value: 300,
+            },
+            {
+                min: 3,
+                max: 3,
+                value: 200,
+            }
+        ],
+        unit: '$'
     }
 }
 
