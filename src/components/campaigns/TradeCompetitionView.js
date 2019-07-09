@@ -34,11 +34,10 @@ class TradeCompetitionView extends Component {
             const element = config.rules[index];
             if (order >= element.min && order <= element.max) {
               reward = element.value;
-              break;
+              return `${unit}${reward}`;
             }
           }
-
-          return `${unit}${reward}`;
+          return "";
         }
         return (
           <div key={index} className={"common__fade-in campaign-row"}>
