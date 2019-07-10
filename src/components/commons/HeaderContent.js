@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react"
 import { withLocalize } from 'react-localize-redux';
+import { HashLink as Link } from 'react-router-hash-link';
 import NotifyView from './NotifyView'
 
 class HeaderContent extends Component {
@@ -46,6 +47,7 @@ class HeaderContent extends Component {
     
     render() {
         const props = this.props;
+        const aTarget = props.isTomoWallet ? "_self" : "_blank";
         return (
             <Fragment>
                 <NotifyView className={`mobile-notify`} txs={props.txs} />
@@ -54,15 +56,15 @@ class HeaderContent extends Component {
                     <div className={"header__mobile-opener-bar"}/>
                 </div>
                 <div ref={this.setWrapperRef} className={"header__content"}>
-                    <a href="#exchange" onClick={() => this.handleClickXClose()} className={"header__content-item active"}>{props.translate(`components.layouts.Header.Swap`)}</a>
+                    <Link to="/#exchange" onClick={() => this.handleClickXClose()} className={`header__content-item`}>{props.translate(`components.layouts.Header.Swap`)}</Link>
                     {!props.isTomoWallet && (
-                        <a href="#aboutus" onClick={() => this.handleClickXClose()} className={"header__content-item"}>{props.translate(`components.layouts.Header.About_Us`)}</a>
+                        <Link to="/#aboutus" onClick={() => this.handleClickXClose()} className={"header__content-item"}>{props.translate(`components.layouts.Header.About_Us`)}</Link>
                     )}
-                    {/* <a href="/" className={"header__content-item"}>{props.translate(`components.layouts.Header.FAQ`)}</a> */}
-                    <a href="https://goo.gl/forms/PPgKR2d6A5KtV7tH2" target="_blank" rel="noopener noreferrer" className={"header__content-item"}>
+                    <Link to="/faq#faq" rel="noopener noreferrer" className={"header__content-item"}>{props.translate(`components.layouts.Header.FAQ`)}</Link>
+                    <a href="https://goo.gl/forms/PPgKR2d6A5KtV7tH2" target={aTarget} rel="noopener noreferrer" className={"header__content-item"}>
                     {props.translate(`components.layouts.Header.Contact_Us`)}
                     </a>
-                    <a href="https://medium.com/@tomoswap" target="_blank" rel="noopener noreferrer" className={"header__content-item"}>
+                    <a href="https://medium.com/@tomoswap" target={aTarget} rel="noopener noreferrer" className={"header__content-item"}>
                     {props.translate(`components.layouts.Header.Blog`)}
                     </a>
                     <div className={"header__content-item header__content-lang"}>

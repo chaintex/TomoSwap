@@ -223,7 +223,8 @@
       },
       "MetamaskService": {
         "User_denied_transaction_signature": "User denied transaction signature.",
-        "Metamask_not_signin": "Please sign into your Metamask account to continue"
+        "Metamask_not_signin": "Please sign into your Metamask account to continue",
+        "Metamask_gas_too_low": "The transaction execution will likely fail"
       },
       "DappService": {
         "Cancelled": "User denied transaction signature."
