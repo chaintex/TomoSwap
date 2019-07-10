@@ -4,7 +4,6 @@ import * as campaignActions from "../actions/campaignAction";
 import AppConfig from "../config/app";
 import EnvConfig from "../config/env";
 import * as campaignServices from "../services/campaignService"
-import * as helpers from "../utils/helpers";
 
 const getCampaignState = state => state.campaign;
 
