@@ -13,6 +13,13 @@ const EnvConfig = {
   METADATA_TRANSFER_DEFINED: "tomochain:trc20?origin=tomoswap&type=transfer&address={0}&recipient={1}&amount={2}",
   METADATA_SWAP_DEFINED: "tomochain:trc20?origin=tomoswap&type=swap&src={0}&srcAmount={1}&dest={2}&minRate={3}&walletId={4}",
   METAMASK_INSTRUCTION_LINK: "/metamask_instruction.html",
+  CHAINTEX_API_URL: "https://api.tomoswap.com/api/",
+  CONST_API_URL: "https://www.myconstant.com/api/collateral-loan/report/tomo/",
+  CONST_API_CLIENT_KEY: "adebfd11e3964072a00188ee2a831946",
+  CAMPAIGN_START: '2019-07-01',
+  CAMPAIGN_END: '2019-08-01',
+  CAMPAIGN_VOLUME_MIN: 1000000000000000000,
+  CAMPAIGN_IS_RUNNING: true
 };
 
 export default EnvConfig;
