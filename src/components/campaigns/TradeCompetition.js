@@ -4,6 +4,7 @@ import { withLocalize } from 'react-localize-redux';
 import TradeCompetitionView from './TradeCompetitionView';
 import { fetchCampaignDatas, setViewActive } from "../../actions/campaignAction";
 import AppConfig from '../../config/app'
+import EnvConfig from '../../config/env';
 
 function mapStateToProps(store) {
   return {
@@ -74,6 +75,23 @@ class TradeCompetition extends Component {
       });
     };
 
+    const formatDate = (strDate) => {
+      const date = new Date(strDate);
+      const monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+      ];
+    
+      var day = date.getDate() + '';
+      day = day.length === 2 ? day : '0' + day;
+      var monthIndex = date.getMonth();
+      var year = date.getFullYear();
+    
+      return day + ' ' + monthNames[monthIndex] + ' ' + year;
+    }
+
     return (
       <div id="campaign" className={`campaign`}>
         <div className="title">{this.props.translate(`components.campaigns.CampaignView.Trade_Competition`)}</div>
@@ -81,7 +99,7 @@ class TradeCompetition extends Component {
           <div className="content">
             <div className="content-desc">
               <p className="head">TomoChain (TOMO) Trading Competition — 13,000 TOMO + 3,000 NUSD to Give Away!</p>
-              <p className="day">Start:  15 January 2019 - End:  15 April 2019</p>
+              <p className="day">Start:&nbsp;&nbsp;{formatDate(EnvConfig.CAMPAIGN_START)} - End:&nbsp;&nbsp;{formatDate(EnvConfig.CAMPAIGN_END)}</p>
               <p className="head">Reward currency: 13,000 TOMO + 3,000 NUSD</p>
               <p className="full-desc">The minumum amount for each transaction is 1 TOMO.</p>
             </div>
