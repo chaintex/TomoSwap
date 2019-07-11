@@ -2,15 +2,26 @@ import React, { Component } from 'react';
 import { withLocalize } from 'react-localize-redux';
 import Pagination from "../commons/Pagination";
 import AppConfig from '../../config/app';
+import {TOMO, USD} from '../../config/tokens'
 import RewardTrade from '../../config/rewardTradeConfig';
 import * as helpers from '../../utils/helpers'
 
 class TradeCompetitionView extends Component {
   render() {
+
     const getTokenList = () => {
       return this.props.items.map((item, index) => {
-        const decimals = this.props.viewActive === AppConfig.CAMPAIGN_CONST_VIEWS ? 6 : 18;
-        let amount = helpers.formatBigNumber(item.volume, decimals).toFixed(2);
+        let amount = 0;
+        switch (this.props.viewActive) {
+          case AppConfig.CAMPAIGN_VOLUME_VIEWS:
+          default:
+            amount = helpers.formatMoney(helpers.formatBigNumber(item.volume).toFixed(2));
+            break;
+          case AppConfig.CAMPAIGN_CONST_VIEWS:
+            amount = (item.volume).toLocaleString();
+            break;
+        }
+
         const getClass = (index) => {
           switch (index) {
             case 0:
@@ -62,6 +73,20 @@ class TradeCompetitionView extends Component {
       });
     };
 
+    let unitAmount = '';
+
+    switch (this.props.viewActive) {
+      case AppConfig.CAMPAIGN_VOLUME_VIEWS:
+      default:
+        unitAmount = `(${TOMO.symbol})`;
+        break;
+      case AppConfig.CAMPAIGN_TRANSACTION_VIEWS:
+        break;
+      case AppConfig.CAMPAIGN_CONST_VIEWS:
+        unitAmount = `(${USD.symbol})`;
+        break;
+    }
+
     return (
       <div className={"campaign-view"}>
           <div className={`campaign-header`}>
@@ -70,7 +95,7 @@ class TradeCompetitionView extends Component {
               <div className={`campaign-header-item campaign-item-${this.props.viewActive}`}>
               {this.props.viewActive === AppConfig.CAMPAIGN_TRANSACTION_VIEWS 
                 ? this.props.translate("components.campaigns.VolumeView.Txs") 
-                : this.props.translate("components.campaigns.VolumeView.Volume")}
+                : this.props.translate("components.campaigns.VolumeView.Volume")}{unitAmount}
               </div>
               <div className={`campaign-header-item campaign-item-prize`}>{this.props.translate("components.campaigns.VolumeView.Prize")}</div>
               <div className={`campaign-header-item campaign-item-rank`}>{this.props.translate("components.campaigns.VolumeView.Rank")}</div>
