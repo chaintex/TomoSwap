@@ -17,6 +17,13 @@ const initialState = {
 
 export default function campaignReducer(state = initialState, action) {
   switch (action.type) {
+    case campaignActionTypes.SET_PAGE_ACTIVE: {
+      return {
+        ...state,
+        page: action.payload,
+        items: []
+      }
+    }
     case campaignActionTypes.SET_DATA_FETCH: {
       let payload = action.payload || {};
       return {

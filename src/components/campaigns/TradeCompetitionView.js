@@ -8,9 +8,9 @@ import * as helpers from '../../utils/helpers'
 
 class TradeCompetitionView extends Component {
   render() {
-
     const getTokenList = () => {
       return this.props.items.map((item, index) => {
+        const rankIndex = (this.props.page - 1) * this.props.perPage + index
         let amount = 0;
         switch (this.props.viewActive) {
           case AppConfig.CAMPAIGN_VOLUME_VIEWS:
@@ -51,10 +51,10 @@ class TradeCompetitionView extends Component {
           return "";
         }
         return (
-          <div key={index} className={"common__fade-in campaign-row"}>
+          <div key={rankIndex} className={"common__fade-in campaign-row"}>
             <div className={`campaign-item campaign-item-order`}>
-              <div className={getClass(index)}>
-                <span>{index + 1}</span>
+              <div className={getClass(rankIndex)}>
+                <span>{rankIndex + 1}</span>
               </div>
             </div>
               <div className={`campaign-item campaign-item-address campaign-item-address-content`} title={item.from}>{helpers.formatAddress(item.from, 40, 32)}</div>
@@ -62,9 +62,9 @@ class TradeCompetitionView extends Component {
               <div className={`campaign-item campaign-item-${this.props.viewActive}`}>
                 {this.props.viewActive === AppConfig.CAMPAIGN_TRANSACTION_VIEWS ? item.txs : amount}
               </div>
-              <div className={`campaign-item campaign-item-prize`}>{getReward(this.props.viewActive, index + 1)}</div>
+              <div className={`campaign-item campaign-item-prize`}>{getReward(this.props.viewActive, rankIndex + 1)}</div>
               <div className={`campaign-item campaign-item-rank`}>
-                <div className={getClass(index)}>
+                <div className={getClass(rankIndex)}>
                   <span></span>
                 </div>
               </div>
@@ -104,11 +104,11 @@ class TradeCompetitionView extends Component {
           {getTokenList()}
           </div>
           <Pagination
-            activePage={this.props.page}
+            currentPage={this.props.page}
             pageLimit={this.props.perPage}
             totalRecords={this.props.totalRecords}
             pageNeighbours={5}
-            onPageChanged={this.props.handlePageChange}
+            onPageChanged={this.props.onPageChanged}
             wrapClass={"pager"}
           />
       </div>

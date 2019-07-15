@@ -19,31 +19,13 @@ const range = (from, to, step = 1) => {
 };
 
 class Pagination extends Component {
-  constructor(props) {
-    super(props);
-    const { totalRecords = null, pageLimit = 30, pageNeighbours = 0 } = props;
-
-    this.pageLimit = typeof pageLimit === "number" ? pageLimit : 30;
-    this.totalRecords = typeof totalRecords === "number" ? totalRecords : 0;
-
-    this.pageNeighbours = typeof pageNeighbours === "number" ? Math.max(0, Math.min(pageNeighbours, 5)) : 0;
-
-    this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
-
-    this.state = { currentPage: 1 };
-  }
-
-  componentDidMount() {
-    this.gotoPage(1);
-  }
-
   gotoPage = page => {
     const { onPageChanged = f => f } = this.props;
 
     const currentPage = Math.max(0, Math.min(page, this.totalPages));
 
     const paginationData = {
-      currentPage,
+      currentPage: currentPage || 1,
       totalPages: this.totalPages,
       pageLimit: this.pageLimit,
       totalRecords: this.totalRecords
@@ -59,12 +41,12 @@ class Pagination extends Component {
 
   handleMoveLeft = evt => {
     evt.preventDefault();
-    this.gotoPage(this.state.currentPage - this.pageNeighbours * 2 - 1);
+    this.gotoPage(this.currentPage - this.pageNeighbours * 2 - 1);
   };
 
   handleMoveRight = evt => {
     evt.preventDefault();
-    this.gotoPage(this.state.currentPage + this.pageNeighbours * 2 + 1);
+    this.gotoPage(this.currentPage + this.pageNeighbours * 2 + 1);
   };
 
   handleFirstPageClick = (evt) => {
@@ -79,14 +61,13 @@ class Pagination extends Component {
 
   fetchPageNumbers = () => {
     const totalPages = this.totalPages;
-    const currentPage = this.state.currentPage;
+    const currentPage = this.currentPage;
     const pageNeighbours = this.pageNeighbours;
     let pageLimit = pageNeighbours;
     let upperLimit, lowerLimit;
     let pages = [];
 
     lowerLimit = upperLimit = Math.min(currentPage, totalPages);
-
     for (let b = 1; b < pageLimit && b < totalPages;) {
       if (lowerLimit > 1) {
         lowerLimit--; b++;
@@ -95,7 +76,6 @@ class Pagination extends Component {
         upperLimit++; b++;
       }
     }
-    
     pages = range(lowerLimit, upperLimit);
 
     return [FIRST_PAGE, PREV_PAGE, ...pages, NEXT_PAGE, LAST_PAGE];
@@ -103,11 +83,19 @@ class Pagination extends Component {
 
 
   render() {
+    const { totalRecords = null, pageLimit = 30, pageNeighbours = 0, currentPage = 1 } = this.props;
+
+    this.currentPage = typeof currentPage === "number" ? currentPage : 1;
+    this.pageLimit = typeof pageLimit === "number" ? pageLimit : 30;
+    this.totalRecords = typeof totalRecords === "number" ? totalRecords : 0;
+
+    this.pageNeighbours = typeof pageNeighbours === "number" ? Math.max(0, Math.min(pageNeighbours, 5)) : 0;
+
+    this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
+
     if (!this.totalRecords) return null;
 
     if (this.totalPages === 1) return null;
-
-    const { currentPage } = this.state;
     const pages = this.fetchPageNumbers();
     return (
       <Fragment>
@@ -174,6 +162,7 @@ Pagination.propTypes = {
   totalRecords: PropTypes.number.isRequired,
   pageLimit: PropTypes.number,
   pageNeighbours: PropTypes.number,
+  currentPage: PropTypes.number,
   onPageChanged: PropTypes.func
 };
 
