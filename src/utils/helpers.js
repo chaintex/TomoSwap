@@ -1,5 +1,29 @@
 import BigNumber from 'bignumber.js';
 
+
+export function formatMoney(str) {
+  if (!str) {
+    return '';
+  }
+  str = str.toString();
+  const arr = str.split(decimalSeparator());
+  let result = parseInt(arr[0]).toLocaleString();
+  if (arr.length === 2) {
+    let precision = parseInt(arr[1]);
+    if (precision > 0) {
+      result = `${result}.${precision}`;
+    }
+  }
+  return result;
+}
+
+
+export function decimalSeparator() {
+  var n = 1.1;
+  n = n.toLocaleString().substring(1, 2);
+  return n;
+}
+
 export function formatAmount(number, precision = 6) {
   if (number === undefined) return;
 
@@ -16,6 +40,15 @@ export function formatBigNumber(number, decimals = 18) {
   result = result.div(Math.pow(10, decimals));
 
   return result.toNumber();
+}
+
+export function getBigNumber(number, decimals = 18) {
+  if (number === undefined) return;
+  let result = new BigNumber(number.toString());
+
+  result = number * Math.pow(10, decimals);
+
+  return result;
 }
 
 export function numberToHex(number, decimals = 18) {
