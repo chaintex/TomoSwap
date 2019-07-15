@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withLocalize } from 'react-localize-redux';
 import TradeCompetitionView from './TradeCompetitionView';
-import { fetchCampaignDatas, setViewActive } from "../../actions/campaignAction";
+import { fetchCampaignDatas, setViewActive, setPageActive } from "../../actions/campaignAction";
 import AppConfig from '../../config/app'
 import EnvConfig from '../../config/env';
 
@@ -24,6 +24,7 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchCampaignDatas: () => { dispatch(fetchCampaignDatas()) },
     setViewActive: (view) => { dispatch(setViewActive(view)) },
+    setPageActive: (page) =>  { dispatch(setPageActive(page)) },
   }
 }
 
@@ -58,6 +59,11 @@ class TradeCompetition extends Component {
   componentDidMount = () => {
     //checking params imput
     this.checkingParams();
+    this.props.fetchCampaignDatas();
+  };
+
+  handlePageChange = (pagingData) => {
+    this.props.setPageActive(pagingData.currentPage);
     this.props.fetchCampaignDatas();
   };
 
@@ -113,6 +119,7 @@ class TradeCompetition extends Component {
               totalRecords={this.props.totalRecords}
               pages={this.props.pages}
               items={this.props.items}
+              onPageChanged={this.handlePageChange}
               />
           </div>
         </div>

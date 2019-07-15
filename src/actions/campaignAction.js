@@ -4,6 +4,7 @@ export const campaignActionTypes = {
   SET_BACKGROUND_LOADING: 'CAMPAIGN.SET_BACKGROUND_LOADING',
   SET_VIEW_ACTIVE: 'CAMPAIGN.SET_VIEW_ACTIVE',
   SET_DATA_FETCH: 'CAMPAIGN.SET_DATA_FETCH',
+  SET_PAGE_ACTIVE: 'CAMPAIGN.SET_PAGE_ACTIVE'
 };
 
 export function fetchCampaignDatas() {
@@ -16,6 +17,13 @@ export function setDataFromService(data) {
   return {
     type: campaignActionTypes.SET_DATA_FETCH,
     payload: data
+  }
+}
+
+export function setPageActive(page) {
+  return {
+    type: campaignActionTypes.SET_PAGE_ACTIVE,
+    payload: page
   }
 }
 
