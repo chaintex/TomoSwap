@@ -4,7 +4,8 @@ export const campaignActionTypes = {
   SET_BACKGROUND_LOADING: 'CAMPAIGN.SET_BACKGROUND_LOADING',
   SET_VIEW_ACTIVE: 'CAMPAIGN.SET_VIEW_ACTIVE',
   SET_DATA_FETCH: 'CAMPAIGN.SET_DATA_FETCH',
-  SET_PAGE_ACTIVE: 'CAMPAIGN.SET_PAGE_ACTIVE'
+  SET_PAGE_ACTIVE: 'CAMPAIGN.SET_PAGE_ACTIVE',
+  SET_SHOW_MORE: 'CAMPAIGN.SET_SHOW_MORE'
 };
 
 export function fetchCampaignDatas() {
@@ -45,5 +46,12 @@ export function setBackgroundLoading(isBackgroundLoading) {
   return {
     type: campaignActionTypes.SET_BACKGROUND_LOADING,
     payload: isBackgroundLoading
+  }
+}
+
+export function setShowMore(isShowMore) {
+  return {
+    type: campaignActionTypes.SET_SHOW_MORE,
+    payload: isShowMore
   }
 }

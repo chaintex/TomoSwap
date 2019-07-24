@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withLocalize } from 'react-localize-redux';
 import TradeCompetitionView from './TradeCompetitionView';
-import { fetchCampaignDatas, setViewActive, setPageActive } from "../../actions/campaignAction";
+import ShowMoreView from './ShowMoreView';
+import { fetchCampaignDatas, setViewActive, setPageActive, setShowMore } from "../../actions/campaignAction";
 import AppConfig from '../../config/app'
 import EnvConfig from '../../config/env';
+import { stringFormat } from '../../utils/helpers'
 
 function mapStateToProps(store) {
   return {
@@ -16,6 +18,7 @@ function mapStateToProps(store) {
     viewActive: store.campaign.viewActive,
     isLoading: store.campaign.isLoading,
     isBackgroundLoading: store.campaign.isBackgroundLoading,
+    isShowMore: store.campaign.showMore,
     viewTabs: [AppConfig.CAMPAIGN_VOLUME_VIEWS, AppConfig.CAMPAIGN_TRANSACTION_VIEWS, AppConfig.CAMPAIGN_CONST_VIEWS]
   };
 }
@@ -25,6 +28,7 @@ function mapDispatchToProps(dispatch) {
     fetchCampaignDatas: () => { dispatch(fetchCampaignDatas()) },
     setViewActive: (view) => { dispatch(setViewActive(view)) },
     setPageActive: (page) =>  { dispatch(setPageActive(page)) },
+    setShowMore: (isShowMore) =>  { dispatch(setShowMore(isShowMore)) },
   }
 }
 
@@ -98,17 +102,24 @@ class TradeCompetition extends Component {
       return day + ' ' + monthNames[monthIndex] + ' ' + year;
     }
 
+
+    const getDays = (startDate, endDate) => {
+      const diffTime = (new Date(endDate)).getTime() - (new Date(startDate).getTime());
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+      return diffDays;
+    }
+    
     return (
       <div id="campaign" className={`campaign`}>
         <div className="title">{this.props.translate(`components.campaigns.CampaignView.Trade_Competition`)}</div>
+        <div className="title-sub">{stringFormat(this.props.translate(`components.campaigns.CampaignView.Trade_Competition_Sub`), getDays(EnvConfig.CAMPAIGN_START, EnvConfig.CAMPAIGN_END), formatDate(EnvConfig.CAMPAIGN_START), formatDate(EnvConfig.CAMPAIGN_END))}</div>
         <div className="campaign-container">
           <div className="content">
-            <div className="content-desc">
-              <p className="head">TomoChain (TOMO) Trading Competition — 13,000 TOMO + 3,000 NUSD to Give Away!</p>
-              <p className="day">Start:&nbsp;&nbsp;{formatDate(EnvConfig.CAMPAIGN_START)} - End:&nbsp;&nbsp;{formatDate(EnvConfig.CAMPAIGN_END)}</p>
-              <p className="head">Reward currency: 13,000 TOMO + 3,000 NUSD</p>
-              <p className="full-desc">The minumum amount for each transaction is 1 TOMO.</p>
-            </div>
+            <ShowMoreView 
+              showMore={this.props.showMore} 
+              setShowMore={this.props.setShowMore}
+            />
+            
             <div className="content-tabs">
               {listTabs()}
             </div>
