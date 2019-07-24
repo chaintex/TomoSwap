@@ -60,7 +60,7 @@
             }
         }
     }
-    .title {
+    .cp-title {
         font-size: 22px;
         text-align: center;
         color: #e1e4eb;
@@ -110,7 +110,7 @@
 
                 p.full-desc {
                     font-size: 14px;
-                    color: #caccd9;
+                    color: #bcbcc1;
                     padding-left: 15px;
                 }
 
@@ -176,7 +176,6 @@
             color: #1db1ff !important;
             font-size: 12px;
             text-transform: uppercase;
-
         }
 
         &::after {
@@ -337,27 +336,27 @@
 
     @media (max-width: $smaller-breakpoint) {
         &__header {
-        display: block;
+            display: block;
 
-        &-title {
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        &-input {
-            padding: 0 20px;
-            max-width: 100%;
-
-            &::after {
-            right: 40px;
+            &-title {
+                margin-bottom: 30px;
+                text-align: center;
             }
-        }
+
+            &-input {
+                padding: 0 20px;
+                max-width: 100%;
+
+                &::after {
+                right: 40px;
+                }
+            }
         }
     }
 }
 
 @media (max-width: $medium-breakpoint) {
-    .title {
+    .cp-title {
         padding-top: 40px !important;
     }
 
@@ -380,10 +379,14 @@
 }
 
 @media (max-width: $small-breakpoint) {
-    .title {
-        height: 50px !important;
+    .cp-title {
         padding-top: 10px !important;
-        font-size: 24px !important;
+        font-size: 22px !important;
+
+        &-sub {
+            margin-bottom: 0px !important;
+            font-size: 15px !important;
+        }
     }
 
     .campaign {
@@ -401,6 +404,12 @@
         }
         &-container {
             padding: 3px;
+        }
+
+        &-header {
+            &-item {
+                word-break: break-all;
+            }
         }
         &-item {
             font-size: 13px;

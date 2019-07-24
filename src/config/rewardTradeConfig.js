@@ -4,12 +4,12 @@ const RewardConfig = {
             {
                 min: 1,
                 max: 1,
-                value: 100,
+                value: 150,
             },
             {
                 min: 2,
                 max: 5,
-                value: 70,
+                value: 75,
             },
             {
                 min: 6,
@@ -29,12 +29,12 @@ const RewardConfig = {
             {
                 min: 1,
                 max: 1,
-                value: 100,
+                value: 150,
             },
             {
                 min: 2,
                 max: 5,
-                value: 70,
+                value: 75,
             },
             {
                 min: 6,
