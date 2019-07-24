@@ -6,7 +6,6 @@ import ShowMoreView from './ShowMoreView';
 import { fetchCampaignDatas, setViewActive, setPageActive, setShowMore } from "../../actions/campaignAction";
 import AppConfig from '../../config/app'
 import EnvConfig from '../../config/env';
-import { stringFormat } from '../../utils/helpers'
 
 function mapStateToProps(store) {
   return {
@@ -101,25 +100,17 @@ class TradeCompetition extends Component {
     
       return day + ' ' + monthNames[monthIndex] + ' ' + year;
     }
-
-
-    const getDays = (startDate, endDate) => {
-      const diffTime = (new Date(endDate)).getTime() - (new Date(startDate).getTime());
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-      return diffDays;
-    }
-    
+ 
     return (
       <div id="campaign" className={`campaign`}>
-        <div className="title">{this.props.translate(`components.campaigns.CampaignView.Trade_Competition`)}</div>
-        <div className="title-sub">{stringFormat(this.props.translate(`components.campaigns.CampaignView.Trade_Competition_Sub`), getDays(EnvConfig.CAMPAIGN_START, EnvConfig.CAMPAIGN_END), formatDate(EnvConfig.CAMPAIGN_START), formatDate(EnvConfig.CAMPAIGN_END))}</div>
+        <div className="title">{this.props.translate(`components.campaigns.CampaignView.Trade_Competition_Main`)}</div>
+        <div className="title-sub">Start:&nbsp;&nbsp;{formatDate(EnvConfig.CAMPAIGN_START)} - End:&nbsp;&nbsp;{formatDate(EnvConfig.CAMPAIGN_END)}</div>
         <div className="campaign-container">
           <div className="content">
             <ShowMoreView 
-              showMore={this.props.showMore} 
+              isShowMore={this.props.isShowMore} 
               setShowMore={this.props.setShowMore}
             />
-            
             <div className="content-tabs">
               {listTabs()}
             </div>

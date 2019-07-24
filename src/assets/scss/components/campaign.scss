@@ -61,7 +61,7 @@
         }
     }
     .title {
-        font-size: 20px;
+        font-size: 22px;
         text-align: center;
         color: #e1e4eb;
         align-items: center;
@@ -89,16 +89,15 @@
                 padding: 15px 30px;
                 border-radius:10px; 
                 margin-bottom: 15px;
+                transform: translateY(10px);
+                animation: fade-in 0.5s forwards;
 
                 &-hide {
                     display: none;
-                    transition-duration: 1s;
-                    transition-timing-function: linear;
-                    transition-property: display;
                 }
-                
+
                 p.head {
-                    font-size: 16px;
+                    font-size: 17px;
                     font-weight: 500;
                     color: #caccd9;
                 }
@@ -112,12 +111,25 @@
                 p.full-desc {
                     font-size: 14px;
                     color: #caccd9;
+                    padding-left: 15px;
                 }
 
                 p.short-desc {
                     font-size: 14px;
                     color: #caccd9;
                     padding-left: 15px;
+                }
+
+                .btn-show-more {
+                    display: inline;
+
+                    span {
+                        font-size: 12px;
+                        color: #1db1ff;
+                        text-align: right;
+                        display: block;
+                        cursor: pointer;
+                    }
                 }
             }
 
