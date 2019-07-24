@@ -17,7 +17,7 @@ const EnvConfig = {
   CONST_API_URL: "https://www.myconstant.com/api/collateral-loan/report/tomo/",
   CONST_API_CLIENT_KEY: "adebfd11e3964072a00188ee2a831946",
   CAMPAIGN_START: '2019-07-01',
-  CAMPAIGN_END: '2019-08-01',
+  CAMPAIGN_END: '2019-07-22',
   CAMPAIGN_VOLUME_MIN: 1000000000000000000,
   CAMPAIGN_IS_RUNNING: true
 };
