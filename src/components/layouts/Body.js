@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from "react-redux";
 import { withLocalize } from 'react-localize-redux';
 // import Market from '../market/Market';
@@ -15,6 +15,7 @@ import { getWeb3Instance } from "../../services/web3Service";
 import AboutUs from './AboutUs';
 import DappService from "../../services/accountServices/DappService";
 import { PAIR_DEFAULT } from '../../config/tokens';
+import TradeAlert from '../commons/TradeAlert';
 
 function mapStateToProps(store) {
   const global = store.global;
@@ -27,7 +28,8 @@ function mapStateToProps(store) {
     globalError: global.error,
     tokens: token.tokens,
     sourceToken: swap.sourceToken,
-    destToken: swap.destToken
+    destToken: swap.destToken,
+    campaignIsRunning: global.campaignIsRunning,
   };
 }
 
@@ -40,6 +42,7 @@ function mapDispatchToProps(dispatch) {
     fetchBalances: () => {dispatch(accountActions.fetchBalances())},
     setIsTomoWalletBrowser: (flag) => {dispatch(accountActions.setIsTomoWalletBrowser(flag))},
     setWallet: (address, walletType, walletService) => {dispatch(accountActions.setWallet(address, walletType, walletService))},
+    cloneAlert: () => {dispatch(globalActions.cloneAlertTradeCompetition())}
   }
 }
 
@@ -141,59 +144,63 @@ class Body extends Component {
     const tokenFromParam = this.getTokenFromParams(this.props.params);
 
     return (
-      <div className={"body"}>
-        <div className={"container"}>
-          <div className={`body__container ${isAccImported ? " body__container_has_imported" : ""}`}>
-            <div className={"body__content"}>
-              <h3 className={"body__title"}>{this.props.translate("components.layouts.Body.TomoSwap_The_first_decentralized_exchange_platform_on_TomoChain")}</h3>
-              <p className={"body__subtitle"}>{this.props.translate("components.layouts.Body.The_fastest_simplest_and_most_secure_way_to_exchange_tokens")}</p>
-            </div>
-            <div className={"body__content"}>
-              <div className={`body__exchange ${isTomoWallet ? "body__exchange-tomo" : null}`} id={"exchange"}>
-                <div className={"body__exchange-wrapper"}>
-                  <div className={`body__exchange-content body__exchange-content--${isSwapMode ? AppConfig.EXCHANGE_SWAP_MODE : AppConfig.EXCHANGE_TRANSFER_MODE}`}>
-                    <div className={`body__exchange-button body__exchange-button-noselect ${isSwapMode ? 'body__exchange-button--active' : ''}`} onClick={() => this.changeMode(AppConfig.EXCHANGE_SWAP_MODE)}>
-                      {this.props.translate("components.layouts.Body.Swap")}
-                    </div>
-                    <div className={`body__exchange-button body__exchange-button-noselect ${!isSwapMode ? 'body__exchange-button--active' : ''}`} onClick={() => this.changeMode(AppConfig.EXCHANGE_TRANSFER_MODE)}>
-                      {this.props.translate("components.layouts.Body.Transfer")}
+      <Fragment>
+        <div className={"body"}>
+          <div className={"container"}>
+            <div className={`body__container ${isAccImported ? " body__container_has_imported" : ""}`}>
+              <div className={"body__content"}>
+                <h3 className={"body__title"}>{this.props.translate("components.layouts.Body.TomoSwap_The_first_decentralized_exchange_platform_on_TomoChain")}</h3>
+                <p className={"body__subtitle"}>{this.props.translate("components.layouts.Body.The_fastest_simplest_and_most_secure_way_to_exchange_tokens")}</p>
+              </div>
+              <div className={"body__content"}>
+                <div className={`body__exchange ${isTomoWallet ? "body__exchange-tomo" : null}`} id={"exchange"}>
+                  <div className={"body__exchange-wrapper"}>
+                    <div className={`body__exchange-content body__exchange-content--${isSwapMode ? AppConfig.EXCHANGE_SWAP_MODE : AppConfig.EXCHANGE_TRANSFER_MODE}`}>
+                      <div className={`body__exchange-button body__exchange-button-noselect ${isSwapMode ? 'body__exchange-button--active' : ''}`} onClick={() => this.changeMode(AppConfig.EXCHANGE_SWAP_MODE)}>
+                        {this.props.translate("components.layouts.Body.Swap")}
+                      </div>
+                      <div className={`body__exchange-button body__exchange-button-noselect ${!isSwapMode ? 'body__exchange-button--active' : ''}`} onClick={() => this.changeMode(AppConfig.EXCHANGE_TRANSFER_MODE)}>
+                        {this.props.translate("components.layouts.Body.Transfer")}
+                      </div>
                     </div>
                   </div>
+                  {isSwapMode && (
+                    <Swap isTomoWallet={isTomoWallet}
+                      setUrl={this.props.setUrl}
+                      srcTokenFromParam={tokenFromParam.srcToken} 
+                      destTokenFromParam={tokenFromParam.destToken} />
+                  )}
+                  {!isSwapMode && (
+                    <Transfer isTomoWallet={isTomoWallet}
+                      setUrl={this.props.setUrl}
+                      srcTokenFromParam={tokenFromParam.srcToken} />
+                  )}
+                  {!isTomoWallet && (
+                    <ImportAccount/>
+                  )}
+                  <Transaction/>
                 </div>
-                {isSwapMode && (
-                  <Swap isTomoWallet={isTomoWallet}
-                    setUrl={this.props.setUrl}
-                    srcTokenFromParam={tokenFromParam.srcToken} 
-                    destTokenFromParam={tokenFromParam.destToken} />
-                )}
-                {!isSwapMode && (
-                  <Transfer isTomoWallet={isTomoWallet}
-                    setUrl={this.props.setUrl}
-                    srcTokenFromParam={tokenFromParam.srcToken} />
-                )}
-                {!isTomoWallet && (
-                  <ImportAccount/>
-                )}
-                <Transaction/>
               </div>
             </div>
+            {/* <Market/> */}
           </div>
-          {/* <Market/> */}
+          {!isTomoWallet && (
+            <AboutUs/>
+          )}
+          <Modal isActive={!!this.props.globalError} handleClose={() => this.props.resetGlobalError()}>
+            <div className={"modal__header modal__header--error"}>{this.props.translate("components.layouts.Body.Error")}</div>
+            <div className={"modal__body"}>
+              <div className={"modal__body-top"}>{this.props.globalError && this.props.globalError.includes('</') ? <span dangerouslySetInnerHTML={{__html: this.props.globalError }} /> : this.props.globalError }</div>
+            </div>
+            <div className={"modal__footer common__flexbox common__flexbox--center"}>
+              <div className={"modal__button modal__button--gradient"} onClick={() => this.props.resetGlobalError()}>{this.props.translate("components.layouts.Body.Try_Again")}</div>
+            </div>
+          </Modal>
         </div>
-
-        {!isTomoWallet && (
-          <AboutUs/>
-        )}
-        <Modal isActive={!!this.props.globalError} handleClose={() => this.props.resetGlobalError()}>
-          <div className={"modal__header modal__header--error"}>{this.props.translate("components.layouts.Body.Error")}</div>
-          <div className={"modal__body"}>
-            <div className={"modal__body-top"}>{this.props.globalError && this.props.globalError.includes('</') ? <span dangerouslySetInnerHTML={{__html: this.props.globalError }} /> : this.props.globalError }</div>
-          </div>
-          <div className={"modal__footer common__flexbox common__flexbox--center"}>
-            <div className={"modal__button modal__button--gradient"} onClick={() => this.props.resetGlobalError()}>{this.props.translate("components.layouts.Body.Try_Again")}</div>
-          </div>
-        </Modal>
-      </div>
+        {this.props.campaignIsRunning && (
+            <TradeAlert cloneAlert={this.props.cloneAlert} />
+          )}
+      </Fragment>
     )
   }
 }

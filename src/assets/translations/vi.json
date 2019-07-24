@@ -25,6 +25,20 @@
         "here": "đây"
       }
     },
+    "campaigns": {
+      "CampaignView": {
+        "Trade_Competition": "Trade Competition",
+        "Trade_Competition_Link": "View more"
+      },
+      "VolumeView": {
+        "Order": "",
+        "Address": "Địa chỉ",
+        "Volume": "Lượng G/D",
+        "Txs": "Số giao dịch",
+        "Prize": "Tiền thưởng",
+        "Rank": ""
+      }
+    },
     "commons" : {
       "ConfirmButton": {
         "Waiting_for_confirmation_from_your_wallet": "Chờ xác nhận từ ví của bạn...",
@@ -112,6 +126,7 @@
       },
       "Header": {
         "Swap":	"Trao đổi",
+        "Campaign": "Chiến dịch",
         "About_Us": "Về chúng tôi",
         "FAQ": "FAQ",
         "Contact_Us": "Liên hệ",
