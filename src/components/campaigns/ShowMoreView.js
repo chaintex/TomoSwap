@@ -38,9 +38,11 @@ class ShowMoreView extends Component {
                 <p className="head">Lending Competition on Constant - $1000</p>
                 <p className="full-desc">
                     <span>Winners: Top 3 winners with most volumes</span><br />
+                    <br />
                     <span>How to participate: </span><br />
-                    <span>- Go to website <a href="https://myconstant.com" target="_blank" rel="noopener noreferrer">https://myconstant.com</a> and start your loan.</span><br />
-                    <span>ligibility:</span><br />
+                    <span>Go to website <a href="https://myconstant.com" target="_blank" rel="noopener noreferrer">https://myconstant.com</a> and start your loan.</span><br />
+                    <br />
+                    <span>Eligibility:</span><br />
                     <span>1. The total loan value must be higher than 5,000 USD.</span><br />
                     <span>2. All loans must be created during the campaign and should not be closed or repaid during that time.</span><br />
                     <span>3. The minimum term is 1 month.</span><br />
