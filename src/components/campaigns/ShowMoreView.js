@@ -6,9 +6,9 @@ class ShowMoreView extends Component {
     return (
         <Fragment>
             <div className={`content-desc ${this.props.isShowMore ? "content-desc-hide" : ""}`}>
-                <p className="head">Trading Competition on TomoSwap - $2000</p>
+                <p className="head">Trading Competition on TomoSwap - $1,700</p>
                 <p className="day">
-                <span>Winners: Top 20 traders with most volumes, Top 20 traders with most trades</span><br />
+                <span>Winners: Top 15 traders with most volumes, Top 15 traders with most trades</span><br />
                 </p>
                 <p className="head">Lending Competition on Constant - $1000</p>
                 <p className="day">Winners: Top 3 winners with most volumes ...</p>
@@ -17,11 +17,11 @@ class ShowMoreView extends Component {
                 </div>
             </div>
             <div className={`content-desc ${!this.props.isShowMore ? "content-desc-hide" : ""}`}>
-                <p className="head">Trading Competition on TomoSwap - $2000</p>
+                <p className="head">Trading Competition on TomoSwap - $1,700</p>
                 <p className="full-desc">
                     <span>Winners:</span><br />
-                    <span>- Top 20 traders with most volumes</span><br />
-                    <span>- Top 20 traders with most trades</span><br />
+                    <span>- Top 15 traders with most volumes</span><br />
+                    <span>- Top 15 traders with most trades</span><br />
                     <span>Prizes:</span><br />
                     <span>- Top 1: $150 each</span><br />
                     <span>- Top 2-5: $75 each</span><br />

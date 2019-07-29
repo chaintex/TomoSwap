@@ -28,7 +28,7 @@
     "campaigns": {
       "CampaignView": {
         "Trade_Competition": "Trade competition",
-        "Trade_Competition_Main": "TomoSwap + MyConstant Competitions - $3000 to Give Away!",
+        "Trade_Competition_Main": "TomoSwap + MyConstant Competitions - $2,700 to Give Away!",
         "Trade_Competition_Sub": "Period: {0} days, from {1} to {2}",
         "Trade_Competition_Link": "View more",
         "NoData": "No data"

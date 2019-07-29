@@ -97,16 +97,12 @@ class TradeCompetition extends Component {
       var day = gmtDate.getDate();
       var monthIndex = gmtDate.getMonth();
       var year = gmtDate.getFullYear();
-      var hours = gmtDate.getHours();
-      var minutes = gmtDate.getMinutes();
       day = day > 9 ? day : '0' + day;
-      hours = hours > 9 ? hours : '0' + hours;
-      minutes = minutes > 9 ? minutes : '0' + minutes;
     
       if (isShowYear) {
-        return `${hours}:${minutes} ${day} ${monthNames[monthIndex]}, ${year}`
+        return `${day} ${monthNames[monthIndex]} ${year}`
       } else {
-        return `${hours}:${minutes} ${day} ${monthNames[monthIndex]}`
+        return `${day} ${monthNames[monthIndex]}`
       }
       
     }
@@ -114,7 +110,7 @@ class TradeCompetition extends Component {
     return (
       <div id="campaign" className={`campaign`}>
         <div className="cp-title">{this.props.translate(`components.campaigns.CampaignView.Trade_Competition_Main`)}</div>
-        <div className="cp-title-sub">Start:&nbsp;&nbsp;{formatDate(EnvConfig.CAMPAIGN_START, 8)} - End:&nbsp;&nbsp;{formatDate(EnvConfig.CAMPAIGN_END, 8, true)}&nbsp;(GMT +8)</div>
+        <div className="cp-title-sub">Period: {formatDate(EnvConfig.CAMPAIGN_START, 8)} to {formatDate(EnvConfig.CAMPAIGN_END, 8, true)} 0:00am (GMT +8)</div>
         <div className="campaign-container">
           <div className="content">
             <ShowMoreView 
