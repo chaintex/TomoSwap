@@ -18,8 +18,8 @@ const RewardConfig = {
             },
             {
                 min: 11,
-                max: 20,
-                value: 30,
+                max: 15,
+                value: 25,
             }
         ],
         unit: '$'
@@ -43,8 +43,8 @@ const RewardConfig = {
             },
             {
                 min: 11,
-                max: 20,
-                value: 30,
+                max: 15,
+                value: 25,
             }
         ],
         unit: '$'
