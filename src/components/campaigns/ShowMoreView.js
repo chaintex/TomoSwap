@@ -10,8 +10,8 @@ class ShowMoreView extends Component {
                 <p className="day">
                 <span>Winners: Top 15 traders with most volumes, Top 15 traders with most trades</span><br />
                 </p>
-                <p className="head">Lending Competition on Constant - $1000</p>
-                <p className="day">Winners: Top 3 winners with most volumes ...</p>
+                <p className="head">Lending Competition on MyConstant - $1,000</p>
+                <p className="day">Winners: Top 3 users with most volumes ...</p>
                 <div className="btn-show-more">
                     <span onClick={() => this.props.setShowMore(true)}>Show more</span>
                 </div>
@@ -33,11 +33,11 @@ class ShowMoreView extends Component {
                     <span>All you need to do is to trade between $TOMO and $CONST successfully. We provide a leaderboard for you to keep track of your performance and position.</span><br />
                     <br />
                     <span>Eligibility:</span><br />
-                    <span>All users taking part in this contest are eligible for prizes. However, only trades with volume >= 50 TOMO are included in our leaderboard and qualified for top 20 in both Volume and Trade leaderboards.</span><br />
+                    <span>All users taking part in this contest are eligible for prizes. However, only trades with volume >= 50 TOMO are included in our leaderboard and qualified for top 15 in both Volume and Trade leaderboards.</span><br />
                 </p>
-                <p className="head">Lending Competition on Constant - $1000</p>
+                <p className="head">Lending Competition on MyConstant - $1,000</p>
                 <p className="full-desc">
-                    <span>Winners: Top 3 winners with most volumes</span><br />
+                    <span>Winners: Top 3 users with most volumes</span><br />
                     <br />
                     <span>How to participate: </span><br />
                     <span>Go to website <a href="https://myconstant.com" target="_blank" rel="noopener noreferrer">https://myconstant.com</a> and start your loan.</span><br />
