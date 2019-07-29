@@ -33,6 +33,15 @@ export const TOKENS = [
     "address": "0x095d85e62cb6ad354ff900c1d530a7c4b8e247b5",
     "logo": "tiim.png"
   },
+  {
+    "symbol": "TRC21",
+    "name": "Test Token TRC21",
+    "address": "0x367eb080aaaa18f36b8d7b7227abb9287b48ea2d",
+    "decimals": 18,
+    "logo": "ctc.png",
+    "liquidityConversionRate": "0x2843ea3f56421369f86b34b5766de402c6a42493",
+    "reserveAMM": "0x41e37b6bdec31d0f0b2bae8ebac68e4985b1f07b"
+  },
   // {
   //   "symbol": "TestCTT",
   //   "name": "ChainTEX Token",
