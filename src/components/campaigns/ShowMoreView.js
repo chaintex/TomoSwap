@@ -13,7 +13,9 @@ class ShowMoreView extends Component {
                 <p className="head">Lending Competition on Constant - $1,000</p>
                 <p className="day">Winners: Top 3 users with most volumes</p>
                 <div className="btn-show-more">
-                    <span onClick={() => this.props.setShowMore(true)}>Show more</span>
+                    <a target="_blank" rel="noreferrer noopener" href="https://medium.com/@tomoswap/3c339b87df11">
+                        <span>Show more</span>
+                    </a>
                 </div>
             </div>
             <div className={`content-desc ${!this.props.isShowMore ? "content-desc-hide" : ""}`}>
