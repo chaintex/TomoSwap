@@ -10,8 +10,8 @@ class ShowMoreView extends Component {
                 <p className="day">
                 <span>Winners: Top 15 traders with most volumes, Top 15 traders with most trades</span><br />
                 </p>
-                <p className="head">Lending Competition on MyConstant - $1,000</p>
-                <p className="day">Winners: Top 3 users with most volumes ...</p>
+                <p className="head">Lending Competition on Constant - $1,000</p>
+                <p className="day">Winners: Top 3 users with most volumes</p>
                 <div className="btn-show-more">
                     <span onClick={() => this.props.setShowMore(true)}>Show more</span>
                 </div>
@@ -35,7 +35,7 @@ class ShowMoreView extends Component {
                     <span>Eligibility:</span><br />
                     <span>All users taking part in this contest are eligible for prizes. However, only trades with volume >= 50 TOMO are included in our leaderboard and qualified for top 15 in both Volume and Trade leaderboards.</span><br />
                 </p>
-                <p className="head">Lending Competition on MyConstant - $1,000</p>
+                <p className="head">Lending Competition on Constant - $1,000</p>
                 <p className="full-desc">
                     <span>Winners: Top 3 users with most volumes</span><br />
                     <br />
