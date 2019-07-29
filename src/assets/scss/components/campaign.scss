@@ -361,14 +361,14 @@
 }
 
 @media (max-width: $medium-breakpoint) {
-    .cp-title {
-        padding-top: 40px !important;
-    }
-
     .campaign {
         margin-top: 50px;
         padding: 20px 0;
 
+        .cp-title {
+            padding-top: 40px !important;
+        }
+    
         &-container {
             padding: 3px;
         }
@@ -384,20 +384,20 @@
 }
 
 @media (max-width: $small-breakpoint) {
-    .cp-title {
-        padding-top: 10px !important;
-        font-size: 22px !important;
-
-        &-sub {
-            margin-bottom: 0px !important;
-            font-size: 15px !important;
-        }
-    }
-
     .campaign {
         margin-top: 50px;
         padding: 20px 0;
 
+        .cp-title {
+            padding-top: 10px !important;
+            font-size: 19px !important;
+    
+            &-sub {
+                margin-bottom: 0px !important;
+                font-size: 14px !important;
+            }
+        }
+    
         .alert {
             &-header {
                 position: fixed;
@@ -409,6 +409,13 @@
         }
         &-container {
             padding: 3px;
+            .content {
+                &-desc {
+                    .head {
+                        font-size: 15px !important;
+                    }
+                }
+            }
         }
 
         &-header {

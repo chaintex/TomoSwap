@@ -114,7 +114,7 @@ class TradeCompetition extends Component {
     return (
       <div id="campaign" className={`campaign`}>
         <div className="cp-title">{this.props.translate(`components.campaigns.CampaignView.Trade_Competition_Main`)}</div>
-        <div className="cp-title-sub">Start:&nbsp;&nbsp;{formatDate(EnvConfig.CAMPAIGN_START, 8)} - End:&nbsp;&nbsp;{formatDate(EnvConfig.CAMPAIGN_END, 8, true)}</div>
+        <div className="cp-title-sub">Start:&nbsp;&nbsp;{formatDate(EnvConfig.CAMPAIGN_START, 8)} - End:&nbsp;&nbsp;{formatDate(EnvConfig.CAMPAIGN_END, 8, true)}&nbsp;(GMT +8)</div>
         <div className="campaign-container">
           <div className="content">
             <ShowMoreView 

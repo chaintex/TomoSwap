@@ -26,7 +26,7 @@ class ShowMoreView extends Component {
                     <span>- Top 1: $150 each</span><br />
                     <span>- Top 2-5: $75 each</span><br />
                     <span>- Top 6-10: $50 each</span><br />
-                    <span>- Top 11-20: $30 each</span>
+                    <span>- Top 11-15: $25 each</span>
                 </p>
                 <p className="full-desc">
                     <span>How to participate:</span><br />
