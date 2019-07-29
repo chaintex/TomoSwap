@@ -277,7 +277,12 @@
     &-row {
         padding: 15px 0;
 
-
+        .no_data {
+            color: #caccd9;
+            text-align: center;
+            display: inline-block;
+            width: 100%;
+        }
     }
   
     &-row:nth-child(2n) {
