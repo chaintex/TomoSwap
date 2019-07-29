@@ -12,7 +12,8 @@ const initialState = {
   perPage: 20,
   totalRecords: 0,
   pages: 0,
-  items: []
+  items: [],
+  showMore: false,
 };
 
 export default function campaignReducer(state = initialState, action) {
@@ -55,6 +56,12 @@ export default function campaignReducer(state = initialState, action) {
       return {
         ...state,
         isBackgroundLoading: action.payload
+      }
+    }
+    case campaignActionTypes.SET_SHOW_MORE: {
+      return {
+        ...state,
+        showMore: action.payload
       }
     }
     default:

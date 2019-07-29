@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withLocalize } from 'react-localize-redux';
 import TradeCompetitionView from './TradeCompetitionView';
-import { fetchCampaignDatas, setViewActive, setPageActive } from "../../actions/campaignAction";
+import ShowMoreView from './ShowMoreView';
+import { fetchCampaignDatas, setViewActive, setPageActive, setShowMore } from "../../actions/campaignAction";
 import AppConfig from '../../config/app'
 import EnvConfig from '../../config/env';
 
@@ -16,6 +17,7 @@ function mapStateToProps(store) {
     viewActive: store.campaign.viewActive,
     isLoading: store.campaign.isLoading,
     isBackgroundLoading: store.campaign.isBackgroundLoading,
+    isShowMore: store.campaign.showMore,
     viewTabs: [AppConfig.CAMPAIGN_VOLUME_VIEWS, AppConfig.CAMPAIGN_TRANSACTION_VIEWS, AppConfig.CAMPAIGN_CONST_VIEWS]
   };
 }
@@ -25,6 +27,7 @@ function mapDispatchToProps(dispatch) {
     fetchCampaignDatas: () => { dispatch(fetchCampaignDatas()) },
     setViewActive: (view) => { dispatch(setViewActive(view)) },
     setPageActive: (page) =>  { dispatch(setPageActive(page)) },
+    setShowMore: (isShowMore) =>  { dispatch(setShowMore(isShowMore)) },
   }
 }
 
@@ -81,8 +84,9 @@ class TradeCompetition extends Component {
       });
     };
 
-    const formatDate = (strDate) => {
+    const formatDate = (strDate, gmt = 7, isShowYear) => {
       const date = new Date(strDate);
+      const gmtDate = new Date(gmt * 60 * 60000 + date.valueOf() + (date.getTimezoneOffset() * 60000));
       const monthNames = [
         "January", "February", "March",
         "April", "May", "June", "July",
@@ -90,25 +94,29 @@ class TradeCompetition extends Component {
         "November", "December"
       ];
     
-      var day = date.getDate() + '';
-      day = day.length === 2 ? day : '0' + day;
-      var monthIndex = date.getMonth();
-      var year = date.getFullYear();
+      var day = gmtDate.getDate();
+      var monthIndex = gmtDate.getMonth();
+      var year = gmtDate.getFullYear();
+      day = day > 9 ? day : '0' + day;
     
-      return day + ' ' + monthNames[monthIndex] + ' ' + year;
+      if (isShowYear) {
+        return `${day} ${monthNames[monthIndex]} ${year}`
+      } else {
+        return `${day} ${monthNames[monthIndex]}`
+      }
+      
     }
-
+ 
     return (
       <div id="campaign" className={`campaign`}>
-        <div className="title">{this.props.translate(`components.campaigns.CampaignView.Trade_Competition`)}</div>
+        <div className="cp-title">{this.props.translate(`components.campaigns.CampaignView.Trade_Competition_Main`)}</div>
+        <div className="cp-title-sub">Period: {formatDate(EnvConfig.CAMPAIGN_START, 8)} to {formatDate(EnvConfig.CAMPAIGN_END, 8, true)} 0:00am (GMT +8)</div>
         <div className="campaign-container">
           <div className="content">
-            <div className="content-desc">
-              <p className="head">TomoChain (TOMO) Trading Competition — 13,000 TOMO + 3,000 NUSD to Give Away!</p>
-              <p className="day">Start:&nbsp;&nbsp;{formatDate(EnvConfig.CAMPAIGN_START)} - End:&nbsp;&nbsp;{formatDate(EnvConfig.CAMPAIGN_END)}</p>
-              <p className="head">Reward currency: 13,000 TOMO + 3,000 NUSD</p>
-              <p className="full-desc">The minumum amount for each transaction is 1 TOMO.</p>
-            </div>
+            <ShowMoreView 
+              isShowMore={this.props.isShowMore} 
+              setShowMore={this.props.setShowMore}
+            />
             <div className="content-tabs">
               {listTabs()}
             </div>

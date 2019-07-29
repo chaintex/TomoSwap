@@ -9,6 +9,15 @@ import * as helpers from '../../utils/helpers'
 class TradeCompetitionView extends Component {
   render() {
     const getTokenList = () => {
+      if (!this.props.items || this.props.items.length === 0) {
+        return (
+          <div key={0} className={"common__fade-in campaign-row"}>
+            <span className="no_data">
+              {this.props.translate("components.campaigns.CampaignView.NoData")}
+            </span>
+          </div>
+        )
+      }
       return this.props.items.map((item, index) => {
         const rankIndex = (this.props.page - 1) * this.props.perPage + index
         let amount = 0;
