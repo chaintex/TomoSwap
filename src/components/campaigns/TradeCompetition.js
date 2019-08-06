@@ -5,7 +5,6 @@ import TradeCompetitionView from './TradeCompetitionView';
 import ShowMoreView from './ShowMoreView';
 import { fetchCampaignDatas, setViewActive, setPageActive, setShowMore } from "../../actions/campaignAction";
 import AppConfig from '../../config/app'
-import EnvConfig from '../../config/env';
 
 function mapStateToProps(store) {
   return {
@@ -84,33 +83,33 @@ class TradeCompetition extends Component {
       });
     };
 
-    const formatDate = (strDate, gmt = 7, isShowYear) => {
-      const date = new Date(strDate);
-      const gmtDate = new Date(gmt * 60 * 60000 + date.valueOf() + (date.getTimezoneOffset() * 60000));
-      const monthNames = [
-        "January", "February", "March",
-        "April", "May", "June", "July",
-        "August", "September", "October",
-        "November", "December"
-      ];
+    // const formatDate = (strDate, gmt = 7, isShowYear) => {
+    //   const date = new Date(strDate);
+    //   const gmtDate = new Date(gmt * 60 * 60000 + date.valueOf() + (date.getTimezoneOffset() * 60000));
+    //   const monthNames = [
+    //     "January", "February", "March",
+    //     "April", "May", "June", "July",
+    //     "August", "September", "October",
+    //     "November", "December"
+    //   ];
     
-      var day = gmtDate.getDate();
-      var monthIndex = gmtDate.getMonth();
-      var year = gmtDate.getFullYear();
-      day = day > 9 ? day : '0' + day;
+    //   var day = gmtDate.getDate();
+    //   var monthIndex = gmtDate.getMonth();
+    //   var year = gmtDate.getFullYear();
+    //   day = day > 9 ? day : '0' + day;
     
-      if (isShowYear) {
-        return `${day} ${monthNames[monthIndex]} ${year}`
-      } else {
-        return `${day} ${monthNames[monthIndex]}`
-      }
+    //   if (isShowYear) {
+    //     return `${day} ${monthNames[monthIndex]} ${year}`
+    //   } else {
+    //     return `${day} ${monthNames[monthIndex]}`
+    //   }
       
-    }
+    // }
  
     return (
       <div id="campaign" className={`campaign`}>
         <div className="cp-title">{this.props.translate(`components.campaigns.CampaignView.Trade_Competition_Main`)}</div>
-        <div className="cp-title-sub">Period: {formatDate(EnvConfig.CAMPAIGN_START, 8)} to {formatDate(EnvConfig.CAMPAIGN_END, 8, true)} 0:00am (GMT +8)</div>
+        <div className="cp-title-sub">The final result will be announced soon</div>
         <div className="campaign-container">
           <div className="content">
             <ShowMoreView 
