@@ -47,7 +47,9 @@ class App extends Component {
       <div className={`app-container ${isTomoWallet ? "tomowallet" : ""}`} onClick={this.handleOnClick}>
         <Header isTomoWallet={isTomoWallet} params={params} url={url} />
         <Body isTomoWallet={isTomoWallet} params={params} setUrl={this.setUrl} />
-        <Footer isTomoWallet={isTomoWallet} params={params} />
+        {!isTomoWallet && (
+          <Footer isTomoWallet={isTomoWallet} params={params} />
+        )}
       </div>
     )
   }

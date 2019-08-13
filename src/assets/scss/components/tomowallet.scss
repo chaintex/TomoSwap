@@ -1,4 +1,10 @@
 .tomowallet {
+    &::before {
+        height: auto !important;
+    }
+    &-hide {
+        display: none !important;
+    }
     .body {
         padding-bottom: 0px;
     }
@@ -40,6 +46,21 @@
 
         .body {
             margin-top: 50px;
+            padding-top: 0 !important;
+
+            .container {
+                padding: 0;
+            }
+
+            &__container {
+                padding-bottom: 0;
+            }
+
+            &__exchange {
+                &-tomo {
+                    border-radius: 0
+                }
+            }
         }
     }
 }
