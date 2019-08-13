@@ -25,6 +25,23 @@
         "here": "here"
       }
     },
+    "campaigns": {
+      "CampaignView": {
+        "Trade_Competition": "$2,700 to Give Away!",
+        "Trade_Competition_Main": "[Ended] TomoSwap + Constant Competitions - $2,700 to Give Away!",
+        "Trade_Competition_Sub": "Period: {0} days, from {1} to {2}",
+        "Trade_Competition_Link": "View result",
+        "NoData": "No data"
+      },
+      "VolumeView": {
+        "Order": "",
+        "Address": "Address",
+        "Volume": "Volume",
+        "Txs": "Txs",
+        "Prize": "Prize",
+        "Rank": ""
+      }
+    },
     "commons" : {
       "ConfirmButton": {
         "Waiting_for_confirmation_from_your_wallet": "Waiting for confirmation from your wallet…",
@@ -112,6 +129,7 @@
       },
       "Header": {
         "Swap":	"Swap",
+        "Campaign": "Campaign",
         "About_Us": "About Us",
         "FAQ": "FAQ",
         "Contact_Us": "Contact Us",
