@@ -148,7 +148,7 @@ class Body extends Component {
         <div className={"body"}>
           <div className={"container"}>
             <div className={`body__container ${isAccImported ? " body__container_has_imported" : ""}`}>
-              <div className={"body__content"}>
+              <div className={`body__content ${isTomoWallet ? "tomowallet-hide" : ""}`}>
                 <h3 className={"body__title"}>{this.props.translate("components.layouts.Body.TomoSwap_The_first_decentralized_exchange_platform_on_TomoChain")}</h3>
                 <p className={"body__subtitle"}>{this.props.translate("components.layouts.Body.The_fastest_simplest_and_most_secure_way_to_exchange_tokens")}</p>
               </div>
@@ -198,8 +198,8 @@ class Body extends Component {
           </Modal>
         </div>
         {this.props.campaignIsRunning && (
-            <TradeAlert cloneAlert={this.props.cloneAlert} />
-          )}
+          <TradeAlert cloneAlert={this.props.cloneAlert} />
+        )}
       </Fragment>
     )
   }
