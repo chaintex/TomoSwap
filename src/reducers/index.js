@@ -6,6 +6,7 @@ import swapReducer from "./swapReducer";
 import globalReducer from "./globalReducer";
 import transferReducer from "./transferReducer";
 import transactionReducer from "./transactionReducer";
+import campaignReducer from "./campaignReducer";
 import { localizeReducer } from 'react-localize-redux';
 
 const reducer = combineReducers({
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   swap: swapReducer,
   transfer: transferReducer,
   tx: transactionReducer,
+  campaign: campaignReducer,
   localize: localizeReducer,
 });
 

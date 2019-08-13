@@ -13,6 +13,11 @@ const EnvConfig = {
   METADATA_TRANSFER_DEFINED: "tomochain:trc20?origin=tomoswap&type=transfer&address={0}&recipient={1}&amount={2}",
   METADATA_SWAP_DEFINED: "tomochain:trc20?origin=tomoswap&type=swap&src={0}&srcAmount={1}&dest={2}&minRate={3}&walletId={4}",
   METAMASK_INSTRUCTION_LINK: "/metamask_instruction_testnet.pdf",
+  CHAINTEX_API_URL: "https://api.tomoswap.com/api/",
+  CAMPAIGN_START: '2019-07-29T16:00:00.000Z',
+  CAMPAIGN_END: '2019-08-05T16:00:00.000Z',
+  CAMPAIGN_VOLUME_MIN: 50000000000000000000,
+  CAMPAIGN_IS_RUNNING: false
 };
 
 export default EnvConfig;
