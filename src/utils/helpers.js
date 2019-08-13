@@ -29,6 +29,7 @@ export function formatAmount(number, precision = 6) {
 
   if (number < Math.pow(10, -precision)) { return 0; }
   const amountString = number.toString();
+  if (amountString.indexOf('.') === -1) { return amountString; }
 
   return parseFloat(amountString.slice(0, (amountString.indexOf('.')) + (precision + 1)));
 }
